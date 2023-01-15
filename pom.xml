@@ -29,6 +29,12 @@
     <module>soloviovaProj</module>
     <module>yakymivProj</module>
     <module>serbinovskyProj</module>
+    <module>loiProj</module>
+      <module>morozProj</module>
+    <module>pustovoitProj</module>
+    <module>golenkoProj</module>
+      <module>kovalnogovProj</module>
+    <module>milevskaProj</module>
   </modules>
 
   <name>G6_TAF</name>
