@@ -15,6 +15,13 @@
     <module>berezhnyiProj</module>
     <module>kavaProj</module>
     <module>ovsiannikovaProj</module>
+    <module>muntyanProj</module>
+    <module>shtankoProj</module>
+    <module>kucheriukProj</module>
+    <module>zapotochnaProj</module>
+    <module>sapaievProj</module>
+    <module>komendaProj</module>
+    <module>smiianProj</module>
   </modules>
 
   <name>G6_TAF</name>
