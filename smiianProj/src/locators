@@ -1,0 +1,4 @@
+#LoginPage
+
+loginPage.input.userName=.//*[@name='useName']
+(зрозуміла назва елемента)
