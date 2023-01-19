@@ -3,3 +3,6 @@
 loginPage.input.userName=.//*[@name='userName']
 
 #HomePage
+
+
+.//input[@placeholder='Username']
