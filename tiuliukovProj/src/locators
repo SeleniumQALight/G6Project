@@ -1,0 +1,4 @@
+#LoginPage
+
+loginPage.input.userName = .//
+loginPage.input.userLogin = .//
