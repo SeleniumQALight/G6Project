@@ -1,0 +1,133 @@
+==================================================================
+#TEST CASE - ID №1
+
+#TITLE
+Sign Up a new user at https://qa-complexapp.onrender.com/
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com/ on a Google Chrome browser ver.109.0.5414.75
+
+#TEST STEPS
+
+1) Launch Google Chrome browser;
+2) Navigate to the website https://qa-complexapp.onrender.com;
+3) Enter "testauto18" to the [pick a username] field;
+4) Enter "superman@gmail.com" to the [email] field;
+5) Enter created password to the [password] field;
+6) Click on [Sign Up on OurApp] button.
+
+#EXPECTED RESULT
+
+Displayed "Hello testauto18, your feed is empty" and [sign out] button is shown
+
+=============================================================================
+
+#TEST CASE - ID №2
+
+#TITLE
+Sign in with existing user at https://qa-complexapp.onrender.com
+
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com/ on a Google Chrome browser ver.109.0.5414.75
+Already created user testauto18
+
+#TEST STEPS
+
+1) Launch Google Chrome browser;
+2) Navigate to the website https://qa-complexapp.onrender.com;
+3) Enter "testauto18" to the [username] field a the sign in block;
+4) Enter appropriate password to the [password] field at the sign in block;
+5) Click on [Sing In] button;
+
+#EXPECTED RESULT
+
+Displayed "Hello testauto18, your feed is empty", "testauto18" icon and [sign out] button.
+
+=====================================================================================
+
+#TEST CASE - ID №3
+
+#TITLE
+Creating a new post at https://qa-complexapp.onrender.com
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com/ on a Google Chrome browser ver.109.0.5414.75
+Already created user testauto18
+
+#TEST STEPS
+
+1) Launch Google Chrome browser;
+2) Navigate to the website https://qa-complexapp.onrender.com;
+3) Enter "testauto18" to the [username] field a the sign in block;
+4) Enter appropriate password to the [password] field at the sign in block;
+5) Click on [Sing In] button;
+6) After successful sign in,click on [Create post] button;
+7) Enter "This is my test" to the [Title] field;
+8) Enter "Testing create post function" to the [Body Content] field;
+9) Click on [Save New Post] button;
+
+#EXPECTED RESULT
+Displayed page with text "New post successfully created." and "This is a test"
+
+
+======================================================================================
+
+#TEST CASE - ID №4
+
+
+#TITLE
+Typing and sending text in chat box at https://qa-complexapp.onrender.com
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com/ on a Google Chrome browser ver.109.0.5414.75
+Already created user testauto18
+
+#TEST STEPS
+
+1) Launch Google Chrome browser;
+2) Navigate to the website https://qa-complexapp.onrender.com;
+3) Enter "testauto18" to the [username] field a the sign in block;
+4) Enter appropriate password to the [password] field at the sign in block;
+5) Click on [Sing In] button;
+6) After successful sign in,click on [Chat] icon;
+7) At the bottom-right chat box should appear;
+8) Enter "Testing this chat box and making sure it is working" to the [Type a message] field;
+9) Click on [Enter].
+
+
+#EXPECTED RESULT
+Typed text "Testing this chat box and making sure it is working" displayed in the chat box.
+
+
+============================================================================================
+
+#TEST CASE - ID №5
+
+#TITLE
+Using search function in created account at https://qa-complexapp.onrender.com
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com/ on a Google Chrome browser ver.109.0.5414.75
+Already created user testauto18
+
+#TEST STEPS
+
+1) Launch Google Chrome browser;
+2) Navigate to the website https://qa-complexapp.onrender.com;
+3) Enter "testauto18" to the [username] field at the sign in block;
+4) Enter appropriate password to the [password] field at the sign in block;
+5) Click on [Sing In] button;
+6) After successful sign in,navigate to [Search] icon and click on it;
+7) Enter "Test" in "What are you interested in" appeared search input bar.
+
+#EXPECTED RESULT
+Search input bar displayed when clicking on search icon.
+
+
+===============================================================================================
+
+
+
+
+
