@@ -1,0 +1,7 @@
+#LoginPage
+
+
+loginPage.input.userName=.//*[@name='userName']
+//На якій сторінці-що це за елемент-і логічне пояснення що це таке
+
+#HomePage
