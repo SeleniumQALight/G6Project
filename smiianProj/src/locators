@@ -1,4 +1,27 @@
-#LoginPage
+#1
+                    'Create Post' button = .//a[@class='btn btn-sm btn-success mr-2']
+                           'Title' filed = .//input[@id='post-title']
+               'Body Content' text filed = .//textarea[@id='post-body']
+         'Is this post unique?' checkbox = .//input[@type='checkbox']
+                  'Save New Post' button = .//button[@class='btn btn-primary']
+Message "New post successfully created." = .//div[@class='alert alert-success text-center']
+Note: "Is this post unique?" has a "yes" = .//p[contains(text(), 'yes')]
+          Number of posts in 'Posts' tab = .//a[@href='/' and @class='text-white']
 
-loginPage.input.userName=.//*[@name='useName']
-(зрозуміла назва елемента)
+#2
+                         'Delete' button = .//button[@class='delete-post-button text-danger']
+     Message "Post successfully deleted" = .//div[@class='alert alert-success text-center']
+          Number of posts in 'Posts' tab = .//a[@href='/' and @class='text-white']
+
+#3
+                         'Follow' button = .//button[@class='btn btn-primary btn-sm']
+                         'Followers' tab = .//a[@class='profile-nav-link nav-item nav-link active']
+
+#4
+                         'Follow' button = .//button[@class='btn btn-primary btn-sm']
+  Message "Successfully followed User 2" = .//div[@class='alert alert-success text-center']
+                 Button 'Stop following' = .//button[@class='btn btn-danger btn-sm']
+
+#5
+                       'Sign Out' button = .//button[@class='btn btn-sm btn-secondary']
+                        'Sign In' button = .//button[@class='btn btn-primary btn-sm']
