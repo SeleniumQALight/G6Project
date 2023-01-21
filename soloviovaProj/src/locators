@@ -1,3 +1,108 @@
-#pageName
+#1 Lending page; TC #1 Registration From verification.
+ Username field  .//input[@name='username'and @placeholder='Pick a username']
+ Email field  .//input[@name='email' and @id=‘email-register']
+ Password field  .//input[@name='password' and @placeholder='Create a password’]
+ Sign up for OurApp  .//button[@type=‘submit']
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
 
-pageName.teg.atrebute=.....
+#2 Home page; TC #2 Log in and Account verification.
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ User name at Navigation bar  .//span[contains(text(), ‘usereName from valid data’)]
+
+#3 Home/User pages; TC #3 User’s profile verification.
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ User profile icon  .//a[.//img[@alt='My profile’]]
+ User name  .//h2[contains(text(), ‘usereName from valid data')]
+ Post tab  .//a[@href='/profile/yuliiasol' and contains(text(), 'Posts: 0’)]
+ Followers tab  .//a[@href='/profile/yuliiasol/followers' and contains(text(), 'Followers: 0')]
+ Following tab  .//a[@href='/profile/yuliiasol/following' and contains(text(), 'Following: 0’)]
+
+#4 Post creation; TC #4 Post creation and Post tab functionality verification.
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ Create post button  .//a[@href=‘/create-post']
+ Save New Post  .//button[@class='btn btn-primary’]
+ Title field  .//input[@name=‘title']
+ Body field  .//textarea[@name=‘body']
+ Checkbox  .//input[@type=‘checkbox']
+ Dropdown  .//select//option[@value='All Users’]
+ Save New Post  .//button[@class='btn btn-primary’]
+ User profile icon  .//a[.//img[@alt='My profile’]]
+ Post tab  .//a[@href='/profile/yuliiasol' and contains(text(), 'Posts: 1’)]
+
+#5 Post creation page; #5 Post editing functionality verification.
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ User profile icon  .//a[.//img[@alt='My profile’]]
+ Link on the post  //a[@class='list-group-item list-group-item-action’]//strong[text()='Title from valid data’]
+ Edit icon  .//a[@class='text-primary mr-2']
+ Save Updates button  .//button[@class='btn btn-primary’]
+Title field  .//input[@name=‘title’]
+Save Updates button  .//button[@class='btn btn-primary’]
+User profile icon  .//a[.//img[@alt='My profile’]]
+Post tab  .//a[@href='/profile/yuliiasol' and contains(text(), 'Posts: 1’)]
+
+#6 Post creation page; #6 Delete post button and Posts tab functionality verification.
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ User profile icon  .//a[.//img[@alt='My profile’]]
+ Link on the post  //a[@class='list-group-item list-group-item-action’]//strong[text()='Title from           valid data’]
+ Delete icon  .//button[@class='delete-post-button text-danger’]
+ Message after delete  .//div[@class='alert alert-success text-center’]
+ Post tab  .//a[@href='/profile/yuliiasol' and contains(text(), 'Posts: 0’)]
+
+
+
+#7 Home page. Search window pop up; TC #7 Search button verification.
+ For preconditions:
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ Create post button  .//a[@href=‘/create-post']
+ Save New Post  .//button[@class='btn btn-primary’]
+ Title field  .//input[@name=‘title']
+ Body field  .//textarea[@name=‘body']
+ Checkbox  .//input[@type=‘checkbox']
+ Dropdown  .//select//option[@value='All Users’]
+ Save New Post  .//button[@class='btn btn-primary’]
+
+ For STR:
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ Search icon  .//a[@href=‘#']
+ Search field  .//input[@id=‘live-search-field']
+ Link on the post after search .//a[@class='list-group-item list-group-item-action’]//strong[text()='Title from valid data’]
+ Title of the post on its page  .//h2[text()='Title from valid data’’]
+ Body of the post  .//div[@class=‘body-content']//p[not(.//i)]
+
+Post conditions:
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ User profile icon  .//a[.//img[@alt='My profile’]]
+ Link on the post  //a[@class='list-group-item list-group-item-action’]//strong[text()='Title from           valid data’]
+ Delete icon  .//button[@class='delete-post-button text-danger’]
+ Message after delete  .//div[@class='alert alert-success text-center’]
+
+#8 Home page; TC #8 Sing out button verification.
+ Username field  .//input[@name='username' and @placeholder=‘Username']
+ Password field  .//input[@name='password' and @placeholder=‘Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ Sign in button  .//button[@class='btn btn-primary btn-sm’]
