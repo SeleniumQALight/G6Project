@@ -1,7 +1,69 @@
-#Summary
+#Test case 1
+Summary
+Реєстрація нового користувача
 
-STR
+Steps to reproduce
+-Перейти на сторінку https://qa-complexapp.onrender.com/
+-Ввести валідні данні в поле Username
+-Ввести валідну адресу пошти в поле  Email
+-Ввести валідний пароль в поле Password
+-Клікнути на кнопку Sing up for OurApp
 
-ER
+Expected result
+Юзер логіниться \ в хедері відображаеться ім"я юзера  а також кнопки Create post/Sing out
 
-#2
+#Test case 2
+Summary
+Логін(Sing in)
+
+Precondition
+-Зареэструватись
+
+Steps to reproduce
+-В поля ввести дані зареєстрованого користувача Username\Password
+-Клікнути на кнопку Sing in
+
+Expected result
+Юзер логіниться \ в хедері відображаеться ім"я юзера а також кнопки Create post/Sing out
+
+#Test case 3
+Summary
+Створення нового поста
+
+Precondition
+-Залогінитись
+
+Steps to reproduce
+-Клікнути на кнопку Create post
+-Заповнити поля  Title та Body Content
+-Клікнути на кнопку Save new post
+
+Expected result
+Відображення повідомлення New post successfully created.
+
+#Test case 4
+Summary
+Пошук поста
+
+Precondition
+- Залогінитись
+
+Steps to reproduce
+- Клікнути на кнопку в Search хедері
+- В поле  What are you interested in? ввести назву поста
+
+Expected result
+Відображення постів з данною назвою
+
+#Test case 5
+Summary
+ЛогАут(Sing out)
+
+Precondition
+-Залогінитись
+
+Steps to reproduce
+-Клікнути на кнопку Sing out
+
+Expected result
+Юзер розлогінився \ в хедері відображають поля юзернейм\пароль та кнопка Sing in
