@@ -1,7 +1,53 @@
-#1 Summary
-
+#1
+Summary: Creating new post on qa-complexapp.onrender.com
 Steps to reproduce(STR)
-
+1. Sign in
+2. Create post click
+3. Fill Title - Autotest Post, body content - Current time and date
+4. Save New Post click
 Expected Result(ER)
+Alert with text: New post successfully created. appeared
 
 #2
+Summary: Removing last post on qa-complexapp.onrender.com
+Steps to reproduce(STR)
+1. Sign in
+2. My profile click
+3. First post click
+4. Delete button click
+Expected Result(ER)
+Post successfully deleted text appeared
+
+#3
+Summary: Editing last post on qa-complexapp.onrender.com
+Steps to reproduce(STR)
+1. Sign in
+2. My profile click
+3. First post click
+4. Edit button click
+5. Body Content add "Edited + time"
+Expected Result(ER)
+Post successfully updated. appeared
+
+#4
+Summary: Following button working
+Steps to reproduce(STR)
+1. log in +
+2. Search button click
+3. Fill text box with: CheckPost
+4. Click first search result
+5. Click on eugensydorenko
+6. Click on Follow button
+Expected Result(ER)
+Stop Following button appeared
+
+#5
+Summary: Unfollowing button working
+Steps to reproduce(STR)
+1. Log in
+2. My profile click
+3. Following click
+4. eugensydorenko click
+5. Stop Folowing click
+Expected Result(ER)
+Follow button appeared
