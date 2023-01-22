@@ -3,20 +3,20 @@
 #1
 Success login.
 
-Preconditions: Create user Login:'aqacomplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
 STR:
 - Open 'https://qa-complexapp.onrender.com/';
-- Enter Username 'aqacomplexapp';
+- Enter Username 'aqaTestComplexapp';
 - Enter Password 'Test87654321';
 - Click on the 'Sign In' button.
 ER: User successfully logged in proceed to Main page. 'Sign out' button is displayed.
 
 #2
 Create 'All users' and 'Unique' post.
-Preconditions: Create user Login:'aqacomplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
 STR:
 - Open 'https://qa-complexapp.onrender.com/';
-- Enter Username 'aqacomplexapp';
+- Enter Username 'aqaTestComplexapp';
 - Enter Password 'Test87654321';
 - Click on the 'Sign In' button.
 - Click on the 'Create Post' button;
@@ -34,10 +34,10 @@ Post-conditions: Remove created post.
 
 #3
 Read 'All users' and 'Unique' post in profile.
-Preconditions: Create user Login:'aqacomplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
 STR:
 - Open 'https://qa-complexapp.onrender.com/';
-- Enter Username 'aqacomplexapp';
+- Enter Username 'aqaTestComplexapp';
 - Enter Password 'Test87654321';
 - Click on the 'Sign In' button.
 - Click on the 'Create Post' button;
@@ -57,10 +57,10 @@ Post-conditions: Remove created post.
 
 #4
 Update post.
-Preconditions: Create user Login:'aqacomplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
 STR:
 - Open 'https://qa-complexapp.onrender.com/';
-- Enter Username 'aqacomplexapp';
+- Enter Username 'aqaTestComplexapp';
 - Enter Password 'Test87654321';
 - Click on the 'Sign In' button.
 - Click on the 'Create Post' button;
@@ -87,10 +87,10 @@ Post-conditions: Remove created post.
 
 #5
 Delete post.
-Preconditions: Create user Login:'aqacomplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
 STR:
 - Open 'https://qa-complexapp.onrender.com/';
-- Enter Username 'aqacomplexapp';
+- Enter Username 'aqaTestComplexapp';
 - Enter Password 'Test87654321';
 - Click on the 'Sign In' button.
 - Click on the 'Create Post' button;
@@ -104,10 +104,10 @@ ER: 'Post successfully deleted' alert-message is displayed. User have no any pos
 
 #6
 Search test.
-Preconditions: Create user Login:'aqacomplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
 STR:
 - Open 'https://qa-complexapp.onrender.com/';
-- Enter Username 'aqacomplexapp';
+- Enter Username 'aqaTestComplexapp';
 - Enter Password 'Test87654321';
 - Click on the 'Sign In' button.
 - Click on the 'Create Post' button;
@@ -123,9 +123,12 @@ ER: 'DoNotRemove!TestSearch' title is displayed.
 
 #7
 Chat test
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
 STR:
 - Open 'https://qa-complexapp.onrender.com/';
-- Login with existing credentials.
+- Enter Username 'aqaTestComplexapp';
+- Enter Password 'Test87654321';
+- Click on the 'Sign In' button.
 - Click on the 'Chat' button;
 - Enter 'TestMessage' in the chat field.
 - Press 'Enter' button.
