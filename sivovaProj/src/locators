@@ -1,0 +1,34 @@
+Test case #1:
+
+username field = .//input[@name='username' and @placeholder='Username'
+password field = .//input[@placeholder='Password']
+sign in button = .//button[@class='btn btn-primary btn-sm']
+sign out button = .//button[text()='Sign Out']
+
+
+Test case #2: Sign up form
+username field = .//input[@id='username-register']
+email field = .//input[@id='email-register']
+password field = .//input[@id='password-register']
+sign up for ourapp button = .//button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']
+sign out button = .//button[text()='Sign Out']
+
+
+Test case #3:
+sign out button = .//button[text()='Sign Out']
+sign in button = .//button[@class='btn btn-primary btn-sm]
+
+
+Test case #4:
+create post button = .//a[@class='btn btn-sm btn-success mr-2']
+title = .//input[@id='post-title']
+body content text area = .//textarea[@id='post-body']
+select value dropdown = .//select[contains(name(), 'select')]
+Приватне повідомлення = .//option[@value='One Person']
+Save NEw Post button = .//button[@class='btn btn-primary']
+message = .//div[@class='alert alert-success text-center']
+
+
+Test case #5:
+Chat title = .//div[@class='chat-title-bar']
+chat window CLose button = .//span[@class='chat-title-bar-close']
