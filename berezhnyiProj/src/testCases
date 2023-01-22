@@ -1,7 +1,78 @@
-#1 Summary
+QAPP-1
+    Summary
+        Sign up
+    Preconditions
+    Steps
+        1. Open the https://qa-complexapp.onrender.com/ login page
+        2. Enter name (more than 3 characters) into the 'Username' input field
+        3. Enter not registered email(email@example.com) into the 'Email' input field
+        4. Enter password(>=12 characters) into the 'Password' input field
+        5. Click the 'Sign up for OurApp' button
+    Expected result
+        User is successfully signed up and redirected to the 'Home' page. 'Sign out' button is present on the page.
+    Post-conditions
+        Delete recently created user from the website
 
-STR
+QAPP-2
+    Summary
+        Sign in
+    Preconditions
+        Register a new user, username - anton, email - anton@example.com, password - 123456qwerty.
+    Steps
+        1. Open the https://qa-complexapp.onrender.com/ login page
+        2. Enter username into the 'Username' input field
+        3. Enter password into the 'Password' input field
+        4. Click the 'Sign In' button
+    Expected result
+        User is successfully signed in and redirected to the 'Home' page. 'Sign out' button is present on the page.
+    Post-conditions
+        Delete recently created user from the website
 
-ER
+QAPP-3
+    Summary
+        Sign out
+    Preconditions
+        Register a new user, username - anton, email - anton@example.com, password - 123456qwerty.
+    Steps
+        1. Open the https://qa-complexapp.onrender.com/ login page
+        2. Enter username into the 'Username' input field
+        3. Enter password into the 'Password' input field
+        4. Click the 'Sign In' button
+        5. Click the 'Sign Out' button
+    Expected result
+        User is successfully signed out and redirected to the 'Login' page. 'Sign in' button is present on the page.
+    Post-conditions
+        Delete recently created user from the website
 
-#2 Summary
+QAPP-4
+    Summary
+        Create a post
+    Preconditions
+        Register a new user, username - anton, email - anton@example.com, password - 123456qwerty. Login to the system.
+    Steps
+        1. Click the 'Create Post' button
+        2. Enter text title into the 'Title' input field
+        3. Enter text content into the 'Body Content' input field
+        4. Click the 'Is this post unique' checkbox
+        5. Select the 'Public'(zagalnodostupne) value from the 'Select value' drop-down
+        6. Click the 'Save New Post' button
+    Expected result
+        User is redirected to the created post page. 'New post successfully created.' message is shown on the page.
+        Created post page contains post title, date of creation, author username, privacy option, unique yes/no option, post content.
+        Post can be found using the search function.
+    Post-conditions
+        Delete the created post. Delete the created user.
+
+QAPP-5
+    Summary
+        Search for a post
+    Preconditions
+        Register a new user, username - anton, email - anton@example.com, password - 123456qwerty. Login to the system.
+        Create the post with the 'Post1' title.
+    Steps
+        1. Click the search(magnifying glass) icon
+        2. Enter 'Post1' text into the search input field
+    Expected result
+        Post record with 'title1' name is shown in the Search Results drop-down
+    Post-conditions
+        Delete the created post. Delete the created user.
