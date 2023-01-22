@@ -1,7 +1,35 @@
 #LoginPage
 
+loginPage.input.userName=.//input[@name='username' and @id='username-register']
+loginPage.input.Email=.//input[@name='email' and @id='email-register']
+loginPage.input.Password=.//input[@name='password' and @id='password-register']
+loginPage.button.Submit=.//button[@type='submit']
+homePage.button.My Profile=.//img[@data-original-title='My Profile']
 
-loginPage.input.userName=.//*[@name='userName']
-//На якій сторінці-що це за елемент-і логічне пояснення що це таке
+
+loginPage.input.userName=.//input[@name='username' and @placeholder='Username']
+loginPage.input.Password=.//input[@name='password' and @placeholder='Password']
+loginPage.button.Sign In=.//button[text()='Sign In']
+loginPage.button.Create Post=.//a[text()='Create Post']
+
 
 #HomePage
+
+homePage.button.Create Post=.//a[text()='Create Post']
+homePage.Form.input.Title=.//input[@name='title']
+homePage.Form.input.Body=.//textarea[@name='body']
+homePage.Form.checkbox=.//input[@type='checkbox' and @value='yes']
+homePage.Form.Select=.//select//option[@value='All Users']
+homePage.button.btn btn-primary=.//button[@class='btn btn-primary']
+pageNewPost=.//div[@class='alert alert-success text-center']
+
+homePage.button.Chat=.//span[@class='text-white mr-2 header-chat-icon']
+homePage.Chat.ChatField=.//input[@id=’chatField’]
+homePage.Chat.chat-message=.//div[@class='chat-message-inner']
+
+#PostPage
+
+homePage.button.MyProfile=.//img[@data-original-title="My Profile"]
+profilePage.Post.wk01_test_post_01=.//strong[text()='wk01_test_post_01']
+postPage.Button. Edit=.//a[@data-original-title='Edit']
+postPage.Button.Save Updates= .//button[@class='btn btn-primary']
