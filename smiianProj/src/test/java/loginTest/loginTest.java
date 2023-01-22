@@ -12,10 +12,10 @@ import java.util.concurrent.TimeUnit;
 
 public class loginTest {
     WebDriver webDriver;
-    @Test
-    public void validLogin() {
+    @Test   // show that methods after  @Test  can be run
+    public void validLogin() {   // separate test
         WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();              // open new Chrome
+        webDriver = new ChromeDriver();     // open new Chrome
 
         webDriver.manage().window().maximize();       // full screen open
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -48,6 +48,40 @@ public class loginTest {
         webDriver.quit();
         System.out.println("Browser was closed");
     }
+    @Test
+    public void notValidLogin() {
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver();
+
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        System.out.println("Browser opened");
+
+        webDriver.get("https://qa-complexapp.onrender.com/");
+        System.out.println("Page site opened");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("qaautoAAA");
+        System.out.println("login was inputted");
+
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty");
+        System.out.println("password was inputted");
+
+        WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        buttonSignIn.click();
+        System.out.println("Button was clicked");
+
+        WebElement loginError = webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center' and contains(text(), 'Error11')]"));
+        System.out.println("Error appeared");
+
+        webDriver.quit();
+        System.out.println("Browser was closed");
+
+    }
+
     private boolean isButtonSignOutDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
