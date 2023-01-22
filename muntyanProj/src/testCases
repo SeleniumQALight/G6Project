@@ -1,0 +1,154 @@
+#1 LoginPage information
+
+Summary:
+Verify LoginPage information
+
+STR
+1. Open loginPage via URL https://qa-complexapp.onrender.com/
+
+EX
+The following information should be presented:
+1. Username input in Sign in section
+2. Password input in Sign in section
+3. Sign In button
+4. Username input in Sign Up section
+5. Email input in Sign Up section
+6. Password input in Sign Up section
+-------------------------------------------------------------------------------------------------
+#2 Sign Up functionality
+Summary:
+A User should be able to create account using Sign Up function
+
+STR
+1. Open loginPage via URL https://qa-complexapp.onrender.com/
+2. Enter unique Username into Username input in Sign up section  using latin letters (example: )
+3. Enter valid email (example: example@emai.com)into Email input in Sign up section
+4. Enter Password using latin letters and numbers into Password input in Sign up section. Password should be at least 12 characters
+
+5. Click on 'Sign up for OurApp' button
+EX_1
+HomePage should appear. The following information should display:
+1. Username in right top corner
+2. 'Create Post' button available
+3. 'Sign Out' button available
+4. Search icon available
+5. Chat icon available
+6. My Profile icon is available
+
+STR continue
+6. Click on Sign Out on the top right corner
+
+EX_2
+LoginPage displayed
+2. 'Create Post' button is not  available
+3. 'Sign Out' button is not available
+4. Search icon is not available
+5. Chat icon is not available
+6. 'Sign In' button available
+7. My Profile icon is not available
+
+STR continue
+7. Enter User name (Created in step 2) into Username input in Sign In section
+8. Enter password (Created in step 4) into Password input in Sign In section
+9. Hit 'Sign In' button
+
+EX_3
+HomePage should appear. The following information should display:
+1. Correct Username appears in right top corner
+2. 'Create Post' button is available
+3. 'Sign Out' button is available
+4. Search icon is available
+5. Chat icon is available
+6. My Profile icon is available
+---------------------------------------------------------------------------------
+
+#3 Verify 'Create Post' Page information
+Summary:
+'Create Post' Page should be available for users, where they will be able to create posts
+
+Pre-condition:
+Login to an existing account using valid data (Username: Myntyan, Password: MuntyanMuntyan).
+If the user is not available, register a new user.
+HomePage should be open
+
+STR:
+1. HomePage should be open https://qa-complexapp.onrender.com/
+2. Click on 'Create Post' button
+
+EX
+1. Create-post page is open.
+2. Title input should be available
+3. Body Content input should be available
+4. Checkbox 'Is this post unique?' should be available
+5. 'Select value' Drop Down should be available with 3 options:
+    5.1. 'Загальнодоступне'
+    5.2. 'Приватне повідомлення'
+    5.3. 'Групове повідомлення'
+6. 'Create Post' button is available
+7. 'Sign Out' button is available
+8. Search icon is available
+9. Chat icon is available
+10. My Profile icon is available
+-----------------------------------------------------------------------------------
+
+#4  Create Post function
+
+Summary:
+User should be able to Create Post
+
+Pre-condition:
+Login to an existing account using valid data (Username: Myntyan, Password: MuntyanMuntyan).
+If the user is not available, register a new user.
+HomePage should be open
+
+STR:
+1. HomePage should be open https://qa-complexapp.onrender.com/
+2. Click on 'Create Post' button
+3. Enter the following text into Title input: 'Java Stands For'
+4. Enter the following text into Body Content input: 'Java doesn't have any abbreviations. Java is rich aromatic coffee seed'
+5. Hit 'Save New Post' button
+
+EX_1:
+1. Title input should not be available
+2. Body Content input should not be available
+3. Checkbox 'Is this post unique?' should not be available
+4. 'Select value' Drop Down should not be available
+6. 'Create Post' button is available
+7. 'Sign Out' button is available
+8. Search icon available
+9. Chat icon available
+10. Message 'New post successfully created.' is displayed
+11. Delete button available
+12.  Edit button is available
+13. Profile Link should be available
+
+STR continue:
+6. Click on 'My Profile' button
+
+EX_2:
+1. 'Java stands For' button appear
+
+STR continue:
+7. Click on 'Java stands For' button
+
+EX_3:
+1. Delete button available
+2.  Edit button is available
+3. Sign 'Java Stands For' is displayed
+4. Sign 'Java doesn't have any abbreviations. Java is rich aromatic coffee seed' is displayed
+
+_____________________________________________________________________________________________________-
+
+#5 Chat button
+
+Summary:
+User should be able to access chat button from HomePage
+
+STR:
+1. Login to an existing account using valid data (Username: Myntyan, Password: MuntyanMuntyan).
+Note: If the user is not available, register a new user.
+2. Click on 'Chat' icon
+
+EX_1:
+1. Chat window pop up
+2. 'Type a message' input available
