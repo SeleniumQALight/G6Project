@@ -5,32 +5,36 @@ Steps to reproduce(STR)
 2. Create post click
 3. Fill Title - Autotest Post, body content - Current time and date
 4. Save New Post click
+5. My profile click
 Expected Result(ER)
-Alert with text: New post successfully created. appeared
+first element with Autotest Post text is displayed
 
 #2
 Summary: Removing last post on qa-complexapp.onrender.com
+Preconditions: Autotest Post was created before
 Steps to reproduce(STR)
 1. Sign in
 2. My profile click
 3. First post click
 4. Delete button click
 Expected Result(ER)
-Post successfully deleted text appeared
+Post successfully deleted text appeared and first element has no Autotest Post text
 
 #3
 Summary: Editing last post on qa-complexapp.onrender.com
+Preconditions: User has at least 1 post
 Steps to reproduce(STR)
 1. Sign in
 2. My profile click
 3. First post click
 4. Edit button click
-5. Body Content add "Edited + time"
+5. Body Content add "Edited + time"(and save as variable)
 Expected Result(ER)
-Post successfully updated. appeared
+Post successfully updated. appeared and body content contains text from variable
 
 #4
 Summary: Following button working
+Preconditions: CheckPost posted by eugensydorenko exists
 Steps to reproduce(STR)
 1. log in +
 2. Search button click
@@ -38,16 +42,21 @@ Steps to reproduce(STR)
 4. Click first search result
 5. Click on eugensydorenko
 6. Click on Follow button
+7. Click on My profile
+8. Following Click
 Expected Result(ER)
-Stop Following button appeared
+page contains eugensydorenko
 
 #5
 Summary: Unfollowing button working
+Preconditions: eugensydorenko exists and was followed before
 Steps to reproduce(STR)
 1. Log in
 2. My profile click
 3. Following click
 4. eugensydorenko click
 5. Stop Folowing click
+7. Click on My profile
+8. Following Click
 Expected Result(ER)
-Follow button appeared
+page doesn't contains eugensydorenko

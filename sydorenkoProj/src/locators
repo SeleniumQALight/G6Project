@@ -25,9 +25,14 @@
 
 #Created Post
 //div[@class='alert alert-success text-center' and contains(text(),'New post successfully created.')]
+//div[@class='list-group']/a[1]/strong[contains(text(),'Autotest Post')]
+
+#Following page
+//text()[contains(.,'eugensydorenko')]
 
 #My Profile
 //div[@class='list-group']/a[1] First post
+//strong[contains(text(),'Autotest Post')]
 
 #First post
 //*[@data-icon='edit'] Edit
