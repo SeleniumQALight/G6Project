@@ -17,8 +17,10 @@ Opened website https://qa-complexapp.onrender.com/ on a Google Chrome browser ve
 6) Click on [Sign Up on OurApp] button.
 
 #EXPECTED RESULT
+Should be displayed "Hello testauto18, your feed is empty" and [sign out] button is shown at the top right
 
-Displayed "Hello testauto18, your feed is empty" and [sign out] button is shown
+#ACTUAL RESULT
+As expected
 
 =============================================================================
 
@@ -41,8 +43,10 @@ Already created user testauto18
 5) Click on [Sing In] button;
 
 #EXPECTED RESULT
+Should be displayed "Hello testauto18, your feed is empty", "testauto18" icon and [sign out] button.
 
-Displayed "Hello testauto18, your feed is empty", "testauto18" icon and [sign out] button.
+#ACTUAL RESULT
+As expected
 
 =====================================================================================
 
@@ -68,7 +72,10 @@ Already created user testauto18
 9) Click on [Save New Post] button;
 
 #EXPECTED RESULT
-Displayed page with text "New post successfully created." and "This is a test"
+Should be displayed page with text "New post successfully created." and "This is a test"
+
+#ACTUAL RESULT
+As expected
 
 
 ======================================================================================
@@ -97,7 +104,10 @@ Already created user testauto18
 
 
 #EXPECTED RESULT
-Typed text "Testing this chat box and making sure it is working" displayed in the chat box.
+Should be entered text "Testing this chat box and making sure it is working" displayed in the chat box.
+
+#ACTUAL RESULT
+As expected
 
 
 ============================================================================================
@@ -122,7 +132,10 @@ Already created user testauto18
 7) Enter "Test" in "What are you interested in" appeared search input bar.
 
 #EXPECTED RESULT
-Search input bar displayed when clicking on search icon.
+Search input bar should be displayed when clicking on search icon.
+
+#ACTUAL RESULT
+As expected
 
 
 ===============================================================================================
