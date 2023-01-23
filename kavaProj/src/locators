@@ -8,7 +8,7 @@ SignUpNewUser.input.password = .//input[@id='password-register']
 
 SignInUser.input.username = .//div[starts-with(@class,'col')]/input[@name='username']
 SignInUser.input.password = .//div[starts-with(@class,'col')]/input[@name='password']
-SignInUser.button.signIN = .//button[contains(text(),'Sing In')]
+SignInUser.button.signIN = .//button[@class='btn btn-primary btn-sm']
 
 #HomePage
 
