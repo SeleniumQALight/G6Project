@@ -1,0 +1,20 @@
+#Registration
+userNameField  //input[@name='username' and @id='username-register']
+emailEmail     //input[@name='email' and @id='email-register']
+passwordField  //input[@name='password' and @id='password-register']
+SignUpButton   //button[@type='submit']
+
+
+
+
+
+
+#Authorized user
+signOutButton                      //button[text()='Sign Out']
+
+
+#ErrorText
+errorEmailField.notValid              //div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']
+errorPasswordField.notValid           //div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']
+errorUsernameField.AlreadyRegistered  //div[@class='alert alert-danger small']
+errorUsernameField.notValid           //div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']
