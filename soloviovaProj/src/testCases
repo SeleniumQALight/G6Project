@@ -130,6 +130,8 @@ STR:
      ER: Page with post is displayed as well as delete button.
 3. Click on the delete button.
      ER: User’s profile page is displayed, message”post successfully deleted” appears. Posts tab decrements by one.
+4. Verify that deleted post is not listed on the user's profile page.
+         ER: Deleted post is not listed on the user's page.
 ------------------------------------------------------------------------------------------
 #7 Search button verification.
 PRECONDITIONS: login into an existing account using valid data, create a public post, log out.
