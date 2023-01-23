@@ -4,10 +4,12 @@ Summary
 
 Steps to reproduce
 -Перейти на сторінку https://qa-complexapp.onrender.com/
--Ввести валідні данні в поле Username
+-Ввести валідні данні в поле Username(Тільки букви і цифри\мінімум 3.максимум 30)
 -Ввести валідну адресу пошти в поле  Email
--Ввести валідний пароль в поле Password
+-Ввести валідний пароль в поле Password(Від 12 до 50 символів)
 -Клікнути на кнопку Sing up for OurApp
+Postcondition
+-Перевірити чи можна залогінитись новим юзером
 
 Expected result
 Юзер логіниться \ в хедері відображаеться ім"я юзера  а також кнопки Create post/Sing out
@@ -38,6 +40,10 @@ Steps to reproduce
 -Заповнити поля  Title та Body Content
 -Клікнути на кнопку Save new post
 
+Postcondition
+Перевірити чи створився новий пост в списку
+Видалити створений пост
+
 Expected result
 Відображення повідомлення New post successfully created.
 
@@ -47,6 +53,7 @@ Summary
 
 Precondition
 - Залогінитись
+- Створити пост
 
 Steps to reproduce
 - Клікнути на кнопку в Search хедері
