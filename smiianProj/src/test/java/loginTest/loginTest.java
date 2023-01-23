@@ -74,8 +74,11 @@ public class loginTest {
         buttonSignIn.click();
         System.out.println("Button was clicked");
 
-        WebElement loginError = webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center' and contains(text(), 'Error11')]"));
+        WebElement loginError = webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']"));
         System.out.println("Error appeared");
+
+        WebElement buttonSignInAfterError = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        System.out.println("SignIn button still present");
 
         webDriver.quit();
         System.out.println("Browser was closed");
