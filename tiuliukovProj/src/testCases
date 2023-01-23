@@ -47,7 +47,7 @@ STR:
 - Choose 'All users' in 'Select value' dropdown;
 - Click on the 'Save New Post' button;
 - Click on the 'My Profile' button;
-- Click on the post.
+- Click on the 'AllUsersAndUnique' post.
 ER: Post is displayed with next data:
 Title: 'AllUsersAndUnique'.
 Note: This post was written for All Users
@@ -70,7 +70,7 @@ STR:
 - Choose 'All users' in 'Select value' dropdown;
 - Click on the 'Save New Post' button;
 - Click on the 'My Profile' button;
-- Click on the post.
+- Click on the 'AllUsersAndUnique' post.
 - Click on the 'Edit' button;
 - Change field to:
 Title: 'OnePerson'.
@@ -94,13 +94,13 @@ STR:
 - Enter Password 'Test87654321';
 - Click on the 'Sign In' button.
 - Click on the 'Create Post' button;
-- Fill in 'DeletePost' text in the 'Title' field;
+- Fill in 'DeletePostAutoTest' text in the 'Title' field;
 - Fill in 'BodyContent' text in the 'Body Content' field;
 - Click on the 'Save New Post' button;
 - Click on the 'My Profile' button;
-- Click on the first post.
+- Click on the 'DeletePostAutoTest' post.
 - Click on the 'Delete' button;
-ER: 'Post successfully deleted' alert-message is displayed. User have no any posts.
+ER: 'Post successfully deleted' alert-message is displayed. User have no 'DeletePostAutoTest' posts.
 
 #6
 Search test.
@@ -118,8 +118,8 @@ STR:
 - Click on the 'Search' button;
 - Enter 'DoNotRemove!TestSearch' in the search field.
 - Click on the first result.
-
 ER: 'DoNotRemove!TestSearch' title is displayed.
+Post-conditions: Remove created post.
 
 #7
 Chat test
@@ -132,5 +132,4 @@ STR:
 - Click on the 'Chat' button;
 - Enter 'TestMessage' in the chat field.
 - Press 'Enter' button.
-
 ER: 'TestMessage' message is displayed in the chat.
