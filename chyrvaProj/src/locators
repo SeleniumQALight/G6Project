@@ -1,5 +1,28 @@
 #LoginPage
 
-loginPage.input.userName=.//*[@name='userName']
+loginPage.input.userName=//*[@id="username8"]
+loginPage.input.password=//input[@placeholder='Password']
+loginPage.SignIn_button=.//button[@class='btn btn-primary btn-sm']
 
 #HomePage
+
+homePage.SignOut_button=.//button[@class="btn btn-sm btn-secondary"]
+homePage.CreatePost_button=.//a[@href="/create-post"]
+homePage.My_Profile_icon=.//a[@class="mr-2"]
+homePage.Chat_icon=//span[.='']
+homePage.Search_icon=.//a[@href="#"]
+
+
+#createPostPage
+
+
+createPostPage.title=//input[@id="post-title"]
+createPostPage.Body_Content=//textarea[@id="post-body"]
+createPostPage.Save_New_PostBTN=//button[@class="btn btn-primary"]
+
+#searchPage
+
+
+searchPage.searchPlaceholder=//input[@placeholder='What are you interested in?']
+searchPage.listOfPosts=//div[@class="live-search-results live-search-results--visible"]
+searchPage.CloseSearch=//span[@class="close-live-search"]
