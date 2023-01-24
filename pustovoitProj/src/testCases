@@ -1,7 +1,46 @@
-#1Summary
-
+#1 Check the login with valid data
 STR
-
+    1. Open the page https://qa-complexapp.onrender.com/
+    2. Enter a valid login and password
+    3 Click the button "Sign In"
 ER
+    The user has successfully logged in.
+_____________________________________
 
-#2
+#2 Check registration with valid data
+STR
+    1. Open the page https://qa-complexapp.onrender.com/
+    2. Enter your username, email and password
+    3 Click the "Sign up for OurApp" button
+ER
+    The user has successfully registered.
+_____________________________________
+
+#3 Check the possibility to open My Profile
+STR
+   1. Log in to https://qa-complexapp.onrender.com/
+   2. Click on the profile icon in the header
+ER
+   The profile page has opened
+_____________________________________
+
+#4 Check the Create Post option
+STR
+   1. Log in to https://qa-complexapp.onrender.com/
+   2. Click the Create Post button in the header
+   3. Enter the title and text in Body Content
+   4. Select a checkbox and a value from the list
+   5. Click on the "Save New Post" button
+ER
+   A new post has been created
+_____________________________________
+
+#5 Check the possibility to open your post (first of list)
+STR
+   1. Log in to https://qa-complexapp.onrender.com/
+   2. Click on the "My Profile" button in the header
+   3. Click on the first post from the list
+ER
+   The post opened on the page
+_____________________________________
+

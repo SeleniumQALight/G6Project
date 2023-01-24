@@ -1,12 +1,25 @@
 #LoginPage
 
 
-loginPage.input.userName=.//*[@name='userName']
-
-
+loginPage.input.userName= .//input[@name='username' and @placeholder='Username']
+loginPage.input.Password= .//input[@placeholder='Password']
+loginPage.button.SignIn= .//button[@class='btn btn-primary btn-sm']
+loginPage.input.userName.register= .//input [@id='username-register']
+loginPage.input.email= .//input [@id='email-register']
+loginPage.input.password.register= .//input [@id='password-register']
+loginPage.button.SignUp.//button[@type='submit']
 
 #HomePage
-
-
-
+HomePage.button.SignOut = .//button[text()='Sign Out']
+HomePage.img.MyProfile = .//img[@title]
+HomePage.img.Avatar = .//img[@class='avatar-small']
+HomePage.button.CreatePost= .//a[@class='btn btn-sm btn-success mr-2']
+HomePage.input.PostTitle= .//input[@ name='title']
+HomePage.textarea.PostBody= .//textarea[@ name='body']
+HomePage.input.PostCheckbox= .//input[@ type='checkbox']
+HomePage.select.PostSelectValue= .//select[@ name='select1']
+HomePage.button.SaveNewPost= .//button[@class='btn btn-primary']
+HomePage.div.MessagePostCreated= .//div[@class='alert alert-success text-center']
+HomePage.href.FirstPostOfList= .//a[@class='list-group-item list-group-item-action'][1]
+HomePage.href.EditPost= .//a[@class='text-primary mr-2']
 
