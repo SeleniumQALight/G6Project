@@ -73,6 +73,6 @@ QAPP-5
         1. Click the search(magnifying glass) icon
         2. Enter 'Post1' text into the search input field
     Expected result
-        Post record with 'title1' name is shown in the Search Results drop-down
+        Post record with 'Post1' name is shown in the Search Results drop-down
     Post-conditions
         Delete the created post. Delete the created user.

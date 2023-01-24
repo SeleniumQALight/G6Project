@@ -1,6 +1,6 @@
 #Login Page
 
-loginPage.loginInput.userName = .//input[@id='username1']
+loginPage.loginInput.userName = .//input[@name='username' and @Placeholder='Username']
 loginPage.loginInput.password = .//input[@type='password' and @placeholder='Password']
 loginPage.loginButton.SignIn = .//button[@class='btn btn-primary btn-sm']
 
