@@ -1,0 +1,41 @@
+#LoginPage
+
+loginPage.form.login = ".//form[@action='/login']"
+loginPage.form.register = ".//form[@action='/register']"
+
+loginPage.loginInput.userName = ".//input[@name='username' and @placeholder='Username']"
+loginPage.loginInput.password = ".//input[@class='form-control form-control-sm input-dark' and @type='password']"
+
+loginPage.registrationInput.userName = ".//input[@id='username-register']"
+loginPage.registrationInput.email = ".//input[@id='email-register']"
+loginPage.registrationInput.password = ".//input[@id='password-register']"
+
+loginPage.button.signIn = ".//button[@class='btn btn-primary btn-sm']"
+loginPage.button.signUp = ".//button[@type='submit']"
+
+-----------------------------------------------
+#HomePage
+
+homePage.headerLink.title = ".//a[@class='text-white']"
+homePage.footerLink.ourApp = ".//a[@class='text-muted']"
+
+homePage.headerIcon.search = ".//a[@href='#']"
+homePage.headerIcon.chat = ".//span[@class='text-white mr-2 header-chat-icon']"
+homePage.headerIcon.profile = ".//a[@href='/profile/test']"
+homePage.headerButton.createPost = ".//a[@class='btn btn-sm btn-success mr-2']"
+homePage.headerButton.signOut = ".//button[@class='btn btn-sm btn-secondary']"
+
+homePage.headerVariable.userName = ".//span[@class='text-white mr-2']"
+
+------------------------------------------------
+#CreatePostPage
+
+createPostPage.input.title = ".//input[@id='post-title']"
+createPostPage.textarea.bodyContent= ".//textarea[@id='post-body']"
+createPostPage.checkbox.isUniquePost= ".//input[@name='uniquePost']"
+createPostPage.dropDown.selectValue = ".//select[@id='select1']"
+createPostPage.dropDown.valueGroupMessage = ".//select[@id='select1']/option[@value='Group Message']"
+createPostPage.dropDown.valueAllUsers = ".//select[@id='select1']/option[@value='All Users']"
+createPostPage.button.saveNewPost = ".//button[@class='btn btn-primary']"
+
+------------------------------------------------
