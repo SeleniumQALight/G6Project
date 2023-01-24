@@ -1,0 +1,49 @@
+TC_01,ComplexApp,chat functionality
+Verify ability to chat
+Precondition: Successfully Log In with valid Username and Password
+Test Steps:
+1. On Main page Click on Chat icon;
+2. Click on 'Type a message' field on chat window;
+3. Type "Hello";
+4. Press Enter;
+Expected result : word "Hello" should appeared in Chat window .
+
+TC_2,ComplexApp,Create Post
+Verify ability to create post
+Precondition: Successfully Log In with valid Username and Password
+Test Steps:
+1. On Main page Click on 'Create Post' button;
+2. Enter title and body content;
+3. Hit 'Save New Post' button;
+Expected result : Message "New post successfully created." should appeared .
+
+TC_3,ComplexApp,Edit Post
+Verify ability to edit my post
+Precondition: Successfully Create new Post
+Test Steps:
+1. On Main Page Click on My Profile Icon;
+2. On My Profile page Click on last created Post;
+3. Hit blue edit icon;
+4. Add characters to Title and Body;
+5. Click 'Save Updates' button;
+Expected result : Message "Post successfully updated." should appeared .
+
+TC_4,ComplexApp,Delete Post
+Verify ability to delete my post
+Precondition: Successfully Create new Post
+Test Steps:
+1. On Main Page Click on My Profile Icon;
+2. On My Profile page Click on last created Post;
+3. Hit red Trash Can icon;
+Expected result : Message "Post successfully deleted" should appeared .
+
+TC_5,ComplexApp,Search functionality
+Verify ability to find other user Posts
+Precondition: Successfully Log In with valid Username and Password
+Test Steps:
+1. On main page Click 'Search' icon;
+2. Enter "post";
+3. Check if other users post is appeared;
+Expected result : List of posts is appeared .
+
+
