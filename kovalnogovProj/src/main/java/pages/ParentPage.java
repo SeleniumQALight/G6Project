@@ -12,8 +12,4 @@ public class ParentPage {
         this.webDriver = webDriver;
     }
 
-
-    private void typeText(String value ){
-       // webDriver.findElement(  ).clear().;
-    }
 }
