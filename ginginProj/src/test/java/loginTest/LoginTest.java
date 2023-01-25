@@ -20,7 +20,7 @@ public class LoginTest {
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        System.out.println("browser was opened");
+        System.out.println("Browser was opened");
         webDriver.get("https://qa-complexapp.onrender.com/");
         System.out.println("Site was opened");
 
@@ -60,5 +60,49 @@ public class LoginTest {
         }
 
     }
+
+    @Test
+    public void invalidLogin() {
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        System.out.println("Browser was opened");
+        webDriver.get("https://qa-complexapp.onrender.com/");
+
+        WebElement inputUsername = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+        inputUsername.clear();
+        inputUsername.sendKeys("qaauto");
+        System.out.println("Login was inputted");
+
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456");
+        System.out.println("Password was entered");
+
+        WebElement signIn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        signIn.click();
+        System.out.println("Button was clicked");
+
+        Assert.assertTrue("Invalid username pasword", isInvalidUserNameDisplayed());
+
+        webDriver.quit();
+        System.out.println("Browser was closed");
+
+
+    }
+
+        private boolean isInvalidUserNameDisplayed() {
+            try {
+                WebElement invalidUserName = webDriver.findElement(By.xpath(".//div[contains(text(),'Invalid username pasword')]"));
+                String actualMessage = invalidUserName.getText();
+                String expectedMessage = "Invalid username pasword";
+                return actualMessage.equals(expectedMessage);
+            } catch (Exception e) {
+                return false;
+            }
+
+        }
+
 
 }
