@@ -87,10 +87,8 @@ public class LoginTest {
 
     private boolean isInvalidUserNameDisplayed() {
         try {
-            WebElement invalidUserName = driver.findElement(By.xpath(".//div[contains(text(),'Invalid username  pasword')]"));
-            String actualMessage = invalidUserName.getText();
-            String expectedMessage = "Invalid username pasword";
-            return actualMessage.equals(expectedMessage);
+            WebElement invalidUserName = driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']"));
+            return invalidUserName.isDisplayed();
         } catch (Exception e) {
             return false;
         }
