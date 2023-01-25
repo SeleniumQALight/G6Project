@@ -41,9 +41,6 @@ public class InvalidLoginTest {
         buttonSignIn.click();
         System.out.println("Button clicked");
 
-        // WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
-
-
 
         Assert.assertTrue("User is logged in!", isErrorMessageDisplayed());
 

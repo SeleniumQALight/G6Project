@@ -41,13 +41,17 @@ Steps:
 3. Input password in the 'password' field: 123456qwerty
 4. Click the 'Sign in' button
 5. Click the 'Create Post' button
-6. Enter a title
-7. Enter a body
+6. Enter a title 'post title'
+7. Enter a body 'post body'
 8. Select 'Приватне повідомлення' in the dropdown
 9. Click the 'Save new Post' button
 
-Expected result: the post is created. The message 'New post successfully created.' is displayed
+Expected result: the post is created. The message 'New post successfully created.' is displayed.
 
+10. Open the 'My profile' page
+11. Verify by the title that the created post is displayed.
+
+Expected result: the created post is shown.
 
 Test case #5: Verify that chat can be opened
 
