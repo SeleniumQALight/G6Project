@@ -59,7 +59,7 @@ public class LoginTest {
     private boolean isButtonSignOutDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        }catch (Exception e) {
+        } catch (Exception e) {
             return false;
 
         }
