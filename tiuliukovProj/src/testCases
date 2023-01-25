@@ -1,0 +1,135 @@
+
+
+#1
+Success login.
+
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+STR:
+- Open 'https://qa-complexapp.onrender.com/';
+- Enter Username 'aqaTestComplexapp';
+- Enter Password 'Test87654321';
+- Click on the 'Sign In' button.
+ER: User successfully logged in proceed to Main page. 'Sign out' button is displayed.
+
+#2
+Create 'All users' and 'Unique' post.
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+STR:
+- Open 'https://qa-complexapp.onrender.com/';
+- Enter Username 'aqaTestComplexapp';
+- Enter Password 'Test87654321';
+- Click on the 'Sign In' button.
+- Click on the 'Create Post' button;
+- Fill in 'AllUsersAndUnique' text in the 'Title' field;
+- Fill in 'BodyContent' text in the 'Body Content' field;
+- Mark 'Is this post unique?' check-box;
+- Choose 'All users' in 'Select value' dropdown;
+- Click on the 'Save New Post' button;
+ER: Post is displayed with next data:
+Title: 'AllUsersAndUnique'.
+Note: This post was written for All Users
+Is this post unique? : yes
+Body Content: 'BodyContent'.
+Post-conditions: Remove created post.
+
+#3
+Read 'All users' and 'Unique' post in profile.
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+STR:
+- Open 'https://qa-complexapp.onrender.com/';
+- Enter Username 'aqaTestComplexapp';
+- Enter Password 'Test87654321';
+- Click on the 'Sign In' button.
+- Click on the 'Create Post' button;
+- Fill in 'AllUsersAndUnique' text in the 'Title' field;
+- Fill in 'BodyContent' text in the 'Body Content' field;
+- Mark 'Is this post unique?' check-box;
+- Choose 'All users' in 'Select value' dropdown;
+- Click on the 'Save New Post' button;
+- Click on the 'My Profile' button;
+- Click on the 'AllUsersAndUnique' post.
+ER: Post is displayed with next data:
+Title: 'AllUsersAndUnique'.
+Note: This post was written for All Users
+Is this post unique? : yes
+Body Content: 'BodyContent'.
+Post-conditions: Remove created post.
+
+#4
+Update post.
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+STR:
+- Open 'https://qa-complexapp.onrender.com/';
+- Enter Username 'aqaTestComplexapp';
+- Enter Password 'Test87654321';
+- Click on the 'Sign In' button.
+- Click on the 'Create Post' button;
+- Fill in 'AllUsersAndUnique' text in the 'Title' field;
+- Fill in 'BodyContent' text in the 'Body Content' field;
+- Mark 'Is this post unique?' check-box;
+- Choose 'All users' in 'Select value' dropdown;
+- Click on the 'Save New Post' button;
+- Click on the 'My Profile' button;
+- Click on the 'AllUsersAndUnique' post.
+- Click on the 'Edit' button;
+- Change field to:
+Title: 'OnePerson'.
+Body Content: 'BodyContentEdited'.
+Is this post unique?: no.
+Select value: 'One Person'.
+- Click on the 'Save Updates' button;
+ER:  Post is displayed with next data:
+Title: 'OnePerson'.
+Body Content: 'BodyContentEdited'.
+Is this post unique?: no.
+Select value: 'One Person'.
+Post-conditions: Remove created post.
+
+#5
+Delete post.
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+STR:
+- Open 'https://qa-complexapp.onrender.com/';
+- Enter Username 'aqaTestComplexapp';
+- Enter Password 'Test87654321';
+- Click on the 'Sign In' button.
+- Click on the 'Create Post' button;
+- Fill in 'DeletePostAutoTest' text in the 'Title' field;
+- Fill in 'BodyContent' text in the 'Body Content' field;
+- Click on the 'Save New Post' button;
+- Click on the 'My Profile' button;
+- Click on the 'DeletePostAutoTest' post.
+- Click on the 'Delete' button;
+ER: 'Post successfully deleted' alert-message is displayed. User have no 'DeletePostAutoTest' posts.
+
+#6
+Search test.
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+STR:
+- Open 'https://qa-complexapp.onrender.com/';
+- Enter Username 'aqaTestComplexapp';
+- Enter Password 'Test87654321';
+- Click on the 'Sign In' button.
+- Click on the 'Create Post' button;
+- Fill in 'aqaTestSearch' text in the 'Title' field;
+- Fill in 'BodyContent' text in the 'Body Content' field;
+- Click on the 'Save New Post' button;
+- Proceed to main page.
+- Click on the 'Search' button;
+- Enter 'DoNotRemove!TestSearch' in the search field.
+- Click on the first result.
+ER: 'DoNotRemove!TestSearch' title is displayed.
+Post-conditions: Remove created post.
+
+#7
+Chat test
+Preconditions: Create user Login:'aqaTestComplexapp' Password:'Test87654321' email:'(Login) + @test.com'
+STR:
+- Open 'https://qa-complexapp.onrender.com/';
+- Enter Username 'aqaTestComplexapp';
+- Enter Password 'Test87654321';
+- Click on the 'Sign In' button.
+- Click on the 'Chat' button;
+- Enter 'TestMessage' in the chat field.
+- Press 'Enter' button.
+ER: 'TestMessage' message is displayed in the chat.
