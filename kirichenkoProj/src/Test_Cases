@@ -1,6 +1,82 @@
-#1 Summary
+#1 Summary: Check Sign up functionality
+1. Open web site in browser https://qa-complexapp.onrender.com
+2. Specify in the field:
+Username - not used before new user name
+Email - not used before email address
+Password - 12 characters password
+3. Press 'Sign up for OurApp' button
+
+Expected result:
+1. system navigates user to the 'Home page'
+2. user see welcome message ' Hello <username>, your feed is empty.'
+3. in the up ribbon user name displayed
+4. in the up ribbon following buttons are available:
+- Search
+- Chat
+- My profile
+- Create Post
+- Sign Out
+
+
+#2 Check Sign up fields' validation message
+Pre condition: test user created
 
 Steps to reproduce:
-Expected result:
+1. Open web site in browser https://qa-complexapp.onrender.com
+2. Fill in fields with already existing test user credentials:
+- Username - NataKiri
+- Email - nata.solari.n@gmail.com
+- Password - 12345
+3. Press 'Sign up for OurApp' button
 
-#2
+Expected result:
+1. In the field Email following message displayed - 'This email is already being used.'
+2. In the field  Password following message displayed - 'Password must be at least 12 characters.'
+
+
+#3 Check Login functionality
+Pre-condition: Test user created
+
+Steps to reproduce:
+1. Open web site in browser https://qa-complexapp.onrender.com
+2. In the field 'Username' specify test user credentials
+3. In the field 'Password' specify test user password
+4. Press 'SignIn' button
+
+
+Expected result:
+1. system navigates user to the 'Home page'
+2. in the up ribbon user name displayed
+3. in the up ribbon following buttons are available:
+- Search
+- Chat
+- My profile
+- Create Post
+- Sign Out
+
+#4 Check Create Post functionality
+Pre conditions:
+- test user is created and logged in to the website
+
+Steps to reproduce:
+1. On the vertical functional ribbon press 'Create Post' button
+2. In the new opened page fill in the post fields in the following way:
+- Title - specify ' test title'
+- Body Content - specify 'test body text'
+- Is this post unique? - activate check box
+- chose following value in the drop-down - 'Групове повідомлення'
+3. Press ' Save New Post' button
+
+Expected result:
+1. New post is created and following message displayed 'New post successfully created.'
+
+#5 Send message in the chat
+Pre-condition: test user created and logged in to the website
+
+Steps to reproduce:
+1. On the vertical ribbon press 'Chat' icon   .//span[@data-original-title="Chat"]
+2. Place cursor in the opened 'Chat' pop-up window 'Type a message...' field
+3. Write test message and press 'Enter' button from your keyboard
+
+Expected result:
+Test message displayed in Chat window
