@@ -1,7 +1,28 @@
 #Login Page
 
-loginPage.input.userName=
+loginPage.loginInput.userName = .//input[@name='username' and @Placeholder='Username']
+loginPage.loginInput.password = .//input[@type='password' and @placeholder='Password']
+loginPage.loginButton.SignIn = .//button[@class='btn btn-primary btn-sm']
 
-#HomePage
+loginPage.registerInput.username = .//input[@id='username-register']
+loginPage.registerInput.email = .//input[@id='email-register']
+loginPage.registerInput.password = .//input[@id='password-register']
+loginPage.registerButton.signUp = .//button[@type='submit']
 
-homePage.input...
+#Home Page
+
+homePage.button.signOut = .//button[@class='btn btn-sm btn-secondary']
+homePage.button.createPost = .//a[@class='btn btn-sm btn-success mr-2']
+homePage.a.searchIcon = .//a[@data-original-title="Search"]
+homePage.input.searchField = .//input[@id='live-search-field']
+homePage.searchResult = .//*[contains(text(), 'title1')]
+
+#Create a Post
+
+createPost.input.title = .//input[@id='post-title']
+createPost.input.bodyContent = .//textarea[@name = 'body']
+createPost.checkbox.uniqueCheck = .//input[@type='checkbox']
+createPost.select.privacyCheck = .//select[@id='select1']
+createPost.selectValue.public = .//option[@value='All Users']
+createPost.button.saveNewPost = .//button[@class='btn btn-primary']
+createPost.div.successfulPostCreation = .//*[@class='alert alert-success text-center']
