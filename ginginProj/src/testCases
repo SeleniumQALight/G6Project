@@ -41,11 +41,11 @@ Steps to reproduce
 -Клікнути на кнопку Save new post
 
 Postcondition
-Перевірити чи створився новий пост в списку
 Видалити створений пост
 
 Expected result
 Відображення повідомлення New post successfully created.
+Перевірити чи створився новий пост в списку
 
 #Test case 4
 Summary

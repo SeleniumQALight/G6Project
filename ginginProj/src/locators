@@ -5,7 +5,7 @@ Lending.input.password-register .//input[@id='password-register']
 Lending.button.submit           .//button[@type='submit']
 
 #Login
-LoginPage.input.username1       .//input[@name='username']
+LoginPage.input.username1       .//input[@name='username' and @placeholder='Username']
 LoginPage.input.Password        .//input[@placeholder='Password']
 LoginPage.button.SingIn         .//button[@class='btn btn-primary btn-sm']
 
