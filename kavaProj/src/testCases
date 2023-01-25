@@ -10,7 +10,7 @@ Opened website https://qa-complexapp.onrender.com on a Google Chrome browser
 #TEST STEPS
 
 1) Enter "testauto22" to the [pick a username] field;
-2) Enter "superman1@gmail.com" to the [email] field;
+2) Enter "superman2@gmail.com" to the [email] field;
 3) Enter created password to the [password] field;
 4) Click on [Sign Up on OurApp] button;
 5) Click on [Sign Out] button at the top right;
@@ -69,6 +69,9 @@ Already created user testauto22
 8) Click on my profile icon;
 9) Navigate to "This is my test" text under post-section and click on it;
 
+#POST-CONDITIONS
+Deleted created post "This is my test"
+
 
 #EXPECTED RESULT
 Should be displayed page with text "New post successfully created." and "This is a test"
@@ -122,8 +125,11 @@ Created post "This is my test"
 3) Click on [Sing In] button;
 4) After successful sign in,navigate to [Search] icon and click on it;
 5) Enter "This is my test" in "What are you interested in" appeared search input bar;
-6) In appeared pop-out window, select "This is my test" and click on it.
+6) In appeared pop-out window, select "This is my test" and click on it;
 
+
+#POST-CONDITIONS
+Deleted created post "This is my test"
 
 #EXPECTED RESULT
 Search input bar should be displayed when clicking on search icon and required data should be visible.
