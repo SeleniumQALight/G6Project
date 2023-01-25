@@ -1,0 +1,53 @@
+#1 Summary:New User Registration
+
+   Steps: 1. Open the site https://qa-complexapp.onrender.com/
+          2. Enter username:kosof676545 into the 'Username' input field
+          3. Enter Email: kosof68965@ukbob.com in the "Email" input field
+          4. Enter password: Qwerty12!@Qwerty12!@ into the 'Password' input field
+          5. Click on the 'Sign up for OurApp' button
+
+   Expected result: - The new user is registered;
+                    - The “Sign Out" and “Create Post” buttons appeared on the page.
+
+#2 Summary: The user can open the "My Profile" page
+
+   Precondition: The user account created and authorized
+   Steps: 1. Open main page
+          2. Click “My Profile” button
+
+   Expected result: - The "My Profile" page opens;
+                    - The tabs "Posts", "Followers", "Following" are present on the page.
+
+#3 Summary: User can create public post
+
+   Precondition: The user account created and authorized
+   Steps: 1. Click on the 'Create Post' button
+          2. Fill 'Title' field
+          3. Fill 'Body Content' field
+          4. Select 'Public' value in the drop-down
+          5. Click on the 'Save New Post' button
+
+   Expected result: - The message "New post successfully created." is displayed;
+                    - The note “This post was written for All Users” is displayed.
+
+#4 Summary: The appearance of a notification when entering an invalid password during registration
+
+   Steps: 1. Open the site https://qa-complexapp.onrender.com/
+          2. Enter username:kosof788755 into the 'Username' input field
+          3. Enter Email: kosof68865@ukbob.com in the "Email" input field
+          4. Enter password: Qwerty12!@ into the 'Password' input field
+          5. Click on the 'Sign up for OurApp' button
+
+   Expected result: - The user is not registered;
+                    - The notification "Password must be at least 12 characters." is displayed.
+
+№5 Summary: Checking editing a created post
+
+   Precondition: The user account created and authorized. User has already created post
+   Steps: 1. Open created post
+          2. Click on the “Edit” button
+          3. Change the 'Title' field
+          4. Click on the “Save Updates” button
+
+   Expected result: - The notification "Post successfully updated." appears.
+
