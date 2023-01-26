@@ -10,7 +10,6 @@ import pages.HomePage;
 import pages.LoginPage;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected WebDriver webDriver;
