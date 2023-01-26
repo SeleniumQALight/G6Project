@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.HomePage;
 import pages.LoginPage;
 
 import java.time.Duration;
@@ -14,6 +15,7 @@ public class BaseTest {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
+    protected HomePage homePage;
 
     @Before
     public void setUp(){
@@ -22,6 +24,7 @@ public class BaseTest {
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         loginPage = new LoginPage(webDriver);
+        homePage = new HomePage(webDriver);
 
 
     }
