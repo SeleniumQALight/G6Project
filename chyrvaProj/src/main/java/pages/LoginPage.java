@@ -4,8 +4,16 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+    private WebElement inputUserName;
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement inputPassword;
+
+    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
+    private WebElement buttonLogin;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -23,37 +31,40 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterUserNameIntoInputLogin(String username) {
-        try {
-            WebElement inputUserName =
-                    webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
-            inputUserName.clear();
-            inputUserName.sendKeys(username);
-            logger.info("login was inputted");
+        // try {
+        //  WebElement inputUserName =
+        //         webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+        //  inputUserName.clear();
+        // inputUserName.sendKeys(username);
+        //  logger.info("login was inputted");
 
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
+        //  } catch (Exception e) {
+        //      printErrorAndStopTest(e);
 
-        }
+        // }
+        enterTextInToElement(inputUserName, username);
     }
 
     public void enterPasswordIntoInputPassword(String password) {
-        try {
-            WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
-            inputPassword.clear();
-            inputPassword.sendKeys(password);
-            logger.info("Password was entered");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
+       // try {
+            //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+//            inputPassword.clear();
+//            inputPassword.sendKeys(password);
+//            logger.info("Password was entered");
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+    enterTextInToElement(inputPassword, password);
         }
-    }
 
     public void clickOnButtonLogin() {
-        try {
-            WebElement buttonLogin = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
-            buttonLogin.click();
-            logger.info("Button was clicked");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
+//        try {
+//            //  WebElement buttonLogin = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+//            buttonLogin.click();
+//            logger.info("Button was clicked");
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+        clickOnElement(buttonLogin);
     }
 }
