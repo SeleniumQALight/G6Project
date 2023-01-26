@@ -1,6 +1,25 @@
-#LoginPage
+#Registration
+Lending.input.username          .//input[@id='username-register']
+Lending.input.email-register    .//input[@id='email-register']
+Lending.input.password-register .//input[@id='password-register']
+Lending.button.submit           .//button[@type='submit']
 
-loginPage.input.userName=.//*[@name='userName']
+#Login
+LoginPage.input.username1       .//input[@name='username' and @placeholder='Username']
+LoginPage.input.Password        .//input[@placeholder='Password']
+LoginPage.button.SingIn         .//button[@class='btn btn-primary btn-sm']
 
-#HomePage
+#Create new post
+MainPage.button.create-post     .//a[@href='/create-post']
+MainPage.input.post-title       .//input[@id='post-title']
+MainPage.textarea.body          .//textarea[@name='body']
+MainPage.button.Save new post   .//button[@class='btn btn-primary']
+
+#Search post
+MainPage.button.Seach           .//a[@href='#']
+MainPage.input.live-search-field .//input[@id='live-search-field']
+
+#Logout
+MainPage.button.Sing Out        .//button[@class='btn btn-sm btn-secondary']
+
 

@@ -43,19 +43,51 @@ public class LoginTest {
 
        // WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
         //check if log in has been successful using method that catch an exception.
-        Assert.assertTrue("Button is not displayed", IsButtonSignOutDisplayed());
+        Assert.assertTrue("Button is not displayed", isButtonSignOutDisplayed());
         System.out.println("Sign out button is displayed");
 
         webDriver.quit(); // this line closes browser, .close() closes only window of used app.
         System.out.println("Browser was closed");
     }
     //catch un exception if element was not found
-    private boolean IsButtonSignOutDisplayed(){
+    private boolean isButtonSignOutDisplayed(){
         try {
            return  webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
         }catch(Exception e){
             return false;
         }
     }
+
+    @Test
+    public void invalidLogin(){
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        System.out.println("Browser is opened.");
+
+        webDriver.get("https://qa-complexapp.onrender.com/");
+        System.out.println("Website is opened");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("qaauto");
+        System.out.println("User name is entered.");
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@name='password' and @placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty111");
+        System.out.println("Password is entered");
+        WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        buttonSignIn.click();
+        System.out.println("Button is clicked.");
+        //WebElement buttonSignOut = webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
+
+        Assert.assertFalse("Button is found", isButtonSignOutDisplayed());
+        System.out.println("Button is not found.");
+
+        webDriver.quit();
+        System.out.println("Browser is closed");
+    }
+
 
 }
