@@ -23,7 +23,8 @@ public class LoginPage extends ParentPage {
 
     public void openLoginPage(){
         try{
-            webDriver.get("https://qa-complexapp.onrender.com/");;logger.info("Login page was opened");
+            webDriver.get("https://qa-complexapp.onrender.com/");
+            logger.info("Login page was opened");
 
         } catch (Exception e) {
             logger.error("Can not open Login page" + e);
