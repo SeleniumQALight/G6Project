@@ -1,0 +1,6 @@
+#Login page:
+
+loginPage.input.userName = .//*[@name = 'test']
+
+#Home Page
+

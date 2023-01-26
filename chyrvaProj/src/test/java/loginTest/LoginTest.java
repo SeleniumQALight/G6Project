@@ -11,12 +11,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
-    private WebDriver webDriver;
+    private WebDriver webDriver;//interface
 
     @Test
     public void validLogin() {
         WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
+        webDriver = new ChromeDriver(); //implement interface
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
