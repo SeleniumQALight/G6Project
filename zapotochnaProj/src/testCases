@@ -1,15 +1,187 @@
-#1 Summary
+||||||||||||||||| POSITIVE TEST CASES |||||||||||||||||
+#1 < Sign up for New user, fill the form >
 
-STR
+    pre-cond:
+        - go to ' https://qa-complexapp.onrender.com/ '
+        - fields (Username, email, password) must be clear;
 
+Steps To Reproduce
+1) enter valid username
+2) enter valid email
+3) create valid password
+4) Click submit button 'Sign up for OurApp'
 
-ER
+    Expected Result:
+    - profile name, button 'create Post' are available.
+-----------------------------------------------------------------
 
+#2 < Login with existing user >
 
-#2 Summary
+     pre-cond:
+        - go to ' https://qa-complexapp.onrender.com/ '
+        - fields (Username, email, password) must be clear;
 
-STR
+Steps To Reproduce
+1) enter cred (@test_users) in username field
+2) enter cred in password field
+3) Click 'Sign In' button
 
+    Expected Result:
+    - user logged and has ability to create post, to search, to chat, go to profile page, to sign out
+-----------------------------------------------------------------
 
-ER
+#3 < User create post >
 
+    pre-cond:
+       - go to ' https://qa-complexapp.onrender.com/ '
+       - login via @test_users
+
+Steps To Reproduce
+1) click button 'Create Post'
+2) write valid text in field Tittle
+3) write text in Body Content
+4) Click button 'Save New Post'
+
+    Expected Result:
+    - user sees message 'New post successfully created'
+    - by default post isn't unique
+    - by default post is Загальнодоступний=written for All Users
+    - posted by 'profile name'
+    - current date
+    - content shows correctly
+-----------------------------------------------------------------
+
+#4 < User create post with option 'Приватне повідомлення' >
+
+    pre-cond:
+       - go to ' https://qa-complexapp.onrender.com/ '
+       - login via @test_users
+
+Steps To Reproduce
+1) click button 'Create Post'
+2) write valid text in field Tittle
+3) write text in Body Content
+4) click on checkbox - 'Is this post unique?'  -> optional
+5) select item from dropdown -> optional
+    - 'Загальнодоступне'
+    + 'Приватне повідомлення'
+    - 'Групове повідомлення'
+6) Click button 'Save New Post'
+
+    Expected Result:
+    - user sees message 'New post successfully created'
+    - posted by 'profile name'
+    - post is written Приватне повідомлення = for One Person
+    - user has ability to delete or edit recent post
+    - current date
+    - content shows correctly
+
+-----------------------------------------------------------------
+
+#5 < User create post with option 'Групове повідомлення' >
+
+        pre-cond:
+           - go to ' https://qa-complexapp.onrender.com/ '
+           - login via @test_users
+
+    Steps To Reproduce
+    1) click button 'Create Post'
+    2) write valid text in field Tittle
+    3) write text in Body Content
+    4) click on checkbox - 'Is this post unique?'  -> optional
+    5) select item from dropdown -> optional
+        - 'Загальнодоступне'
+        - 'Приватне повідомлення'
+        + 'Групове повідомлення'
+    6) Click button 'Save New Post'
+
+    Expected Result:
+    - user sees message 'New post successfully created'
+    - posted by 'profile name'
+    - post is written 'Групове повідомлення' = for Group Message
+    - user has ability to delete or edit recent post
+    - current date
+    - content shows correctly
+-----------------------------------------------------------------
+
+#6 < User has ability to search items only by full word >
+
+     pre-cond:
+        - go to ' https://qa-complexapp.onrender.com/ '
+        - login via @test_users
+
+Steps To Reproduce
+1) click on search icon
+2) enter word to find (ex. city)
+
+    Expected Result:
+    - user sees the list of 'Search Results' with counted items
+    - each item has visible parts (tittle name , posted by who, and date)
+-----------------------------------------------------------------
+
+#7 < User info about activity?, profilepage >
+
+     pre-cond:
+        - go to ' https://qa-complexapp.onrender.com/ '
+        - login via @test_users
+
+Steps To Reproduce
+1) click on icon 'My Profile'
+2) go to Followers tab
+3) go to Following tab
+
+    Expected Result:
+    - user sees post items (with tittles and date)
+    - each tab has counted items
+    - each item has visible parts (tittle name , posted by who, and date)
+-----------------------------------------------------------------
+
+#8 < User may follow any person on app >
+
+     pre-cond:
+        - go to ' https://qa-complexapp.onrender.com/ '
+        - login via @test_users
+
+Steps To Reproduce
+1) click on search icon
+2) enter required text (ex.2)
+3) choose first item from the 'searched result'
+4) click on posted by -'profile name'-
+5) Click on 'Follow' button
+
+    Expected Result:
+    - user gets to another profile page (../profile/profilename)
+    - sees message 'Successfully followed -profilename-'
+    - button 'Stop Following ' is available now
+-----------------------------------------------------------------
+
+#9 < User may chat ?with who ? >
+
+     pre-cond:
+        - go to ' https://qa-complexapp.onrender.com/ '
+        - login via @test_users
+
+Steps To Reproduce
+1) click on chat icon
+2) enter text in chatinput
+3) press enter to send
+
+     Expected Result:
+    - chat-box is available for texting. After sending text User sees it on chat form
+-----------------------------------------------------------------
+
+# < Sign OUT >
+
+     pre-cond:
+        - go to ' https://qa-complexapp.onrender.com/ '
+        - login via @test_users
+
+Steps To Reproduce
+1) click on button 'Sign Out'
+
+    Expected Result:
+    - user quit the site
+    - user backs to main page
+    - buttons 'Sign In', 'Sign up for OurApp' are visible
+
+-----------------------------------------------------------------

@@ -1,8 +1,59 @@
 #LoginPage
 
-loginPage.input.userName=.//*[@name='userName']
+loginPage.input.userName  = .//*[@name='userName']
+loginPage.input.Email  = .//input[@id='email-register']
+loginPage.input.passwordRegistr = .//input[@id='password-register']
 
+loginPage.submit.signUP = .//*[@type='submit']
+loginPage.input.Password = .//input[@placeholder='Password']
+
+loginPage.button.signIn = .//*[@class='btn btn-primary btn-sm']
+
+===================================================================
 #HomePage
 
+homePage.text.profileName = .//*[@class='text-white mr-2']
 
-.//input[@placeholder='Username']
+homePage.button.createPost = .//*[@class='btn btn-sm btn-success mr-2']
+homePage.button.createPost = .//a[@href='/create-post']
+
+homePage.link.profileInfo = .//a[@href='/profile/wnqcsgwuourgowyobu']
+
+homePage.icon.iconSearch = .//*[@class = 'text-white mr-2 header-search-icon']
+homePage.icon.iconChat = .//*[@class = 'text-white mr-2 header-chat-icon']
+
+homePage.icon.searchList = .//*[@class = 'list-group-item active']
+
+
+===================================================================
+#CreatePost
+
+createPost.input.tittlePost = .//*[@class = 'form-control form-control-lg form-control-title']
+createPost.input.bodyContent = .//*[@class = 'body-content tall-textarea form-control']
+
+createPost.input.uniquePost = .//*[@type ='checkbox' and @value='yes']
+
+createPost.input.selectPrivatne = .//*[@id='select1']/option[2]
+createPost.input.selectAllUser = .//*[@id='select1']/option[1]
+createPost.input.selectGroupMessg = .//*[@id='select1']/option[3]
+
+createPost.button.saveNewPost = .//*[@class ='btn btn-primary']
+
+
+===================================================================
+#ContantPage
+
+contantPage.alert.greenAlert = .//*[@class = 'alert alert-success text-center']
+
+
+===================================================================
+#
+homePage.link.complexAppText = .//*[@class = 'text-white']
+homePage.link.complexAppTextBottom = .//*[@class = 'text-muted']
+homePage.button.signOut = .//button['btn btn-sm btn-secondary']
+
+===================================================================
+#ProfilePage ? ? ?//to do
+
+profilePage.input.followingItems = .//*[@class = 'list-group']
+profilePage.input.unfollowButton = .//*[@class='btn btn-danger btn-sm']
