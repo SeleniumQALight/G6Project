@@ -1,28 +1,32 @@
 #LoginPage
 
-loginPage.input.userName=//*[@id="username8"]
+loginPage.input.userName=.//input[@placeholder='Username' ]
 loginPage.input.password=//input[@placeholder='Password']
 loginPage.SignIn_button=.//button[@class='btn btn-primary btn-sm']
 
 #HomePage
 
 homePage.SignOut_button=.//button[@class="btn btn-sm btn-secondary"]
-homePage.CreatePost_button=.//a[@href="/create-post"]
-homePage.My_Profile_icon=.//a[@class="mr-2"]
-homePage.Chat_icon=//span[.='']
-homePage.Search_icon=.//a[@href="#"]
+homePage.CreatePost_button=.//a[@class='btn btn-sm btn-success mr-2']
+homePage.My_Profile_icon=.//*[@data-original-title="My Profile"]
+homePage.Chat_icon=.//span[@data-original-title="Chat"]
+homePage.Search_icon=.//a[@data-original-title="Search"]
 
 
 #createPostPage
 
 
-createPostPage.title=//input[@id="post-title"]
-createPostPage.Body_Content=//textarea[@id="post-body"]
-createPostPage.Save_New_PostBTN=//button[@class="btn btn-primary"]
+createPostPage.title=.//input[@id="post-title"]
+createPostPage.Body_Content=.//textarea[@id="post-body"]
+createPostPage.Save_New_PostBTN=.//button[@class="btn btn-primary"]
+createPostPage.SuccessCreationMessage=.//*[@class='alert alert-success text-center']
+
+
 
 #searchPage
 
 
-searchPage.searchPlaceholder=//input[@placeholder='What are you interested in?']
+searchPage.searchIcon=//input[@placeholder='What are you interested in?']
+searchPage.input=.//input[@id='live-search-field']
 searchPage.listOfPosts=//div[@class="live-search-results live-search-results--visible"]
 searchPage.CloseSearch=//span[@class="close-live-search"]

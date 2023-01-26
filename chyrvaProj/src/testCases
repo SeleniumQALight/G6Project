@@ -1,49 +1,77 @@
 TC_01,ComplexApp,chat functionality
+Summary
 Verify ability to chat
-Precondition: Successfully Log In with valid Username and Password
+Precondition:
+Register a New User, username(Amberbellami), email(amberbellami@test.com), password(TestPass).
+Successfully Log In.
+
 Test Steps:
 1. On Main page Click on Chat icon;
 2. Click on 'Type a message' field on chat window;
 3. Type "Hello";
 4. Press Enter;
-Expected result : word "Hello" should appeared in Chat window .
+Expected result :
+word "Hello" should appeared in Chat window .
 
 TC_2,ComplexApp,Create Post
 Verify ability to create post
-Precondition: Successfully Log In with valid Username and Password
+Precondition:
+Register a New User, username(Amberbellami), email(amberbellami@test.com), password(TestPass).
+Successfully Log In.
+
 Test Steps:
 1. On Main page Click on 'Create Post' button;
-2. Enter title and body content;
-3. Hit 'Save New Post' button;
-Expected result : Message "New post successfully created." should appeared .
+2. Enter text Test11 in "Title" input field;
+3. Enter text Test11Body in "Body Content" input field;
+4. Hit 'Save New Post' button;
+Expected result :
+Message "New post successfully created." should appear on the page.
+Post can be found with search function and contain title,author username,date of creation.
 
 TC_3,ComplexApp,Edit Post
 Verify ability to edit my post
-Precondition: Successfully Create new Post
+Precondition:
+Register a New User, username(Amberbellami), email(amberbellami@test.com), password(TestPass).
+Successfully Log In.
+Successfully Created new Post.
+
 Test Steps:
 1. On Main Page Click on My Profile Icon;
 2. On My Profile page Click on last created Post;
 3. Hit blue edit icon;
 4. Add characters to Title and Body;
 5. Click 'Save Updates' button;
-Expected result : Message "Post successfully updated." should appeared .
+Expected result :
+Message "Post successfully updated." should appeared .
+Post can be found with search function and contain title and body content with last changes,
+author username,date of creation.
 
 TC_4,ComplexApp,Delete Post
 Verify ability to delete my post
-Precondition: Successfully Create new Post
+Precondition:
+Register a New User, username(Amberbellami), email(amberbellami@test.com), password(TestPass).
+Successfully Log In.
+Successfully Created new Post.
+
 Test Steps:
 1. On Main Page Click on My Profile Icon;
 2. On My Profile page Click on last created Post;
 3. Hit red Trash Can icon;
-Expected result : Message "Post successfully deleted" should appeared .
+Expected result :
+Message "Post successfully deleted" should appeared.
+Post could not be found using search function.
 
 TC_5,ComplexApp,Search functionality
 Verify ability to find other user Posts
-Precondition: Successfully Log In with valid Username and Password
+Precondition:
+Register a New User, username(Amberbellami), email(amberbellami@test.com), password(TestPass).
+Successfully Log In.
+Create more than 2 posts from different accounts.
 Test Steps:
 1. On main page Click 'Search' icon;
 2. Enter "post";
-3. Check if other users post is appeared;
-Expected result : List of posts is appeared .
+3. Check if other users posts is appeared;
+Expected result :
+List of posts created by other users is appeared in search results.
 
 
