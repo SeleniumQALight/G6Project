@@ -1,5 +1,41 @@
 #LoginPage
-
-loginPage.input.userName = .//*[@name='userName']
+//input[@name='username' and @placeholder='Username']  Username
+//input[@name='password' and @placeholder='Password'] Password
+//button[@class='btn btn-primary btn-sm'] LogIn
 
 #HomePage
+//button[text()='Sign Out']
+//*[@class='btn btn-sm btn-success mr-2'] Create Post
+//*[@data-original-title='My Profile']
+//a[@data-original-title='Search'] Search button
+//input[@id='live-search-field'] Search field
+//a[@class='list-group-item list-group-item-action'] Search result
+
+#CheckPost search result
+//a[@href='/profile/eugensydorenko' and contains(text(),'eugensydorenko')] post author click
+
+# https://qa-complexapp.onrender.com/profile/eugensydorenko
+//button[@class='btn btn-primary btn-sm'] Follow
+//button[@class='btn btn-danger btn-sm'] Stop Following
+
+#Create Post
+//input[@id='post-title'] Title Field
+//textarea[@id='post-body'] Body Content
+//button[@class='btn btn-primary'] Save new post button
+
+#Created Post
+//div[@class='alert alert-success text-center' and contains(text(),'New post successfully created.')]
+//div[@class='list-group']/a[1]/strong[contains(text(),'Autotest Post')]
+
+#Following page
+//text()[contains(.,'eugensydorenko')]
+
+#My Profile
+//div[@class='list-group']/a[1] First post
+//strong[contains(text(),'Autotest Post')]
+
+#First post
+//*[@data-icon='edit'] Edit
+//button[@data-original-title='Delete']
+//div[@class='alert alert-success text-center' and contains(text(),'Post successfully updated.')]
+//div[@class='alert alert-success text-center' and contains(text(),'Post successfully deleted')]
