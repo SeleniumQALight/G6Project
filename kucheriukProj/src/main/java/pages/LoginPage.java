@@ -1,7 +1,9 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LoginPage extends ParentPage{
     public LoginPage(WebDriver webDriver) {
@@ -17,4 +19,42 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not open Login Page" + e);
         }
     }
+
+    public void enterUserNameIntoInputLigin(String userName) {
+        try{
+            WebElement inputUserName =
+                    webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+            //создали  переменную в которой указан адрес локатора(создали переменную чтобы каждый раз когда ее вызывали он бегал по этому локатору
+
+            inputUserName.clear();//очисти поле ввода
+            inputUserName.sendKeys(userName);//вели логин
+            logger.info("login was inputted");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void enterPasswordIntoInputPassword(String password) {
+        try {
+            WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+            inputPassword.clear();
+            inputPassword.sendKeys(password);
+            logger.info("Password was entered");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void clickOnButtonLogin() {
+        try{
+            WebElement buttonLogin = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+            buttonLogin.click();
+            logger.info("Button was clicked");
+        }catch(Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 }
+
+
+
