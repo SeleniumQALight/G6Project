@@ -75,10 +75,15 @@ public class loginTest {
         System.out.println("Button was clicked");
 
         WebElement loginError = webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']"));
-        System.out.println("Error appeared");
+        System.out.println("Error message appeared");
 
-        WebElement buttonSignInAfterError = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
-        System.out.println("SignIn button still present");
+//        buttonSignIn.isDisplayed();
+//        System.out.println("SignIn button still present");
+
+//        WebElement buttonSignInAfterError = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+//        System.out.println("SignIn button still present");
+
+        Assert.assertTrue("Button is not displayed", isButtonSignInDisplayed() );
 
         webDriver.quit();
         System.out.println("Browser was closed");
@@ -88,6 +93,14 @@ public class loginTest {
     private boolean isButtonSignOutDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean isButtonSignInDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).isDisplayed();
         } catch (Exception e) {
             return false;
         }
