@@ -18,6 +18,7 @@ public class LoginPage extends ParentPage {
 
 
     public LoginPage(WebDriver webDriver) {
+
         super(webDriver);
     }
 
@@ -33,15 +34,18 @@ public class LoginPage extends ParentPage {
 
 
     public void enterUserNameIntoInputLogin(String userName) {
-            enterTextIntiElement(inputUserName,userName);
+
+        enterTextIntiElement(inputUserName,userName);
     }
 
 
     public void enterPasswordIntoInputPassword(String password) {
+
         enterTextIntiElement(inputPassword,password);
     }
 
     public void clickOnButtonLogin() {
+
         clickOnElement(buttonLogin);
     }
 
