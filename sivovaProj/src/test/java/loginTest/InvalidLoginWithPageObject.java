@@ -12,7 +12,7 @@ public class InvalidLoginWithPageObject extends BaseTest {
     public void invalidLogin(){
 
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoInputLogin("qaauto");
+        loginPage.enterUserNameIntoInputLogin("qaaut");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickButtonLogin();
 
