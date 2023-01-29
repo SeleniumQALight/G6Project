@@ -80,30 +80,40 @@ public class LoginTest {
                 webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
 
         inputUserName.clear();
-        inputUserName.sendKeys("invalidTExt");
+        inputUserName.sendKeys("invalidLog");
 
 
         WebElement inputPassword =
                 webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         inputPassword.clear();
-        inputPassword.sendKeys("====123456qwerty");
+        inputPassword.sendKeys("123456qwerty");
 
 
         WebElement buttonSignIn =
                 webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         buttonSignIn.click();
 
+        //just for checking red alert
         WebElement redMessage =
                 webDriver.findElement(By.xpath(".//*[@class = 'alert alert-danger text-center']"));
         redMessage.isDisplayed();
 
-        // Assert.assertTrue("Do u see red message ? - ok, test passes", isSignOutDisplayed());
+
+        Assert.assertTrue("Do u see red message ? - ok, test passes", isRedAlertDisplayed());
 
 
         webDriver.quit();
+    }
+
+    private boolean isRedAlertDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath("//*[@class = 'alert alert-danger text-center']")).isDisplayed();
+        } catch (Exception e) {
+            return true;
+
+        }
 
 
     }
-
-
 }
+
