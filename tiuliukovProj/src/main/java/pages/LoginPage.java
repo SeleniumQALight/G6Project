@@ -5,15 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.concurrent.ExecutionException;
-
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
-    private WebElement buttonLogin;
+    private WebElement buttonSignIn;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -37,8 +35,12 @@ public class LoginPage extends ParentPage {
           enterTextIntoElement(inputPassword, password);
     }
 
-    public void clickOnButtonLogin() {
-        clickOnElement(buttonLogin);
+    public void clickOnButtonSignIn() {
+        clickOnElement(buttonSignIn);
+    }
+
+    public boolean isButtonSignInDisplayed(){
+        return isElementDisplayed(buttonSignIn);
     }
 
 }
