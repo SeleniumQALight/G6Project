@@ -17,6 +17,9 @@ public class LoginPage extends ParentPage {
     @FindBy (xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+    @FindBy (xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement errorMessage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -45,4 +48,13 @@ public class LoginPage extends ParentPage {
     public void clickButtonLogin() {
        clickElement(buttonLogin);
     }
+
+   public boolean isErrorMessageDisplayed () {
+       try {
+           return isElementDisplayed(errorMessage);
+       } catch (Exception e) {
+           printErrorAndStopTest(e);
+           return false;
+       }
+   }
 }

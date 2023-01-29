@@ -39,4 +39,14 @@ public class CommonActionsWithElements {
         Assert.fail("Can not work with element " + e);
     }
 
+    protected boolean isElementDisplayed(WebElement webelement){
+        try {
+             return  webelement.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+
 }
