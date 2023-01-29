@@ -2,14 +2,11 @@
 
 loginPage.form.login = ".//form[@action='/login']"
 loginPage.form.register = ".//form[@action='/register']"
-
 loginPage.loginInput.userName = ".//input[@name='username' and @placeholder='Username']"
 loginPage.loginInput.password = ".//input[@class='form-control form-control-sm input-dark' and @type='password']"
-
 loginPage.registrationInput.userName = ".//input[@id='username-register']"
 loginPage.registrationInput.email = ".//input[@id='email-register']"
 loginPage.registrationInput.password = ".//input[@id='password-register']"
-
 loginPage.button.signIn = ".//button[@class='btn btn-primary btn-sm']"
 loginPage.button.signUp = ".//button[@type='submit']"
 
@@ -18,24 +15,53 @@ loginPage.button.signUp = ".//button[@type='submit']"
 
 homePage.headerLink.title = ".//a[@class='text-white']"
 homePage.footerLink.ourApp = ".//a[@class='text-muted']"
-
 homePage.headerIcon.search = ".//a[@href='#']"
 homePage.headerIcon.chat = ".//span[@class='text-white mr-2 header-chat-icon']"
 homePage.headerIcon.profile = ".//a[@href='/profile/test']"
 homePage.headerButton.createPost = ".//a[@class='btn btn-sm btn-success mr-2']"
 homePage.headerButton.signOut = ".//button[@class='btn btn-sm btn-secondary']"
-
 homePage.headerVariable.userName = ".//span[@class='text-white mr-2']"
+
+------------------------------------------------
+#ProfilePage
+
+profilePage.alert.postSuccessfullyDeleted = ".//div[@class='alert alert-success text-center']"
+profilePage.navigationItem.postsTab = ".//a[@href='testqa24011822']"
+profilePage.navigationItem.followersTab = ".//a[@href='/profile/testqa24011822/followers']"
+profilePage.navigationItem.followingTab = ".//a[@href='/profile/testqa24011822/following']"
+profilePage.title.userName = "//h2[text()[contains(.,'{userName}')]]""
 
 ------------------------------------------------
 #CreatePostPage
 
 createPostPage.input.title = ".//input[@id='post-title']"
-createPostPage.textarea.bodyContent= ".//textarea[@id='post-body']"
-createPostPage.checkbox.isUniquePost= ".//input[@name='uniquePost']"
+createPostPage.textarea.bodyContent = ".//textarea[@id='post-body']"
+createPostPage.checkbox.isUniquePost = ".//input[@name='uniquePost']"
 createPostPage.dropDown.selectValue = ".//select[@id='select1']"
 createPostPage.dropDown.valueGroupMessage = ".//select[@id='select1']/option[@value='Group Message']"
 createPostPage.dropDown.valueAllUsers = ".//select[@id='select1']/option[@value='All Users']"
 createPostPage.button.saveNewPost = ".//button[@class='btn btn-primary']"
 
 ------------------------------------------------
+#EditPostPage
+
+editPostPage.input.postTitle = ".//input[@id='post-title']"
+editPostPage.textarea.bodyContent = ".//textarea[@id='post-body']"
+editPostPage.checkbox.isUniquePost = ".//input[@name='uniquePost']"
+editPostPage.dropDown.selectValue = ".//select[@id='select1']"
+editPostPage.dropDown.valueGroupMessage = ".//select[@id='select1']/option[@value='Group Message']"
+editPostPage.dropDown.valueAllUsers = ".//select[@id='select1']/option[@value='All Users']"
+editPostPage.button.saveUpdates = ".//button[@class='btn btn-primary']"
+editPostPage.link.backToPostPermalink = ".//a[@class='small font-weight-bold']"
+
+------------------------------------------------
+#DescriptionPostPage
+
+descriptionPostPage.alert.postSuccessfullyCreated = "//div[@class='alert alert-success text-center']"
+descriptionPostPage.title.postName = "//*/h2[contains(text(),'{PostName}')]"
+descriptionPostPage.button.postEdit= ".//a[@class='text-primary mr-2']"
+descriptionPostPage.button.postDelete = "delete-post-form d-inline"
+descriptionPostPage.text.accessRight = ".//i/u[contains(text(),'{AccessType}')]"
+descriptionPostPage.text.isPostUnique = ".//div/p[contains(text(),'Is this post unique?')]"
+descriptionPostPage.text.postBodyContent = ".//div/p[contains(text(),'{BodyContent}')]"
+descriptionPostPage.text.postedByUser = ".//p/a[contains(text(),'{UserName}')]"
