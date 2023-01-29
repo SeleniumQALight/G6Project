@@ -1,0 +1,72 @@
+#HomePage
+
+homePage.link.Shipping = .//a[@id='mainNavDropdown1']
+homePage.link.Tracking = .//a[@id='mainNavDropdown2']
+homePage.link.BusinessSolutions = .//a[@id='mainNavDropdown3']
+homePage.link.Support = .//a[@id='mainNavDropdown4']
+homePage.link.Track = .//a[@class='nav-link active']
+homePage.link.Quote = .//a[@class='nav-link ups-analytics ' and @href = 'https://wwwapps.ups.com/calTimeCost?loc=en_CA']
+homePage.link.Ship = .//a[@class='nav-link ups-analytics ' and @href = 'https://www.ups.com/ship?loc=en_CA']
+homePage.link.Billing = .//a[@class='nav-link ups-analytics ' and @href = '/ca/en/business-solutions/ups-billing.page']
+homePage.input.TrackingNumver = .//input[@id = 'ups-track--qs']
+homePage.button.Track = .//button[@id = 'stApp_widgetTrkNumBtn']
+homePage.button.Help = .//span[@id = 'stApp_widgetHelpLbl']
+homePage.link.AboutUPS = .//a[@class= 'OneLinkKeepLinks ups-link']
+homePage.link.Location = .//a[@class= 'ups-link' and @href = 'https://www.ups.com/dropoff?loc=en_CA']
+homePage.link.Languages = .//a[@class= 'ups-link dropdown-toggle' ]
+homePage.button.Search = .//button[@id= 'ups-search-toggle' ]
+homePage.span.LoginSignup = .//span[@class= 'icon ups-icon-user' ]
+homePage.link.GetHelp = .//a[@class = 'widget-footer-link ups-link']
+__________________________________________________________________________________________________________________________________
+#FindLocationsPage
+
+FindLocationsPage.input.Search = .//input[@id ='txtQuery']
+
+_____________________________________________________________________________________________________________________________________
+#LogInPage
+
+loginPage.input.UserName = .//input[@name ='userID']
+loginPage.input.Password = .//input[@name ='password']
+loginPage.button.LogIn = .//button[@id='submitBtn']
+loginPage.button.Create_a_UpsUsername = .//button[@class='ups-cta ups-cta_tertiary']
+____________________________________________________________________________________________________________________________________
+#SignUpPage
+
+signUpPage.li.SignUp = .//li[@class='ups-loginsignup ups-firstnav ']
+signUpPage.input.RadioButtonPersonal = .//input[@id='radioPersonal']
+signUpPage.input.FirstAndLasnName = .//input[@id='signUpName']
+signUpPage.input.Email = .//input[@id='signUpEmail']
+signUpPage.input.PhoneNumber = .//input[@id='ups-phone_input']
+signUpPage.input.UserName = .//input[@id='signUpUserId']
+signUpPage.input.Password = .//input[@id='signUpPassword']
+signUpPage.input.SignUpAgreement = .//input[@id='signUpAgreement']
+signUpPage.input.No = .//input[@id='signUpOffersNo']
+signUpPage.button.SignUp = .//button[@class='ups-cta ups-cta_primary']
+
+______________________________________________________________________________________________________________________________________
+
+#AddDeliveryAddressPage
+
+
+addDeliveryAddressPage.input.PostalCode = .//input[@id = 'addDeliveryAddress_postcode']
+addDeliveryAddressPage.button.LogOut = .//li[@class= 'ups-account_light ups-firstnav']
+
+________________________________________________________________________________________________________________________________________
+
+#searchPage
+
+searchPage.Input.Search = .//input[@id = 'ups-mainNav-search']
+searchPage.button.Search = .//button[@class= 'ups-cta ups-cta-primary search-submit-btn']
+sEARCHpAGE.link.File_a_Claim = .//a[@class = 'ups-link ups-analytics ups-results_individual' and @data-utg-link-name = 'search:File a Claim | UPS - Canada']
+
+__________________________________________________________________________________________________________________________________________
+
+#getHelpPage
+
+getHelpPage.link.logInToChange = .//a[@href= 'https://www.ups.com/upsmychoice?loc=en_CA' and @class = 'ups-cta ups-cta-primary ups-analytics']
+getHelpPage.link.UpsDeliveryChangeOptions = .//a[@href= '/ca/en/support/tracking-support/change-delivery-options.page']
+
+
+
+
+

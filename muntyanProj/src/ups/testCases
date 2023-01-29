@@ -1,0 +1,123 @@
+#1 Home Page Information
+
+STR:
+1. Launch UPS Home Page https://www.ups.com/ca/en/Home.page
+
+EX:
+The following links/ buttons  should be presented in the Home Page
+1. Shipping
+2. Tracking
+3. Business Solution
+4. Support
+5. Track
+6. Quote
+7. Ship
+8. Billing
+9. Tracking Number input
+10. Track button
+11. Help
+12. About UPS
+13. Locations
+14. Language
+15. Search Button
+16. Login / sign up
+
+____________________________________________________________________________________________
+
+#2 Location Page
+
+Summary: Users should be able to access Location Page
+
+STR:
+1. Launch UPS Home Page https://www.ups.com/ca/en/Home.page
+2. Click on Locations button
+
+EX:
+1. Track is not available
+2. About UPS is available
+3. Locations is available
+4. Language is available
+5. Search Button is available
+6. Login / sign up is available
+7. Quote is not available
+8. Ship is not available
+9. Billing is not available
+10.Search input is available
+
+__________________________________________________________________________________________________
+
+#3 Sign Up function
+Summary:
+A User should be able to create account using Sign Up function
+
+STR:
+1. Launch UPS Home Page https://www.ups.com/ca/en/Home.page
+2. Click on Login / sign button
+EX_1: Log In Page displayed
+1. Email or Username input is available
+2. Password input is available
+3. Log In button is available
+4. Create a UPS Username is available
+
+STR:
+3. Hit Create a UPS Username
+EX_2
+1. Sign Up button is available
+2. Log In button is not available
+
+STR:
+4. Select Personal Radio Button
+5. Enter valid email that is not in data base (example@email.com)
+6. Enter valid phone number
+7. Enter valid username (The username must be 1-16 caracters long and must NOT include: space, email address, special characters, URLs)
+8. Enter valid password (it mast be 12-26 characters, include upper and lower letters, one number and one special character)
+9. Select 'I agree to the UPS Technology Agreement'
+10. Select 'No, thank you'
+11. Hit Sign Up
+EX_3 Add Delivery Address Page appears
+1. Postal Code input is available
+2. Log Out button is available
+
+_____________________________________________________________________________________________________________________________________________
+
+#4 Search function
+
+Summary:
+A User should be able to search from a Home Page
+
+STR:
+1. Launch UPS Home Page https://www.ups.com/ca/en/Home.page
+2. Click on magnifying glass image
+EX_1:
+1. Shipping is not available
+2. Tracking is not available
+3. Business Solution is not available
+4. Support  is not available
+5. Search button is available
+
+STR:
+1. Type: 'claim'
+2. Click on Search
+EX_2:
+1. Track is not available
+2. Quote is not available
+3. Ship is not available
+4. Billing is not available
+5. 'File a Claim | UPS - Canada' is available
+
+___________________________________________________________________________________________________________-
+
+#5 Get help Page
+Summary:
+A User should be able to acess Get Help Page from Home Page
+
+STR:
+1. Launch UPS Home Page https://www.ups.com/ca/en/Home.page
+2. Click on Get Help link
+
+EX:
+1. 'Log in to change' button is available
+2. Sign up now is available
+3. UPS delivery change options link is available
+
+
