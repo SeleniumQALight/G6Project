@@ -8,12 +8,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 import org.apache.log4j.Logger;
+import pages.HomePage;
 import pages.LoginPage;
 
 public class BaseTest {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
+    protected HomePage homePage;
 
     @Before
     public void setUp(){
@@ -23,6 +25,7 @@ public class BaseTest {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         loginPage = new LoginPage(webDriver);
+        homePage = new HomePage(webDriver);
     }
 
     @After
