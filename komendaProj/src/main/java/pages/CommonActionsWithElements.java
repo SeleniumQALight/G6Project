@@ -15,27 +15,35 @@ public class CommonActionsWithElements {
         PageFactory.initElements(webDriver, this); //PageFactory ініціалізує елементи що описані через анотацію findBy
     }
 
-    protected void enterTextInToElement(WebElement webElement, String text){
+    protected void enterTextInToElement(WebElement webElement, String text) {
         try {
             webElement.clear();
             webElement.sendKeys(text);
             logger.info(text + "was inputted into element");
-        }catch (Exception e){
-            printErrorAndStopTest(e);
-        }
-    }
-    protected void clickOnElement(WebElement webElement){
-        try {
-            webElement.click();
-            logger.info("Element was clicked");
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void printErrorAndStopTest(Exception e){
+    protected void clickOnElement(WebElement webElement) {
+        try {
+            webElement.click();
+            logger.info("Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
 
+    protected boolean isButtonDisplayed(WebElement webElement){
+        try {
+             return webElement.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

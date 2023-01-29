@@ -48,7 +48,7 @@ public class LoginPage extends ParentPage {
     }
 
     public void clickOnButtonLogin() {
-       clickOnElement(buttonLogin);
+        clickOnElement(buttonLogin);
     }
 }
 
