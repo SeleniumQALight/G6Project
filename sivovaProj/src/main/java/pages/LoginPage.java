@@ -1,7 +1,6 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,12 +32,10 @@ public class LoginPage extends ParentPage {
             logger.error("Can not open Login page" + e);
             Assert.fail("Can not open Login page" + e);
         }
-
     }
 
     public void enterUserNameIntoInputLogin(String userName) {
             enterTextIntoElement(inputUserName, userName);
-
     }
 
     public void enterPasswordIntoInputPassword(String password) {
@@ -50,11 +47,21 @@ public class LoginPage extends ParentPage {
     }
 
    public boolean isErrorMessageDisplayed () {
-       try {
-           return isElementDisplayed(errorMessage);
-       } catch (Exception e) {
-           printErrorAndStopTest(e);
+       if (isElementDisplayed(errorMessage)) {
+           return true;
+       } else {
+           logger.info("Message is not displayed");
            return false;
        }
    }
+   public boolean isSignInButtonDisplayed(){
+        if (isElementDisplayed(buttonLogin)) {
+            return true;
+        } else {
+            logger.info("Sign in button is not displayed!");
+            return false;
+        }
+
+   }
+
 }
