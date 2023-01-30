@@ -1,13 +1,14 @@
 package pages;
 
-import org.apache.log4j.Logger;
+
 import org.openqa.selenium.WebDriver;
 
-public class ParentPage {
-    protected WebDriver webDriver;
-    protected Logger logger = Logger.getLogger(getClass());
 
+//тут все наслідується від CommonActionsWithElement
+//все що пишется в класі CommonActionsWithElement передається сюди, а потім наслідується в інші класи
+public class ParentPage extends CommonActionsWithElement{
     public ParentPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
+        super(webDriver);
     }
+
 }
