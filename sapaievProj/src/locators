@@ -14,7 +14,7 @@ signOutButton                      //button[text()='Sign Out']
 
 
 #ErrorText
-errorEmailField.notValid              //div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']
-errorPasswordField.notValid           //div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']
-errorUsernameField.AlreadyRegistered  //div[@class='alert alert-danger small']
-errorUsernameField.notValid           //div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']
+errorEmailField.notValid              //div[text()='You must provide a valid email address.']
+errorPasswordField.notValid           //div[text()='Password must be at least 12 characters.']
+errorUsernameField.AlreadyRegistered  //div[@class='alert alert-danger small' and text()='This username is already taken.']
+errorUsernameField.notValid           //div[text()='Username must be at least 3 characters.']
