@@ -1,0 +1,26 @@
+#SignUpNewUser
+
+SignUpNewUser.input.username = .//input[@id='username-register']
+SignUpNewUser.input.email = .//input[@id='email-register']
+SignUpNewUser.input.password = .//input[@id='password-register']
+
+#SignInUser
+
+SignInUser.input.username = .//div[starts-with(@class,'col')]/input[@name='username']
+SignInUser.input.password = .//div[starts-with(@class,'col')]/input[@name='password']
+SignInUser.button.signIN = .//button[@class='btn btn-primary btn-sm']
+
+#HomePage
+
+HomePage.title = .//h2
+HomePage.button.signOut = .//button[contains(text(),'Sign Out')]
+HomePage.chatIcon = .//span[contains(@class,'chat-icon')]
+HomePage.createPost = .//a[@href='/create-post']
+HomePage.input.chatBoxField = .//input[@id='chatField']
+HomePage.searchIcon = .//a[@href='#']
+HomePage.searchBar = .//input[@id='live-search-field']
+
+
+
+
+

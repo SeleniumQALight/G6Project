@@ -1,0 +1,144 @@
+==================================================================
+#TEST CASE - ID №1
+
+#TITLE
+Sign Up a new user at https://qa-complexapp.onrender.com/
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com on a Google Chrome browser
+
+#TEST STEPS
+
+1) Enter "testauto22" to the [pick a username] field;
+2) Enter "superman2@gmail.com" to the [email] field;
+3) Enter created password to the [password] field;
+4) Click on [Sign Up on OurApp] button;
+5) Click on [Sign Out] button at the top right;
+6) Enter "testauto22" to the [Username] field;
+7) Enter  "superman1AAA" to the [Password] field;
+8) Click on [Sign in] button;
+
+#EXPECTED RESULT
+Should be displayed "Hello testauto22, your feed is empty" and [sign out] button is shown at the top right.
+We should be able to sign in again with this created user and see welcome text as mentioned above.
+
+
+=============================================================================
+
+#TEST CASE - ID №2
+
+#TITLE
+Sign in with existing user at https://qa-complexapp.onrender.com
+Created username = "testauto22"
+Created password = "superman1AAA"
+
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com/ on a Google Chrome browser
+Already created user testauto22
+
+#TEST STEPS
+
+1) Enter "testauto22" to the [username] field a the sign in block;
+2) Enter appropriate password to the [password] field at the sign in block;
+3) Click on [Sing In] button;
+
+#EXPECTED RESULT
+Should be displayed "Hello testauto22 your feed is empty", "testauto22" icon and [sign out] button.
+
+=====================================================================================
+
+#TEST CASE - ID №3
+
+#TITLE
+Creating a new post at https://qa-complexapp.onrender.com
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com on a Google Chrome browser
+Already created user testauto22
+
+#TEST STEPS
+
+1) Enter "testauto22" to the [username] field a the sign in block;
+2) Enter appropriate password to the [password] field at the sign in block;
+3) Click on [Sing In] button;
+4) After successful sign in,click on [Create post] button;
+5) Enter "This is my test" to the [Title] field;
+6) Enter "Testing create post function" to the [Body Content] field;
+7) Click on [Save New Post] button;
+8) Click on my profile icon;
+9) Navigate to "This is my test" text under post-section and click on it;
+
+#POST-CONDITIONS
+Deleted created post "This is my test"
+
+
+#EXPECTED RESULT
+Should be displayed page with text "New post successfully created." and "This is a test"
+Post should be also displayed when accessing post section through the profile icon.
+
+
+======================================================================================
+
+#TEST CASE - ID №4
+
+
+#TITLE
+Typing and sending text in chat box at https://qa-complexapp.onrender.com
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com on a Google Chrome browser
+Already created user testauto22
+
+#TEST STEPS
+
+1) Enter "testauto22" to the [username] field a the sign in block;
+2) Enter appropriate password to the [password] field at the sign in block;
+3) Click on [Sing In] button;
+4) After successful sign in,click on [Chat] icon;
+5) At the bottom-right chat box should appear;
+6) Enter "Testing this chat box and making sure it is working" to the [Type a message] field;
+7) Click on [Enter].
+
+
+#EXPECTED RESULT
+Should be entered text "Testing this chat box and making sure it is working" displayed in the chat box.
+
+
+
+============================================================================================
+
+#TEST CASE - ID №5
+
+#TITLE
+Using search function in created account at https://qa-complexapp.onrender.com
+
+#PRE-CONDITIONS
+Opened website https://qa-complexapp.onrender.com on a Google Chrome browser
+Already created user testauto22
+Created post "This is my test"
+
+#TEST STEPS
+
+1) Enter "testauto22" to the [username] field at the sign in block;
+2) Enter appropriate password to the [password] field at the sign in block;
+3) Click on [Sing In] button;
+4) After successful sign in,navigate to [Search] icon and click on it;
+5) Enter "This is my test" in "What are you interested in" appeared search input bar;
+6) In appeared pop-out window, select "This is my test" and click on it;
+
+
+#POST-CONDITIONS
+Deleted created post "This is my test"
+
+#EXPECTED RESULT
+Search input bar should be displayed when clicking on search icon and required data should be visible.
+
+
+
+===============================================================================================
+
+
+
+
+
