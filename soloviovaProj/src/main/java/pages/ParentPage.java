@@ -1,13 +1,11 @@
 package pages;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-public class ParentPage {
-    WebDriver webDriver;
-    protected Logger logger = Logger.getLogger(getClass());
+public class ParentPage extends CommonActionWithElements {
 
     public ParentPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
+        super(webDriver);
     }
+
 }
