@@ -11,6 +11,10 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
+    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
+    private WebElement buttonSignIn;
+
+
     public HomePage(WebDriver webDriver) {
 
         super(webDriver);
@@ -20,10 +24,11 @@ public class HomePage extends ParentPage {
 
 
     public boolean isButtonSignOutDisplayed() {
-        try {
             return isButtonDisplayed(buttonSignOut);
-        } catch (Exception e) {
-            return false;
-        }
+    }
+
+
+    public boolean isButtonSignInDisplayed() {
+        return isButtonDisplayed(buttonSignIn);
     }
 }
