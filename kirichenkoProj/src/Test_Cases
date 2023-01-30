@@ -69,6 +69,13 @@ Steps to reproduce:
 
 Expected result:
 1. New post is created and following message displayed 'New post successfully created.'
+2. Post with title 'test title' available in the list of posts on the page
+
+Post condition:
+1. Delete created post by clicking 'delete button'
+2. Message displayed 'Post successfully deleted'
+3. Post list is empty (no post with title 'test title')
+
 
 #5 Send message in the chat
 Pre-condition: test user created and logged in to the website
