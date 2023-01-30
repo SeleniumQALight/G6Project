@@ -39,14 +39,19 @@ STR
 1. Go to https://qa-complexapp.onrender.com/
 2. Sign In using created in preconditions user
 3. Click on 'Create Post' button
-4. Fill in Title field with some text (e.g. New post)
-5. Fill in Body Content field with some text (e.g. Content for new post)
+4. Fill in Title field with 'New post' text
+5. Fill in Body Content field with 'Content for new post' text
 6. Click on 'Save New Post button' button
 
 ER
 New Post is successfully created
 User is redirected to page with new post
 'New post successfully created' message is displayed
+
+7. Click on 'My profile' button
+
+ER
+Post with 'New post' title is displayed as first element in the list of the posts
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #4
@@ -62,8 +67,9 @@ STR
 5. Click on 'Delete' button
 
 ER
-Post was successfully deleted and isn't displayed
+Post was successfully deleted
 'Post successfully deleted' message is displayed
+Post with 'New test post' title isn't displayed on the page
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #5
