@@ -23,7 +23,10 @@ createPost.input.body = .//textarea[@id= 'post-body']
 createPost.checkBox.isUnique = .//input[@name= 'uniquePost']
 createPost.dropDownList = .//option[@value= 'Group Message']
 createPost.button.saveNewPost = .//button[text() = 'Save New Post']
-cretePost.message.newPostCreated = .//div[text()='New post successfully created.']
+createPost.message.newPostCreated = .//div[text()='New post successfully created.']
+createPost.message.newPostTitle = .//div/h2[text()='test title']
+createPost.deletePost.deleteButton = .//button[@data-original-title='Delete']
+createPost.deletePost.deleteMessage = .//div[text()='Post successfully deleted']
 
 #Chat pop-up
 chatPopUp = .//div[@id='chat-wrapper']
