@@ -2,6 +2,8 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -34,6 +36,25 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+
+    }
+
+    protected void isElementPresented(WebElement element) {
+        try {
+            Assert.assertTrue("Element is not presented", element.isDisplayed());
+            logger.info("Element is presented");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void isElementNotPresented(WebElement element) {
+        try {
+            logger.info("Element is not presented");
+        } catch (Exception e) {
+            Assert.assertFalse(element.isDisplayed());
+        }
+
     }
 
 
