@@ -45,6 +45,37 @@ public class LoginTest {
 
     }
 
+    @Test
+    public void negativeLogin() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        System.out.println("Browser was opened");
+        driver.get("https://qa-complexapp.onrender.com/");
+
+        WebElement inputUsername = driver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+        inputUsername.clear();
+        inputUsername.sendKeys("qaauto");
+        System.out.println("Login was inputted");
+
+        WebElement inputPassword = driver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwert");
+        System.out.println("Password was entered");
+
+        WebElement signIn = driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        signIn.click();
+        System.out.println("Button was clicked");
+
+        Assert.assertTrue("Invalid username pasword", isInvalidUserNameDisplayed());
+
+        driver.quit();
+        System.out.println("Browser was closed");
+
+
+    }
+
     private boolean isButtonSignOutDisplayed() {
         try {
             return driver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
@@ -52,5 +83,15 @@ public class LoginTest {
             return false;
 
         }
+    }
+
+    private boolean isInvalidUserNameDisplayed() {
+        try {
+            WebElement invalidUserName = driver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']"));
+            return invalidUserName.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 }
