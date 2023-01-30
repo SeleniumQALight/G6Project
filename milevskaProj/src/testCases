@@ -1,0 +1,111 @@
+#1 Registration
+
+SUM
+Opening Home page and registration new user
+
+STR
+1 Open home page  via https://qa-complexapp.onrender.com/
+The following elements should be visible on the home page:
+- Username input (for login)
+- Password input (for login)
+- Sign In button
+- Username input (for registration)
+- Email input (for registration)
+- Password input (for registration)
+
+2 Enter valid username into Username input field (example of valid username is..)
+3 Enter valid email into Email input field (example of valid email: user@gmail.com)
+4 Enter valid password in Password input field(example of valid password: there should be requirements for length(Password should be at least 12 characters) and characters in password)
+5 Click on the Sign up for OurApp Button
+
+EXP RES
+
+1. Correct Username appears in right top corner
+2. Create Post button displays
+3. Sign Out button displays
+4. Search icon displays
+5. Chat icon displays
+6. My Profile icon displays
+
+
+#2 Login of an existing user
+
+SUM
+Opening Home page and login in the account of an existing user
+
+STR
+
+1 Open home page via https://qa-complexapp.onrender.com/
+The following elements should be visible on the home page:
+- Username input (for login)
+- Password input (for login)
+- Sign In button
+2 Enter valid username into Username input field
+3 Enter valid password in Password input field
+4 Click on the Sign in button
+
+EXP RES
+1. Correct Username appears in right top corner
+2. Create Post button displays
+3. Sign Out button displays
+4. Search icon displays
+5. Chat icon displays
+6. My Profile icon displays
+
+#3 Chat opening
+
+SUM
+Opening chat from user account
+
+STR
+1. Login to an EXISTING account using valid data (Username: goshia, Pass: 12345qwe!)
+2. Click on 'Chat' icon
+
+EXP RES
+1. Chat window opens
+2. 'Type a message' input field is displayed
+
+#4 Post creating
+
+SUM
+Creating post in the system by user
+
+STR
+
+1. Login to an EXISTING account using valid data (Username: goshia, Pass: 12345qwe!).
+2. Click on 'Create Post' button
+3. Enter  text into title input (Test title text)
+4. Enter  text into body content input: (Test title text)
+5. Click on the  'Save New Post' button
+
+EXP RES
+1. Sign 'Test title text' is displayed
+2. Edit button is displayed
+3. Delete button is displayed
+4. Click on the "My profile" button
+5. Created post displayed on the page
+
+
+POST COND
+1 Click on the created post
+2 Click on "Delete" button
+3 Created post deleted from profile
+
+#5 Sign out
+
+SUM
+Sign out user from profile
+
+Precondition:
+Login to an EXISTING account using valid data (Username: goshia, Pass: 12345qwe!)
+
+STR
+1 Click on the 'Sign Out' button
+
+EXP RES
+
+1 Home page opens(https://qa-complexapp.onrender.com/)
+The following elements should be visible on the home page:
+- Username input (for login)
+- Password input (for login)
+

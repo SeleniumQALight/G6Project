@@ -1,6 +1,6 @@
 Home Page(https://qa-complexapp.onrender.com/)
 
-HomePage.input.userName =.//input[@id='username1']
+HomePage.input.userName =.//input[@name='username' and not(@id='username-register')]
 HomePage.input.Password =.//input[(@placeholder='Password')]
 HomePage.button.SignIn =.//button[not(@type='submit')]
 HomePage.input.UsernameSet =.//input[@id='username-register']
