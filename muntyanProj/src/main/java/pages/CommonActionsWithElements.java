@@ -14,18 +14,17 @@ public class CommonActionsWithElements {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
-
-    protected void enterTextIntoElement(WebElement webElement, String text) {
-        try {
+    protected void enterTextInToElement(WebElement webElement, String text){
+        try{
             webElement.clear();
             webElement.sendKeys(text);
             logger.info(text + " was inputted into element");
-        } catch (Exception e) {
+        }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
 
-    protected void clickOnElement(WebElement webElement) {
+    protected void clickOnElement (WebElement webElement){
         try {
             webElement.click();
             logger.info("Element was clicked");
@@ -37,13 +36,5 @@ public class CommonActionsWithElements {
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
-    }
-
-    protected boolean isButtonDisplayed(WebElement webElement){
-        try {
-            return webElement.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
     }
 }
