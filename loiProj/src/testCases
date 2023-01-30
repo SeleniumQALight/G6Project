@@ -1,5 +1,146 @@
-#LoginPage
+#1 Summary: Реєстрація з використанням валідних данних
 
-loginPage.input.userName
+STR:
+1.Відкрити лінку https://qa-complexapp.onrender.com/
+2.У інпути форми реєстрації ввести данні за прикладом:
+Username - test{dateTime}
+Email - test+{dateTime}@example.qa
+Password - qwertyQwerty123
+3.Клікнути на кнопку "Sign up for OurApp"
 
-#HomePage
+ER:
+Здійснюється перехід на home page, де юзер може побачити:
+- Ім'я, введене при реєстрації, у хедері біля іконки MyProfile та у привітальному тайтлі(h2)
+- Кнопку Sign Out
+
+Post-Condition: Видалити юзера
+---
+#2 Summary: Логін з використанням валідних данних
+
+Pre-Condition: Зареєструвати нового юзера
+1.Відкрити лінку https://qa-complexapp.onrender.com/
+2.У інпути форми реєстрації ввести данні за прикладом:
+Username - test{dateTime}
+Email - test+{dateTime}@example.qa
+Password - qwertyQwerty123
+3.Клікнути на кнопку "Sign up for OurApp" -> ER: Здійснюється перехід на home page
+де юзер бачить ім'я, введене при реєстрації, у хедері біля іконки MyProfile
+4.Клікнути на кнопку Sign Out у хедері -> ER: Здійснюється перехід на main page
+де юзер бачить форму логіну у хедері
+
+STR:
+1.Ввести ім'я та пароль введені при реєстрації у формі логіну в хедері
+2.Клікнути кнопку Sign In
+
+ER:
+Здійснюється перехід на home page, де юзер може побачити:
+- Ім'я, введене при реєстрації, у хедері біля іконки MyProfile та у привітальному тайтлі(h2)
+- Кнопку Sign Out
+
+Post-Condition: Видалити юзера
+---
+#3 Summary: Перевірка виходу з аккаунту
+
+Pre-Condition: Зареєструвати нового юзера
+1.Відкрити лінку https://qa-complexapp.onrender.com/
+2.У інпути форми реєстрації ввести данні за прикладом:
+Username - test{dateTime}
+Email - test+{dateTime}@example.qa
+Password - qwertyQwerty123
+3.Клікнути на кнопку "Sign up for OurApp"
+
+STR:
+1.Клікнути на кнопку Sign Out у хедері
+
+ER: Здійснюється перехід на main page де юзер бачить:
+- форму логіну у хедері
+- форму реєстрації
+
+Post-Condition: видалити юзера
+---
+#4 Summary: Створення публікації з типом "групове повідомлення"
+
+Pre-Condition: Зареєструвати нового юзера
+1.Відкрити лінку https://qa-complexapp.onrender.com/
+2.У інпути форми реєстрації ввести данні за прикладом:
+Username - test{dateTime}
+Email - test+{dateTime}@example.qa
+Password - qwertyQwerty123
+3.Клікнути на кнопку "Sign up for OurApp"
+
+STR:
+1.Клікнути кнопку Create Post у хедері -> відкривається форма створення публікації
+2.Ввести значення у інпуті title: "Create Post {dateTime}"
+3.Ввести значення у текстеріа Body Context: "New automated post with body"
+4.НЕ заповнювати чекбокс Is this post unique?
+5.У дроп дауні Select value обрати значення "Групове повідомлення"
+6.Клікнути на кнопку Save New Post
+
+ER: Новий пост успішно створений:
+1.Юзер бачить повідомлення про успішне створення нової публікації
+2.Під тайтлом відображається ким та коли булла створена публікація
+(має збігатися з ім'ям юзера введеним при реєстрації та поточною датою)
+3.На сторінці відображаються ті самі данні, що і при створенні публікації:
+- title = "Create Post {dateTime}"
+- Body Context(тіло публікації) = "New automated post with body"
+- Is this post unique? : no
+- Тип доступу = Group Message
+
+Post-Condition:
+- Видалити створену публікацію
+1. Залишитись на тій саміи сторінці де перевірялись данні після редагування
+2. Клікнути на іконку видалення публікації -> ER: Пост успішно видаленний
+ a. юзер повертається на стрінку профайлу(урл за прикладом https://qa-complexapp.onrender.com/profile/{userName})
+ b. бачить 3 таби (Posts, Followers, Following)
+ c. бачить повідомлення про успішне видалення посту
+- Видалити юзера
+---
+#5 Summary: Редагування полів створенної публікації
+
+Pre-Condition: Зареєструвати нового юзера
+1.Відкрити лінку https://qa-complexapp.onrender.com/
+2.У інпути форми реєстрації ввести данні за прикладом:
+Username - test{dateTime}
+Email - test+{dateTime}@example.qa
+Password - qwertyQwerty123
+3.Клікнути на кнопку "Sign up for OurApp"
+
+STR:
+1.Клікнути кнопку Create Post у хедері -> відкривається форма створення публікації
+2.Ввести значення у інпуті title: "Create Post {dateTime}"
+3.Ввести значення у текстеріа Body Context: "Create - New automated post with body"
+4.Заповнити чекбокс Is this post unique?
+5.У дроп дауні Select value обрати значення "Загальнодоступне"
+6.Клікнути на кнопку Save New Post
+-> ER: На сторінці відображаються ті самі данні, що і при створенні публікації:
+- title = введене значення
+- Body Context(тіло публікації) = введене значення
+- Is this post unique? = yes
+- Тип доступу = All Users
+7.Клікнути на іконку редагування публікації -> ER: Відкривається форма редагування із заповненними інпутами
+(значення відповідають тим, що були введенні при створенні)
+8.Відредагувати всі поля на формі за прикладом:
+title: "Create Post {dateTime}" -> "Edit Post {dateTime}"
+Body Context: "Create - New automated post with body" -> "Edit - New automated post with body"
+Не заповнювати чекбокс Is this post unique?
+Select value: "Загальнодоступне" -> "Групове повідомлення"
+9.Клікнути на кнопку Save Updates
+
+ER:Публікація успішно оновилася:
+- Після збереження, на сторінці редагування, з'явилося повідомлення про успішне оновлення
+- Після кліку на лінку Back to post permalink юзер бачить сторінку публікації з оновленними полями:
+title = відредаговане значення
+Body Context(тіло публікації) = відредаговане значення
+Is this post unique? = no
+Тип доступу = Group Message
+- Під тайтлом відображається дата та ким була відредагована публікація
+
+Post-Condition:
+- Видалити створену публікацію
+1. Залишитись на тій саміи сторінці де перевірялись данні після редагування
+2. Клікнути на іконку видалення публікації -> ER: Пост успішно видаленний
+ a. юзер повертається на стрінку профайлу(урл за прикладом https://qa-complexapp.onrender.com/profile/{userName})
+ b. бачить 3 таби (Posts, Followers, Following)
+ c. бачить повідомлення про успішне видалення посту
+- Видалити юзера
+---
