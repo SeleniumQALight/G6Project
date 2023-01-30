@@ -1,6 +1,8 @@
 #LoginPage
 
-loginPage.input.userName  = .//*[@name='userName']
+loginPage.input.userName  = .//*[@name='username' and @placeholder= 'Username' ]
+
+loginPage.input.userRegister = .//input[@name='username' and @placeholder= 'Pick a username' ]
 loginPage.input.Email  = .//input[@id='email-register']
 loginPage.input.passwordRegistr = .//input[@id='password-register']
 
