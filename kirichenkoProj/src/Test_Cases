@@ -43,7 +43,6 @@ Steps to reproduce:
 3. In the field 'Password' specify test user password
 4. Press 'SignIn' button
 
-
 Expected result:
 1. system navigates user to the 'Home page'
 2. in the up ribbon user name displayed

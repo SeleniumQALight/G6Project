@@ -28,6 +28,7 @@ createPost.message.newPostTitle = .//div/h2[text()='test title']
 createPost.deletePost.deleteButton = .//button[@data-original-title='Delete']
 createPost.deletePost.deleteMessage = .//div[text()='Post successfully deleted']
 
+
 #Chat pop-up
 chatPopUp = .//div[@id='chat-wrapper']
 chatPopUp.input.typeMessage = .//input[@placeholder='Type a message…']
