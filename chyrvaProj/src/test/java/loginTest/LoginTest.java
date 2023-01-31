@@ -99,7 +99,7 @@ public class LoginTest {
 
     }
 
-    private boolean isButtonSignInDisplayed(){
+    public boolean isButtonSignInDisplayed(){
         try {
             return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
         }catch (Exception e){
