@@ -86,17 +86,15 @@ public class LoginTest {
                 webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         buttonSignIn.click();
         System.out.println("Button was clicked");
-//      WebElement notification =
-//             webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']"));
 
-        Assert.assertTrue("Notification is not displayed", isElementDisplayed());
+        Assert.assertTrue("Notification is not displayed", isNotificationInvalidPasswordDisplayed());
 
         webDriver.quit();
         System.out.println("browser was closed");
 
     }
 
-    private  boolean isElementDisplayed() {
+    private  boolean isNotificationInvalidPasswordDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
         } catch (Exception e) {
