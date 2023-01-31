@@ -1,9 +1,9 @@
 #1 Summary:New User Registration
 
    Steps: 1. Open the site https://qa-complexapp.onrender.com/
-          2. Enter username:kosof676545 into the 'Username' input field
-          3. Enter Email: kosof68965@ukbob.com in the "Email" input field
-          4. Enter password: Qwerty12!@Qwerty12!@ into the 'Password' input field
+          2. Enter username(must be at least 3 characters) into the 'Username' input field
+          3. Enter not registered email in the "Email" input field
+          4. Enter password(must be at least 12 characters) into the 'Password' input field
           5. Click on the 'Sign up for OurApp' button
 
    Expected result: - The new user is registered;
@@ -29,6 +29,7 @@
 
    Expected result: - The message "New post successfully created." is displayed;
                     - The note “This post was written for All Users” is displayed.
+                    - Number of posts in 'Posts' tab increased on +1
 
 #4 Summary: The appearance of a notification when entering an invalid password during registration
 
@@ -49,5 +50,6 @@
           3. Change the 'Title' field
           4. Click on the “Save Updates” button
 
-   Expected result: - The notification "Post successfully updated." appears.
+   Expected result: - The notification "Post successfully updated." appears;
+                    - On the page https://qa-complexapp.onrender.com/profile/<UserName> shows modified post
 

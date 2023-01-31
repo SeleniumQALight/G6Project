@@ -1,45 +1,32 @@
-№1
 https://qa-complexapp.onrender.com/
         Username field = .//input[@id='username-register']
         Email field = .//input[@id='email-register']
         Password field = .//input[@id='password-register']
         button “Sign up for OurApp” = .//button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']
-Results:
         button “Sign Out” = .//button[@class='btn btn-sm btn-secondary']
         button “Create Post” = .//a[@class='btn btn-sm btn-success mr-2']
-
-#2
-https://qa-complexapp.onrender.com/profile/<UserName>
         button "My Profile" = .//a[@class='mr-2']
-Results:
+        notification "Password must be at least 12 characters." = .//div[contains(text(), 'Password must be at least 12 characters.')]
+
+https://qa-complexapp.onrender.com/profile/<UserName>
         tabs "Posts" = .//a[@class='profile-nav-link nav-item nav-link active']
         tabs "Followers" = .//a[@href='/profile/kosof68966/followers']
         tabs "Following" = .//a[@href='/profile/kosof68966/following']
-
-#3
-https://qa-complexapp.onrender.com/create-post
         button 'Create Post' = .//a[@class='btn btn-sm btn-success mr-2']
+        last modified post = //strong[contains(text(),'12')]
+
+https://qa-complexapp.onrender.com/create-post
         field 'Title' = .//input[@id='post-title']
         field 'Body Content’ = .//textarea[@id='post-body']
         drop-down 'Select value' = .//option[@value='All Users']
         button 'Save New Post' = .//button[@class='btn btn-primary']
-Results:
+
+https://qa-complexapp.onrender.com/post/<IdPost>
         message "New post successfully created." = .//div[@class='alert alert-success text-center']
         note “This post was written for All Users” = .//u[contains(text(), 'All Users')]
-
-#4
-https://qa-complexapp.onrender.com/
-        Username field = .//input[@id='username-register']
-        Email field = .//input[@id='email-register']
-        Password field = .//input[@id='password-register']
-        button “Sign up for OurApp” = .//button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']
-Results:
-        notification "Password must be at least 12 characters." = .//div[contains(text(), 'Password must be at least 12 characters.')]
-
-#5
-https://qa-complexapp.onrender.com/post/<postId>
         button “Edit” = .//a[@href='/post/63d004670fc6cb00343aa6c8/edit']
+
+https://qa-complexapp.onrender.com/post/<IdPost>/edit
         field “Title” = .//input[@id='post-title']
         button “Save Updates” = .//button[@class='btn btn-primary']
-Results:
         notification "Post successfully updated." = .//div[@class='alert alert-success text-center']
