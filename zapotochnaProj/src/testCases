@@ -6,9 +6,9 @@
         - fields (Username, email, password) must be clear;
 
 Steps To Reproduce
-1) enter valid username
-2) enter valid email
-3) create valid password
+1) enter valid username (ex. 'Karantyna'  ) //>= 3characters
+2) enter valid email (ex. 'rswrthvlskzhwsqsdq@tmmwj.net')
+3) create valid password  (ex. '1234567890qw') //>=12characters
 4) Click submit button 'Sign up for OurApp'
 
     Expected Result:
@@ -19,11 +19,11 @@ Steps To Reproduce
 
      pre-cond:
         - go to ' https://qa-complexapp.onrender.com/ '
-        - fields (Username, email, password) must be clear;
+        - fields (username, email, password) must be clear;
 
 Steps To Reproduce
-1) enter cred (@test_users) in username field
-2) enter cred in password field
+1) enter cred ('wnqcsgwuourgowyobu') in username field
+2) enter cred ('wnqcsgwuourgowyobu@tmmbt.com') in password field
 3) Click 'Sign In' button
 
     Expected Result:
@@ -31,6 +31,27 @@ Steps To Reproduce
 -----------------------------------------------------------------
 
 #3 < User create post >
+
+    pre-cond:
+       - go to ' https://qa-complexapp.onrender.com/ '
+       - login via @test_users
+
+Steps To Reproduce
+1) click button 'Create Post'
+2) write valid text in field Tittle
+3) write text in Body Content
+4) Click button 'Save New Post'
+
+    Expected Result:
+    - user sees message 'New post successfully created'
+    - by default post isn't unique
+    - by default post is Загальнодоступний=written for All Users
+    - posted by 'profile name'
+    - current date
+    - content shows correctly
+-----------------------------------------------------------------
+
+#3.1 < Find users post in 'list of posts' >
 
     pre-cond:
        - go to ' https://qa-complexapp.onrender.com/ '
