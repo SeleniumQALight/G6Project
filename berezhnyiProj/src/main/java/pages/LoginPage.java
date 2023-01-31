@@ -44,26 +44,14 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterPasswordIntoInputPassword(String password) {
-//        try {
-////            WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
-//            inputPassword.clear();
-//            inputPassword.sendKeys(password);
-//            logger.info("Password was entered");
-//
-//        }catch (Exception e){
-//            printErrorAndStopTest(e);
-//        }
         enterTextIntoElement(inputPassword, password);
     }
 
     public void clickOnButtonLogin() {
-//        try {
-////            WebElement buttonLogin = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
-//            buttonLogin.click();
-//            logger.info("Button was clicked");
-//        }catch (Exception e){
-//            printErrorAndStopTest(e);
-//        }
         clickOnElement(buttonLogin);
+    }
+
+    public boolean isButtonSignInDisplayed(){
+        return isButtonDisplayed(buttonLogin);
     }
 }
