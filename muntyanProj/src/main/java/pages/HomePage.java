@@ -8,12 +8,4 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutDisplayed() {
-        try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
 }
