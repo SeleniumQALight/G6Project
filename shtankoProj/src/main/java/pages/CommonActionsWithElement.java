@@ -30,6 +30,23 @@ public class CommonActionsWithElement {
             printErrorAndStopTest(e);
         }
     }
+    protected boolean isElementDisplayed(WebElement webElement){
+        //цей метод ми використовуємо для перевірки чи є вебелемент на сторінці чи його немає(алерти, поп-апп та ін..)
+        try {
+            boolean state = webElement.isDisplayed();
+            String message;
+            if (state) {
+                message = "Element is displayed";
+            }else {
+                message = "Element is not displayed";
+            }
+            logger.info(message);
+            return state;
+        }catch (Exception e){
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
 
     protected void printErrorAndStopTest(Exception e){
         logger.error("Can not work with element " + e);
