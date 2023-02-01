@@ -38,8 +38,8 @@ Steps To Reproduce
 
 Steps To Reproduce
 1) click button 'Create Post'
-2) write valid text in field Tittle
-3) write text in Body Content
+2) write valid text ( "article is written for testing purposses ") in field Tittle
+3) write text  ( "LoremIpsum, test body content.  ")in Body Content
 4) Click button 'Save New Post'
 
     Expected Result:
@@ -56,20 +56,24 @@ Steps To Reproduce
     pre-cond:
        - go to ' https://qa-complexapp.onrender.com/ '
        - login via 'Karantyna', '1234567890qw'
+       - click on 'create post'
+       - create post with title "article is written for testing purposses "
+       - add text "some text , for characters" in Body Content
+       - save it
+       - sign out Karantyna
+       - login via 'wnqcsgwuourgowyobu', pswd= 'wnqcsgwuourgowyobu@tmmbt.com '
+       -  in search icon enter 'article is written for testing purposses'
+       - click on Post item
+       - click on the author poted by 'Karantyna'
+       - click on follow
 
 Steps To Reproduce
-1) click button 'Create Post'
-2) write valid text in field Tittle
-3) write text in Body Content
-4) Click button 'Save New Post'
+1) go to ' https://qa-complexapp.onrender.com/
+2) check list " The Latest From Those You Follow "
 
     Expected Result:
-    - user sees message 'New post successfully created'
-    - by default post isn't unique
-    - by default post is Загальнодоступний=written for All Users
-    - posted by 'profile name'
-    - current date
-    - content shows correctly
+    - user sees post  created recently by his following.
+
 -----------------------------------------------------------------
 
 #4 < User create post with option 'Приватне повідомлення' >
