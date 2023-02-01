@@ -9,7 +9,7 @@ STR
 5.Type Password 'test_acc_psw'
 6.Click Sign up for OurApp button
 
-ER: New User is created:
+ER: New User is created and can be received from DB by SQL request
  -welcome page is opened user sees greetings"Hello {user_name}, your feed is empty."
  in header user sees user name and buttons create post sign out
 
