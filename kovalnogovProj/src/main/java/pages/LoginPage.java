@@ -5,8 +5,15 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+    @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
+    private WebElement inputUserName;
+    @FindBy(xpath = ".//input[@placeholder='Password']")
+    private WebElement passwordInput;
+    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
+    private WebElement signInBtn;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -24,37 +31,30 @@ public class LoginPage extends ParentPage {
     }
 
     public void typeUserName(String userName) {
-        try {
-            WebElement inputUserName =
-                    webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
-            inputUserName.clear();
-            inputUserName.sendKeys( userName );
-logger.info("Type User name ");
-        } catch (Exception e) {
-            printErroAboutElementAndStopTest(e);
-        }
+        typeTextToElement(inputUserName, userName);
     }
 
     public void typeUserPassword(String password) {
-        try {
-            WebElement passwordInput =
-                    webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+   /*     try {
+           // WebElement passwordInput = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
             passwordInput.clear();
-            passwordInput.sendKeys( password );
+            passwordInput.sendKeys(password);
             logger.info("Type password ");
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
-        }
+        }*/
+        typeTextToElement(passwordInput, password);
     }
+
     public HomePage clickSignIn() {
-        try {
-            WebElement signInBtn =
-                    webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+     /*   try {
+          //  WebElement signInBtn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
             signInBtn.click();
             logger.info("Sign in clicked");
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
-        }
+        }*/
+        click(signInBtn);
         return new HomePage(webDriver);
     }
 }
