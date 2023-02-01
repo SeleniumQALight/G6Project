@@ -41,12 +41,7 @@ public class LoginTest {
         buttonSignIn.click();
         System.out.println("Button was clicked");
 
-//        WebElement buttonSignOut =
-//                webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
-
         Assert.assertTrue("Button is not displayed",isButtonSignOutDisplayed());
-
-
 
         webDriver.quit();
         System.out.println("browser was closed");
@@ -80,17 +75,11 @@ public class LoginTest {
         buttonSignIn.click();
         System.out.println("Button was clicked");
 
-//        WebElement buttonSignOut =
-//                webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
-
         Assert.assertFalse("Button is displayed",isButtonSignOutDisplayed());
-
-
 
         webDriver.quit();
         System.out.println("browser was closed");
     }
-
     private boolean isButtonSignOutDisplayed (){
         try{
             return  webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
