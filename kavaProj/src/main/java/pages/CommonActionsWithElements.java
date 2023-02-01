@@ -39,21 +39,13 @@ public class CommonActionsWithElements {
 
     }
 
-    protected void isElementPresented(WebElement element) {
+    protected boolean isElementPresented(WebElement element) {
         try {
-            Assert.assertTrue("Element is not presented", element.isDisplayed());
-            logger.info("Element is presented");
+            return element.isDisplayed();
         } catch (Exception e) {
-            printErrorAndStopTest(e);
+            return false;
         }
-    }
 
-    protected void isElementNotPresented(WebElement element) {
-        try {
-            logger.info("Element is not presented");
-        } catch (Exception e) {
-            Assert.assertFalse(element.isDisplayed());
-        }
 
     }
 
