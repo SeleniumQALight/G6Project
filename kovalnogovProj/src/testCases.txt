@@ -1,4 +1,4 @@
-Pre-conditions: need to add unique_id to basic user name and email prefics  UNIX time as example
+Pre-conditions: need to add unique_id to basic user name and email prefix  UNIX time as example
 testacc_1675283938823
 TC#1 - Check that user is able to create new user
 STR
@@ -14,7 +14,7 @@ ER: New User is created and can be received from DB by SQL request
  in header user sees user name and buttons create post sign out
 
 -------------------------------------------------------------------------------------------
-preconditons :TC#2-5   If user is absent  create new user
+preconditons :TC#2-5   If user is absent  create new user and use new creds for TC's execution
 ---------------------------------------------------------------------------------------------
 TC#2 - Check that user is able to login with correct credential
 STR
