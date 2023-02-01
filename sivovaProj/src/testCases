@@ -1,0 +1,67 @@
+Test case #1: login with valid credentials
+
+Steps:
+1. Open the site url:https://qa-complexapp.onrender.com/
+2. Input login into the 'username' field: qaauto
+3. Input password in the 'password' field: 123456qwerty
+4. Click the 'Sign in' button
+
+Expected result: user is logged in. Sign out button is displayed
+
+
+Test case #2: sign up a new user
+
+Steps:
+1. Open the site url:https://qa-complexapp.onrender.com/
+2. Enter a username into the 'username' field (for example autouser)
+3. Enter an email into the 'email' field (for example test@email.com)
+4. Enter a password into the 'password' field (for example 111111222222)
+5. Click the 'Sigh up for ourApp' button
+
+Expected result: user is signed up. Sign out button is displayed
+
+
+Test case #3: sign out
+
+Steps:
+1. Open the site url:https://qa-complexapp.onrender.com/
+2. Input login into the 'username' field: qaauto
+3. Input password in the 'password' field: 123456qwerty
+4. Click the 'Sign in' button
+5. Click the 'Sign out' button
+
+Expected result: user is logged out. Sign in button is displayed
+
+
+Test case #4: private post creation
+
+Steps:
+1. Open the site url:https://qa-complexapp.onrender.com/
+2. Input login into the 'username' field: qaauto
+3. Input password in the 'password' field: 123456qwerty
+4. Click the 'Sign in' button
+5. Click the 'Create Post' button
+6. Enter a title 'post title'
+7. Enter a body 'post body'
+8. Select 'Приватне повідомлення' in the dropdown
+9. Click the 'Save new Post' button
+
+Expected result: the post is created. The message 'New post successfully created.' is displayed.
+
+10. Open the 'My profile' page
+11. Verify by the title that the created post is displayed.
+
+Expected result: the created post is shown.
+
+Test case #5: Verify that chat can be opened
+
+Steps:
+1. Open the site url:https://qa-complexapp.onrender.com/
+2. Input login into the 'username' field: qaauto
+3. Input password in the 'password' field: 123456qwerty
+4. Click the 'Sign in' button
+5. Click the 'Chat' button
+
+Expected result: the chat window is opened. Chat title is displayed
+
+
