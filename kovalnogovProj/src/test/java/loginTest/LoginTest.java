@@ -17,25 +17,26 @@ public class LoginTest {
     public void validLogin() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
-        System.out.println( "Browser is opened" );
+        System.out.println("Browser is opened");
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait( 14, TimeUnit.SECONDS );
-        webDriver.get( "https://qa-complexapp.onrender.com/" );
+        webDriver.manage().timeouts().implicitlyWait(14, TimeUnit.SECONDS);
+        webDriver.get("https://qa-complexapp.onrender.com/");
         WebElement userNameInput =
-                webDriver.findElement( By.xpath( ".//*[@name='username' and @placeholder='Username']" ) );
+                webDriver.findElement(By.xpath(".//*[@name='username' and @placeholder='Username']"));
         userNameInput.click();
-        userNameInput.sendKeys( "qaauto" );
+        userNameInput.sendKeys("qaauto");
 
         WebElement userPswInput =
-                webDriver.findElement( By.xpath( ".//*[@name='password' and @placeholder='Password']" ) );
+                webDriver.findElement(By.xpath(".//*[@name='password' and @placeholder='Password']"));
         userPswInput.click();
-        userPswInput.sendKeys( "123456qwert1y" );
+        userPswInput.sendKeys("123456qwert1y");
 
-        WebElement signIn = webDriver.findElement( By.xpath( ".//*[@class='btn btn-primary btn-sm']" ) );
+        WebElement signIn = webDriver.findElement(By.xpath(".//*[@class='btn btn-primary btn-sm']"));
         signIn.click();
 
-        WebElement signOutBtn = webDriver.findElement( By.xpath( ".//button[text()='Sign Out']" ) );
-        Assert.assertTrue( "Button is not visible ", isElementDisplayed( signOutBtn ) );
+        By signOutBtn = By.xpath(".//button[text()='Sign Out']");
+
+        Assert.assertTrue("Button is not visible ", isElementDisplayed(signOutBtn));
         webDriver.quit();
 
     }
@@ -62,9 +63,9 @@ public class LoginTest {
         WebElement signIn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         signIn.click();
         System.out.println("Button was clicked");
-        WebElement errorMessage = webDriver.findElement( By.xpath( ".//div[@class='alert alert-danger text-center']" ) );
+        By errorMessage = By.xpath(".//div[@class='alert alert-danger text-center']");
 
-        Assert.assertTrue("Button is not displayed", isElementDisplayed( errorMessage ));
+        Assert.assertTrue("Notification about invalid login or password is not displayed", isElementDisplayed(errorMessage));
 
 
         webDriver.quit();
@@ -72,12 +73,13 @@ public class LoginTest {
 
     }
 
-    private boolean isElementDisplayed( WebElement element) {
+    private boolean isElementDisplayed(By by) {
+        WebElement element = webDriver.findElement(by);
         try {
             return element.isDisplayed();
         } catch (Exception e) {
             return false;
 
         }
-}
+    }
 }

@@ -1,16 +1,20 @@
-
+Pre-conditions: need to add unique_id to basic user name and email prefics  UNIX time as example
+testacc_1675283938823
 TC#1 - Check that user is able to create new user
 STR
 1.Open browser
 2.Open https://qa-complexapp.onrender.com
-3.Type Username 'testacc'
-4.Type Email 'test_acc@test.com'
+3.Type Username 'testacc_{unique_id}'
+4.Type Email 'test_acc{unique_id}@test.com'
 5.Type Password 'test_acc_psw'
 6.Click Sign up for OurApp button
 
-ER: New User is created welcome page is opened sign out btn is visible
+ER: New User is created:
+ -welcome page is opened user sees greetings"Hello {user_name}, your feed is empty."
+ in header user sees user name and buttons create post sign out
+
 -------------------------------------------------------------------------------------------
-preconditons :TC#2-5  new user is created
+preconditons :TC#2-5   If user is absent  create new user
 ---------------------------------------------------------------------------------------------
 TC#2 - Check that user is able to login with correct credential
 STR
