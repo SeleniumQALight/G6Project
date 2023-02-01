@@ -19,7 +19,7 @@ public class CommonActionsWithElements {
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted into element");
+            logger.info(text + " was inputted in to element");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -30,6 +30,23 @@ public class CommonActionsWithElements {
             logger.info("Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    protected boolean isElementDisplayed(WebElement webElement){
+        try {
+            boolean state = webElement.isDisplayed();
+            String message;
+            if (state){
+                message = "Element is displayed";
+            }else {
+                message ="Element is not displayed";
+            }
+            logger.info(message);
+            return state;
+        }catch (Exception e){
+            logger.info("Element is not displayed");
+            return false;
         }
     }
 
