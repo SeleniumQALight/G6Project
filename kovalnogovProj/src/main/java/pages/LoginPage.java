@@ -1,8 +1,8 @@
 package pages;
 
 
+import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,7 +54,15 @@ public class LoginPage extends ParentPage {
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }*/
-        click(signInBtn);
+        clickOnElement(signInBtn);
+        return new HomePage(webDriver);
+    }
+
+    public HomePage fillValidCreds() {
+        openLoginPage();
+        typeUserName(TestData.VALID_LOGIN);
+        typeUserPassword(TestData.VALID_PASSWORD);
+        clickSignIn();
         return new HomePage(webDriver);
     }
 }
