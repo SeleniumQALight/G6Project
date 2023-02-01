@@ -26,7 +26,7 @@ STR
 
 ER: User is lodged in welcome pаge is opened sign out button is visible
 ------------------------------------------------------------------------------------------------
-TC#3 - Check that user is not able to login with correct credential
+TC#3 - Check that user is not able to login with incorrect credential
 STR
 1.Open browser
 2.Open https://qa-complexapp.onrender.com
