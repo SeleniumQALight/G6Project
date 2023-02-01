@@ -1,4 +1,45 @@
 #LoginPage
+loginPage.input.userName = .//input[@name = 'username' and @placeholder = 'Username'] or .//div[@class = 'col-md mr-0 pr-md-0 mb-3 mb-md-0'][1]
+loginPage.input.userLogin = .//input[@name = 'password' and @placeholder = 'Password'] or .//div[@class = 'col-md mr-0 pr-md-0 mb-3 mb-md-0'][2]
+loginPage.button.signIn = .//button[@class='btn btn-primary btn-sm']
 
-loginPage.input.userName = .//
-loginPage.input.userLogin = .//
+#mainPage
+mainPage.button.search = .//a[@data-original-title='Search']
+mainPage.button.chat = .//span[@data-original-title='Chat']
+mainPage.button.myProfile = .//a[contains(@href, '/profile')]
+mainPage.button.signOut = .//button[text()='Sign Out']
+mainPage.button.createPost = .//a[@href='/create-post']
+
+#searchResult
+searchResult.link.post = .//div[@class='live-search-results live-search-results--visible']//a[contains(@href, '/post')]
+searchResult.button.close = .//span[@class='close-live-search']
+
+#chatPopup
+chatPopup.inputField = .//input[@id = 'chatField']
+chatPopup.userMessage = .//div[@class = 'chat-message-inner' and contains(text(), 'TestMessage')] for user 'TestMessage' message text
+
+#createPost/editPost
+createPost.textField.Title = .//input[@name='title']
+createPost.textArea.bodyContent = .//textarea[@name='body']
+createPost.checkBox.isUnique = .//input[@name='uniquePost']
+// createPost.ddList.selectValue = .//select or .//select[@name='select1'] but looks like we have access to item list w/o opening dropdown
+createPost.ddListItem.allUsers = .//option[@value='All Users']
+createPost.ddListItem.onePerson = .//option[@value='One Person']
+createPost.ddListItem.groupMessage = .//option[@value='Group Message']
+createPost.button.submit = .//button[@class='btn btn-primary']
+
+#postPage
+postPage.text.title = .//div[@class='d-flex justify-content-between'] or .//h2
+postPage.option.allUsers = .//div//u[contains(text(), 'All Users')]
+postPage.option.onePerson =.//div//u[contains(text(), 'One Person')]
+postPage.option.groupMessage = .//div//u[contains(text(), 'Group Message')]
+postPage.option.isUnique = .//div//p[contains(text(), 'yes')]
+postPage.text.bodyContent = .//div[@class="body-content"][2]                                ???
+postPage.button.edit = .//a[@data-original-title='Edit']
+postPage.button.delete = .//button[@data-original-title='Delete']
+
+#myProfile
+myProfile.link.post = .//a[contains(@href, '/post')][1]
+myProfile.count.post = .//a[@class='profile-nav-link nav-item nav-link active'] for count method
+
+
