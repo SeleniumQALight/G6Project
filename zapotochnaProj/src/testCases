@@ -34,7 +34,7 @@ Steps To Reproduce
 
     pre-cond:
        - go to ' https://qa-complexapp.onrender.com/ '
-       - login via @test_users
+       - login via 'Karantyna', '1234567890qw'
 
 Steps To Reproduce
 1) click button 'Create Post'
@@ -55,7 +55,7 @@ Steps To Reproduce
 
     pre-cond:
        - go to ' https://qa-complexapp.onrender.com/ '
-       - login via @test_users
+       - login via 'Karantyna', '1234567890qw'
 
 Steps To Reproduce
 1) click button 'Create Post'
@@ -76,7 +76,7 @@ Steps To Reproduce
 
     pre-cond:
        - go to ' https://qa-complexapp.onrender.com/ '
-       - login via @test_users
+       - login via 'Karantyna', '1234567890qw'
 
 Steps To Reproduce
 1) click button 'Create Post'
@@ -103,7 +103,7 @@ Steps To Reproduce
 
         pre-cond:
            - go to ' https://qa-complexapp.onrender.com/ '
-           - login via @test_users
+           - login via 'Karantyna', '1234567890qw'
 
     Steps To Reproduce
     1) click button 'Create Post'
@@ -129,11 +129,14 @@ Steps To Reproduce
 
      pre-cond:
         - go to ' https://qa-complexapp.onrender.com/ '
-        - login via @test_users
+        - login via 'Karantyna', '1234567890qw'
+        - user 'Karantyna' creates post with text '!find my post in list '
+        - sign out Karantyna
+        - login via 'wnqcsgwuourgowyobu', pswd= 'wnqcsgwuourgowyobu@tmmbt.com '
 
 Steps To Reproduce
 1) click on search icon
-2) enter word to find (ex. city)
+2) enter word to find (ex. "!find my post in list")
 
     Expected Result:
     - user sees the list of 'Search Results' with counted items
@@ -144,7 +147,13 @@ Steps To Reproduce
 
      pre-cond:
         - go to ' https://qa-complexapp.onrender.com/ '
-        - login via @test_users
+        - login via 'Karantyna', '1234567890qw'
+        - user 'Karantyna' creates post with text '!find my post in list '
+        - sign out Karantyna
+        - login via 'wnqcsgwuourgowyobu', pswd= 'wnqcsgwuourgowyobu@tmmbt.com '
+        - in search icon enter '!find my post in list'
+        - follow the author poted by 'Karantyna'
+
 
 Steps To Reproduce
 1) click on icon 'My Profile'
@@ -153,26 +162,30 @@ Steps To Reproduce
 
     Expected Result:
     - user sees post items (with tittles and date)
-    - each tab has counted items
-    - each item has visible parts (tittle name , posted by who, and date)
+    - Following tab has counted items, following list
+    - Followers tab - is empty yet. Count zero, empty list
 -----------------------------------------------------------------
 
 #8 < User may follow any person on app >
 
      pre-cond:
         - go to ' https://qa-complexapp.onrender.com/ '
-        - login via @test_users
+        - login via 'Karantyna', pswd='1234567890qw'
+        - user 'Karantyna' creates post with text '!find my post in list '
+        - sign out Karantyna
+        - login via 'wnqcsgwuourgowyobu', pswd= 'wnqcsgwuourgowyobu@tmmbt.com '
+        - go to search section
 
 Steps To Reproduce
 1) click on search icon
-2) enter required text (ex.2)
+2) enter required text (" !find my post in list")
 3) choose first item from the 'searched result'
-4) click on posted by -'profile name'-
+4) click on posted by -'Karantyna'-
 5) Click on 'Follow' button
 
     Expected Result:
-    - user gets to another profile page (../profile/profilename)
-    - sees message 'Successfully followed -profilename-'
+    - user gets to another profile page (../profile/Karantyna)
+    - sees message 'Successfully followed -'Karantyna'-
     - button 'Stop Following ' is available now
 -----------------------------------------------------------------
 
@@ -180,7 +193,7 @@ Steps To Reproduce
 
      pre-cond:
         - go to ' https://qa-complexapp.onrender.com/ '
-        - login via @test_users
+        - login via 'Karantyna', '1234567890qw'
 
 Steps To Reproduce
 1) click on chat icon
@@ -195,7 +208,7 @@ Steps To Reproduce
 
      pre-cond:
         - go to ' https://qa-complexapp.onrender.com/ '
-        - login via @test_users
+        - login via 'Karantyna', '1234567890qw'
 
 Steps To Reproduce
 1) click on button 'Sign Out'
