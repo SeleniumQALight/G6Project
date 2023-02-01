@@ -16,6 +16,7 @@ public class LoginPage extends ParentPage {
     private WebElement buttonLogin;
 
 
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -46,16 +47,16 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterPasswordIntoInputPassword(String password) {
-       // try {
-            //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        // try {
+        //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
 //            inputPassword.clear();
 //            inputPassword.sendKeys(password);
 //            logger.info("Password was entered");
 //        } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-    enterTextInToElement(inputPassword, password);
-        }
+        enterTextInToElement(inputPassword, password);
+    }
 
     public void clickOnButtonLogin() {
 //        try {
@@ -66,5 +67,15 @@ public class LoginPage extends ParentPage {
 //            printErrorAndStopTest(e);
 //        }
         clickOnElement(buttonLogin);
+    }
+
+    public boolean isButtonLogInDisplayed() {
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+//        } catch (Exception e) {
+//            return false;
+//
+//        }
+        return isElementDisplayed(buttonLogin);
     }
 }

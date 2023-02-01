@@ -2,42 +2,31 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
     WebDriver webDriver;
-    Logger logger=Logger.getLogger(getClass());
+    Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver,this);
+        PageFactory.initElements(webDriver, this);
     }
 
-
-    protected void enterTextIntiElement(WebElement webElement, String text){
+    protected  void enterTextInToElement(WebElement webElement, String text){
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text+"was inputted into element");
+            logger.info(text + " was inputted into element");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
 
-
-    protected void printErrorAndStopTest(Exception e){
-        logger.error("Can not work with element " + e);
-        Assert.fail("Can not work with element " + e);
-
-    }
-
-
-
     protected void clickOnElement(WebElement webElement){
-        try {
+        try{
             webElement.click();
             logger.info("Element was clicked");
         }catch (Exception e){
@@ -45,19 +34,8 @@ public class CommonActionsWithElements {
         }
     }
 
-
-
-    public boolean isButtonDisplayed(WebElement webElement) {
-        try {
-            return webElement.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-
+    protected void printErrorAndStopTest(Exception e){
+        logger.error("Can not work with element " + e);
+        Assert.fail("Can not work with element " + e);
     }
-
-
-
-
 }
-

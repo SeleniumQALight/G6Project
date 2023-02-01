@@ -1,3 +1,35 @@
 #LoginPage
+loginPage.input.userName = .//input[@placeholder='Username']
+loginPage.input.password = .//input[@placeholder='Password']
+loginPage.button.signIn = .//button[text()='Sign In']
+loginPage.signUp.input.userName = .//input[@placeholder = 'Pick a username']
+loginPage.signUp.input.email = .//input[@id= 'email-register']
+loginPage.signUp.input.password = .//input[@placeholder= 'Create a password']
+loginPage.signUp.input.signUpButton = .//button[text()= 'Sign up for OurApp']
+loginPage.signUp.validationMsg.email = .//div[text()='This email is already being used.']
+loginPage.signUp.validationMsg.password = .//div[text()='Password must be at least 12 characters.']
 
-loginPage.input.userName =
+#HomePage
+homePage.funcRibbon.button.search = .//a [@data-original-title="Search"]
+homePage.funcRibbon.button.chat = .//span[@data-original-title="Chat"]
+homePage.funcRibbon.button.myProfile = .//img[@alt="My profile"]
+homePage.funcRibbon.button.createPost = .//a[@class="btn btn-sm btn-success mr-2"]
+homePage.funcRibbon.button.signOut = .//button[text()='Sign Out']
+homePage.funcRibbon.userName = .//span[@class="text-white mr-2"]
+
+#CreatePost
+createPost.input.title = .//input[@id= 'post-title']
+createPost.input.body = .//textarea[@id= 'post-body']
+createPost.checkBox.isUnique = .//input[@name= 'uniquePost']
+createPost.dropDownList = .//option[@value= 'Group Message']
+createPost.button.saveNewPost = .//button[text() = 'Save New Post']
+createPost.message.newPostCreated = .//div[text()='New post successfully created.']
+createPost.message.newPostTitle = .//div/h2[text()='test title']
+createPost.deletePost.deleteButton = .//button[@data-original-title='Delete']
+createPost.deletePost.deleteMessage = .//div[text()='Post successfully deleted']
+
+
+#Chat pop-up
+chatPopUp = .//div[@id='chat-wrapper']
+chatPopUp.input.typeMessage = .//input[@placeholder='Type a message…']
+chatPopUp.displayMessage = .//div[@class='chat-message-inner']

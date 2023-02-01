@@ -14,12 +14,12 @@ import java.time.Duration;
 public class BaseTest {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
+
     protected LoginPage loginPage;
     protected HomePage homePage;
 
-
     @Before
-    public void setUp(){
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
@@ -27,14 +27,13 @@ public class BaseTest {
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
 
-
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
-
     }
+
 
 }

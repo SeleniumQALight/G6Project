@@ -1,0 +1,20 @@
+#Registration
+userNameField  //input[@name='username' and @id='username-register']
+emailEmail     //input[@name='email' and @id='email-register']
+passwordField  //input[@name='password' and @id='password-register']
+SignUpButton   //button[@type='submit']
+
+
+
+
+
+
+#Authorized user
+signOutButton                      //button[text()='Sign Out']
+
+
+#ErrorText
+errorEmailField.notValid              //div[text()='You must provide a valid email address.']
+errorPasswordField.notValid           //div[text()='Password must be at least 12 characters.']
+errorUsernameField.AlreadyRegistered  //div[@class='alert alert-danger small' and text()='This username is already taken.']
+errorUsernameField.notValid           //div[text()='Username must be at least 3 characters.']

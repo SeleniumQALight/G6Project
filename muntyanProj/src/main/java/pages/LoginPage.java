@@ -15,6 +15,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -24,24 +25,23 @@ public class LoginPage extends ParentPage {
             webDriver.get("https://qa-complexapp.onrender.com/");
             logger.info("LoginPage was opened");
         } catch (Exception e) {
-            logger.error("Can't open Login page" + e);
-            Assert.fail("Can't open Login page" + e);
+            logger.error("Can not open Login Page " + e);
+            Assert.fail("Can not open Login Page " + e);
         }
     }
 
-    public void enterUserNameIntoInputLogin(String userName) {
-        enterTextIntoElement(inputUserName, userName);
+    public void enterUserNameIntoInpuLogin(String userName) {
+        enterTextInToElement(inputUserName, userName);
+
     }
 
+
     public void enterPasswordIntoInputPassword(String password) {
-        enterTextIntoElement(inputPassword, password);
+        enterTextInToElement(inputPassword, password);
     }
 
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
-    }
 
-    public boolean isButtonLoginDisplayed() {
-        return isElementDisplayed(buttonLogin);
     }
 }
