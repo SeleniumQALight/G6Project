@@ -1,5 +1,6 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,7 +43,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputUserName, userName);
     }
 
-    public void enterPaswordIntoInputPassword(String password) {
+    public LoginPage enterPaswordIntoInputPassword(String password) {
 //        try {
 ////            WebElement inputPassword =
 ////                    webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
@@ -53,6 +54,7 @@ public class LoginPage extends ParentPage {
 //            printErrorAndStopTest(e);
 //        }
         enterTextIntoElement(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonLogin() {
@@ -65,5 +67,13 @@ public class LoginPage extends ParentPage {
 //            printErrorAndStopTest(e);
 //        }
         clickOnElement(buttonLogin);
+    }
+
+    public HomePage fillingLoginFormWithValidCred() {
+        openLoginPage();
+        enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
+        enterPaswordIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonLogin();
+        return new HomePage(webDriver);
     }
 }

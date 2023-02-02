@@ -12,25 +12,42 @@ public class CommonActionsWithElements {
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver,this);
+        PageFactory.initElements(webDriver, this);
     }
 
-    protected void enterTextIntoElement(WebElement webElement, String text){
-        try{
+    protected void enterTextIntoElement(WebElement webElement, String text) {
+        try {
             webElement.clear();
             webElement.sendKeys(text);
             logger.info(text + " was inputted in to element");
-        } catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void clickOnElement(WebElement webElement){
-        try{
+    protected void clickOnElement(WebElement webElement) {
+        try {
             webElement.click();
             logger.info("Element was clicked");
-        } catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
+        }
+    }
+
+    protected boolean isElementDisplayed(WebElement webElement) {
+        try {
+            boolean state = webElement.isDisplayed();
+            String message;
+            if (state) {
+                message = "Element is displayed";
+            } else {
+                message = "Element is not displayed";
+            }
+            logger.info(message);
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
         }
     }
 
