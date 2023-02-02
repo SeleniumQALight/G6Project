@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class LoginTestWithPageObject extends BaseTest {
-
  @Test
     public void validLogin() {
      loginPage.openLoginPage();
@@ -15,6 +14,10 @@ public class LoginTestWithPageObject extends BaseTest {
      loginPage.clickOnButtonLogin();
 
      Assert.assertTrue("Button is not displayed", homePage.isButtonSignOutDisplayed());
-
  }
+
+ @Test
+ public void notValidLogin()
+
+
 }
