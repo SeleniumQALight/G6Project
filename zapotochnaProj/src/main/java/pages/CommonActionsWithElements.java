@@ -34,7 +34,26 @@ public class CommonActionsWithElements {
         Assert.fail("Cannot work with element " + e);
     }
 
-    protected void clickOnElement (WebElement webElement) {
+
+    protected boolean isElementDisplayed(WebElement webElement) {
+
+        try {
+            boolean state = webElement.isDisplayed();
+            String message;
+            if (state) {
+                message = "Element is Displayed";
+            } else {
+                message = "Element is not Displayed";
+            }
+            logger.info(message);
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    protected void clickOnElement(WebElement webElement) {
         try {
             webElement.click();
             logger.info("Element was clicked");
