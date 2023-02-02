@@ -36,6 +36,14 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected boolean isElementDisplayed(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
