@@ -34,10 +34,19 @@ public class CommonActionsWithElements {
         }
     }
 
-    public boolean isElementDisplayed(WebElement webElement){
+    protected boolean isElementDisplayed(WebElement webElement){
         try {
-            return webElement.isDisplayed();
+            boolean state = webElement.isDisplayed();
+            String message;
+            if (state){
+                message = "Element is displayed";
+            } else {
+                message = "Element is not displayed";
+            }
+            logger.info(message);
+            return state;
         }catch (Exception e){
+            logger.info("element is not displayed");
             return false;
         }
     }
