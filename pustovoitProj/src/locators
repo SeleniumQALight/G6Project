@@ -22,4 +22,5 @@ HomePage.button.SaveNewPost= .//button[@class='btn btn-primary']
 HomePage.div.MessagePostCreated= .//div[@class='alert alert-success text-center']
 HomePage.href.FirstPostOfList= .//a[@class='list-group-item list-group-item-action'][1]
 HomePage.href.EditPost= .//a[@class='text-primary mr-2']
+HomePage.href.DeletePost.//button[@class='delete-post-button text-danger']
 
