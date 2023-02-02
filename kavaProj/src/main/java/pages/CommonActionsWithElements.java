@@ -36,21 +36,13 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean isElementDisplayed(WebElement webElement) {
+    protected boolean isElementDisplayed(WebElement element) {
         try {
-            boolean state = webElement.isDisplayed();
-            String message;
-            if (state) {
-                message = "Element is displayed";
-            } else {
-                message = "Element is not displayed";
-            }
-            logger.info(message);
-            return state;
+            return element.isDisplayed();
         } catch (Exception e) {
-            logger.info("Element is not displayed");
             return false;
         }
+
     }
 
     protected void printErrorAndStopTest(Exception e) {
