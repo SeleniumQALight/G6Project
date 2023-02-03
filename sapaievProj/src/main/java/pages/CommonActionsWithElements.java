@@ -5,9 +5,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     Logger logger=Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -38,6 +39,31 @@ public class CommonActionsWithElements {
         try {
             webElement.click();
             logger.info("Element was clicked");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+    protected void selectTextInDropdown(WebElement dropDown, String vivibleText){
+        try {
+            Select select=new Select(dropDown);
+            select.selectByVisibleText(vivibleText);
+            logger.info(vivibleText+" was selected in Dropdown");
+
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+
+    protected void selectValueInDropdown(WebElement dropDown, String value){
+        try {
+            Select select=new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value+" was selected in Dropdown");
+
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
