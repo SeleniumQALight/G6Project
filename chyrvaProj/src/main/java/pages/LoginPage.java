@@ -1,5 +1,6 @@
 package pages;
 
+import library.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
+
 
 
     public LoginPage(WebDriver webDriver) {
@@ -46,16 +48,16 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterPasswordIntoInputPassword(String password) {
-       // try {
-            //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        // try {
+        //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
 //            inputPassword.clear();
 //            inputPassword.sendKeys(password);
 //            logger.info("Password was entered");
 //        } catch (Exception e) {
 //            printErrorAndStopTest(e);
 //        }
-    enterTextInToElement(inputPassword, password);
-        }
+        enterTextInToElement(inputPassword, password);
+    }
 
     public void clickOnButtonLogin() {
 //        try {
@@ -66,5 +68,24 @@ public class LoginPage extends ParentPage {
 //            printErrorAndStopTest(e);
 //        }
         clickOnElement(buttonLogin);
+    }
+
+    public boolean isButtonLogInDisplayed() {
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
+//        } catch (Exception e) {
+//            return false;
+//
+//        }
+        return isElementDisplayed(buttonLogin);
+    }
+
+    public HomePage fillingLoginFormWithValidCred() {
+        openLoginPage();
+        enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonLogin();
+
+        return new HomePage(webDriver);
     }
 }
