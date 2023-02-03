@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -34,15 +35,37 @@ public class CommonActionsWithElements {
         Assert.fail("Cannot work with element " + e);
     }
 
-    protected void clickOnElement (WebElement webElement) {
+
+    public boolean isButtonSignOutDisplayed() {
         try {
-            webElement.click();
-            logger.info("Element was clicked");
+            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
         } catch (Exception e) {
-            printErrorAndStopTest(e);
+            return false;
+
+        }}
+
+
+        public boolean isButtonSignInDispalyed () {
+            try {
+                return webDriver.findElement(By.xpath(".//*[@class =.//*[@class ='btn btn-primary btn-sm']")).isDisplayed();
+            } catch (Exception e) {
+                return false;
+
+            }
+
 
         }
+
+
+        protected void clickOnElement (WebElement webElement){
+            try {
+                webElement.click();
+                logger.info("Element was clicked");
+            } catch (Exception e) {
+                printErrorAndStopTest(e);
+
+            }
+        }
+
+
     }
-
-
-}

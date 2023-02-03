@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +16,8 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
+
+
 
 
     public LoginPage(WebDriver webDriver) {
@@ -74,6 +77,10 @@ public class LoginPage extends ParentPage {
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
+
+
+
+
 
 
 }
