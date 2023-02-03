@@ -55,6 +55,11 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputPassword, password);
     }
 
+    public boolean isButtonSignInDisplayed(){
+        isElementDisplayed(buttonLogin);
+        return false;
+    }
+
     public void clickOnButtonLogin() {
        clickOnElement(buttonLogin);
     }
