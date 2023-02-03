@@ -5,9 +5,11 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElement {
-    WebDriver webDriver;
+    //по замовчуванню вебдрайвер наслідується тільки в рамках пекеджа
+    protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -47,7 +49,25 @@ public class CommonActionsWithElement {
             return false;
         }
     }
+    protected void selectTextInDropDown(WebElement dropDown, String visibleText){
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(visibleText);
+            logger.info(visibleText + "was select in DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 
+    protected void selectValueInDropDown(WebElement dropDown, String value){
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + "was selected in DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
     protected void printErrorAndStopTest(Exception e){
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
