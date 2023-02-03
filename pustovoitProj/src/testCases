@@ -1,7 +1,62 @@
-#1Summary
+#1 Check the login with valid data
+STR
+    1. Open the page https://qa-complexapp.onrender.com/
+    2. Enter a valid login and password
+    3 Click the button "Sign In"
+ER
+    The user has successfully logged in.
+    Check if the "Sign Out" button is displayed
+    Check the username displayed in the page header
+_____________________________________
+
+#2 Check registration with valid data
+Test data:
+username- "testname"
+email -"qaemail@qmail.com"
+Password -"testpassword123"
+username and email- must be unique for autotest
 
 STR
-
+    1. Open the page https://qa-complexapp.onrender.com/
+    2. Enter your username, email and password
+    3 Click the "Sign up for OurApp" button
 ER
+    The user has successfully registered.
+        Check if the "Sign Out" button is displayed
+        Check the username displayed in the page header
+_____________________________________
 
-#2
+#3 Check the possibility to open My Profile
+STR
+   1. Log in to https://qa-complexapp.onrender.com/
+   2. Click on the profile icon in the header
+ER
+   The profile page has opened
+   Check if img avatar and H2(username) displayed in the page
+_____________________________________
+
+#4 Check the Create Post option
+STR
+   1. Log in to https://qa-complexapp.onrender.com/
+   2. Click the Create Post button in the header
+   3. Enter the title and text in Body Content
+   4. Select a checkbox and a value from the list
+   5. Click on the "Save New Post" button
+ER
+   A new post has been created
+   Check what message displayed
+   Check what the first post has title which your entered in profile
+   Check count posts what was and count posts now
+   Check that the post has not doubled
+_____________________________________
+
+#5 Check the possibility to open your post (first of list)
+STR
+   1. Log in to https://qa-complexapp.onrender.com/
+   2. Click on the "My Profile" button in the header
+   3. Click on the first post from the list
+ER
+   The post opened on the page
+   Check what buttons 'Edit', 'Delete' displayed on page
+_____________________________________
+
