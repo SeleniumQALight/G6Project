@@ -10,6 +10,17 @@ public class CreatePostPage extends ParentPage{
     @FindBy(name = "title")
     private WebElement inputTitle;
 
+    @FindBy(id = "post-body")
+    private WebElement inputBody;
+
+    @FindBy (xpath =".//button[@class='btn btn-primary']")
+    private WebElement buttonSavePost;
+
+//   './/select'
+    @FindBy (tagName = "select")
+    private WebElement dropDownOptions;
+
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -22,6 +33,26 @@ public class CreatePostPage extends ParentPage{
 
     public CreatePostPage enterTextInInputTitle(String postTitle) {
         enterTextInToElement(inputTitle, postTitle);
+        return this;
+    }
+
+    public CreatePostPage enterTextInInputBody(String bodyText) {
+        enterTextInToElement(inputBody, bodyText);
+        return this;
+    }
+
+    public PostPage clickOnSavePostButton() {
+        clickOnElement(buttonSavePost);
+        return new PostPage(webDriver);
+    }
+
+    public CreatePostPage selectTextInDropDownOptions(String textInDD) {
+        selectTextInDropDown(dropDownOptions, textInDD);
+        return this;
+    }
+
+    public CreatePostPage selectValueInDropDownOptions(String valueInDD){
+        selectValueInDropDown(dropDownOptions,valueInDD);
         return this;
     }
 }
