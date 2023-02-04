@@ -8,6 +8,13 @@ import org.openqa.selenium.support.FindBy;
 public class CreatePostPage extends ParentPage {
     @FindBy(name="title")
 private WebElement inputTitle;
+    @FindBy(id="post-body")
+    private WebElement inputPostBody;
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
+    private WebElement savePostButton;
+    @FindBy(tagName = "select")
+    private WebElement dropDown;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -20,5 +27,25 @@ private WebElement inputTitle;
     public CreatePostPage typePostTitle(String testTitle) {
         typeTextToElement(inputTitle ,testTitle);
         return this;
+    }
+
+
+    public CreatePostPage typePostBody(String text){
+        typeTextToElement(inputPostBody,text);
+        return this;
+    }
+
+    public CreatePostPage selectItemInDropDown(String textinDD){
+        selectTextInDropDown(dropDown,textinDD);
+        return this;
+    }
+
+    public CreatePostPage selectValueInDropDown(String value){
+        selectValueInDropDown(dropDown, value);
+        return this;
+    }
+    public PostPage clickSavePostButton(){
+        clickOnElement(savePostButton);
+        return new PostPage( webDriver);
     }
 }
