@@ -1,5 +1,7 @@
 package pages.elements;
 
+import libs.TestData;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +16,8 @@ public class HeaderElement extends CommonActionsWithElements {
     private WebElement buttonCreatePost;
     @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement buttonSignOut;
+    @FindBy(xpath = ".//span[@class='text-white mr-2']")
+    private WebElement actualLogin;
 
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
@@ -32,5 +36,9 @@ public class HeaderElement extends CommonActionsWithElements {
         clickOnElement(buttonCreatePost);
 
         return new CreatePostPage(webDriver);
+    }
+
+    public void checkLoginName() {
+        Assert.assertEquals("Wrong user name is displayed", TestData.VALID_LOGIN, actualLogin.getText());
     }
 }
