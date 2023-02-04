@@ -1,7 +1,87 @@
-#1 Summary
+#1
+Summary: Sign up Functionality
 
 STR
+1. Go to https://qa-complexapp.onrender.com/
+2. Fill in Username field with valid name using latin letters (e.g. newtestuser)
+3. Fill in Email field with email in correct format that is not registered on website yet (e.g. test1234@test.com)
+4. Fill in Password field with password that contains at least 12 characters using latin letters and digits (e.g. asdfgh123456)
+5. Click on 'Sign up for OurApp' button
 
 ER
+User is successfully signed up
+Home page is opened
+Entered during registration username is displayed
+'Create Post and 'Sign Out' buttons are displayed in header of the page
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#2 Summary
+#2
+Summary: Sign In functionality
+Preconditions: Create a user with sign up form(e.g. Username = newtestuser, Email = test1234@test.com, Password = asdfgh123456)
+
+STR
+1. Go to https://qa-complexapp.onrender.com/
+2. Fill in Username field
+3. Fill in Password field
+4. Click on 'Sign In' button
+
+ER
+User is successfully signed in
+Home page is opened
+'Create Post and 'Sign Out' buttons are displayed in header of the page
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#3
+Summary: Create Post functionality
+Preconditions: Create a user with sign up form (e.g. Username = newtestuser, Email = test1234@test.com, Password = asdfgh123456)
+
+STR
+1. Go to https://qa-complexapp.onrender.com/
+2. Sign In using created in preconditions user
+3. Click on 'Create Post' button
+4. Fill in Title field with 'New post' text
+5. Fill in Body Content field with 'Content for new post' text
+6. Click on 'Save New Post button' button
+
+ER
+New Post is successfully created
+User is redirected to page with new post
+'New post successfully created' message is displayed
+
+7. Click on 'My profile' button
+
+ER
+Post with 'New post' title is displayed as first element in the list of the posts
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#4
+Summary: Delete Post functionality
+Preconditions: Create a user with sign up form (e.g. Username = newtestuser, Email = test1234@test.com, Password = asdfgh123456).
+Create a post for user with 'New test post' title.
+
+STR
+1. Go to https://qa-complexapp.onrender.com/
+2. Sign In using created in preconditions user
+3. Click on 'My Profile' button
+4. Click on created in preconditions post
+5. Click on 'Delete' button
+
+ER
+Post was successfully deleted
+'Post successfully deleted' message is displayed
+Post with 'New test post' title isn't displayed on the page
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#5
+Summary: Check Sign Out functionality
+Preconditions: Create a user with sign up form (e.g. Username = newtestuser, Email = test1234@test.com, Password = asdfgh123456)
+
+STR
+1. Go to https://qa-complexapp.onrender.com/
+2. Sign In using created in preconditions user
+3. Click on 'Sign In' button
+4. Click on 'Sign Out' button
+
+ER
+User is successfully signed out
+'Sign In' button is displayed

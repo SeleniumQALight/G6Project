@@ -1,7 +1,34 @@
 #LoginPage
+Login Username field = .//input[@name='username' and @placeholder='Username']
+Login Password field = .//input[@name='password' and @placeholder='Password']
+Sign In button field = .//button[@class='btn btn-primary btn-sm']
 
-loginPage.input.userName=.//*[@name='userName']
+Sign Up Username field =.//input[@name='username' and @id='username-register']
+Sign Up Email field =.//input[@name='email' and @id='email-register']
+Sign Up Password field =.//input[@name='password' and @id='password-register']
+Sign up for OurApp button = .//button[@type='submit']
 
 
 #HomePage
+Complex app for testing - Qa link = .//a[@class='text-white']
+Search button = .//a[@data-original-title='Search']
+Chat button = .//span[@data-original-title='Chat']
+My profile button = //*[@data-original-title='My Profile']
+Create Post button = .//a[@href='/create-post']
+Sign Out button = .//button[@class='btn btn-sm btn-secondary']
+Username = .//span[not(@class='chat-title-bar-close') and not(@class='close-live-search') and not(@data-placement='bottom')]
+
+#CreatePostPage
+Title text field = .//input[@id='post-title']
+Body Content text field = .//textarea[@id='post-body']
+Save New Post button = .//button[@class='btn btn-primary']
+
+#NewPostPage
+Message when post created = .//div[@class='alert alert-success text-center' and contains(text(),'New post successfully created.')]
+
+#MyProfile
+Post in the list = .//strong[contains (text (), 'New test post')]
+Message when post deleted = .//div[@class='alert alert-success text-center' and contains(text(),'Post successfully deleted')]
+
+
 
