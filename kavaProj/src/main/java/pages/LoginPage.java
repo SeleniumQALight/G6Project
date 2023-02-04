@@ -15,6 +15,10 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+    @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
+    private WebElement signInButton;
+
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -57,6 +61,13 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonLogin);
     }
 
+
+    public boolean isSignInButtonDisplayed() {
+       return isElementPresented(signInButton);
+    }
+
+
+
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
@@ -64,5 +75,6 @@ public class LoginPage extends ParentPage {
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
+
 }
 

@@ -17,11 +17,12 @@ public class HomePage extends ParentPage{
     }
 
     public boolean isButtonSignOutDisplayed(){
-        try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+        return isElementDisplayed(signOutButton);
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+//        }catch (Exception e){
+//            return false;
+//        }
     }
 
     public HomePage openHomePage() {
