@@ -6,9 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 import java.util.logging.Logger;
 
 public class HomePage extends ParentPage{
+
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
@@ -16,12 +20,12 @@ public class HomePage extends ParentPage{
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @FindBy(xpath = ".//button[@class ='btn btn-sm btn-secondary']")
+    private WebElement buttonSignOut;
+
     public boolean isButtonSignOutDisplayed(){
-        try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+        return isElementDisplayed(buttonSignOut);
     }
 
     public HomePage openHomePage() {

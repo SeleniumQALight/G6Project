@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
     WebDriver webDriver;
-     Logger logger = Logger.getLogger(getClass());
+    Logger logger = Logger.getLogger(getClass());
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
@@ -48,7 +48,6 @@ public class CommonActionsWithElements {
             return false;
         }
     }
-
 
     protected void printErrorAndStopTest(Exception e){
         logger.error("Can't work with element" + e);
