@@ -1,47 +1,47 @@
 #1 Lending page;
- Username field  .//input[@name='username' and @placeholder=‘Username']
- Password field  .//input[@name='password' and @placeholder=‘Password']
- Sign in button  .//button[@class='btn btn-primary btn-sm’]
+ Username field  .//input[@name='username' and @placeholder='Username']
+ Password field  .//input[@name='password' and @placeholder='Password']
+ Sign in button  .//button[@class='btn btn-primary btn-sm']
 
  Username field  .//input[@name='username'and @placeholder='Pick a username']
- Email field  .//input[@name='email' and @id=‘email-register']
- Password field  .//input[@name='password' and @placeholder='Create a password’]
- Sign up for OurApp  .//button[@type=‘submit']
+ Email field  .//input[@name='email' and @id='email-register']
+ Password field  .//input[@name='password' and @placeholder='Create a password']
+ Sign up for OurApp  .//button[@type='submit']
 ------------------------------------------------------------------------------------------
 #2 Home page;
- Search icon  .//a[@href=‘#']
- User profile icon  .//a[.//img[@alt='My profile’]]
- User name  .//span[contains(text(), ‘usereName from valid data’)]
- Create post button  .//a[@href=‘/create-post']
- Sign out button  .//button[@class='btn btn-sm btn-secondary’]
+ Search icon  .//a[@href='#']
+ User profile icon  .//a[.//img[@alt='My profile']]
+ User name  .//span[contains(text(), 'usereName from valid data')]
+ Create post button  .//a[@href='/create-post']
+ Sign out button  .//button[@class='btn btn-sm btn-secondary']
 ------------------------------------------------------------------------------------------
 #3 User pages;
- User name  .//h2[contains(text(), ‘usereName from valid data')]
- Post tab  .//a[@href='/profile/yuliiasol' and contains(text(), 'Posts: 0’)]
+ User name  .//h2[contains(text(), 'usereName from valid data')]
+ Post tab  .//a[@href='/profile/yuliiasol' and contains(text(), 'Posts: 0')]
  Followers tab  .//a[@href='/profile/yuliiasol/followers' and contains(text(), 'Followers: 0')]
- Following tab  .//a[@href='/profile/yuliiasol/following' and contains(text(), 'Following: 0’)]
+ Following tab  .//a[@href='/profile/yuliiasol/following' and contains(text(), 'Following: 0')]
 ------------------------------------------------------------------------------------------
 #4 Post creation;
- Title input field  .//input[@name=‘title']
- Body input field  .//textarea[@name=‘body']
- Checkbox  .//input[@type=‘checkbox']
- Dropdown  .//select//option[@value='All Users’]
- Save New Post  .//button[@class='btn btn-primary’]
+ Title input field  .//input[@name='title']
+ Body input field  .//textarea[@name='body']
+ Checkbox  .//input[@type='checkbox']
+ Dropdown  .//select//option[@value='All Users']
+ Save New Post  .//button[@class='btn btn-primary']
 ------------------------------------------------------------------------------------------
 #5 Successfully crated post page
-.//div[contains(text(), 'New post’)]
+.//div[contains(text(), 'New post')]
 ------------------------------------------------------------------------------------------
 #6 Edit/Delete post page
-Edit icon  .//a[@class='text-primary mr-2’]
-Save Updates button  .//button[@class='btn btn-primary’]
+Edit icon  .//a[@class='text-primary mr-2']
+Save Updates button  .//button[@class='btn btn-primary']
 Message after edition  //div[contains(text(), 'updated')]
-Delete icon  .//button[@class='delete-post-button text-danger’]
+Delete icon  .//button[@class='delete-post-button text-danger']
 Message after deleting  //div[contains(text(), 'deleted')]
 ------------------------------------------------------------------------------------------
 #7 Search window pop up; TC #7 Search button verification.
-Search field  .//input[@id=‘live-search-field']
-Link on the post after search .//a[@class='list-group-item list-group-item-action’]//strong[text()='Title from valid data’]
+Search field  .//input[@id='live-search-field']
+Link on the post after search .//a[@class='list-group-item list-group-item-action']//strong[text()='Title from valid data']
 ------------------------------------------------------------------------------------------
 #8 Page of the searched post
- Title of the post on its page  .//h2[text()='Title from valid data’’]
- Body of the post  .//div[@class=‘body-content']//p[not(.//i)]
+ Title of the post on its page  .//h2[text()='Title from valid data']
+ Body of the post  .//div[@class='body-content']//p[not(.//i)]
