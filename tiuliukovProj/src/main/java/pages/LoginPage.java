@@ -1,11 +1,10 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.concurrent.ExecutionException;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -13,7 +12,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
-    private WebElement buttonLogin;
+    private WebElement buttonSignIn;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -33,12 +32,24 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputUserName, userName);
     }
 
-    public void enterLoginNameIntoInputPassword(String password) {
+    public void enterPasswordIntoInputPassword(String password) {
           enterTextIntoElement(inputPassword, password);
     }
 
-    public void clickOnButtonLogin() {
-        clickOnElement(buttonLogin);
+    public void clickOnButtonSignIn() {
+        clickOnElement(buttonSignIn);
     }
 
+    public boolean isButtonSignInDisplayed(){
+        return isElementDisplayed(buttonSignIn);
+    }
+
+    public HomePage fillingLoginFormWithValidCred() {
+        openLoginPage();
+        enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonSignIn();
+
+        return new HomePage(webDriver);
+    }
 }

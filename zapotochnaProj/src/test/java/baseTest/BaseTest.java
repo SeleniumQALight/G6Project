@@ -11,7 +11,7 @@ import pages.LoginPage;
 
 import java.time.Duration;
 
-public class BaseTest {
+public class BaseTest { //батьківський клас для всіх класів, все що відноситься до тестів
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
