@@ -1,9 +1,64 @@
-#1 Summary
+#1
+     Summary: Verify that user can create private unique post
+Precondition: - User account is created
+              - User is logged in
+       Steps: 1. Click on the 'Create Post' button
+              2. Fill 'Title' filed
+              3. Fill 'Body Content' text filed
+              4. Select 'Private' value in the drop-down
+              5. Check 'Is this post unique?' checkbox
+              6. Click on the 'Save New Post' button
+  Exp.Result: - Message "New post successfully created." appeared
+              - The note "This post was written for One Person" appeared
+              - Note: "Is this post unique?" has a "yes" state
+              - Number of posts in 'Posts' tab increased on +1
 
-STR
 
-ER
+#2
+     Summary: Verify that user can delete a post
+Precondition: - User account is created
+              - User is logged in
+              - User has already created post
+       Steps: 1. Open created post
+              2. Click on 'Delete' button
+  Exp.Result: - Message "Post successfully deleted" appeared
+              - Number of posts in 'Posts' tab decreased on 1
 
 
-#2 Summary
-...
+#3
+     Summary: Verify that user can be followed by another user
+Precondition: - User 1 account is created
+              - User 1 is logged in
+              - User 2 account is created
+              - User 2 is logged in
+       Steps: 1. As a User 2 open page of User 1
+              2. Click on the 'Follow' button
+              3. Open as a User 1 it's own account page
+              4. Click on the 'Followers' tab
+  Exp.Result: - Number of followers in 'Followers' tab increased on 1
+
+
+#4
+     Summary: Verify that user can follow another user
+Precondition: - User 1 account is created
+              - User 1 is logged in
+              - User 2 account is created
+              - User 2 is logged in
+       Steps: 1. As a User 1 open page of User 2
+              2. Click on the 'Follow' button
+  Exp.Result: - Message "Successfully followed User 2" appeared
+              - Button 'Stop following' appeared
+
+
+#5
+     Summary: Verify that user can sign out from account
+Precondition: - User account is created
+              - User is logged in
+       Steps: 1. Open main page
+              2. Click on the 'Sign Out' button
+  Exp.Result: - User is signed out
+              - 'Sign Out' button is no longer on the page
+              - 'Sign In' button is on the page
+
+
+

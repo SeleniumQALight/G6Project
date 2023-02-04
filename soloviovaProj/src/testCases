@@ -1,0 +1,169 @@
+#1 Registration From verification.
+Description:  Verify that fields of UserName, Email, Password, Sign up and Sign in buttons are present on the page. Create an account.
+An example of Valid data for registration :  US - HelloKitty
+                                                      Email - hellokitty123@gmail.com
+                                                      Password - KittyHello123!
+STR:
+1. Open browser and enter URL https://qa-complexapp.onrender.com/
+    ER: Landing page displays.
+2. Enter User name into user name field for registration with latin letters (for example, HelloKitty).
+     ER: User name is entered.
+3. Enter Email into email field for registration with latin letters (for example, hellokitty123@gmail.com).
+     ER: Email is entered.
+4. Enter Password into password field for registration with latin letters (for example, KittyHello123!).
+     ER: Password is entered.
+5. Press Sign up forOurApp button
+      ER: Home page is displayed. Sign out button is displayed.
+------------------------------------------------------------------------------------------
+#2 Log in and Account verification.
+Description: Verify that account has been created successfully by login into the application.
+
+PRECONDITIONS: If there is no existing user, create an account using latin letters.
+An example of Valid data for registration :  US - HelloKitty
+                                                      Email - hellokitty123@gmail.com
+                                                      Password - KittyHello123!
+
+STR:
+1. Open browser and enter URL https://qa-complexapp.onrender.com/
+      ER: Landing page displays.
+2. Enter user name into log in field (for example, HelloKitty).
+      ER: User Name is Entered.
+3. Enter Password into Password field (for example, KittyHello123!).
+      ER: Password is entered.
+4. Press Sign in button.
+      ER: Home page is displayed. Sign out button is present.
+3. Verify that navigation bar of the Home page contains user’s name.
+      ER: Navigation bar contains user’s name.
+------------------------------------------------------------------------------------------
+#3 User’s profile verification.
+Description: Verify that newly created profile is exist and there are no Post, Followers, Followings.
+PRECONDITIONS: If there is no existing user, create an account using latin letters.
+An example of Valid data for registration :  US - HelloKitty
+                                                      Email - hellokitty123@gmail.com
+                                                      Password - KittyHello123!
+
+STR:
+1. Sign in into account using data from creation new account (US - HelloKitty, password - KittyHello123! ).
+     ER: Home page is displayed, sign out button is present.
+2. Click on the Icon next to user’s name.
+     ER: User’s profile page is displayed with user name title.
+3. Verify that Posts, Followers and Following set to zero.
+     ER: Tabs of Posts, Followers, Following set to zero.
+------------------------------------------------------------------------------------------
+#4 Post creation and Post tab functionality verification.
+Description: Verify that post creates by clicking on Create Post button, entering Title and body content and saving the post by clicking on Save New Post button, Post tab increments by one.
+
+PRECONDITIONS: If there is no existing user, create an account using latin letters.
+An example of Valid data for registration :  US - HelloKitty
+                                                      Email - hellokitty123@gmail.com
+                                                      Password - KittyHello123!
+Valid data for new post: Title – Java in automation testing.
+                               Body content – Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia elementum purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi lectus velit, sagittis quis neque quis, condimentum lacinia augue. Ut sed turpis consequat, convallis turpis sollicitudin, maximus nunc. Integer vel pellentesque ex, at molestie eros. Nulla at odio lorem. Donec scelerisque justo lorem, at facilisis sapien laoreet quis. Fusce ornare tortor a viverra luctus. Maecenas eleifend egestas diam ut imperdiet. Morbi odio lectus, viverra iaculis eros id, semper scelerisque arcu.
+
+An example of Valid data:  US - HelloKitty
+                                  Password - KittyHello123!
+
+STR:
+1. Sign in into account using valid data.
+     ER: Home page is displayed, sign out button is present.
+2. Click on the Create Post button at navigation bar.
+      ER: Page for creation a post displays. Save New Post button present on the page.
+3. Enter valid data in title field.
+      ER: Data is entered.
+4. Enter valid data in body field.
+     ER: Data is entered.
+5. Leave default settings for the post (checkbox is unchecked, dropdown set to public).
+      ER: Settings for the post left default.
+6. Click on Save New Post button.
+      ER: Newly created post appears. Message about successfully created post is displayed.
+7. Navigate to the user profile by clicking the icon next to user name.
+      ER: User’s profile page is displayed, Post tab incremented by one
+
+POSTCONDITIONS:  Log in into an existing account from Preconditions, delete post, log out.
+------------------------------------------------------------------------------------------
+#5 Post editing functionality verification.
+Description: Verify that existing post can be edited by the user via changing title.
+PRECONDITIONS: If there is no existing user, create an account using latin letters. If there is no posts available, create a new post.
+
+An example of Valid data for registration :  US - HelloKitty
+                                                      Email - hellokitty123@gmail.com
+                                                      Password - KittyHello123!
+An example Valid data for new post: Title – Java in automation testing.
+                               Body content – Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia elementum purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi lectus velit, sagittis quis neque quis, condimentum lacinia augue. Ut sed turpis consequat, convallis turpis sollicitudin, maximus nunc. Integer vel pellentesque ex, at molestie eros. Nulla at odio lorem. Donec scelerisque justo lorem, at facilisis sapien laoreet quis. Fusce ornare tortor a viverra luctus. Maecenas eleifend egestas diam ut imperdiet. Morbi odio lectus, viverra iaculis eros id, semper scelerisque arcu.
+
+An example of Valid data for post edition: Title – Pros and cons of automation.
+
+STR:
+1. Sign in into account using valid data.
+     ER: Home page is displayed, sign out button is present.
+2. Navigate to a user’s profile by clicking on the icon next to user’s name.
+      ER: User’s profile page displays, Posts tab consist number of posts created.
+3. Click on the post title.
+      ER: Page with post is displayed as well edit button.
+4. Click on edit button.
+      ER: Post title and Body content are available for editing. Save Updates button is present.
+5. Change title name using valid data. Click on Save Updates button.
+      ER: Message post successfully updated appears.
+6. Navigate to a user’s profile by clicking on the icon next to user’s name.
+      ER: User’s profile page displays, Posts tab is not updated.
+7. Verify that post with new title exists in the list of posts.
+      ER: Post with new title exist in the list of posts.
+
+POSTCONDITIONS:  Log in into an existing account from Preconditions, delete post, log out.
+------------------------------------------------------------------------------------------
+#6 Delete post button and Posts tab functionality verification.
+Description: Verify that existing post can be deleted by the user.
+PRECONDITIONS: If there is no existing user, create an account using latin letters. If there is no posts available, create a new post.
+
+An example of Valid data for registration :  US - HelloKitty
+                                                      Email - hellokitty123@gmail.com
+                                                      Password - KittyHello123!
+Valid data for new post: Title – Java in automation testing.
+                               Body content – Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia elementum purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi lectus velit, sagittis quis neque quis, condimentum lacinia augue. Ut sed turpis consequat, convallis turpis sollicitudin, maximus nunc. Integer vel pellentesque ex, at molestie eros. Nulla at odio lorem. Donec scelerisque justo lorem, at facilisis sapien laoreet quis. Fusce ornare tortor a viverra luctus. Maecenas eleifend egestas diam ut imperdiet. Morbi odio lectus, viverra iaculis eros id, semper scelerisque arcu.
+
+STR:
+1. Sign in into account using valid data.
+     ER: Home page is displayed, sign out button is present.
+2. Navigate to a user’s profile by clicking on the icon next to user’s name.
+     ER: User’s profile page displays, Posts tab consist number of posts created.
+3. Click on post.
+     ER: Page with post is displayed as well as delete button.
+3. Click on the delete button.
+     ER: User’s profile page is displayed, message”post successfully deleted” appears. Posts tab decrements by one.
+4. Verify that deleted post is not listed on the user's profile page.
+         ER: Deleted post is not listed on the user's page.
+------------------------------------------------------------------------------------------
+#7 Search button verification.
+PRECONDITIONS: login into an existing account using valid data, create a public post, log out.
+Valid data: US - JuliaN, Password - Filimonova2012!
+Post Title: Automation Testing using Java.
+Post text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacinia elementum purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi lectus velit, sagittis quis neque quis, condimentum lacinia augue. Ut sed turpis consequat, convallis turpis sollicitudin, maximus nunc. Integer vel pellentesque ex, at molestie eros. Nulla at odio lorem. Donec scelerisque justo lorem, at facilisis sapien laoreet quis. Fusce ornare tortor a viverra luctus. Maecenas eleifend egestas diam ut imperdiet. Morbi odio lectus, viverra iaculis eros id, semper scelerisque arcu.
+
+Description: Verify that search button is available and enabled.
+
+Valid data:  US - HelloKitty
+                Password - KittyHello123!
+
+STR:
+1. Sign in into account using valid data.
+      ER: Home page is displayed, sign out button is present.
+2. Click on the search icon.
+      ER: Field for the search appears.
+3. Enter title name used in preconditions.
+      ER: Search is performed, link with the same title name appears.
+4. Click on the link.
+      ER: Page with searched post displays. Post title and Body content are present.
+
+POSTCONDITIONS:  Log in into an existing account from Preconditions, delete post, log out.
+------------------------------------------------------------------------------------------
+#8 Sing out button verification.
+Description: Verify that clicking on Sign out button signs out the user and takes him to a landing page.
+
+Valid data:  US - HelloKitty
+                Password - KittyHello123!
+
+STR:
+1. Sign in into account using valid data.
+     ER: Home page is displayed, sign out button is present.
+2. Click on sign out button.
+      ER: Lending page is displayed, Sign in button is present.

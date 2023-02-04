@@ -1,0 +1,47 @@
+#LoginPage
+
+loginPage.input.userName =.//input[@name='username' and not(@id='username-register')]
+loginPage.input.Password =.//input[@name='password' and not(@id='password-register')]
+loginPage.button.Sign_in =.//button[not(@type='submit')]
+
+loginPage.input.Pick_a_username =.//input[@name='username' and @id='username-register']
+loginPage.input.Email =.//input[@id='email-register']
+loginPage.input.Create_a_password =.//input[@name='password' and @id='password-register']
+loginPage.button.Sign_up_for_OurApp =.//button[@type='submit']
+____________________________________________________________________________________________
+
+#HomePage
+
+homePage.link.Search =.//a[@href='#']
+homePage.span.Chat =.//span[@data-toggle='tooltip']
+homePage.link.MyProfile =.//a[not(@href='/') and not(@href='#')][1]
+homePage.link.CreatePost =.//a[@href='/create-post']
+homePage.button.SignOut =.//button[@class ='btn btn-sm btn-secondary']
+homePage.span.nameOfUser =.//span[not(@class ='chat-title-bar-close') and not(@data-placement='bottom') and not(@class ='close-live-search')]
+_________________________________________________________________________________________________
+
+#CreatePostPage
+
+createPost.input.Title =.//input [@id='post-title']
+createPost.textarea.Body =.//textarea[@id='post-body']
+createPost.input.Checkbox =.//input[@type='checkbox']
+createPost.select.DropDown =.//select[contains(name(), 'select')]
+createPost.button.SaveNewPost =.//button[@class='btn btn-primary']
+_________________________________________________________________________________________________
+
+#PostSuccessfullyCreatedPage
+
+postSuccess.button.DeletePost =.//button[@data-toggle = 'tooltip']
+postSuccess.link.Edit =.//a[@data-toggle = 'tooltip' and @data-placement = 'top']
+postSuccess.link.Profile =.//a[contains(@href, '/profile/')][2]
+
+___________________________________________________________________________________________________
+
+#Profile
+profile.link.LatestPost =.//a[@class='list-group-item list-group-item-action'][1]
+profile.h.Title =.//h2
+profile.div.postBody =.//div[@class='body-content'][2]
+
+
+
+
