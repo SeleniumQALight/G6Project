@@ -61,14 +61,13 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonLogin);
     }
 
-<<<<<<< HEAD
 
     public boolean isSignInButtonDisplayed() {
        return isElementPresented(signInButton);
     }
 
 
-=======
+
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
@@ -76,6 +75,6 @@ public class LoginPage extends ParentPage {
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
->>>>>>> main
+
 }
 
