@@ -14,7 +14,7 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost(){
         homePage
                 .openHomePage()
-                .clickOnCreatePostButton()
+                .getHeaderElement().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody(POST_BODY)
