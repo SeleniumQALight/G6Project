@@ -25,8 +25,7 @@ public class HomePage extends ParentPage{
     private WebElement buttonSignOut;
 
     public boolean isButtonSignOutDisplayed(){
-        isElementDisplayed(buttonSignOut);
-        return true;
+        return isElementDisplayed(buttonSignOut);
     }
 
     public HomePage openHomePage() {
