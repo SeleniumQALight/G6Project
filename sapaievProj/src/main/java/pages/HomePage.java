@@ -14,6 +14,9 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = ".//*[@href=\"/create-post\"]")
+    private WebElement buttonCreatePost;
+
 
     public HomePage(WebDriver webDriver) {
 
@@ -24,11 +27,40 @@ public class HomePage extends ParentPage {
 
 
     public boolean isButtonSignOutDisplayed() {
-            return isButtonDisplayed(buttonSignOut);
+            return isElementDisplayed(buttonSignOut);
     }
 
 
     public boolean isButtonSignInDisplayed() {
-        return isButtonDisplayed(buttonSignIn);
+        return isElementDisplayed(buttonSignIn);
+    }
+
+
+
+
+
+    public HomePage openHomePage() {
+        LoginPage loginPage=new LoginPage(webDriver);
+        loginPage.fillingLoginFormWithValidCred();
+        checkIsRedirectToHomePage();
+
+        return this;
+    }
+
+
+
+
+    public HomePage checkIsRedirectToHomePage() {
+        Assert.assertTrue("HomePage is not loaded",isButtonSignOutDisplayed());
+        return this;
+    }
+
+
+    public CreatePostPage clickOnCreatePostButton() {
+        clickOnElement(buttonCreatePost);
+
+
+
+        return new CreatePostPage(webDriver);
     }
 }
