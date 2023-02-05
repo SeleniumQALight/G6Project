@@ -58,4 +58,47 @@ public class LoginTest {
             return false;
         }
     }
+
+    @Test
+    public void invalidLogin() {
+        WebDriverManager.chromedriver().setup();
+        webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        System.out.println("browser was opened");
+        webDriver.get("https://qa-complexapp.onrender.com/");
+        System.out.println("Site was opened");
+
+        WebElement inputUserName =
+                webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+
+        inputUserName.clear();
+        inputUserName.sendKeys("qaauto");
+        System.out.println("login was inputted");
+
+        WebElement inputPassword =
+                webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("qwerty");
+        System.out.println("password was inputted");
+
+        WebElement buttonSignIn =
+                webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        buttonSignIn.click();
+        System.out.println("Button was clicked");
+
+        Assert.assertTrue("Notification is not displayed", isNotificationInvalidPasswordDisplayed());
+
+        webDriver.quit();
+        System.out.println("browser was closed");
+
+    }
+
+    private  boolean isNotificationInvalidPasswordDisplayed() {
+        try {
+            return webDriver.findElement(By.xpath(".//div[@class='alert alert-danger text-center']")).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

@@ -5,9 +5,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -39,16 +40,39 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(visibleText);
+            logger.info(visibleText + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     protected boolean isElementDisplayed(WebElement webElement) {
         try {
-            if (webElement.isDisplayed()) {
-                logger.info("element was displayed");
+            boolean state = webElement.isDisplayed();
+            String message;
+            if (state) {
+                message = "Element is displayed";
             } else {
-                logger.info("element was founded, but wasn't displayed");
+                message = "Element isn't displayed";
             }
-            return webElement.isDisplayed();
+            logger.info(message);
+            return state;
         } catch (Exception e) {
-            logger.error("Can't work with element " + e);
+            logger.info("Element isn't displayed" + e);
             return false;
         }
     }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
     WebDriver webDriver;
-     Logger logger = Logger.getLogger(getClass());
+    Logger logger = Logger.getLogger(getClass());
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
@@ -30,10 +30,24 @@ public class CommonActionsWithElements {
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
-
-
     }
 
+    protected boolean isElementDisplayed(WebElement webElement){
+        try{
+            boolean state = webElement.isDisplayed();
+            String message;
+            if (state){
+                message = "Element is displayed";
+            } else{
+                message = "Element is not displayed";
+            }
+            logger.info(message);
+            return state;
+        }catch(Exception e){
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
 
     protected void printErrorAndStopTest(Exception e){
         logger.error("Can't work with element" + e);
