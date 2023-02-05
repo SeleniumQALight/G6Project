@@ -14,12 +14,14 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
+    private WebElement buttonLogOut;
+
+
+
     public boolean isButtonSignOutDisplayed(){
-        try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+
+        return isObjectDisplayed(buttonLogOut);
     }
 
     public HomePage openHomePage() {
