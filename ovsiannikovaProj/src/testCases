@@ -1,8 +1,118 @@
-#1  Summary
+#1
+Summary: Sign up a new user
 
-STR
+Preconditions:
+1. Open https://qa-complexapp.onrender.com/
 
-ER
+Steps:
+1. Create and enter unique username into "Username" field
+2. Enter your email into "Email" field
+3. Create and enter a password into "Password" field (Password must be at least 12 characters)
+4. Click [Sign up for OurApp] button
 
+Expected Results:
+1. Entered Username displays in "Username" field without error
+2. Entered Email displays in "Email" field
+3. Password displays in "Password" field as encrypted text (dots) without error
+4. Account has been created successfully, welcoming page appears with text "Hello <username>, your feed is empty.",
+   username displays on page header next to buttons [Create Post] and [Sign Out]
+--------------------------------------------------------------------------------------------------------------------
 
 #2
+Summary: Sign out as logged-in user
+
+Preconditions:
+1. Log in on https://qa-complexapp.onrender.com/ with existing account
+
+Steps:
+1. Review page https://qa-complexapp.onrender.com/
+2. Click [Sign Out]
+
+Expected Results:
+1. Correct Username displayed on page header next to buttons [Create Post] and [Sign Out]
+2. Page has been reloaded, https://qa-complexapp.onrender.com/ opened, form for signing up displayed,
+   page header contains: input fields "Username" and "Password", button [Sign In]
+--------------------------------------------------------------------------------------------------------------------
+
+#3
+Summary: Sign In with existing account
+
+Preconditions:
+1. Open https://qa-complexapp.onrender.com/
+2. User isn't logged in
+
+Steps:
+1. Enter valid username into "Username" filed on page header
+2. Enter valid password into "Password" field on page header, next to "Username" field
+3. Click [Sign In] button
+
+Expected Results:
+1. Entered username displays in "Username" field
+2. Entered password displays as dots
+3. Page has been reloaded, welcoming page appears with text which contains "Hello <username>",
+   username displays on page header next to buttons [Create Post] and [Sign Out]
+--------------------------------------------------------------------------------------------------------------------
+
+#4
+Summary: Create a new public, non-unique post as logged-in user
+
+Preconditions:
+1. Open https://qa-complexapp.onrender.com/
+2. Log in with existing account
+
+Steps:
+1. Click [Create Post] button on page header
+2. Create and enter post title into "Title" field
+3. Enter post text into "Body Content" field
+   (e.g. "Lorem Ipsum is simply dummy text of the printing and typesetting industry.")
+4. Leave "Is this post unique?" unchecked
+5. Leave "Select value" with value "Public"
+6. Click [Save New Post]
+
+Expected Results:
+1. Page https://qa-complexapp.onrender.com/create-post opened.
+   The page contains:
+   - input fields: Title, Body Content
+   - checkbox "Is this post unique?"
+   - drop-down "Select value"
+   - button [Save New Post]
+2. Entered title displays in "Title" field
+3. Entered post text displays in "Body Content" field
+4. "Is this post unique?" unchecked
+5. Drop-down "Select value" has value "Public"
+6. Link was changed to https://qa-complexapp.onrender.com/post/<created_post_id>
+   Page contains the next entities:
+   - Text "New post successfully created." with green background
+   - Correct title
+   - Correct info about post author - current user ("Postred by <username> on <date>")
+   - "Is this post unique? : no"
+   - Correct post text
+--------------------------------------------------------------------------------------------------------------------
+
+#5
+Summary: Change existing, public, non-unique post to unique
+
+Preconditions:
+1. Open https://qa-complexapp.onrender.com/
+2. Log in with existing account
+3. Create public, non-unique post
+
+Steps:
+1. Open https://qa-complexapp.onrender.com/
+2. Click "My Profile" button next to username on page header
+3. Open created post via clicking on its title
+4. Click [Edit] button
+5. Check "Is this post unique?"
+6. Click [Save Updates]
+
+Expected Results:
+1. Page https://qa-complexapp.onrender.com/ is opened
+2. Link was changed to https://qa-complexapp.onrender.com/profile/<username>
+   Page contains correct username, tabs "Posts: <n>", "Followers: <n>", "Following: <n>" with correct numbers <n>
+   Tab Posts contains public, non-unique post
+3. Link was changed to https://qa-complexapp.onrender.com/post/<clicked_post_id>
+   Page shows correct post
+4. Link was changed to https://qa-complexapp.onrender.com/post/<clicked_post_id>/edit
+   Post editor is opened
+5. "Is this post unique?" is checked
+6. Post was successfully edited, text "Post successfully updated." displayed with green background

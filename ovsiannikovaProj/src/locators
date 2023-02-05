@@ -1,7 +1,41 @@
 #LoginPage
+https://qa-complexapp.onrender.com/
 
-loginPage.input.userName=.//[@name='userName']
+signIn.username = .//input[@id='username7']
+signIn.password = .//header//input[@type='password']
+
+signUp.username = .//input[@id='username-register']
+signUp.email = .//input[@id='email-register']
+signUp.password = .//input[@id='password-register']
+signUp.button = .//button[@type='submit']
 
 
 #HomePage
+https://qa-complexapp.onrender.com/
+
+myProfile.button.header = .//a[@class='mr-2']
+createPost.button.header = .//a[@href='/create-post']
+signOut.button.header = .//form[@action='/logout']//button
+
+hello.text = .//h2[contains(text(),'Hello')]
+username.text = .//h2//strong
+
+#PostEditor
+
+title.input = .//input[@name='title']
+bodyContent.textarea = .//textarea[@name='body']
+isThisPostUnique?.checkbox = .//input[@type='checkbox']
+selectValue.dropdown = .//select[@id='select1']
+selectValue.dropdown.public.option = .//select[@id='select1']//option[@value='All Users']
+saveNewPost.button = .//form[@action='/create-post']//button
+
+saveUpdates.button = .//form[@class='mt-3']//button
+
+#PostPage
+https://qa-complexapp.onrender.com/post/<post_id>
+
+edit.button = .//a[contains(@href,'/edit')]
+
+
+
 
