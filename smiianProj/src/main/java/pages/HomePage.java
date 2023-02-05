@@ -8,12 +8,32 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-    public boolean isButtonSignOutDisplayed(){
-        try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
-    }
+
+
+//    public boolean isButtonSignOutDisplayed(){
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+//        }catch (Exception e){
+//            return false;
+//        }
+//    }
+//
+//    public boolean buttonSignOutIsNotDisplayed(){
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+//        }catch (Exception e){
+//            return true;
+//        }
+//    }
+//
+//    public boolean buttonSignInIsNotDisplayed() {
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).isDisplayed();
+//        } catch (Exception e) {
+//            return true;
+//        }
+//    }
+
+
 
 }

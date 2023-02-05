@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -40,5 +41,21 @@ public class CommonActionWithElements {
     protected  void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
+    }
+
+    public static boolean isObjectDisplayed(WebElement webElement){
+        try {
+            return webElement.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public static boolean isObjectNotDisplayed(WebElement webElement){
+        try {
+            return webElement.isDisplayed();
+        }catch (Exception e){
+            return true;
+        }
     }
 }
