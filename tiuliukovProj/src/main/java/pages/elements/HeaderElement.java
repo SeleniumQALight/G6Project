@@ -38,7 +38,8 @@ public class HeaderElement extends CommonActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
-    public void checkLoginName() {
-        Assert.assertEquals("Wrong user name is displayed", TestData.VALID_LOGIN, actualLogin.getText());
+    public void checkIsDefaultLoginNameDisplayed(String expectedLoginName) {
+        Assert.assertEquals("Wrong user name is displayed", expectedLoginName, actualLogin.getText());
     }
 }
+

@@ -1,6 +1,7 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libs.TestData;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -33,7 +34,8 @@ public class CreatePostTest extends BaseTest {
                 .checkPostOptionValue(OPTION_VALUE_ONE_PERSON)
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .getHeaderElement().checkLoginName()
+                .checkIsDefaultNameDisplayed(TestData.VALID_LOGIN)
+                //.getHeaderElement().checkIsDefaultLoginNameDisplayed(TestData.VALID_LOGIN)
         ;
     }
 }
