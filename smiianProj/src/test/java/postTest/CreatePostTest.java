@@ -16,7 +16,7 @@ public class CreatePostTest extends BaseTest {
                 .enterTextInBodyContent(POST_BODY)
 //                .selectTextInDropDownOption("Приватне повідомлення")
 //                .selectValueInDropDownOption("One Person")
-                .selectTextInDropDownByUi()
+                .selectSecondTextInDropDownByUi()
                 .clickOnSavePostButton()
              .chechInSuccessMessage("New post successfully created.")
                 .getHeaderElement().clickOnMyProfileButton()
