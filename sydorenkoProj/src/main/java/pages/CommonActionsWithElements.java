@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
+    String value = "Приватне повідомлення";
+    String locatorForDD = "//option[contains(text(),'" + value + "')]";
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -78,8 +80,8 @@ public class CommonActionsWithElements {
 
     protected void selectTextInDropDownByUI(WebElement dropDown, String value) {
         try {
-            dropDown.click();
-            dropDown.findElement(By.xpath("//option[contains(text(),'" + value + "')]")).click();
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(By.xpath(locatorForDD)));
             logger.info(value + " was selected in DropDown");
         } catch (Exception e) {
             printErrorAndStopTest(e);
