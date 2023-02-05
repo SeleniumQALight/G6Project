@@ -36,14 +36,6 @@ public class CommonActionsWithElement {
         }
     }
 
-    protected void moveToElement(WebElement element) {
-        try {
-
-        } catch (Exception e) {
-            printErroAboutElementAndStopTest(e);
-        }
-    }
-
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
