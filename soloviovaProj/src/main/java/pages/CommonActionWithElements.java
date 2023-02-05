@@ -25,22 +25,33 @@ public class CommonActionWithElements {
         }
     }
 
-    protected  void clickOnElement(WebElement webElement){
+    protected void clickOnElement(WebElement webElement) {
         try {
             webElement.click();
             logger.info("Element is clicked");
-        }catch(Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected boolean isElementDisplayed(WebElement element){
+    protected boolean isElementDisplayed(WebElement element) {
         try {
-            return element.isDisplayed();
-        }catch(Exception e){
+            boolean state = element.isDisplayed();
+            String message;
+            if (state) {
+                message = "Element is displayed";
+            } else {
+                message = "Element is not displayed";
+            }
+            logger.info("Element is displayed");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
             return false;
         }
     }
+
+
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
