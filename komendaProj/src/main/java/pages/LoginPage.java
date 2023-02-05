@@ -49,7 +49,7 @@ public class LoginPage extends ParentPage {
     }
 
     public void clickOnButtonLogin() {
-        clickOnElement(buttonLogin);
+       clickOnElement(buttonLogin);
     }
 
     public HomePage fillingLoginFormWithValidCred() {
@@ -58,6 +58,9 @@ public class LoginPage extends ParentPage {
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+    public boolean isButtonSignInDisplayed(){
+        return isButtonDisplayed(buttonLogin);
     }
 }
 
