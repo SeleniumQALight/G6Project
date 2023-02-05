@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -53,6 +54,7 @@ public class CommonActionsWithElements {
 
     }
 
+
     protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
         try{
             Select select = new Select(dropDown);
@@ -70,6 +72,22 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    protected void selectTextInDropDownByUI(WebElement dropdown, String targetValue) {
+        try {
+            WebElement option;
+            clickElement(dropdown);
+            for (int i = 1; i < 3; i++) {
+                option = webDriver.findElement(By.xpath(".//option["+i+"]"));
+                if (targetValue.equalsIgnoreCase(option.getText())) {
+                 clickElement(option);
+              }
+            }
+        }catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+
     }
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

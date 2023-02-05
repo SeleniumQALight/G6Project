@@ -1,6 +1,7 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libs.TestData;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -12,17 +13,21 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost() {
         homePage
                 .openHomePage()
-                .clickOnCreatePostButton()
+                .getHeaderElement().clickOnCreatePostButton()
                 .checkRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody(POST_BODY)
-               .selectPostTypeInDropdown("Приватне повідомлення")
+                .selectPostTypeInDropdownByUI("Приватне повідомлення")
+               //.selectPostTypeInDropdown("Приватне повідомлення")
                // .selectValueInDropdownOptions("One Person")
                 .clickSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkCreatedPostTitle(POST_TITLE)
+                .checkCreatedPostNote("Note: This post was written for One Person")
                 .getHeaderElement().clickMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+                .checkUserNameDisplayed(TestData.VALID_LOGIN)
         ;
 
     }
