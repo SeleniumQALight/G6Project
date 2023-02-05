@@ -9,6 +9,14 @@ public class CreatePostPage extends ParentPage {
     //.//input[@name=‘title'] shortcut.
     @FindBy(name = "title")
     private WebElement inputTitle;
+    //.//textarea[@name=‘body']
+    @FindBy(name = "body")
+    private WebElement inputBody;
+    //.//button[@class='btn btn-primary’]
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
+    private WebElement saveNewPostButton;
+    @FindBy(tagName = "select")
+    private WebElement dropDownOptions;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -21,6 +29,27 @@ public class CreatePostPage extends ParentPage {
 
     public CreatePostPage enterTextInInputTitle(String postTitle) {
         enterTextToElement(inputTitle, postTitle);
+        return this;
+    }
+
+    public CreatePostPage enterTextInInputBody(String body_title) {
+        enterTextToElement(inputBody, body_title);
+        return this;
+    }
+
+    public PostPage clickOnSaveNewPostButton() {
+        clickOnElement(saveNewPostButton);
+        return new PostPage(webDriver);
+    }
+
+
+    public CreatePostPage selectTextInDropDownOptions(String textInDD) {
+        selectTextInDropDown(dropDownOptions, textInDD);
+        return this;
+    }
+
+    public CreatePostPage selectValueInDropDownOptions(String valueInDD){
+        selectValueFromDropDown(dropDownOptions, valueInDD);
         return this;
     }
 }

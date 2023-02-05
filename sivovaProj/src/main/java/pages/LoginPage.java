@@ -2,7 +2,6 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +17,9 @@ public class LoginPage extends ParentPage {
     @FindBy (xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+    @FindBy (xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement errorMessage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -31,12 +33,10 @@ public class LoginPage extends ParentPage {
             logger.error("Can not open Login page" + e);
             Assert.fail("Can not open Login page" + e);
         }
-
     }
 
     public void enterUserNameIntoInputLogin(String userName) {
             enterTextIntoElement(inputUserName, userName);
-
     }
 
     public void enterPasswordIntoInputPassword(String password) {
@@ -47,6 +47,23 @@ public class LoginPage extends ParentPage {
        clickElement(buttonLogin);
     }
 
+   public boolean isErrorMessageDisplayed () {
+       if (isElementDisplayed(errorMessage)) {
+           return true;
+       } else {
+           logger.info("Message is not displayed");
+           return false;
+       }
+   }
+   public boolean isSignInButtonDisplayed(){
+        if (isElementDisplayed(buttonLogin)) {
+            return true;
+        } else {
+            logger.info("Sign in button is not displayed!");
+            return false;
+        }
+
+   }
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
@@ -54,4 +71,5 @@ public class LoginPage extends ParentPage {
         clickButtonLogin();
         return new HomePage(webDriver);
     }
+
 }
