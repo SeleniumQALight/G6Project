@@ -51,11 +51,4 @@ public class CommonActionWithElements {
         }
     }
 
-    public static boolean isObjectNotDisplayed(WebElement webElement){
-        try {
-            return webElement.isDisplayed();
-        }catch (Exception e){
-            return true;
-        }
-    }
 }
