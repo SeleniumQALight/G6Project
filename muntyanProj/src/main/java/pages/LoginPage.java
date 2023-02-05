@@ -44,4 +44,7 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonLogin);
 
     }
+    public boolean isSignInButtonDisplayed(){
+        return isElementDisplayed(buttonLogin);
+    }
 }

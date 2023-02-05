@@ -35,23 +35,39 @@ public class CommonActionsWithElements {
         }
     }
 
-
-    public boolean isButtonSignOutDisplayed() {
+    protected boolean isElementDisplayed(WebElement element) {
         try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+            boolean state = element.isDisplayed();
+            String message;
+            if (state) {
+                message = "Element is displayed";
+            } else {
+                message = "Element is not displayed";
+            }
+            logger.info("Element is displayed");
+            return state;
         } catch (Exception e) {
+            logger.info("Element is not displayed");
             return false;
         }
     }
 
-
-    public boolean isButtonSignInDisaplayed() {
-        try {
-            return webDriver.findElement(By.xpath(".//button[not(@type='submit')]")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
+//    public boolean isButtonSignOutDisplayed() {
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
+//
+//
+//    public boolean isButtonSignInDisaplayed() {
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[not(@type='submit')]")).isDisplayed();
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

@@ -24,7 +24,7 @@ public class LoginTestWIthPageObject extends BaseTest {
         loginPage.clickOnButtonLogin();
 
         Assert.assertFalse("Button is displayed", homePage.isButtonSignOutDisplayed());
-        Assert.assertTrue("Button is not displayed", loginPage.isButtonSignInDisaplayed());
+        Assert.assertTrue("Button is not displayed", loginPage.isSignInButtonDisplayed());
     }
 
 }
