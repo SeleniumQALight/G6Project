@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import pages.CommonActionWithElements;
+import pages.HomePage;
 
 public class LoginTestWithPageObject extends BaseTest {
  @Test
@@ -16,7 +17,7 @@ public class LoginTestWithPageObject extends BaseTest {
      loginPage.clickOnButtonLogin();
 
      Assert.assertTrue("SignOut button is not displayed",
-             CommonActionWithElements.isObjectDisplayed(webDriver.findElement(By.xpath(".//button[text()='Sign Out']"))));
+             homePage.isButtonSignOutDisplayed());
  }
 
  @Test
@@ -27,9 +28,9 @@ public class LoginTestWithPageObject extends BaseTest {
   loginPage.clickOnButtonLogin();
 
   Assert.assertTrue("SignIn button is displayed",
-          CommonActionWithElements.isObjectDisplayed(webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"))));
-  Assert.assertTrue("SignOut button is displayed",
-          CommonActionWithElements.isObjectNotDisplayed(webDriver.findElement(By.xpath(".//button[text()='Sign Out']"))));
+          loginPage.isButtonSignInDisplayed());
+  Assert.assertFalse("SignOut button is displayed",
+          homePage.isButtonSignOutDisplayed());
 
  }
 
