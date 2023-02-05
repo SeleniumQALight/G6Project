@@ -74,9 +74,8 @@ public class LoginTest {
     }
 
     private boolean isElementDisplayed(By by) {
-        WebElement element = webDriver.findElement(by);
         try {
-            return element.isDisplayed();
+            return webDriver.findElement(by).isDisplayed();
         } catch (Exception e) {
             return false;
 
