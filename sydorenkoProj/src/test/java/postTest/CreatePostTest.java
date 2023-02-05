@@ -20,7 +20,11 @@ public class CreatePostTest extends BaseTest {
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkIfCreatedPostHasCorrectTitle(POST_TITLE)
+                .checkIfCreatedPostPageHasCorrectNote("Note: This post was written for")
+                .checkIfCreatedPostPageUnderLinedTextIs("One Person")
                 .getHeaderElement().clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage();
+                .checkIsRedirectToMyProfilePage()
+                .checkIfMyProfilePageHasCorrectUser("qaauto");
     }
 }
