@@ -8,20 +8,19 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends ParentPage{
 
+    @FindBy(xpath = ".//button[text()='Sign Out']")
+    private WebElement buttonSingOut;
+
     @FindBy(xpath = ".//*[@href=\"/create-post\"]")
     private WebElement buttonCreatePost;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
-    public boolean isButtonSingOutDisplayed(){
-        try {
-            return webDriver.findElement(
-                    By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        }catch (Exception e){
-            return false;
+     public boolean isButtonSingOutDisplayed(){
+            return isElementDisplayed(buttonSingOut);
         }
-    }
+
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         // залогінитись

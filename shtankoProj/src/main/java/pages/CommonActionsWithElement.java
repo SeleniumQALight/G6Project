@@ -2,10 +2,14 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.concurrent.TimeUnit;
+
 
 public class CommonActionsWithElement {
     //по замовчуванню вебдрайвер наслідується тільки в рамках пекеджа
@@ -64,6 +68,24 @@ public class CommonActionsWithElement {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + "was selected in DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInUIDropDown(WebElement dropDown, String choiseTextUI){
+        try {
+            WebElement
+                    element = dropDown.findElement(By.tagName(""));
+            element.click();
+            element.sendKeys(choiseTextUI);
+            element.submit();
+
+            //dropDown.click();
+            //Select select = new Select(dropDown);
+            //select.selectByVisibleText(choiseTextUI);
+            //dropDown.click();
+            logger.info(choiseTextUI + "was selected in UI DropDown");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
