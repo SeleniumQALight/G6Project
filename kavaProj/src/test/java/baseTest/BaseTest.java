@@ -1,5 +1,6 @@
 package baseTest;
 
+import elements.HeaderElement;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -18,6 +19,8 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected HomePage homePage;
 
+    protected HeaderElement headerElement;
+
 
     @Before
     public void setUp() {
@@ -27,6 +30,8 @@ public class BaseTest {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        headerElement = new HeaderElement(webDriver);
+
 
     }
 

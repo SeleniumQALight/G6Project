@@ -6,8 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -41,7 +45,7 @@ public class CommonActionsWithElements {
 
     }
 
-    protected boolean isElementPresented(WebElement element) {
+    public static boolean isElementPresented(WebElement element) {
         try {
             return element.isDisplayed();
         } catch (Exception e) {
@@ -78,6 +82,21 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    protected void selectOptionInDropDownUsingIteration(List<WebElement> dropDownOptions, String optionToBeSelected) {
+        boolean isFound = false;
+        for (int i = 0; i < dropDownOptions.size(); i++) {
+            logger.info("Visible options to be selected: " + dropDownOptions.get(i).getText());
+            if (dropDownOptions.get(i).getText().contains(optionToBeSelected)) {
+                isFound = true;
+                logger.info(optionToBeSelected + " was selected in DroDown");
+                break;
+            }
+        }
+        if (!isFound)
+            logger.info("No matching option found.");
+
     }
 
     protected void printErrorAndStopTest(Exception e) {
