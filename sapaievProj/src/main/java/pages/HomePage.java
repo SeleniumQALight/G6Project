@@ -4,11 +4,12 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
 
 
-    @FindBy(xpath = ".//button[text()='Sign Out']")
+  /*  @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
@@ -17,6 +18,9 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//*[@href=\"/create-post\"]")
     private WebElement buttonCreatePost;
 
+*/
+
+    private HeaderElement headerElement=new HeaderElement(webDriver);
 
     public HomePage(WebDriver webDriver) {
 
@@ -25,18 +29,21 @@ public class HomePage extends ParentPage {
 
 
 
+    /*
 
     public boolean isButtonSignOutDisplayed() {
-            return isElementDisplayed(buttonSignOut);
+
+        return isElementDisplayed(buttonSignOut);
     }
 
 
     public boolean isButtonSignInDisplayed() {
+
         return isElementDisplayed(buttonSignIn);
     }
 
 
-
+*/
 
 
     public HomePage openHomePage() {
@@ -51,11 +58,11 @@ public class HomePage extends ParentPage {
 
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("HomePage is not loaded",isButtonSignOutDisplayed());
+        Assert.assertTrue("HomePage is not loaded",headerElement.isButtonSignOutDisplayed());
         return this;
     }
 
-
+/*
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
 
@@ -63,4 +70,13 @@ public class HomePage extends ParentPage {
 
         return new CreatePostPage(webDriver);
     }
+
+ */
+
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
+
 }
