@@ -2,10 +2,13 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -40,7 +43,7 @@ public class CommonActionsWithElements {
         try {
             boolean state = webElement.isDisplayed();
             String message;
-            if (state){
+            if (state) {
                 message = "Element is displayed";
             } else {
                 message = "Element is not displayed";
@@ -53,22 +56,40 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void selectTextInDropDown(WebElement dropDown, String visibleText){
+    protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
         try {
             Select select = new Select(dropDown);
             select.selectByVisibleText(visibleText);
             logger.info(visibleText + " was selected in DropDown");
-        }catch(Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-    protected void selectValueInDropDown(WebElement dropDown, String value){
-        try{
+    protected void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
-        }catch (Exception e){
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI(WebElement dropDown, String dropDownText) {
+        try {
+            dropDown.click();
+            List<WebElement> options = dropDown.findElements(By.tagName("option"));
+
+            for (int i = 0; i < options.size(); i++) {
+                WebElement option = options.get(i);
+                if (option.getText().equals(dropDownText)) {
+                    option.click();
+                    logger.info(dropDownText + " was selected in DropDown");
+                    break;
+                }
+            }
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
