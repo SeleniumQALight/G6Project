@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.concurrent.TimeUnit;
+
 
 
 public class CommonActionsWithElement {
@@ -75,22 +75,19 @@ public class CommonActionsWithElement {
 
     protected void selectTextInUIDropDown(WebElement dropDown, String choiseTextUI){
         try {
-            WebElement
-                    element = dropDown.findElement(By.tagName(""));
-            element.click();
-            element.sendKeys(choiseTextUI);
-            element.submit();
-
-            //dropDown.click();
-            //Select select = new Select(dropDown);
-            //select.selectByVisibleText(choiseTextUI);
-            //dropDown.click();
+            dropDown.click();
+            dropDown.findElement(getXpathFindElementWithTextContains(choiseTextUI)).click();
             logger.info(choiseTextUI + "was selected in UI DropDown");
         }catch (Exception e){
             printErrorAndStopTest(e);
+            throw e;
         }
     }
-    protected void printErrorAndStopTest(Exception e){
+    private By getXpathFindElementWithTextContains(String choiseTextUI) {
+        return By.xpath("//*[contains(text(),\"" + choiseTextUI + "\")]");
+    }
+
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }

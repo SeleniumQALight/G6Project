@@ -1,13 +1,11 @@
 package pages.elements;
 
-import org.junit.Assert;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElement;
 import pages.CreatePostPage;
-import pages.HomePage;
 import pages.MyProfilePage;
 
 
@@ -19,13 +17,26 @@ public class HeaderElement extends CommonActionsWithElement {
     @FindBy(xpath = "//*[@class=\"text-white mr-2\"]")
     private WebElement userLoginName;
 
+    @FindBy(xpath = ".//button[text()='Sign Out']")
+    private WebElement buttonSingOut;
+    @FindBy(xpath = ".//*[@href=\"/create-post\"]")
+    private WebElement buttonCreatePost;
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
+
     //метод який буде клікати на цю кнопку
     //Як що в методі є return то треба указати шо ми повертаємо сторінку або щось інше...
     public MyProfilePage clickOnMyProfileButton(){
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
+    }
+    public boolean isButtonSingOutDisplayed(){
+        return isElementDisplayed(buttonSingOut);
+    }
+    public CreatePostPage clickOnCreatePostButton() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
     }
 }

@@ -2,7 +2,7 @@ package postTest;
 
 import baseTest.BaseTest;
 import org.junit.Test;
-import pages.elements.HeaderElement;
+
 
 public class CreatePostTest extends BaseTest {
     final String POST_TITLE = "TC1_shtanko";
@@ -11,13 +11,13 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost(){
         homePage
                 .openHomePage()
-                .clickOnCreatePostButton()
+                .getHeaderElement().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody(POST_BODY)
                 //.selectTextInDropDownOptions("Приватне повідомлення")
-                .selectValueInDropDownOptions("One Person")
-                //.selectTextInUIDropDown("One Person")
+                //.selectValueInDropDownOptions("One Person")
+                .selectTextInUIDropDownOptions("Приватне повідомлення")
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
