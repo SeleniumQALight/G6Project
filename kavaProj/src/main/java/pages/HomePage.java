@@ -1,17 +1,19 @@
 package pages;
 
+
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends ParentPage {
 
-    @FindBy(xpath = ".//button[text()='Sign Out']")
+
+    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
     private WebElement signOutButton;
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -24,20 +26,17 @@ public class HomePage extends ParentPage {
         //check that we are in homepage
         loginPage.fillingLoginFormWithValidCred();
         checkIsRedirectToHomePage();
-
         return this;
     }
 
-    public boolean isButtonSignOutDisplayed() {
-        try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+
+    public boolean isSignOutButtonDisplayed() {
+        return isElementPresented(signOutButton);
+
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("HomePage is not loaded", isButtonSignOutDisplayed());
+        Assert.assertTrue("HomePage is not loaded", isSignOutButtonDisplayed());
         return this;
 
     }

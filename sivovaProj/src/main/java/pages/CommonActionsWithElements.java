@@ -76,5 +76,4 @@ public class CommonActionsWithElements {
         Assert.fail("Can not work with element " + e);
     }
 
-
 }
