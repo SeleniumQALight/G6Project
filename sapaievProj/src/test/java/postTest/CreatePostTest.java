@@ -1,12 +1,13 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
 
 
-    final String post_Title="TC1_sapaiev";
+    final String post_Title="TC1_sapaiev_1"+ Util.getDateAndTimeFormatted();
 
 
     @Test
@@ -25,6 +26,7 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+                .checkPostWasCreated(post_Title)
 
         ;
 
