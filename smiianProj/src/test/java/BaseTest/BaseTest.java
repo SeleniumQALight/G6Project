@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.elements.HeaderElement;
 
 import java.time.Duration;
 
@@ -17,6 +18,7 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass()); //logger from apache
     protected LoginPage loginPage;
     protected HomePage homePage;
+
 
     @Before
     public void setUp(){
@@ -27,6 +29,7 @@ public class BaseTest {
 
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+
 
     }
 

@@ -45,7 +45,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputUserName, userName);
     }
 
-    public void enterPasswordIntoInputpassword(String password) {
+    public void enterPasswordIntoInputPassword(String password) {
 //        try {
 ////            WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
 //            inputPassword.clear();
@@ -73,7 +73,7 @@ public class LoginPage extends ParentPage {
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LIGIN);
-        enterPasswordIntoInputpassword(TestData.VALID_PASSWORD);
+        enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
 
         return new HomePage(webDriver);

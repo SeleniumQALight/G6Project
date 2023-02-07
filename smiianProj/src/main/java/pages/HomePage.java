@@ -5,26 +5,32 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
-    @FindBy(xpath = ".//*[@href='/create-post']")
-    private WebElement buttonCreatePost;
+//    @FindBy(xpath = ".//*[@href='/create-post']")
+//    private WebElement buttonCreatePost;
+    private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
-    private WebElement buttonLogOut;
-
-
-
-    public boolean isButtonSignOutDisplayed(){
-
-        return isObjectDisplayed(buttonLogOut);
+    public HeaderElement getHeaderElement() {
+        return headerElement;
     }
 
-    public HomePage openHomePage() {
+//    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
+//    private WebElement buttonLogOut;
+
+
+
+//    public boolean isButtonSignOutDisplayed(){
+//
+//        return isObjectDisplayed(buttonLogOut);
+//    }
+
+    public HomePage openHomePage() {                                        // 01
         LoginPage loginPage = new LoginPage(webDriver);
 
         //залогінитись
@@ -37,14 +43,14 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("HomePage is not loaded", isButtonSignOutDisplayed());
+        Assert.assertTrue("HomePage is not loaded", HeaderElement.isButtonSignOutDisplayed());
 
         return this;
     }
 
-    public CreatePostPage clickOnCreatePostButton() {
-        clickOnElement(buttonCreatePost);
-
-        return new CreatePostPage(webDriver);
-    }
+//    public CreatePostPage clickOnCreatePostButton() {
+//        clickOnElement(buttonCreatePost);
+//
+//        return new CreatePostPage(webDriver);
+//    }
 }
