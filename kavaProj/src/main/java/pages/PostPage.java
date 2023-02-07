@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-
 public class PostPage extends CreatePostPage {
 
     @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
@@ -54,29 +53,7 @@ public class PostPage extends CreatePostPage {
     }
 }
 
-//    public PostPage checkTextInLabel(String expectedMessage) {
-//        try {
-//            if (selectTextInDropDownOptions(expectedMessage).equals(TestData.DROP_DOWN_OPTION_ONE)) {
-//                Assert.assertEquals("Text in the label: ", expectedMessage, labelText.getText());
-//                return this;
-//            } else if (selectTextInDropDownUI(expectedMessage).equals(TestData.DROP_DOWN_OPTION_TWO)) {
-//                Assert.assertEquals("Text in the label: ", expectedMessage, labelText.getText());
-//                return this;
-//            } else if (selectTextInDropDownUI(expectedMessage).equals(TestData.DROP_DOWN_OPTION_THREE)) {
-//                Assert.assertEquals("Text in the label: ", expectedMessage, labelText.getText());
-//                return this;
-//            } else {
-//                logger.info("Element was not found");
-//                return this;
-//            }
-//
-//        } catch (Exception e) {
-//            printErrorAndStopTest(e);
-//            return this;
-//        }
 
-//    }
-//}
 
 
 
