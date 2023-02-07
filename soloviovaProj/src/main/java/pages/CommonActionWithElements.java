@@ -52,6 +52,15 @@ public class CommonActionWithElements {
         }
     }
 
+    protected void forTextComparing(String expectedText, WebElement webElement){
+        try{
+            Assert.assertEquals("Text does not mach", expectedText, webElement.getText());
+            logger.info(expectedText + " found its mach.");
+        }catch (Exception e){
+            logger.info(expectedText + " does not found its mach.");
+        }
+    }
+
     protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
         try {
             Select select = new Select(dropDown);// saves in var list of options from dropDown.
@@ -72,7 +81,6 @@ public class CommonActionWithElements {
             printErrorAndStopTest(e);
         }
     }
-
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);

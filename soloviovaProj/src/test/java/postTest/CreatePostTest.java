@@ -4,23 +4,28 @@ import baseTest.BaseTest;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_soloviova";
+    final String POST_TITLE = "TC1_soloviova-02-05#3";
     final String BODY_TITLE = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis faucibus malesuada. Pellentesque pretium eget felis sit amet pretium. Maecenas sollicitudin aliquet dignissim. Sed aliquam lorem non elementum tincidunt. Curabitur varius risus eu nibh porta pellentesque. Phasellus mollis sed dui sed facilisis.";
     @Test
     public void TC1_createNewPost() {
         homePage
                 .openHomePage()
-                .clickOnCreatePostButton()
+                .getHeaderElements().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody(BODY_TITLE)
-                .selectTextInDropDownOptions("Приватне повідомлення")
+             //   .selectTextInDropDownOptions("Приватне повідомлення")
               //  .selectValueInDropDownOptions("One Person")
+                .selectTextInDropDownWithUI()
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkTextInTitleElement("TC1_soloviova-02-05#3")
+                .checkIsLabelPresent()
+                .checkLabelValue("One Person")
                 .getHeaderElements().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+                .checkUserName("qaauto")
         ;
     }
 }
