@@ -6,9 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+   protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -52,22 +53,28 @@ public class CommonActionsWithElements {
         }
     }
 
-//    public boolean isButtonSignOutDisplayed() {
-//        try {
-//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-//        } catch (Exception e) {
-//            return false;
-//        }
-//    }
-//
-//
-//    public boolean isButtonSignInDisaplayed() {
-//        try {
-//            return webDriver.findElement(By.xpath(".//button[not(@type='submit')]")).isDisplayed();
-//        } catch (Exception e) {
-//            return false;
-//        }
-//    }
+    protected void selectTextInDropDown(WebElement dropDown, String visibleText){
+        try{
+            Select select = new Select(dropDown); //in SElect methods to work with drop-downs
+            select.selectByVisibleText(visibleText);
+            logger.info(visibleText + " was selected in drop-down");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+
+    }
+
+    protected void selectValueInDropDown (WebElement dropDown, String value){
+        try{
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in drop down");
+        }catch (Exception e ){
+            printErrorAndStopTest(e);
+        }
+
+    }
+
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
