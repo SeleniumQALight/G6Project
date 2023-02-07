@@ -5,10 +5,11 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
 
-    WebDriver webDriver;
+    protected  WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -27,11 +28,6 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
-    }
-
-    protected void printErrorAndStopTest(Exception e) {
-        logger.error("Cannot work with element " + e);
-        Assert.fail("Cannot work with element " + e);
     }
 
 
@@ -63,5 +59,36 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
 
+        try {
+            Select select = new Select(dropDown); //даємо селекту всі рядочку з дропдауну.
+            select.selectByVisibleText(visibleText);
+
+            logger.info(visibleText + " was selected on dropdown");
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+
+    }
+    protected void selectValueInDropDown(WebElement dropDown, String value) {
+
+        try {
+            Select select = new Select(dropDown); //даємо селекту всі рядочку з дропдауну.
+            select.selectByValue(value);
+
+            logger.info(value + " was selected on dropdown");
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //дз зробити byUi
+
+    protected void printErrorAndStopTest(Exception e) {
+        logger.error("Cannot work with element " + e);
+        Assert.fail("Cannot work with element " + e);
+    }
 }

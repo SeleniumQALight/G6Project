@@ -11,8 +11,17 @@ public class CreatePostTest extends BaseTest {
         homePage
                 .openHomePage()
                 .clickOnCreatePostButton()
-                .checkIsRedirectToCreatePostPage()
+            .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
+                .enterTextInInputBody("Test text in body")
+                .selectTextInDropDownOptions("Приватне повідомлення")
+//                .selectValueInDropDownOptions("One Person")
+                .clickOnSavePostButton()
+            .checkIsRedirectToPostPage()
+                .checkTextInSuccessMessage("New post successfully created.")
+                .getHeaderElement().clickOnMyProfileButton()
+            .checkIsRedirectToMyProfilePage()
+
         ;
 
     }

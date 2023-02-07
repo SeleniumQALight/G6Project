@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 public class CommonActionsWithElements {
      protected WebDriver webDriver;
      Logger logger = Logger.getLogger(getClass());
+    WebDriver webDriver;
+    Logger logger = Logger.getLogger(getClass());
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
