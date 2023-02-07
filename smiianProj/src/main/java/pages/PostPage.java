@@ -14,13 +14,13 @@ public class PostPage extends ParentPage {
     @FindBy (xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
-    private HeaderElement headerElement = new HeaderElement(webDriver); //  оголошує елемент
+    private HeaderElement headerElement = new HeaderElement(webDriver); //  оголошує елемент headerElement
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }     //locator
 
-    public HeaderElement getHeaderElement() {   //  метод звернення до елемента
+    public HeaderElement getHeaderElement() {   //  метод звернення до елемента headerElement
         return headerElement;
     }
 

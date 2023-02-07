@@ -18,6 +18,8 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass()); //logger from apache
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected HeaderElement headerElement;
+
 
 
     @Before
@@ -29,6 +31,7 @@ public class BaseTest {
 
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        headerElement = new HeaderElement(webDriver);
 
 
     }

@@ -30,7 +30,7 @@ public class HomePage extends ParentPage {
 //        return isObjectDisplayed(buttonLogOut);
 //    }
 
-    public HomePage openHomePage() {                                        // 01
+    public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
 
         //залогінитись
@@ -43,7 +43,7 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("HomePage is not loaded", HeaderElement.isButtonSignOutDisplayed());
+        Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
 
         return this;
     }
