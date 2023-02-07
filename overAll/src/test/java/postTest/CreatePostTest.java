@@ -1,11 +1,12 @@
 package postTest;
 
+import libs.Util;
 import org.junit.Test;
 
 import baseTest.BaseTest;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_radulenko";
+    final String POST_TITLE = "TC1_radulenko_" + Util.getDateAndTimeFormatted();
 
     @Test
     public void TC1_createNewPost(){
@@ -22,6 +23,7 @@ public class CreatePostTest extends BaseTest {
                 .checkTextInSuccessMessage("New post successfully created.")
                 .getHeaderElement().clickOnMyProfileButton()
              .checkIsRedirectToMyProfilePage()
+                .checkPostWasCreated(POST_TITLE)
 
 
 
