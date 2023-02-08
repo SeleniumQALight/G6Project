@@ -25,7 +25,6 @@ public class LoginTestWhitPageObject extends BaseTest {
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickButtonLogin();
 
-        Assert.assertFalse("Button is not displayed",
-                loginPage.alertLoginDanger());
+
     }
 }

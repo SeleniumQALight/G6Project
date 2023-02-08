@@ -33,18 +33,28 @@ public class LoginTest {
         inputPassword.sendKeys("123456qwerty");
         System.out.println("password was inputted");
 
-        WebElement buttonSingIn =
-                webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+      WebElement buttonSingIn =
+               webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         buttonSingIn.click();
         System.out.println("Button was clicked");
+        Assert.assertTrue("Button is not displayed",isButtonSingInDisplayed());
 
-        // WebElement buttonSingOut =
-        //         webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
+//        WebElement buttonSingOut =
+//                webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
+//        buttonSingOut.click();
+//        System.out.println("Button was clicked");
 
         Assert.assertTrue("Button is not displayed", isButtonSingOutDisplayed());
 
         webDriver.quit();
         System.out.println("browser was closed");
+    }
+    private boolean isButtonSingInDisplayed(){
+        try {
+            return webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
     }
     private boolean isButtonSingOutDisplayed() {
         try {
@@ -69,7 +79,7 @@ public class LoginTest {
         System.out.println("Site was opened");
         WebElement inputUserName = webDriver1.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaauto");
+        inputUserName.sendKeys("qaauto1");
         System.out.println("login was inputted");
 
         WebElement inputPassword =
@@ -83,12 +93,21 @@ public class LoginTest {
         buttonSingIn.click();
         System.out.println("Button was clicked");
 
-        WebElement alertDanger =
-               webDriver1.findElement(By.xpath(".//*[@class=\"alert alert-danger text-center\"]"));
-        alertDanger.isDisplayed();
+//        WebElement alertDanger =
+//               webDriver1.findElement(By.xpath(".//*[@class=\"alert alert-danger text-center\"]"));
+//        alertDanger.isDisplayed();
+        Assert.assertFalse("Alert was displayed", alertDangerIsDisplayed());
 
         webDriver1.quit();
         System.out.println("browser was closed");
 
     }
+    private boolean alertDangerIsDisplayed(){
+        try {
+            return webDriver.findElement(By.xpath(".//*[@class=\"alert alert-danger text-center\"]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 }
