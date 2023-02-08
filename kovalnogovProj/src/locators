@@ -1,6 +1,21 @@
 #LoginPage
 
 
-loginPage.input.username=.//*[@name='']
+loginPage.input.username=.//*[@name='.//*[@name='username' and @placeholder='Username']']
+loginPage.input.password=.//*[@name='password' and @placeholder='Password']
+loginPage.btn.signin=.//*[@class='btn btn-primary btn-sm']
+loginPage.input.username.register=.//input[@id='username-register']
+loginPage.input.email.register=.//input[@id='email-register']
+loginPage.input.password.register=.//input[@id='password-register']
+loginPage.btn.registeruser=.//button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']
 
 #HomePage
+homepage.btn.signout=.//button[@class='btn btn-sm btn-secondary']
+homepage.btn.reatePost =.//button[@class='btn btn-sm btn-success mr-2']
+homepage.text.usernameingreatings =.//h2/strong
+homepage.text.usernameingeader.//span[@class='text-white mr-2']
+
+#NewPostPage
+newpostpage.input.posttitle = .//input[@id='post-title']
+newpostpage.input.postbody =.//input[@id='post-body']
+newpostpage.btn.savepost =.//button[@class='btn btn-primary']

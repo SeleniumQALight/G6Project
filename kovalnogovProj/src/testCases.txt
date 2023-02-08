@@ -1,0 +1,65 @@
+Pre-conditions: need to add unique_id to basic user name and email prefix  UNIX time as example
+testacc_1675283938823
+TC#1 - Check that user is able to create new user
+STR
+1.Open browser
+2.Open https://qa-complexapp.onrender.com
+3.Type Username 'testacc_{unique_id}'
+4.Type Email 'test_acc{unique_id}@test.com'
+5.Type Password 'test_acc_psw'
+6.Click Sign up for OurApp button
+
+ER: New User is created and can be received from DB by SQL request
+ -welcome page is opened user sees greetings"Hello {user_name}, your feed is empty."
+ in header user sees user name and buttons create post sign out
+
+-------------------------------------------------------------------------------------------
+preconditons :TC#2-5   If user is absent  create new user and use new creds for TC's execution
+---------------------------------------------------------------------------------------------
+TC#2 - Check that user is able to login with correct credential
+STR
+1.Open browser
+2.Open https://qa-complexapp.onrender.com
+3.Type Username 'test_acc'
+4.Type Password 'test_acc_psw'
+5.Click Sign In
+
+ER: User is lodged in welcome pаge is opened sign out button is visible
+------------------------------------------------------------------------------------------------
+TC#3 - Check that user is not able to login with incorrect credential
+STR
+1.Open browser
+2.Open https://qa-complexapp.onrender.com
+3.Type Username 'test_acc'
+4.Type Password 'test_acc_psw123'
+5.Click Sign In
+
+ER: User See message User login or password is incorrect
+------------------------------------------------------------------------------------------------
+
+TC#4 - Check that user is able to sing out
+STR
+1.Open browser
+2.Open https://qa-complexapp.onrender.com
+3.Type Username 'test_acc'
+4.Type Password 'test_acc_psw'
+5.Click Sign In
+6.Click Sign out
+
+ER: Login page is visible creds are not cached
+
+------------------------------------------------------------------------------------------------
+TC#5 - Check that user is able to add post
+STR
+1.Open browser
+2.Open https://qa-complexapp.onrender.com
+3.Type Username 'test_acc'
+4.Type Password 'test_acc_psw'
+5.Click Sign In
+6.Click button Create Post
+7.Type title 'Test_title'
+8.Type body 'Test_body'
+6.Click button Save new post
+
+
+ER: Page with post is present user can seee created post with tile body and button delete post

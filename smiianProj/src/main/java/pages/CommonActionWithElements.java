@@ -1,14 +1,17 @@
 package pages;
 
+import io.opentelemetry.sdk.trace.internal.data.ExceptionEventData;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 
 public class CommonActionWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
 
@@ -37,8 +40,54 @@ public class CommonActionWithElements {
         }
     }
 
+    protected boolean isElementDisplayed(WebElement webElement) {
+        try {
+            boolean state = webElement.isDisplayed();
+            String message;
+            if (state == true) {
+                message = "Element is displayed";
+            } else {
+                message = "Element is not displayed";
+            }
+                logger.info(message);
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByVisibleText(visibleText);
+            logger.info(visibleText + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropDown(WebElement dropDown, String value) {
+        try {
+            Select select = new Select(dropDown);
+            select.selectByValue(value);
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
     protected  void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+    public static boolean isObjectDisplayed(WebElement webElement){
+        try {
+            return webElement.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 }
