@@ -26,23 +26,20 @@ public class LoginTest {
         webDriver.get("https://qa-complexapp.onrender.com/");
 
 
-        WebElement inputUserName =
-                webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
 
         inputUserName.clear();
         inputUserName.sendKeys("qaauto");
 
         System.out.println("login was entered");
 
-        WebElement inputPassword =
-                webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         inputPassword.clear();
         inputPassword.sendKeys("123456qwerty");
 
         System.out.println("password was entered");
 
-        WebElement buttonSignIn =
-                webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         buttonSignIn.click();
 
         System.out.println("button was clicked");
@@ -77,34 +74,29 @@ public class LoginTest {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         webDriver.get("https://qa-complexapp.onrender.com/");
-        WebElement inputUserName =
-                webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
+        WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
 
         inputUserName.clear();
         inputUserName.sendKeys("invalidTExt");
 
 
-        WebElement inputPassword =
-                webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
+        WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
         inputPassword.clear();
         inputPassword.sendKeys("====123456qwerty");
 
 
-        WebElement buttonSignIn =
-                webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        WebElement buttonSignIn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         buttonSignIn.click();
 
-
-
-        Assert.assertTrue("Do u see red message ? - ok, test passes", isRedAlertDisplayed());
-
-
+//! isButtonSignInDisplayed()
+        Assert.assertFalse("Button SignOut is not displayed ", isButtonSignOutDisplayed());
+        Assert.assertTrue("Button SignIn is displayed ", isButtonSignInDisplayed());
         webDriver.quit();
     }
 
-    private boolean isRedAlertDisplayed() {
+    private boolean isButtonSignInDisplayed() {
         try {
-            return webDriver.findElement(By.xpath("//*[@class = 'alert alert-danger text-center']")).isDisplayed();
+            return webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']")).isDisplayed();
         } catch (Exception e) {
             return true;
 
