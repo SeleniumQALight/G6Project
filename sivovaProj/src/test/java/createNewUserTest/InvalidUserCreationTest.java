@@ -9,9 +9,10 @@ public class InvalidUserCreationTest extends BaseTest {
 
     @Test
     public void invalidUserCreation(){
-    loginPage.openLoginPage();
-    loginPage.enterUserNameIntoInputSignUp(TestData.INVALID_USERNAME);
-    loginPage.checkErrorMessage(TestData.ERROR_MESSAGE_USERNAME);
+    loginPage
+            .openLoginPage()
+            .enterUserNameIntoInputSignUp(TestData.INVALID_USERNAME)
+            .checkErrorMessage(TestData.ERROR_MESSAGE_USERNAME);
 
     }
 

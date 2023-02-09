@@ -39,14 +39,16 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public void openLoginPage(){
+    public LoginPage openLoginPage(){
         try{
             webDriver.get("https://qa-complexapp.onrender.com/");
             logger.info("Login page was opened");
+            return this;
 
         } catch (Exception e) {
             logger.error("Can not open Login page" + e);
             Assert.fail("Can not open Login page" + e);
+            return null;
         }
     }
 
@@ -58,15 +60,18 @@ public class LoginPage extends ParentPage {
             enterTextIntoElement(inputPassword, password);
     }
 
-    public void enterUserNameIntoInputSignUp (String userName) {
+    public LoginPage enterUserNameIntoInputSignUp (String userName) {
         enterTextIntoElement(userNameInputSignUp,userName);
+        return this;
     }
-    public void enterEmailIntoInputSignUp (String email) {
+    public LoginPage enterEmailIntoInputSignUp (String email) {
         enterTextIntoElement(emailInput,email);
+        return this;
     }
 
-    public void enterPasswordInputSignUp (String password) {
+    public LoginPage enterPasswordInputSignUp (String password) {
         enterTextIntoElement(passwordInputSignUp, password);
+        return this;
     }
 
     public void clickSignUpButton(){
