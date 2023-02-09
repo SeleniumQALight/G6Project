@@ -14,6 +14,9 @@ public class PostPage extends ParentPage {
     @FindBy (xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy (xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public PostPage(WebDriver webDriver) {
@@ -24,7 +27,7 @@ public class PostPage extends ParentPage {
         return headerElement;
     }
 
-    public PostPage chechIsRedirectToPostPage() {
+    public PostPage checkIsRedirectToPostPage() {
         //TODO check URL
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(buttonEdit));
         return this;
@@ -34,5 +37,11 @@ public class PostPage extends ParentPage {
         Assert.assertEquals("Text in success message element ", expectedMessage, successMessage.getText());
 
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+
+        return new MyProfilePage(webDriver);
     }
 }
