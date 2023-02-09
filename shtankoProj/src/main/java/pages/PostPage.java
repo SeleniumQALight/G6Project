@@ -14,6 +14,8 @@ public class PostPage extends ParentPage{
 
     //ми вказуємо що в нас ще є пов'язані єлементи в іншому класі
     private HeaderElement headerElement = new HeaderElement(webDriver);
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -34,5 +36,10 @@ public class PostPage extends ParentPage{
     public PostPage checkTextInSuccessMessage(String expectedMessage){
         Assert.assertEquals("Text in success message element", expectedMessage, successMessage.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+   clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
