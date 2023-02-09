@@ -78,4 +78,10 @@ public class LoginPage extends ParentPage {
 
         return new HomePage(webDriver);
     }
+
+    public boolean isButtonSignInDisplayed(){
+
+        return isObjectDisplayed(buttonLogin);
+    }
+
 }
