@@ -2,6 +2,7 @@ package postTest;
 
 import baseTest.BaseTest;
 import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -26,11 +27,17 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .checkPostWasCreated(post_Title)
-
-        ;
-
-
-
+                .checkPostWasCreated(post_Title);
     }
+
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(post_Title)
+        ;
+    }
+
 }

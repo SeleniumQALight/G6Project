@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -54,6 +55,15 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    protected void clickOnElement(String xPath){
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(xPath)));
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
 
 
     protected void selectTextInDropdown(WebElement dropDown, String vivibleText){

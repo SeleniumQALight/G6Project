@@ -22,6 +22,13 @@ public class PostPage extends ParentPage{
     WebElement successMessage;
 
 
+
+    @FindBy(xpath =".//button[@class='delete-post-button text-danger']")
+    WebElement buttonDelete;
+
+
+
+
     public PostPage checkIsRedirectToPostPage() {
         //TODO check URL
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(buttonEdit));
@@ -46,4 +53,8 @@ public class PostPage extends ParentPage{
         this.headerElement = headerElement;
     }
 
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+    }
 }

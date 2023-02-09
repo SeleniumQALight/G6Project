@@ -10,9 +10,11 @@ import java.util.List;
 
 public class MyProfilePage extends ParentPage{
 
-
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
+
+    @FindBy(xpath = ".//div[text()='Post successfully deleted']")
+    private WebElement successDeletePosstMessage;
 
 
     private String titlePost=".//*[text()='%s']";
@@ -43,6 +45,37 @@ public class MyProfilePage extends ParentPage{
         return this;
     }
 
+
+    public MyProfilePage deletePostsWithTitleTillPresent(String postTitle) {
+        List<WebElement> listofPosts=getPostsListWithTitle(postTitle);
+        int count=listofPosts.size();
+        while (!listofPosts.isEmpty() && count>0){
+            clickOnElement(String.format(titlePost, postTitle));
+            new  PostPage((webDriver))
+                    .checkIsRedirectToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage()
+                    .checkIsSuccessDeletePostMessagePresent();
+            logger.info("Post was deleted with title " + postTitle);
+            listofPosts=getPostsListWithTitle(postTitle);
+            count--;
+        }
+
+        if(listofPosts.size()==0) {
+            logger.info("All posts were deleted with title");
+        }else {
+            logger.error("Delete is failed");
+            Assert.fail("Delete is failed");
+        }
+        return this;
+    }
+
+
+
+    private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
+        Assert.assertTrue("Message delete Post is not Displayed ",isElementDisplayed(successDeletePosstMessage));
+        return this;
+    }
 
 
 }

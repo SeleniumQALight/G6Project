@@ -4,8 +4,17 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
+
+
+    private HeaderElement headerElement=new HeaderElement(webDriver);
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
 
 
     @FindBy(xpath = ".//button[text()='Sign Out']")
@@ -41,7 +50,9 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage=new LoginPage(webDriver);
-        loginPage.fillingLoginFormWithValidCred();
+        if(!isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
 
         return this;
