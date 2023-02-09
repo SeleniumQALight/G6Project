@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
+    public boolean isButtonSignInDisplayed(){
+        return isElementDisplayed(buttonLogin);
+    }
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
     @FindBy(xpath = ".//input[@placeholder='Password']")

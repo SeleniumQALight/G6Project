@@ -2,6 +2,7 @@ package postTest;
 
 import baseTest.BaseTest;
 import library.Util;
+import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
 
@@ -29,8 +30,20 @@ public class CreatePostTest extends BaseTest {
 
 
 
+
                 ;
 
 
+    }
+    @After
+    public void deletePost(){
+        homePage.openHomePage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(POST_TITLE)
+
+
+
+        ;
     }
 }

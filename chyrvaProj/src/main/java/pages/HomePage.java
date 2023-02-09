@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
 
@@ -14,8 +15,20 @@ private WebElement signOutButton;
 
     @FindBy(xpath = ".//*[@href='/create-post']")
 private WebElement buttonCreatePost;
+
+    private HeaderElement headerElement = new HeaderElement(webDriver);
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public HomePage(WebDriver webDriver, HeaderElement headerElement) {
+        super(webDriver);
+        this.headerElement = headerElement;
     }
 
     public boolean isButtonSignOutDisplayed() {
@@ -30,9 +43,10 @@ private WebElement buttonCreatePost;
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.fillingLoginFormWithValidCred();
+        if (!isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
-
         return this;
     }
 
