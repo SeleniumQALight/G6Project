@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -38,6 +39,15 @@ public class CommonActionsWithElements {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
+            logger.info("Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void clickOnElement (String xpath){
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(xpath)));
             logger.info("Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);

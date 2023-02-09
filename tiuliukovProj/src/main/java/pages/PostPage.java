@@ -13,7 +13,11 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class=\'alert alert-success text-center\']")
     private WebElement successMessage;
 
+    @FindBy(xpath = ".//button[@data-original-title='Delete']")
+    private WebElement buttonDelete;
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
+
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -32,5 +36,10 @@ public class PostPage extends ParentPage{
     public PostPage checkTextInSuccessMessage(String expectMessage){
         Assert.assertEquals("Text is success message element",expectMessage, successMessage.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }

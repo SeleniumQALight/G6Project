@@ -11,7 +11,10 @@ import java.util.List;
 public class MyProfilePage extends ParentPage {
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
+    @FindBy(xpath = ".//*[text()='Post successfully deleted']")
+    private WebElement successDeletePostMessage;
     private String titlePost = ".//*[text() = '%s']";
+
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -29,6 +32,36 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
         Assert.assertEquals("Number of posts with title", 1, getPostsWistWithTitle(postTitle).size());
+        return this;
+    }
+
+    public MyProfilePage deletePostsWithTitleTillPresent(String postTitle) {
+        List<WebElement> listOfPosts = getPostsWistWithTitle(postTitle);
+        int counter = listOfPosts.size();
+
+        while (!listOfPosts.isEmpty() && counter > 0){
+            clickOnElement(String.format(titlePost, postTitle));
+            new PostPage(webDriver)
+                    .checkIsRedirectToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage()
+                    .checkIsSuccessDeletePostMessagePresent();
+            logger.info("Post was deleted with title " + postTitle);
+            listOfPosts = getPostsWistWithTitle(postTitle);
+            counter--;
+        }
+        if (listOfPosts.isEmpty()){
+            logger.info("All posts were deleted with title " + postTitle);
+        } else {
+            logger.info("Delete Fail");
+            Assert.fail("Delete Fail");
+        }
+
+        return this;
+    }
+
+    private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
+        Assert.assertTrue("Message deletePost is not displayed", isElementDisplayed(successDeletePostMessage));
         return this;
     }
 }
