@@ -16,7 +16,7 @@ public class MyProfilePage extends  ParentPage {
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         //TODO check URL
-        Assert.assertTrue("MyProfilePage ss not loaded", isElementDisplayed(avatar));
+        Assert.assertTrue("MyProfilePage is not loaded", isElementDisplayed(avatar));
         return  this;
     }
 }

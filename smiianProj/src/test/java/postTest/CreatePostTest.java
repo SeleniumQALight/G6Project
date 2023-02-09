@@ -18,7 +18,11 @@ public class CreatePostTest extends BaseTest {
 //                .selectValueInDropDownOption("One Person")
                 .selectSecondTextInDropDownByUi()
                 .clickOnSavePostButton()
-             .chechInSuccessMessage("New post successfully created.")
+             .checkInSuccessMessage("New post successfully created.")
+             .checkTitleIsVisible()
+                                         // додати перевірки
+             .checkNoteIsVisible()
+             .checkNoteSecondOptionIsVisible()
                 .getHeaderElement().clickOnMyProfileButton()
              .checkIsRedirectToMyProfilePage()
         ;
