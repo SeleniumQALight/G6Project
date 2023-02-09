@@ -2,6 +2,7 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,20 @@ public class LoginPage extends ParentPage {
 
     @FindBy (xpath = ".//div[@class='alert alert-danger text-center']")
     private WebElement errorMessage;
+
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement userNameInputSignUp;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement emailInput;
+
+    @FindBy(xpath = ".//input[@id='password-register']")
+    private WebElement passwordInputSignUp;
+
+    @FindBy(xpath = ".//button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']")
+    private WebElement buttonSignUp;
+
+    private String errorMessageSignUp = ".//*[text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -43,6 +58,20 @@ public class LoginPage extends ParentPage {
             enterTextIntoElement(inputPassword, password);
     }
 
+    public void enterUserNameIntoInputSignUp (String userName) {
+        enterTextIntoElement(userNameInputSignUp,userName);
+    }
+    public void enterEmailIntoInputSignUp (String email) {
+        enterTextIntoElement(emailInput,email);
+    }
+
+    public void enterPasswordInputSignUp (String password) {
+        enterTextIntoElement(passwordInputSignUp, password);
+    }
+
+    public void clickSignUpButton(){
+        clickElement(buttonSignUp);
+    }
     public void clickButtonLogin() {
        clickElement(buttonLogin);
     }
@@ -57,13 +86,29 @@ public class LoginPage extends ParentPage {
    }
    public boolean isSignInButtonDisplayed(){
         if (isElementDisplayed(buttonLogin)) {
+
             return true;
         } else {
             logger.info("Sign in button is not displayed!");
             return false;
         }
-
    }
+
+   public WebElement getErrorMessageSignUp (String invalidMessage) {
+        try {
+
+            return webDriver.findElement(By.xpath(String.format(errorMessageSignUp, invalidMessage)));
+        }catch (Exception e) {
+            logger.info("No element found " + e);
+            return null;
+       }
+   }
+
+   public LoginPage checkErrorMessage (String expectedErrorMessage){
+        Assert.assertEquals("Error message is not displayed", expectedErrorMessage, getErrorMessageSignUp(expectedErrorMessage).getText());
+        return this;
+   }
+
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
