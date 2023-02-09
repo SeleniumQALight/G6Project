@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 import static org.junit.Assert.assertTrue;
 
@@ -13,8 +14,14 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = "//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    private HeaderElement headerElement = new HeaderElement(webDriver);
+
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
     }
 
     public boolean isButtonSignOutDisplayed() {
@@ -23,13 +30,14 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.fillingLoginFormWithValidCred();
+        if (!isButtonSignOutDisplayed())
+            loginPage.fillingLoginFormWithValidCred();
         checkIsRedirectToHomePage();
         return this;
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        assertTrue("HomePage isn't loaded",isButtonSignOutDisplayed());
+        assertTrue("HomePage isn't loaded", isButtonSignOutDisplayed());
         return this;
     }
 
