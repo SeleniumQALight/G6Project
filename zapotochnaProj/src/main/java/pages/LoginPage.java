@@ -23,6 +23,7 @@ public class LoginPage extends ParentPage {
     }
 
 
+
     public void openLoginPage() {
 
         try {
@@ -75,7 +76,14 @@ public class LoginPage extends ParentPage {
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
-
+    public boolean isButtonSignInDisplayed() {
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+//        } catch (Exception e) {
+//            return false;
+//        }
+        return isElementDisplayed(buttonLogin);
+    }
 
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();

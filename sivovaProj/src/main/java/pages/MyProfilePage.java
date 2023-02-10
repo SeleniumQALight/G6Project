@@ -10,6 +10,7 @@ import java.util.List;
 
 public class MyProfilePage extends ParentPage{
     @FindBy(xpath = ".//img[@class='avatar-small']") private WebElement avatar;
+    @FindBy(tagName = "h2") private WebElement userName;
 
     private String titlePost = ".//*[text()='%s']";
     @FindBy (xpath = ".//*[text()='Post successfully deleted']") private WebElement successDeletePostMessage;
@@ -21,6 +22,11 @@ public class MyProfilePage extends ParentPage{
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         //TODO checkURL
         Assert.assertTrue("MyProfilePage is not loaded", isElementDisplayed(avatar));
+        return this;
+    }
+
+    public MyProfilePage checkUserNameDisplayed(String expectedUserName) {
+        Assert.assertEquals("Incorrect user name is shown", expectedUserName, userName.getText());
         return this;
     }
 
