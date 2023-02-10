@@ -11,14 +11,19 @@ public class CreatePostTest extends BaseTest {
                 .clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
-                .enterTextIntoPostBody("This is text for test purposes")
+                .enterTextIntoPostBody("This is text for test2 purposes")
 //                .selectTextInDropDownOptions("Приватне повідомлення")
-                .selectValueInDropDownOptions("One Person")
+//                .selectValueInDropDownOptions("One Person")
+                .selectTextInDropDownUI("Загальнодоступне")
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkTextInTitle(POST_TITLE)
+                .checkTextInLabel()
+                .checkUsersText("All Users")
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
+                .checkUserVisibility("qaauto")
 
         ;
     }

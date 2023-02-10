@@ -2,12 +2,14 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+
+import java.util.List;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -41,7 +43,7 @@ public class CommonActionsWithElements {
 
     }
 
-    protected boolean isElementPresented(WebElement element) {
+    public static boolean isElementPresented(WebElement element) {
         try {
             return element.isDisplayed();
         } catch (Exception e) {
@@ -70,15 +72,23 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void selectValueInDropDown(WebElement dropDown, String value) {
+    protected void selectValueInDropDown(WebElement dropDownOptions, String value) {
         try {
-            Select select = new Select(dropDown);
-            select.selectByValue(value);
-            logger.info(value + " was selected in DropDown");
+            Select select = new Select(dropDownOptions);
+            List<WebElement> allAvailableOptions = select.getOptions();
+            for (WebElement option : allAvailableOptions) {
+                logger.info("Available options: " + option.getText());
+                if (option.getText().equals(value)) {
+                    option.click();
+                    logger.info(value + " was selected in DropDown");
+                    break;
+                }
+            }
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
+
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

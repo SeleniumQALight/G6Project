@@ -1,9 +1,13 @@
 package pages;
 
+import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class CreatePostPage extends ParentPage {
     @FindBy(name = "title")
@@ -18,9 +22,11 @@ public class CreatePostPage extends ParentPage {
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
 
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
+
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
         Assert.assertTrue("CreatePostPage is not loaded", isElementDisplayed(inputTitle));
@@ -53,4 +59,11 @@ public class CreatePostPage extends ParentPage {
         selectValueInDropDown(dropDownOptions, valueInDropDown);
         return this;
     }
+
+    public CreatePostPage selectTextInDropDownUI(String option) {
+        selectValueInDropDown(dropDownOptions, option);
+        return this;
+    }
 }
+
+
