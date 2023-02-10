@@ -14,6 +14,15 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class=\'alert alert-success text-center\']")
     private WebElement successMessage;
 
+    @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
+    private WebElement postTitle;
+
+    @FindBy(xpath = ".//i[contains(text(),' Note: This post was written for ')]")
+    private WebElement note;
+
+    @FindBy(xpath = ".//i[contains(text(),' Note: This post was written for ')]//u")
+    private WebElement dropDownValue;
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
@@ -37,6 +46,24 @@ public class PostPage extends ParentPage{
     public PostPage checkTextInSuccessMessage(String expectedMessage){
         Assert.assertEquals("Text in success message element ",
                 expectedMessage, successMessage.getText());
+        return this;
+    }
+
+    public PostPage checkTitleIsDisplayed(String expectedPostTitle) {
+        Assert.assertTrue("Title is not displayed", isElementDisplayed(postTitle));
+        Assert.assertEquals("Wrong title", expectedPostTitle, postTitle.getText());
+        return this;
+    }
+
+
+    public PostPage checkNoteIsDisplayed() {
+        Assert.assertTrue("Not is not displayed", isElementDisplayed(note));
+        return this;
+    }
+
+    public PostPage checkSelectedValueIsDisplayed(String expectedValue) {
+        Assert.assertTrue("Value is not displayed", isElementDisplayed(dropDownValue));
+        Assert.assertEquals("Wrong value", expectedValue, dropDownValue.getText());
         return this;
     }
 

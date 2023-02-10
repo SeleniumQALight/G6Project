@@ -12,6 +12,9 @@ public class MyProfilePage extends ParentPage{
     @FindBy (xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
 
+    @FindBy (xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
+    private WebElement login;
+
     @FindBy(xpath = ".//div[text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
 
@@ -64,6 +67,12 @@ public class MyProfilePage extends ParentPage{
     private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
         Assert.assertTrue("Message delete Post is not displayed", isElementDisplayed(successDeletePostMessage));
 
+        return this;
+    }
+
+    public MyProfilePage checkIsCorrectLoginDisplayed(String expectedLogin) {
+        Assert.assertTrue("Correct login is displayed", isElementDisplayed(login));
+        Assert.assertEquals("Incorrect login", expectedLogin, login.getText());
         return this;
     }
 }
