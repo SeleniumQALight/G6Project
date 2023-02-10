@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 
+import java.util.List;
+
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
@@ -73,6 +75,21 @@ public class CommonActionsWithElements {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI(WebElement dropDown, List<WebElement> allOptions, String text) {
+        try {
+            clickOnElement(dropDown);
+            for (WebElement allOption : allOptions) {
+                if (allOption.getText().contains(text)) {
+                    allOption.click();
+                    logger.info("text was found in dropDown: " + text);
+                    break;
+                }
+            }
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
