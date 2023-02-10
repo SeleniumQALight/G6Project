@@ -1,8 +1,11 @@
 package pages;
 
+
+
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
+
 
 public class HomePage extends ParentPage {
     private final HeaderElement headerElement = new HeaderElement(webDriver);
@@ -13,7 +16,9 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.fillingLoginFormWithValidCred();
+        if (!headerElement.isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
         return this;
     }
@@ -23,10 +28,7 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-    public CreatePostPage clickOnCreatePostButton() {
-        clickOnElement(headerElement.getButtonCreatePost());
-        return new CreatePostPage(webDriver);
-    }
+
 
     public HeaderElement getHeaderElement() {
         return headerElement;

@@ -25,6 +25,9 @@ public class PostPage extends ParentPage{
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -62,5 +65,10 @@ public class PostPage extends ParentPage{
         Assert.assertTrue("Value is not displayed", isElementDisplayed(dropDownValue));
         Assert.assertEquals("Wrong value", expectedValue, dropDownValue.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
