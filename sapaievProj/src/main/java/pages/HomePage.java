@@ -16,8 +16,7 @@ public class HomePage extends ParentPage {
     }
 
 
-
-    @FindBy(xpath = ".//button[text()='Sign Out']")
+  /*  @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
@@ -25,6 +24,9 @@ public class HomePage extends ParentPage {
 
     @FindBy(xpath = ".//*[@href=\"/create-post\"]")
     private WebElement buttonCreatePost;
+
+*/
+
 
 
     public HomePage(WebDriver webDriver) {
@@ -34,23 +36,26 @@ public class HomePage extends ParentPage {
 
 
 
+    /*
 
     public boolean isButtonSignOutDisplayed() {
-            return isElementDisplayed(buttonSignOut);
+
+        return isElementDisplayed(buttonSignOut);
     }
 
 
     public boolean isButtonSignInDisplayed() {
+
         return isElementDisplayed(buttonSignIn);
     }
 
 
-
+*/
 
 
     public HomePage openHomePage() {
         LoginPage loginPage=new LoginPage(webDriver);
-        if(!isButtonSignOutDisplayed()) {
+        if(!headerElement.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
         checkIsRedirectToHomePage();
@@ -62,11 +67,11 @@ public class HomePage extends ParentPage {
 
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("HomePage is not loaded",isButtonSignOutDisplayed());
+        Assert.assertTrue("HomePage is not loaded",headerElement.isButtonSignOutDisplayed());
         return this;
     }
 
-
+/*
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
 
@@ -74,4 +79,8 @@ public class HomePage extends ParentPage {
 
         return new CreatePostPage(webDriver);
     }
+
+ */
+
+
 }

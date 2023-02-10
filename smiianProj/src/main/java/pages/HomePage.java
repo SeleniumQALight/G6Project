@@ -5,19 +5,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
+    private WebElement buttonLogOut;
+
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
-    private WebElement buttonLogOut;
-
-
+    private HeaderElement headerElement = new HeaderElement(webDriver);     // оголошуємо Хедер
+    public HeaderElement getHeaderElement() {                               // геттер для Хедера
+        return headerElement;
+    }
 
     public boolean isButtonSignOutDisplayed(){
 
@@ -26,9 +30,11 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-
+        if(!isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         //залогінитись
-        loginPage.fillingLoginFormWithValidCred();
+//        loginPage.fillingLoginFormWithValidCred();
 
         //перевірити що ми знаходимось на HomePage
         checkIsRedirectToHomePage();
