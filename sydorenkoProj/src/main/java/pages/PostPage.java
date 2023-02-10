@@ -11,7 +11,8 @@ import static org.junit.Assert.assertTrue;
 public class PostPage extends ParentPage {
     @FindBy(xpath = "//a[@data-original-title='Edit']")
     private WebElement buttonEdit;
-
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
     @FindBy(xpath = "//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
     @FindBy(xpath = "//div[@class='d-flex justify-content-between']/h2")
@@ -55,5 +56,10 @@ public class PostPage extends ParentPage {
     public PostPage checkIfCreatedPostPageUnderLinedTextIs(String value) {
         assertEquals("Note is not on page", value, underlinedTextInBody.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }

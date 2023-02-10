@@ -9,17 +9,19 @@ public class HomePage extends ParentPage {
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
-    public HeaderElement getHeaderElement() {
-        return headerElement;
-    }
-
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
+
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.fillingLoginFormWithValidCred();
+        if (!headerElement.isButtonSignOutDisplayed())
+            loginPage.fillingLoginFormWithValidCred();
         checkIsRedirectToHomePage();
         return this;
     }
