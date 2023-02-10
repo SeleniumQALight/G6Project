@@ -2,10 +2,12 @@ package postTest;
 
 import baseTest.BaseTest;
 import libs.TestData;
+import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_Tiuliukov";
+    final String POST_TITLE = "TC1_Tiuliukov_" + Util.getDateAndTimeFormatted();
     final String POST_BODY = "New post successfully created.OP";
     final String OPTION_TEXT_ALL_USERS = "Загальнодоступне";
     final String OPTION_TEXT_ONE_PERSON = "Приватне повідомлення";
@@ -33,9 +35,20 @@ public class CreatePostTest extends BaseTest {
                 .checkPostLabel(EXPECTED_LABEL, OPTION_VALUE_ONE_PERSON)
                 .checkPostOptionValue(OPTION_VALUE_ONE_PERSON)
                 .getHeaderElement().clickOnMyProfileButton()
-                .checkIsRedirectToMyProfilePage()
+                .checkIsRedirectToMyProfilePage().
+                checkPostWasCreated(POST_TITLE)
                 .checkIsDefaultNameDisplayed(TestData.VALID_LOGIN)
-                //.getHeaderElement().checkIsDefaultLoginNameDisplayed(TestData.VALID_LOGIN)
+        //.getHeaderElement().checkIsDefaultLoginNameDisplayed(TestData.VALID_LOGIN)
         ;
+    }
+
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(POST_TITLE)
+                ;
     }
 }
