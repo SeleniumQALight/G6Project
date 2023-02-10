@@ -2,17 +2,10 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
-import pages.elements.HeaderElement;
 
 import static org.junit.Assert.assertTrue;
 
 public class HomePage extends ParentPage {
-
-    private HeaderElement headerElement = new HeaderElement(webDriver);
-
-    public HeaderElement getHeaderElement() {
-        return headerElement;
-    }
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
@@ -24,13 +17,10 @@ public class HomePage extends ParentPage {
         return headerElement;
     }
 
-    public boolean isButtonSignOutDisplayed() {
-        return isElementDisplayed(buttonSignOut);
-    }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        if (!isButtonSignOutDisplayed())
+        if (!headerElement.isButtonSignOutDisplayed())
             loginPage.fillingLoginFormWithValidCred();
         checkIsRedirectToHomePage();
         return this;

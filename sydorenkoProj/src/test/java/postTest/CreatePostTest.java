@@ -27,9 +27,8 @@ public class CreatePostTest extends BaseTest {
                 .checkIfCreatedPostPageUnderLinedTextIs("One Person")
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .checkIfMyProfilePageHasCorrectUser("qaauto");
-                .checkIsRedirectToMyProfilePage()
-                .checkPostWasCreated(POST_TITLE)
+                .checkIfMyProfilePageHasCorrectUser("qaauto")
+                .checkPostWasCreated(POST_TITLE);
         ;
     }
 
