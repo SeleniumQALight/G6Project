@@ -22,6 +22,9 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//i/u")
     private WebElement postTypeOfAccessRight;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HeaderElement getHeaderElement() {
@@ -56,5 +59,10 @@ public class PostPage extends ParentPage {
     public PostPage checkIsAccessRightMatches(String expectedAccessRight) {
         Assert.assertEquals("Access right doesn't match", expectedAccessRight, postTypeOfAccessRight.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }

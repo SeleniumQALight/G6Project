@@ -2,10 +2,12 @@ package PostTest;
 
 import baseTest.BaseTest;
 import libs.TestData;
+import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_loi";
+    final String POST_TITLE = "TC1_Loi_" + Util.getDateAndTimeFormatted();
     final String POST_BODY_CONTENT = "text";
 
     @Test
@@ -27,6 +29,17 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkIsUserNameMatches(TestData.VALID_LOGIN)
+                .checkPostWasCreated(POST_TITLE)
+        ;
+    }
+
+    @After
+    public void deletePost() {
+        homePage
+                .openHomePage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(POST_TITLE)
         ;
     }
 }
