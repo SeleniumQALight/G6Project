@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
 
-    public static final String POST_TITLE = "test title TC1_Kovalnohov";
+    public static final String POST_TITLE = "TC1_Kovalnohov"+System.currentTimeMillis();
 
     @Test
     public void TC1_createNewPostTest(){
@@ -29,6 +29,8 @@ homePage.openHomePage()
         .getHeaderElements()
         .clickOnProfileButton()
         .checkIsRedirectProfilePage()
+        .checkPostWasCreatred(POST_TITLE)
+
         .checkIsUserNameVisibleOnProfilePage(TestData.VALID_LOGIN);
     }
 

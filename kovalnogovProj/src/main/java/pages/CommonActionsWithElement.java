@@ -7,18 +7,27 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElement {
     protected Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
+    WebDriverWait wait10;
+    WebDriverWait wait15;
 
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
+        wait10=new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        wait15=new WebDriverWait(webDriver, Duration.ofSeconds(15));
         PageFactory.initElements(webDriver, this);
     }
 
     protected void typeTextToElement(WebElement element, String text) {
+        wait15.until(ExpectedConditions.visibilityOf(element));
         try {
             element.clear();
             element.sendKeys(text);
@@ -29,6 +38,7 @@ public class CommonActionsWithElement {
     }
 
     protected void clickOnElement(WebElement element) {
+        wait10.until(ExpectedConditions.elementToBeClickable(element));
         try {
             element.click();
         } catch (Exception e) {
