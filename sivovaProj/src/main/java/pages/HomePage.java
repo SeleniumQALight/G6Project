@@ -26,7 +26,7 @@ public class HomePage extends ParentPage{
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
 
-        if(!isButtonSignOutDisplayed()) {
+        if(!headerElement.isButtonSignOutDisplayed()) {
         // login
         loginPage.fillingLoginFormWithValidCred();}
 
