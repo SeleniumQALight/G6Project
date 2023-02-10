@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElements;
+import pages.CreatePostPage;
 import pages.MyProfilePage;
 
 public class HeaderElement extends CommonActionsWithElements {
@@ -30,7 +31,9 @@ public class HeaderElement extends CommonActionsWithElements {
         return isElementDisplayed(signOutButton);
     }
 
-    public WebElement getButtonCreatePost() {
-        return buttonCreatePost;
+
+    public CreatePostPage clickOnCreatePostButton() {
+        clickOnElement(buttonCreatePost);
+        return new CreatePostPage(webDriver);
     }
 }

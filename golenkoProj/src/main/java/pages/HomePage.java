@@ -10,16 +10,13 @@ import pages.elements.HeaderElement;
 public class HomePage extends ParentPage {
     private final HeaderElement headerElement = new HeaderElement(webDriver);
 
-    HeaderElement headerElement = new HeaderElement(webDriver) ;
-
-
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        if (!isButtonSignOutDisplayed()) {
+        if (!headerElement.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
         checkIsRedirectToHomePage();
@@ -31,10 +28,7 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-    public CreatePostPage clickOnCreatePostButton() {
-        clickOnElement(headerElement.getButtonCreatePost());
-        return new CreatePostPage(webDriver);
-    }
+
 
     public HeaderElement getHeaderElement() {
         return headerElement;
