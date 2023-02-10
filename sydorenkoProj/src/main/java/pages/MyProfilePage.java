@@ -12,6 +12,8 @@ import static org.junit.Assert.*;
 public class MyProfilePage extends ParentPage {
     @FindBy(xpath = "//img[@class='avatar-small']")
     private WebElement avatar;
+    @FindBy(xpath = "//div[@class='container py-md-5 container--narrow']/h2")
+    private WebElement userNamePlace;
     @FindBy(xpath = "//div[@class='alert alert-success text-center'][text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
     private String titlePost = "//*[text()='%s']";
@@ -23,6 +25,10 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         //TODO Check URL
         assertTrue("MyProfilePage isn't loaded", isElementDisplayed(avatar));
+        return this;
+    }
+    public MyProfilePage checkIfMyProfilePageHasCorrectUser(String userName) {
+        assertTrue("User name is not on page", userNamePlace.getText().contains(userName));
         return this;
     }
 

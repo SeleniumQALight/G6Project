@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -16,6 +17,8 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    String value = "Приватне повідомлення";
+    String locatorForDD = "//option[contains(text(),'" + value + "')]";
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -87,6 +90,16 @@ public class CommonActionsWithElements {
         try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
+            logger.info(value + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI(WebElement dropDown, String value) {
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(By.xpath(locatorForDD)));
             logger.info(value + " was selected in DropDown");
         } catch (Exception e) {
             printErrorAndStopTest(e);
