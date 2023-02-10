@@ -9,8 +9,10 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
+
     @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement inputPassword;
+
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 

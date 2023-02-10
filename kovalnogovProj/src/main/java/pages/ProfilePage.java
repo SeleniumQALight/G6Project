@@ -13,12 +13,13 @@ public class ProfilePage extends ParentPage {
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
 
+    @FindBy(xpath = ".//h2")
+    private WebElement user;
     private String titlePost = ".//*[text()='%s']";
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
-
 
     public List<WebElement> getPostsListWithTitle(String title) {
 
@@ -33,6 +34,10 @@ public class ProfilePage extends ParentPage {
 
     public ProfilePage checkPostWasCreatred(String postTitle) {
         Assert.assertEquals("Incorrect count of posts", 1, getPostsListWithTitle(postTitle).size());
+        return this;}
+
+    public ProfilePage checkIsUserNameVisibleOnProfilePage(String userName) {
+        Assert.assertEquals("Wrong user name on profile Page", userName, getText(user));
         return this;
     }
 }

@@ -2,6 +2,8 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -44,7 +46,6 @@ public class CommonActionsWithElement {
         }
     }
 
-
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
@@ -72,10 +73,20 @@ public class CommonActionsWithElement {
         return text;
     }
 
+    protected String getTextDecorationCssProperty(WebElement element) {
+        try {
+            return element.getCssValue("text-decoration");
+        } catch (Exception e) {
+            printErroAboutElementAndStopTest(e);
+        }
+        return "";
+    }
+
     protected void selectTextInDropDownByUi(WebElement dropDown, String text) {
         try {
-            //TODO homework create method which will select in dd
-
+            clickOnElement(dropDown);
+            webDriver.findElement(By.xpath(".//select/option[contains(text(),'" + text + "')]"))
+                    .click();
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }
