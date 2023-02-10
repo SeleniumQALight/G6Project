@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -91,6 +92,16 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void selectTextInDropDownByUI(WebElement dropDown, String visibleText){
+        try {
+            WebElement chosenOption = webDriver.findElement(By.xpath(".//option[text() = '" + visibleText + "']"));
+            clickOnElement(dropDown);
+            clickOnElement(chosenOption);
+            logger.info(visibleText + " was selected in Dropdown");
+        } catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 
     protected void printErrorAndStopTest(Exception e){
         logger.error("Can not work with element" + e);

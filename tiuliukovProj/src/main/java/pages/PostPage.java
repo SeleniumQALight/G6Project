@@ -9,9 +9,14 @@ import pages.elements.HeaderElement;
 public class PostPage extends ParentPage{
     @FindBy(xpath = ".//a[@data-original-title='Edit']")
     private WebElement buttonEdit;
-
-    @FindBy(xpath = ".//div[@class=\'alert alert-success text-center\']")
+    @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
+    @FindBy(xpath = ".//div[@class='d-flex justify-content-between']")
+    private WebElement actualTitle;
+    @FindBy(xpath = ".//div[@class='body-content']//i")
+    private WebElement actualLabel;
+    @FindBy(xpath = ".//div[@class='body-content']//u")
+    private WebElement actualOptionValue;
 
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
@@ -35,6 +40,21 @@ public class PostPage extends ParentPage{
 
     public PostPage checkTextInSuccessMessage(String expectMessage){
         Assert.assertEquals("Text is success message element",expectMessage, successMessage.getText());
+        return this;
+    }
+
+    public PostPage checkPostTitle (String expectTitle){
+        Assert.assertEquals("Wrong post title",expectTitle, actualTitle.getText());
+        return this;
+    }
+
+    public PostPage checkPostLabel(String expectLabel, String option){
+        Assert.assertEquals("Wrong post lable",expectLabel + option, actualLabel.getText());
+        return this;
+    }
+
+    public PostPage checkPostOptionValue (String expectOptionValue){
+        Assert.assertEquals("Wrong post option value",expectOptionValue, actualOptionValue.getText());
         return this;
     }
 
