@@ -23,7 +23,7 @@ public class CreatePostTest extends BaseTest {
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
-                .checkTextInNewTitle("TC1_shtanko")
+                .checkTextInNewTitle(POST_TITLE)
                 .checkNotePost()
                 .checkStatusPost("One Person")
                 .getHeaderElement().clickOnMyProfileButton()
