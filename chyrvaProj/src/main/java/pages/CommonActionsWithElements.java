@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -13,6 +14,15 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 public class CommonActionsWithElements {
+
+
+
+    @FindBy(xpath = ".//select[@name=\"select1\"]")
+    private WebElement dropDown;
+    @FindBy(xpath = ".//*[@value=\"One Person\"]")
+    private WebElement dropDownValue;
+
+
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
@@ -103,6 +113,25 @@ public class CommonActionsWithElements {
         }
 
     }
+
+    public void selectTextInDropDownByUI() {
+       try {
+          dropDown.click();
+           clickOnElement(dropDownValue);
+           logger.info(dropDownValue + "was selected in DropDown");
+
+       }catch (Exception e){
+           printErrorAndStopTest(e);
+       }
+
+
+
+
+
+
+    }
+
+
     public void usersPressesKeyEnterTime(int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {

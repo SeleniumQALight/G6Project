@@ -16,6 +16,9 @@ public class CreatePostPage extends ParentPage{
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
 
+
+
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }

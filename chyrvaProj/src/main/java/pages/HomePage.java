@@ -10,11 +10,6 @@ import pages.elements.HeaderElement;
 public class HomePage extends ParentPage {
 
 
-@FindBy(xpath = ".//button[@class=\"btn btn-sm btn-secondary\"]")
-private WebElement signOutButton;
-
-    @FindBy(xpath = ".//*[@href='/create-post']")
-private WebElement buttonCreatePost;
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
@@ -26,20 +21,7 @@ private WebElement buttonCreatePost;
         super(webDriver);
     }
 
-    public HomePage(WebDriver webDriver, HeaderElement headerElement) {
-        super(webDriver);
-        this.headerElement = headerElement;
-    }
 
-    public boolean isButtonSignOutDisplayed() {
-
-//        try {
-//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-//        } catch (Exception e) {
-//            return false;
-//        }
-   return isElementDisplayed(signOutButton);
-    }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
@@ -51,13 +33,9 @@ private WebElement buttonCreatePost;
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("HomePage is not loaded", isButtonSignOutDisplayed());
+        Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
         return this;
     }
 
-    public CreatePostPage clickOnCreatePostButton() {
-        clickOnElement(buttonCreatePost);
 
-        return new CreatePostPage(webDriver);
-    }
 }

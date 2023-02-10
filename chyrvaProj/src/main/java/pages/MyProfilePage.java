@@ -6,16 +6,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 import java.util.List;
 
 public class MyProfilePage extends ParentPage {
+    @FindBy(xpath = ".//h2[contains(text() ,'qaauto')]")
+    private WebElement myProfilePageUserName;
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
 
     private String titlePost = ".//*[text()='%s']";
+
+//    public HeaderElement getHeaderElement() {
+//        return headerElement;
+//    }
+//
+//    private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -75,4 +84,9 @@ public class MyProfilePage extends ParentPage {
 
         return this;
     }
-}
+
+
+    public MyProfilePage checkUserIsDisplayedOnMyProfilePage(String expectUserName) {
+        Assert.assertEquals("qaauto", expectUserName,myProfilePageUserName.getText());
+        return this;
+    }}
