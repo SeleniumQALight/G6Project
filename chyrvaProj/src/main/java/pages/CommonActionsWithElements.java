@@ -4,10 +4,20 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
+
+
+
+    @FindBy(xpath = ".//select[@name=\"select1\"]")
+    private WebElement dropDown;
+    @FindBy(xpath = ".//*[@value=\"One Person\"]")
+    private WebElement dropDownValue;
+
+
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
@@ -83,4 +93,23 @@ protected void selectValueInDropDown(WebElement dropDown, String value){
         }
 
     }
+
+    public void selectTextInDropDownByUI() {
+       try {
+          dropDown.click();
+           clickOnElement(dropDownValue);
+           logger.info(dropDownValue + "was selected in DropDown");
+
+       }catch (Exception e){
+           printErrorAndStopTest(e);
+       }
+
+
+
+
+
+
+    }
+
+
 }
