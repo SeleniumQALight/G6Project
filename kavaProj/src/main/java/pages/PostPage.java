@@ -22,6 +22,9 @@ public class PostPage extends CreatePostPage {
     @FindBy(xpath = ".//i")
     private WebElement labelText;
 
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
 
@@ -50,6 +53,11 @@ public class PostPage extends CreatePostPage {
     public PostPage checkTextInTitle(String expectedMessage) {
         Assert.assertEquals("Text in the title: ", expectedMessage, title.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
 

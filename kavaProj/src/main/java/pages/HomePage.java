@@ -1,6 +1,7 @@
 package pages;
 
 
+import elements.HeaderElement;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,17 +15,23 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    private HeaderElement headerElement = new HeaderElement(webDriver);
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
 
     }
 
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        //login
-        //check that we are in homepage
-        loginPage.fillingLoginFormWithValidCred();
+        if (!isSignOutButtonDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
         return this;
     }
