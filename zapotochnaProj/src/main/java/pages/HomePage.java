@@ -9,7 +9,8 @@ import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
 
-
+    @FindBy(xpath = ".//button[text()='Sign Out']")
+    private WebElement buttonSignOut;
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
@@ -25,11 +26,12 @@ public class HomePage extends ParentPage {
 
 
     public boolean isButtonSignOutDisplayed() {
-        try {
-            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+//        try {
+//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
+//        } catch (Exception e) {
+//            return false;
+//        }
+        return isElementDisplayed(buttonSignOut);
     }
 
     public HomePage openHomePage() {
