@@ -9,6 +9,13 @@ import pages.elements.HeaderElement;
 public class HomePage extends ParentPage {
 
 
+    private HeaderElement headerElement=new HeaderElement(webDriver);
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
+
   /*  @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
@@ -20,7 +27,7 @@ public class HomePage extends ParentPage {
 
 */
 
-    private HeaderElement headerElement=new HeaderElement(webDriver);
+
 
     public HomePage(WebDriver webDriver) {
 
@@ -48,7 +55,9 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage=new LoginPage(webDriver);
-        loginPage.fillingLoginFormWithValidCred();
+        if(!headerElement.isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
 
         return this;
@@ -72,11 +81,6 @@ public class HomePage extends ParentPage {
     }
 
  */
-
-
-    public HeaderElement getHeaderElement() {
-        return headerElement;
-    }
 
 
 }

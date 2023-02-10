@@ -32,6 +32,13 @@ public class PostPage extends ParentPage {
     WebElement textUnderline;
 
 
+
+    @FindBy(xpath =".//button[@class='delete-post-button text-danger']")
+    WebElement buttonDelete;
+
+
+
+
     public PostPage checkIsRedirectToPostPage() {
         //TODO check URL
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(buttonEdit));
@@ -74,5 +81,9 @@ public class PostPage extends ParentPage {
     public PostPage checkUnderlineText(String text) {
         Assert.assertEquals("Underline text is displayed", text, textUnderline.getText());
         return this;
+    }
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
