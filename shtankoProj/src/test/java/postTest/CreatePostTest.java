@@ -1,11 +1,13 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libs.Util;
+import org.junit.After;
 import org.junit.Test;
 
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_shtanko";
+    final String POST_TITLE = "TC1_shtanko_" + Util.getDateAndTimeFormatted();
     final String POST_BODY = "TC1_shtanko Body";
     @Test
     public void TC1_createNewPost(){
@@ -21,13 +23,24 @@ public class CreatePostTest extends BaseTest {
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
-                .checkTextInNewTitle("TC1_shtanko")
+                .checkTextInNewTitle(POST_TITLE)
                 .checkNotePost()
                 .checkStatusPost("One Person")
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkUserName("qaauto")
                 .checkIsRedirectToMyProfilePage()
+                .checkPostWasCreated(POST_TITLE)
 
+        ;
+
+    }
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWithTitleTillPresent(POST_TITLE)
         ;
 
     }
