@@ -6,13 +6,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElements;
 
-public class PostPage extends ParentPage{
-@FindBy(xpath = ".//*[@data-original-title=\"Edit\"]")
-private WebElement  editButton;
+public class PostPage extends ParentPage {
+    public static final String UNDERLINE = "underline";
+    @FindBy(xpath = ".//*[@data-original-title=\"Edit\"]")
+    private WebElement editButton;
 
-@FindBy(xpath = ".//div[@class='alert alert-success text-center']")
-private WebElement  successMessage;
-private HeaderElements headerElements;
+    @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
+    private WebElement successMessage;
+
+    @FindBy(xpath = ".//div[@class='d-flex justify-content-between']//h2")
+    private WebElement createdPostTitle;
+
+    @FindBy(xpath = ".//i")
+    private WebElement note;
+
+    @FindBy(xpath = ".//i/u")
+    private WebElement dropdownValue;
+
+    private HeaderElements headerElements;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
         this.headerElements = new HeaderElements(webDriver);
@@ -23,16 +35,34 @@ private HeaderElements headerElements;
     }
 
     public PostPage checkIsRedirectToPostPage() {
-
         //todo checkc url
         Assert.assertTrue("PostPage is not opened", isElementDisplayed(editButton));
         return this;
     }
 
     public PostPage checkValueInSuccessMessage(String expectedMessage) {
-
-
-        Assert.assertEquals("Message does not match with expected",expectedMessage, successMessage.getText() );
+        Assert.assertEquals("Message does not match with expected", expectedMessage, getText(successMessage));
         return this;
     }
+
+    public PostPage checkIsPostTitlePresent() {
+        Assert.assertTrue("Title is not visible", isElementDisplayed(createdPostTitle));
+        return this;
+    }
+
+    public PostPage checkIsCreatedPostTitleTextEqualWithExpected(String title) {
+        Assert.assertEquals("Title name does not match with expected",title,getText(createdPostTitle));
+        return this;
+    }
+    public PostPage checkIsNoteTextEqualWithExpected(String title) {
+        Assert.assertEquals("Title name does not match with expected",title,getText(note));
+        return this;
+    }
+
+    public PostPage checkIsNoteContainsUnderlineText() {
+        Assert.assertTrue("Text property text decoration does not equal "+ UNDERLINE,
+                getTextDecorationCssProperty(dropdownValue).contains(UNDERLINE));
+        return this;
+    }
+
 }
