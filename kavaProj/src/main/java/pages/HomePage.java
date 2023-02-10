@@ -12,16 +12,29 @@ import static elements.HeaderElement.isSignOutButtonDisplayed;
 
 public class HomePage extends ParentPage {
 
+
+    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
+    private WebElement signOutButton;
+    @FindBy(xpath = ".//*[@href='/create-post']")
+    private WebElement buttonCreatePost;
+
+    private HeaderElement headerElement = new HeaderElement(webDriver);
+
+
     public HomePage(WebDriver webDriver) {
         super(webDriver);
 
     }
 
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        //login
-        //check that we are in homepage
-        loginPage.fillingLoginFormWithValidCred();
+        if (!isSignOutButtonDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
         return this;
     }

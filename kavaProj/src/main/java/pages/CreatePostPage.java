@@ -64,6 +64,7 @@ public class CreatePostPage extends ParentPage {
         selectValueInDropDown(dropDownOptions, option);
         return this;
     }
+
 }
 
 
