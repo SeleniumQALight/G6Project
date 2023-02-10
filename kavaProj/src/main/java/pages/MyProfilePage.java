@@ -13,6 +13,9 @@ public class MyProfilePage extends ParentPage {
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
 
+    @FindBy(xpath = ".//h2")
+    private WebElement userVisibility;
+
     @FindBy(xpath = ".//div[text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
 
@@ -27,6 +30,11 @@ public class MyProfilePage extends ParentPage {
         //TODO checkURL
         Assert.assertTrue("MyProfilePage is not loaded",
                 isElementDisplayed(avatar));
+        return this;
+    }
+
+    public MyProfilePage checkUserVisibility(String expectedMessage) {
+        Assert.assertEquals("User: ", expectedMessage, userVisibility.getText());
         return this;
     }
 

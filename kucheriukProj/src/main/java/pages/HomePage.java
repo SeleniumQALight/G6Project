@@ -5,10 +5,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
     @FindBy(xpath = ".//*[@href=\"/create-post\"]")
     private WebElement buttonCreatePost;
+
+    private HeaderElement headerElement = new HeaderElement(webDriver);
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -24,9 +31,9 @@ public class HomePage extends ParentPage{
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        //залогиниться
-        loginPage.fillingLoginForWithValidCred();
-        //проверить, что мы на HomePage(залогинились)
+        if(!isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginForWithValidCred();
+        }
         checkIsRedirectToHomePage();
         return this;
     }
