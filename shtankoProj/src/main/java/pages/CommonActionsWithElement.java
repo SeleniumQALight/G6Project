@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -11,6 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
+
+
+
 
 public class CommonActionsWithElement {
     //по замовчуванню вебдрайвер наслідується тільки в рамках пекеджа
@@ -87,7 +91,22 @@ public class CommonActionsWithElement {
             printErrorAndStopTest(e);
         }
     }
-    protected void printErrorAndStopTest(Exception e){
+
+    protected void selectTextInUIDropDown(WebElement dropDown, String choiseTextUI){
+        try {
+            dropDown.click();
+            dropDown.findElement(getXpathFindElementWithTextContains(choiseTextUI)).click();
+            logger.info(choiseTextUI + "was selected in UI DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+            throw e;
+        }
+    }
+    private By getXpathFindElementWithTextContains(String choiseTextUI) {
+        return By.xpath("//*[contains(text(),\"" + choiseTextUI + "\")]");
+    }
+
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }

@@ -40,6 +40,11 @@ private WebElement inputTitle;
         return this;
     }
 
+    public CreatePostPage selectItemInDropDownByUI(String textinDD){
+        selectTextInDropDownByUi(dropDown,textinDD);
+        return this;
+    }
+
     public CreatePostPage selectValueInDropDown(String value){
         selectValueInDropDown(dropDown, value);
         return this;

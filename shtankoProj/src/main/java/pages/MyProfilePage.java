@@ -11,6 +11,8 @@ import java.util.List;
 public class MyProfilePage extends ParentPage{
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
+    @FindBy(xpath = ".//h2[contains(text(), 'qaauto')]")
+    private WebElement userName;
 
     //Параметризовані локатори не можуть бути описані в FineBy
     private String titlePost = ".//*[text()='%s']";
@@ -65,4 +67,9 @@ public class MyProfilePage extends ParentPage{
                 isElementDisplayed(successDeletePostMessage));
         return this;
     }
+    public MyProfilePage checkUserName(String expectedUserName){
+        Assert.assertEquals("The userName is displayed",expectedUserName,userName.getText());
+        return this;
+    }
+
 }
