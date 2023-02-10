@@ -6,41 +6,39 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
+import javax.xml.xpath.XPath;
+
 public class PostPage extends ParentPage{
+
     @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
     private WebElement buttonEdit;
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
-    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
-    private WebElement buttonDelete;
-
     private HeaderElement headerElement = new HeaderElement(webDriver);
-
-    public PostPage(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
+
+
+    public PostPage(WebDriver webDriver) {
+        super(webDriver);
+    }
+
+
     public PostPage checkIsRedirectToPostPage() {
         //TODO check URL
-        Assert.assertTrue("PostPage is not loaded"
-                , isElementDisplayed(buttonEdit));
+        Assert.assertTrue("PostPage is not loaded",isElementDisplayed(buttonEdit));
+return this;
+    }
+    public PostPage checkTextInSuccessMessage (String expectedMessage){
+        Assert.assertEquals(""
+                , expectedMessage, successMessage.getText());
         return this;
     }
 
-    public PostPage checkTextInSuccessMessage(String expectMessage){
-        Assert.assertEquals("Text in success message element "
-                , expectMessage, successMessage.getText());
-        return this;
-    }
 
-    public MyProfilePage clickOnDeleteButton() {
-        clickOnElement(buttonDelete);
-        return new MyProfilePage(webDriver);
-    }
 }

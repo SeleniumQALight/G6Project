@@ -1,10 +1,11 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libraries.Util;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_soloviova-02-05#3";
+    final String POST_TITLE = "TC1_soloviova_" + Util.getDateAndTimeFormatted();
     final String BODY_TITLE = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis faucibus malesuada. Pellentesque pretium eget felis sit amet pretium. Maecenas sollicitudin aliquet dignissim. Sed aliquam lorem non elementum tincidunt. Curabitur varius risus eu nibh porta pellentesque. Phasellus mollis sed dui sed facilisis.";
     @Test
     public void TC1_createNewPost() {
@@ -26,6 +27,7 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElements().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkUserName("qaauto")
+                .checkPostWasCreated(POST_TITLE)
         ;
     }
 }
