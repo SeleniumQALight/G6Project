@@ -57,11 +57,6 @@ public class PostPage extends CreatePostPage {
         return this;
     }
 
-    public PostPage checkTextInTitle(String expectedMessage) {
-        Assert.assertEquals("Text in the title: ", expectedMessage, title.getText());
-        return this;
-    }
-
     public PostPage checkTextInLabel() {
         Assert.assertTrue("Text in label: ", labelText.isDisplayed());
         return this;
