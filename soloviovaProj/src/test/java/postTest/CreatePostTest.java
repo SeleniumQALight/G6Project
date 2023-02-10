@@ -21,7 +21,7 @@ public class CreatePostTest extends BaseTest {
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
-                .checkTextInTitleElement("TC1_soloviova-02-05#3")
+                .checkTextInTitleElement(POST_TITLE)
                 .checkIsLabelPresent()
                 .checkLabelValue("One Person")
                 .getHeaderElements().clickOnMyProfileButton()
