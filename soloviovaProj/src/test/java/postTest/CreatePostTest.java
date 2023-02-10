@@ -11,17 +11,22 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost() {
         homePage
                 .openHomePage()
-                .clickOnCreatePostButton()
+                .getHeaderElements().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody(BODY_TITLE)
-                .selectTextInDropDownOptions("Приватне повідомлення")
+             //   .selectTextInDropDownOptions("Приватне повідомлення")
               //  .selectValueInDropDownOptions("One Person")
+                .selectTextInDropDownWithUI()
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkTextInTitleElement(POST_TITLE)
+                .checkIsLabelPresent()
+                .checkLabelValue("One Person")
                 .getHeaderElements().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+                .checkUserName("qaauto")
                 .checkPostWasCreated(POST_TITLE)
         ;
     }

@@ -12,6 +12,8 @@ public class MyProfilePage extends ParentPage {
 
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
+    @FindBy(xpath = ".//h2")
+    private WebElement userName;
 
     private String titlePost = ".//*[text()='%s']";
 
@@ -31,6 +33,11 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
         Assert.assertEquals("Post is not unique", 1, getPostListWithTitle(postTitle).size());
+        return this;
+    }
+
+    public MyProfilePage checkUserName(String expectedText){
+        forTextComparing(expectedText, userName);
         return this;
     }
 }
