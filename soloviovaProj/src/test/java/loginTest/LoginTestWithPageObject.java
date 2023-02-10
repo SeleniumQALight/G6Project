@@ -12,7 +12,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonLogIn();
 
-        Assert.assertTrue("Button is not displayed", homePage.isButtonSignOutDisplayed());
+        Assert.assertTrue("Button is not displayed", headerElements.isButtonSignOutDisplayed());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonLogIn();
 
-        Assert.assertFalse("Sign Out button is displayed", homePage.isButtonSignOutDisplayed());
+        Assert.assertFalse("Sign Out button is displayed", headerElements.isButtonSignOutDisplayed());
         Assert.assertTrue("Sign in button is not displayed", loginPage.isSignInButtonDisplayed());
     }
 }
