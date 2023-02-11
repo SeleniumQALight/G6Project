@@ -72,6 +72,10 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected boolean isElementDisplayed(String xpath){
+        return isElementDisplayed(webDriver.findElement(By.xpath(xpath)));
+    }
+
     protected void selectTextInDropDown (WebElement dropDown, String visibleText){
         try {
             Select select = new Select(dropDown);
