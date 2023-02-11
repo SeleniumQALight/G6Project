@@ -13,6 +13,8 @@ public class LoginPage extends ParentPage{
     private WebElement inputPassword;
     @FindBy (xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
+    @FindBy (xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement errorLoginMessage;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -48,11 +50,28 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonLogin);
     }
 
+    public boolean isSignInButtonDisplayed(){
+        return isElementDisplayed(buttonLogin);
+    }
+    public LoginPage checkTextInLoginErrorMessage(String expectedMessage){
+        Assert.assertEquals("Text in success message element"
+                , expectedMessage, errorLoginMessage.getText());
+        return this;
+    }
+
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage fillingLoginFormWithInvalidCred() {
+        openLoginPage();
+        enterUserNameIntoInputLogin(TestData.INVALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        clickOnButtonLogin();
+        return this;
     }
 }
