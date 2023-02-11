@@ -2,6 +2,7 @@ package postTest;
 
 import baseTest.BaseTest;
 import libraries.Util;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -28,6 +29,16 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToMyProfilePage()
                 .checkUserName("qaauto")
                 .checkPostWasCreated(POST_TITLE)
+        ;
+    }
+
+    @After
+    public void deletePost(){
+        homePage
+                .openHomePage()
+                .getHeaderElements().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(POST_TITLE)
         ;
     }
 }
