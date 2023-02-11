@@ -17,6 +17,8 @@ public class PostPage extends ParentPage {
     private WebElement postLabel;
     @FindBy(xpath = ".//p//u")
     private WebElement labelValue;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
 
     private HeaderElements headerElements = new HeaderElements(webDriver);
 
@@ -52,5 +54,10 @@ public class PostPage extends ParentPage {
     public PostPage checkLabelValue(String expectedLabelValue) {
         forTextComparing(expectedLabelValue, labelValue);
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
