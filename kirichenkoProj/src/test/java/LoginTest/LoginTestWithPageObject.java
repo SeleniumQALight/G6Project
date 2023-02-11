@@ -18,9 +18,7 @@ public class LoginTestWithPageObject extends BaseTest {
 
     @Test
     public void invalidLogin(){
-        loginPage.openLoginPage();
         loginPage.fillingLoginFormWithInvalidCred();
-        loginPage.clickOnButtonLogin();
         loginPage.checkTextInLoginErrorMessage("Invalid username pasword");
 
         Assert.assertFalse("Home page is loaded", homePage.isButtonSignOutDisplayed());
