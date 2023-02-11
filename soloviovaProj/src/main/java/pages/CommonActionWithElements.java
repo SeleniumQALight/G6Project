@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -44,6 +45,15 @@ public class CommonActionWithElements {
         }
     }
 
+    protected void clickOnElement(String xpath) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(xpath)));
+            logger.info("Element is clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
@@ -61,11 +71,11 @@ public class CommonActionWithElements {
         }
     }
 
-    protected void forTextComparing(String expectedText, WebElement webElement){
-        try{
+    protected void forTextComparing(String expectedText, WebElement webElement) {
+        try {
             Assert.assertEquals("Text does not mach", expectedText, webElement.getText());
             logger.info(expectedText + " found its mach.");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.info(expectedText + " does not found its mach.");
         }
     }
