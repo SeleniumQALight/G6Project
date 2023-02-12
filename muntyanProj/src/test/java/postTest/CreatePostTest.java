@@ -1,10 +1,11 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_muntyan";
+    final String POST_TITLE = "TC1_muntyan_" + Util.getDateAndTimeFormatted();
 
     @Test
     public void TC1_createNewPost() { //number of the test can be taken from TestRail and should match
@@ -27,6 +28,7 @@ public class CreatePostTest extends BaseTest {
             .checkIsRedirectToMyProfilePage()
             .checkIsUserNameDisaplyed()
             .checkifUserNameCorrect("muntyan")
+            .checkPostWasCreated(POST_TITLE)
 
 
 
