@@ -27,7 +27,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class = 'py-3 mt-4 btn btn-lg btn-success btn-block']")
     private WebElement buttonSignUp;
 
-    private String validationMessage = ".//*[text() = '%s']";
+    private String validationMessage = ".//*[@class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = '%s']";
     private String registrationValidationMessages = ".//*[@class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
