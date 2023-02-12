@@ -1,0 +1,29 @@
+Home Page(https://qa-complexapp.onrender.com/)
+
+HomePage.input.userName =.//input[@name='username' and not(@id='username-register')]
+HomePage.input.Password =.//input[(@placeholder='Password')]
+HomePage.button.SignIn =.//button[not(@type='submit')]
+HomePage.input.UsernameSet =.//input[@id='username-register']
+HomePage.input.EmailSet =.//input[@id='email-register']
+HomePage.input.PasswordSet =.//input[@id='password-register']
+HomePage.button.SignUpForOurApp =.//button[@type='submit']
+
+User Account Page
+
+homePage.button.Chat =.//span[@data-toggle='tooltip']
+homePage.button.MyProfile =.//a[not(@href='/') and not(@href='#')][1]
+homePage.button.CreatePost =.//a[@href='/create-post']
+homePage.button.SignOut =.//button[@class ='btn btn-sm btn-secondary']
+homePage.button.Search =.//a[@href='#']
+
+Creating post
+
+CreatingPost.input.Title =.//input [@id='post-title']
+CreatingPost.input.BodyContent =.//textarea[@id='post-body']
+CreatingPost.button.SaveNewPost = .//button[@class='btn btn-primary']
+
+
+Successfully created post
+
+CreatedPost.button.DeletePost =.//button[contains(@class, 'delete-post')]
+CreatedPost.button.Edit =.//a[@data-original-title = 'Edit']
