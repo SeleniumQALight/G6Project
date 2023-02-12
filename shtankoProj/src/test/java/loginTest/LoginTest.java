@@ -11,9 +11,8 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
     private WebDriver webDriver;
-
     @Test
-    public void validLogin() {
+    public void validLogin(){
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
@@ -33,18 +32,12 @@ public class LoginTest {
         inputPassword.sendKeys("123456qwerty");
         System.out.println("password was inputted");
 
-      WebElement buttonSingIn =
-               webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
+        WebElement buttonSingIn =
+                webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         buttonSingIn.click();
         System.out.println("Button was clicked");
-        Assert.assertTrue("Button is not displayed",isButtonSingInDisplayed());
 
-//        WebElement buttonSingOut =
-//                webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
-//        buttonSingOut.click();
-//        System.out.println("Button was clicked");
-
-        Assert.assertTrue("Button is not displayed", isButtonSingOutDisplayed());
+        Assert.assertTrue("Button is not displayed",isButtonSingOutDisplayed());
 
         webDriver.quit();
         System.out.println("browser was closed");
@@ -109,5 +102,4 @@ public class LoginTest {
             return false;
         }
     }
-
 }

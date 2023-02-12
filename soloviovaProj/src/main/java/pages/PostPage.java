@@ -11,6 +11,14 @@ public class PostPage extends ParentPage {
     private WebElement buttnEdit;
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
+    @FindBy(xpath = ".//h2")
+    private WebElement titleText;
+    @FindBy(xpath = ".//i[contains(text(),' Note: This post was written for ')]")
+    private WebElement postLabel;
+    @FindBy(xpath = ".//p//u")
+    private WebElement labelValue;
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
 
     private HeaderElements headerElements = new HeaderElements(webDriver);
 
@@ -29,7 +37,27 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkTextInSuccessMessage(String expectedMessage) {
-        Assert.assertEquals("", expectedMessage, successMessage.getText());
+        forTextComparing(expectedMessage, successMessage);
         return this;
+    }
+
+    public PostPage checkTextInTitleElement(String expectedTitle) {
+        forTextComparing(expectedTitle, titleText);
+        return this;
+    }
+
+    public PostPage checkIsLabelPresent() {
+        Assert.assertTrue("Not is not found", isElementDisplayed(postLabel));
+        return this;
+    }
+
+    public PostPage checkLabelValue(String expectedLabelValue) {
+        forTextComparing(expectedLabelValue, labelValue);
+        return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
