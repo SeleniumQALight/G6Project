@@ -14,7 +14,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickButtonLogin();
         //homePage.checkIsRedirectToHomePage();
-        homePage.getHeaderElement().isButtonSignOutDisplayed();
+//        homePage.getHeaderElement().isButtonSignOutDisplayed();
 
         Assert.assertTrue("Button is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
 
