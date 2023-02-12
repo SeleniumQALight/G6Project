@@ -1,6 +1,7 @@
 package postTest;
 
 import BaseTest.BaseTest;
+import libs.TestData;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
@@ -27,7 +28,9 @@ public class CreatePostTest extends BaseTest {
              .checkNoteSecondOptionIsVisible()
                 .getHeaderElement().clickOnMyProfileButton()
              .checkIsRedirectToMyProfilePage()
-                .checkPostWasCreated(POST_TITLE)
+//             .checkIsLoggedUserNameOnPage(TestData.VALID_LIGIN)
+             .checkPostWasCreated(POST_TITLE)
+             .checkIsLoggedUserNameOnPage(TestData.VALID_LIGIN)
         ;
     }
 
