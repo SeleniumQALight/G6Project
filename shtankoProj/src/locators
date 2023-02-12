@@ -1,1 +1,28 @@
-1.
+LoginPages
+1) .//input[@name='username' and @placeholder='Username']
+2) .//input[@placeholder='Password']
+3) .//button[@class='btn btn-primary btn-sm']
+4) .//*[@class=\"alert alert-danger text-center\"]
+
+HomePages
+1) .//button[text()='Sign Out']
+2) .//a[@class='btn btn-sm btn-success mr-2']
+
+CreatePostPages
+1) .//input[@id='post-title']
+2) .//textarea[@id='post-body']
+3) .//select[contains(name(), 'select')]
+4) .//option[@value='All Users']
+5) .//option[@value='One Person']
+6) .//option[@value='Group Message']
+7) .//button[@class='btn btn-primary']
+
+PostPages
+1) .//*[@class="alert alert-success text-center"]
+2) .//*[text()=' All Users']
+3) .//*[text()='  One Person']
+4)
+
+ChatWindows
+1) .//div[@class='chat-title-bar']
+2) .//span[@class='chat-title-bar-close']
