@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-import javax.xml.xpath.XPath;
-
-public class PostPage extends ParentPage{
+public class PostPage extends HeaderElement{
 
     @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
     private WebElement buttonEdit;
@@ -16,7 +14,18 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy(xpath = ".//h2")
+    private WebElement titlePostPage;
+
+    @FindBy(xpath = ".//*[text()=' Note: This post was written for ']")
+    private WebElement notePostPage;
+
+    @FindBy(xpath = ".//p//u")
+    private WebElement bodyWithUnderline;
+
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
+
 
     public HeaderElement getHeaderElement() {
         return headerElement;
@@ -39,6 +48,27 @@ return this;
                 , expectedMessage, successMessage.getText());
         return this;
     }
+
+    public PostPage checkisTitlePostDisplayed(){
+        Assert.assertTrue("TitlePost is not disaplyed", isElementDisplayed(titlePostPage));
+        return this;
+    }
+
+    public PostPage checkisNoteDisaplyed(){
+        Assert.assertTrue("Note is not disaplyed", isElementDisplayed(notePostPage));
+        return this;
+    }
+
+    public PostPage checkisBodyDisplayed(){
+        Assert.assertTrue("Body is not disaplyed", isElementDisplayed(bodyWithUnderline));
+        return this;
+    }
+
+    public PostPage checkisBodyEqualesToDDSelection(String expectedBodyValue){
+        forTextComparing (expectedBodyValue, bodyWithUnderline);
+        return this;
+    }
+
 
 
 }

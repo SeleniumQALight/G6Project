@@ -18,9 +18,19 @@ public class CreatePostTest extends BaseTest {
          //   .selectValueInDropDownOptions("One Person")
             .clickOnSavePostButton()
             .checkIsRedirectToPostPage()
+            .checkisTitlePostDisplayed()
             .checkTextInSuccessMessage("New post successfully created.")
+            .checkisNoteDisaplyed()
+            .checkisBodyDisplayed()
+            .checkisBodyEqualesToDDSelection("One Person")
             .getHeaderElement().clickOnMyProfileButton()
             .checkIsRedirectToMyProfilePage()
+            .checkIsUserNameDisaplyed()
+            .checkifUserNameCorrect("muntyan")
+
+
+
+
 
     ;
 
