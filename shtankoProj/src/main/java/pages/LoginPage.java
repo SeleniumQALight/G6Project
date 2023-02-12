@@ -64,12 +64,8 @@ public class LoginPage extends ParentPage {
     }
 
     public void clickButtonLogin() {
-<<<<<<<<< Temporary merge branch 1
         clickOnElement(buttonLogin);
     }
-=========
-       clickOnElement(buttonLogin);
-        }
 
     public HomePage fillingLoginFormWhitValidCred() {
         openLoginPage();
@@ -78,8 +74,6 @@ public class LoginPage extends ParentPage {
         clickButtonLogin();
         return new HomePage(webDriver);
     }
-}
->>>>>>>>> Temporary merge branch 2
 
     public boolean alertLoginDanger() {
         try {
