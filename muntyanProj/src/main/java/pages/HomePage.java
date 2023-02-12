@@ -25,11 +25,10 @@ public class HomePage extends HeaderElement {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        //login
-        loginPage.fillingLoginFormWithValidCred();
-        //check that we are in home page
+        if(!isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
-
         return this;
     }
 

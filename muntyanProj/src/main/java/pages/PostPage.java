@@ -23,8 +23,11 @@ public class PostPage extends HeaderElement{
     @FindBy(xpath = ".//p//u")
     private WebElement bodyWithUnderline;
 
+    @FindBy(xpath = ".//button[@data-toggle = 'tooltip'] ")
+    private WebElement buttonDelete;
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
+
 
 
     public HeaderElement getHeaderElement() {
@@ -70,5 +73,8 @@ return this;
     }
 
 
-
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
+    }
 }

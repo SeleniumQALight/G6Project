@@ -19,7 +19,12 @@ public class MyProfilePage extends ParentPage {
     @FindBy(xpath = ".//h2/text")
     private WebElement usernameTextInMyProfile;
 
+    @FindBy(xpath = ".//div[text() = 'Post successfully deleted']")
+    private WebElement successDeletePostMessage;
+
     private String titlePost = ".//*[text()='%s']";
+
+
 
 
 
@@ -49,6 +54,36 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
     Assert.assertEquals("Number of posts with title", 1, getPostsListWithTitle(postTitle).size());
+        return this;
+    }
+
+    public MyProfilePage deletePostsWithTitleTillPresent(String postTitle) {
+        List<WebElement> listOfPosts = getPostsListWithTitle(postTitle);
+
+        int counter = listOfPosts.size();
+        while (!listOfPosts.isEmpty() && counter>0){
+            clickOnElement(String.format(titlePost, postTitle));
+            new PostPage(webDriver)
+                    .checkIsRedirectToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage()
+                    .checkIsSuccessDeletePostMessegePresent()
+                    ;
+            logger.info("Post was deleted with title " + postTitle);
+            listOfPosts = getPostsListWithTitle(postTitle);
+            counter--;
+        }
+        if(listOfPosts.size() == 0) {
+            logger.info("All Posts were deleted with title " + postTitle);
+        }else {
+            logger.error("Delete fail");
+            Assert.fail("Delete fail");
+        }
+        return this;
+    }
+
+    private MyProfilePage checkIsSuccessDeletePostMessegePresent() {
+        Assert.assertTrue("Message delete Post is not displayed ", isElementDisplayed(successDeletePostMessage));
         return this;
     }
 }
