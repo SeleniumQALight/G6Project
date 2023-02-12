@@ -17,10 +17,10 @@ public class PostPage extends ParentPage {
     @FindBy (xpath = ".//div[@class='d-flex justify-content-between']//h2")
     private WebElement postTitle;
 
-    @FindBy (xpath = ".//i[contains(text(), ' Note: This post was written for ')]")
+    @FindBy (xpath = "(.//div[@class='body-content']//p)[2]")
     private WebElement postNote;
 
-    @FindBy (xpath = ".//i[contains(text(), ' Note: This post was written for ')]//u[contains(text(), 'All Users')]")
+    @FindBy (xpath = ".//u[contains(text(), 'One Person')]")    // was "All Users"
     private WebElement postNoteSecondOption;
 
     private HeaderElement headerElement = new HeaderElement(webDriver); //  оголошує елемент headerElement

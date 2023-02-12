@@ -19,4 +19,6 @@ public class MyProfilePage extends  ParentPage {
         Assert.assertTrue("MyProfilePage is not loaded", isElementDisplayed(avatar));
         return  this;
     }
+
+
 }

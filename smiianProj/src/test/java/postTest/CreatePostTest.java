@@ -20,7 +20,7 @@ public class CreatePostTest extends BaseTest {
                 .clickOnSavePostButton()
              .checkInSuccessMessage("New post successfully created.")
              .checkTitleIsVisible()
-                                         // додати перевірки
+             .checkNoteIsVisibleByText(POST_BODY)
              .checkNoteIsVisible()
              .checkNoteSecondOptionIsVisible()
                 .getHeaderElement().clickOnMyProfileButton()
