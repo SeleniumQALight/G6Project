@@ -39,6 +39,7 @@ public class MyProfilePage extends ParentPage{
         return this;
     }
 
+
     public MyProfilePage deletePostWithTitleTillPresent(String postTitle) {
         List<WebElement> listOfPosts = getPostsListWithTitle(postTitle);
         int counter = listOfPosts.size();
@@ -65,5 +66,15 @@ public class MyProfilePage extends ParentPage{
     private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
         Assert.assertTrue("Message Delete post is not shown", isElementDisplayed(successDeletePostMessage));
         return this;
+    }
+
+    public PostPage openPostWithTitle(String postTitle) {
+        try {
+        webDriver.findElement(By.xpath(String.format(titlePost,postTitle))).click();
+        return new PostPage(webDriver);
+        } catch (Exception e){
+            printErrorAndStopTest(e);
+            return null;
+        }
     }
 }
