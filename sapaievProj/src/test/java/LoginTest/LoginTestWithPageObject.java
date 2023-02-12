@@ -3,8 +3,11 @@ package LoginTest;
 import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
+import pages.elements.HeaderElement;
 
 public class LoginTestWithPageObject extends BaseTest {
+
+
 
 
     @Test
@@ -14,7 +17,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonLogin();
         Assert.assertTrue("Button is not displayed",
-                homePage.isButtonSignOutDisplayed());
+                homePage.getHeaderElement().isButtonSignOutDisplayed());
     }
 
 
@@ -25,9 +28,9 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterPasswordIntoInputPassword("123456qwertwwwy");
         loginPage.clickOnButtonLogin();
         Assert.assertFalse("Button is not displayed",
-                homePage.isButtonSignOutDisplayed());
+                homePage.getHeaderElement().isButtonSignOutDisplayed());
         Assert.assertTrue("Button is not displayed",
-                homePage.isButtonSignInDisplayed());
+                homePage.getHeaderElement().isButtonSignInDisplayed());
 
 
     }

@@ -19,7 +19,10 @@ public class HomePage extends ParentPage {
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         // log in method
-        loginPage.fillingLoginFormWithWalidCred();
+        if (!headerElements.isButtonSignOutDisplayed()){
+            loginPage.fillingLoginFormWithWalidCred();
+        }
+       // loginPage.fillingLoginFormWithWalidCred();
         // check where wee are
         checkIsRedirectToHomePage();
         return this;
