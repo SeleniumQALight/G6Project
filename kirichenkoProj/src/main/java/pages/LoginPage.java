@@ -13,6 +13,8 @@ public class LoginPage extends ParentPage{
     private WebElement inputPassword;
     @FindBy (xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
+    @FindBy (xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement errorLoginMessage;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -27,25 +29,22 @@ public class LoginPage extends ParentPage{
         }
     }
 
-    public void enterUserNameIntoInputLogin(String userName) {
-        /*try {
-            //WebElement inputUserName =
-            //        webDriver.findElement(By.xpath("//input[@name='username' and @placeholder='Username']"));
-            inputUserName.clear();
-            inputUserName.sendKeys(userName);
-            logger.info("login was inputted");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }*/
-        enterTextInToElement(inputUserName, userName);
+    public void enterUserNameIntoInputLogin(String userName) { enterTextInToElement(inputUserName, userName);
     }
-
     public void enterPasswordIntoInputPassword(String password) {
         enterTextInToElement(inputPassword, password);
     }
 
-    public void clickOnButtonLogin() {
-        clickOnElement(buttonLogin);
+    public void clickOnButtonLogin() { clickOnElement(buttonLogin);
+    }
+
+    public boolean isSignInButtonDisplayed(){
+        return isElementDisplayed(buttonLogin);
+    }
+    public LoginPage checkTextInLoginErrorMessage(String expectedMessage){
+        Assert.assertEquals("Text in success message element"
+                , expectedMessage, errorLoginMessage.getText());
+        return this;
     }
 
     public HomePage fillingLoginFormWithValidCred() {
@@ -54,5 +53,13 @@ public class LoginPage extends ParentPage{
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage fillingLoginFormWithInvalidCred() {
+        openLoginPage();
+        enterUserNameIntoInputLogin(TestData.INVALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        clickOnButtonLogin();
+        return this;
     }
 }
