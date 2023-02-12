@@ -71,4 +71,9 @@ public class ProfilePage extends ParentPage {
         Assert.assertTrue("Alert that post is deleted not present ", isElementDisplayed(deletePostSuccesfull));
         return this;
     }
+
+    public PostPage openPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
+    }
 }

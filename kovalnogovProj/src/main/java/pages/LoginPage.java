@@ -14,6 +14,29 @@ public class LoginPage extends ParentPage {
     private WebElement passwordInput;
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement signInBtn;
+    @FindBy(id = "username-register")
+    private WebElement userNameReg;
+    @FindBy(id = "email-register")
+    private WebElement emailReg;
+    @FindBy(id = "password-register")
+    private WebElement passwordReg;
+
+    public enum RegistrationFields {
+        USER_NAME("1"),
+        EMAIL("2"),
+        PASSWORD("3");
+        private String index;
+
+        RegistrationFields(String index) {
+            this.index = index;
+        }
+
+        public String getIndex() {
+            return index;
+        }
+    }
+
+    private String errorMessage = "(.//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'])[%s]";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -58,6 +81,21 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    public LoginPage typeUserNameForRegistration(String userName) {
+        typeTextToElement(userNameReg, userName);
+        return this;
+    }
+
+    public LoginPage typeEmailForRegistration(String email) {
+        typeTextToElement(emailReg, email);
+        return this;
+    }
+
+    public LoginPage typePasswordForRegistration(String password) {
+        typeTextToElement(passwordReg, password);
+        return this;
+    }
+
     public HomePage fillValidCreds() {
         openLoginPage();
         typeUserName(TestData.VALID_LOGIN);
@@ -68,5 +106,11 @@ public class LoginPage extends ParentPage {
 
     public boolean isButtonSingInDisplayed() {
         return signInBtn.isDisplayed();
+    }
+
+    public LoginPage checkErrorMessageWithText(String message, RegistrationFields field) {
+        String errorMessageText = getText(getWebElement(String.format(errorMessage, field.getIndex())));
+        Assert.assertEquals("Error message for " + field.name() + "field is wrong ", message, errorMessageText);
+        return this;
     }
 }
