@@ -17,7 +17,8 @@ public class PostPage extends ParentPage{
     private WebElement actualLabel;
     @FindBy(xpath = ".//div[@class='body-content']//u")
     private WebElement actualOptionValue;
-
+    @FindBy(xpath = ".//*[@class='body-content'][2]")
+    private WebElement actualBodyContent;
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
 
@@ -58,8 +59,18 @@ public class PostPage extends ParentPage{
         return this;
     }
 
+    public PostPage checkBodyContent(String postBodyContent) {
+        Assert.assertEquals("Wrong post option value",postBodyContent, actualBodyContent.getText());
+        return this;
+    }
+
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPostPage(webDriver);
     }
 }
