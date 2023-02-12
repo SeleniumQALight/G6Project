@@ -2,14 +2,15 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class CommonActionWithElements {
     protected WebDriver webDriver; //protected makes this element available for classes in other packages.
@@ -44,6 +45,15 @@ public class CommonActionWithElements {
         }
     }
 
+    protected void clickOnElement(String xpath) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(xpath)));
+            logger.info("Element is clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();
@@ -61,11 +71,11 @@ public class CommonActionWithElements {
         }
     }
 
-    protected void forTextComparing(String expectedText, WebElement webElement){
-        try{
+    protected void forTextComparing(String expectedText, WebElement webElement) {
+        try {
             Assert.assertEquals("Text does not mach", expectedText, webElement.getText());
             logger.info(expectedText + " found its mach.");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.info(expectedText + " does not found its mach.");
         }
     }
@@ -95,4 +105,57 @@ public class CommonActionWithElements {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
+//-------------------
+//    public void usersPressesKeyEnterTime(int numberOfTimes) {
+//        Actions actions = new Actions(webDriver);
+//        for (int i = 0; i < numberOfTimes; i++) {
+//            actions.sendKeys(Keys.ENTER).build().perform();
+//        }
+//    }
+//
+//    public void usersPressesKeyTabTime(int numberOfTimes) {
+//        Actions actions = new Actions(webDriver);
+//        for (int i = 0; i < numberOfTimes; i++) {
+//            actions.sendKeys(Keys.TAB).build().perform();
+//        }
+//
+//    }
+//
+//    public void usersPressesKeyTime(Keys keys, int numberOfTimes) {
+//        Actions actions = new Actions(webDriver);
+//        for (int i = 0; i < numberOfTimes; i++) {
+//            actions.sendKeys(keys).build().perform();
+//        }
+//
+//    }
+//
+//    public void userOpensNewTab() {
+//        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+//        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+//        webDriver.switchTo().window(tabs.get(1));
+//    }
+//
+//    метод moveToElement (аналог скрола )
+//
+//    WebElement element = driver.findElement(By.id("my-id"));
+//    Actions actions = new Actions(driver);
+//actions.moveToElement(element);
+//actions.perform();
+//
+//—————————-
+//    метод скрола з використанням javaScript
+//
+//    JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("javascript:window.scrollBy(250,350)");
+//
+//—————————-
+//    Емуляція натискання PageDown
+//
+//WebElement.sendKeys(PAGE_DOWN);
+//
+//—————————-
+//    скрол до елемента з javaScript
+//
+//            webElement = driver.findElement(By.xpath("bla-bla-bla"));
+//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", webElement);
 }
