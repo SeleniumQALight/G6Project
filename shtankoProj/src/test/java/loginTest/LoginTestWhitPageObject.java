@@ -21,7 +21,7 @@ public class LoginTestWhitPageObject extends BaseTest {
         loginPage.clickButtonLogin();
 
         Assert.assertTrue("Button is not displayed",
-                homePage.isButtonSingOutDisplayed());
+                homePage.getHeaderElement().isButtonSingOutDisplayed());
 
     }
     @Test

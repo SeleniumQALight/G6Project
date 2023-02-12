@@ -64,12 +64,8 @@ public class LoginPage extends ParentPage {
     }
 
     public void clickButtonLogin() {
-<<<<<<<<< Temporary merge branch 1
         clickOnElement(buttonLogin);
     }
-=========
-       clickOnElement(buttonLogin);
-        }
 
     public HomePage fillingLoginFormWhitValidCred() {
         openLoginPage();
@@ -77,16 +73,6 @@ public class LoginPage extends ParentPage {
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickButtonLogin();
         return new HomePage(webDriver);
-    }
-}
->>>>>>>>> Temporary merge branch 2
-
-    public boolean alertLoginDanger() {
-        try {
-            return webDriver.findElement(By.xpath(".//a[@class='btn btn-sm btn-success mr-2']")).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
     }
 }
 
