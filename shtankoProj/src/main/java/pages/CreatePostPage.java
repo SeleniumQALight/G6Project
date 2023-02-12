@@ -52,4 +52,9 @@ public class CreatePostPage extends ParentPage{
         selectValueInDropDown(dropDownOptions, valueInDD);
         return this;
     }
+    public CreatePostPage selectTextInUIDropDownOptions(String valueInUIDD){
+        selectTextInUIDropDown(dropDownOptions, valueInUIDD);
+        return this;
+    }
+
 }

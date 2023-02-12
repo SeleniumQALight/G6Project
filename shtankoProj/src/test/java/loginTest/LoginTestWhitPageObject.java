@@ -2,11 +2,17 @@ package loginTest;
 import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
+import pages.elements.HeaderElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginTestWhitPageObject extends BaseTest {
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
+    private HeaderElement headerElement = new HeaderElement(webDriver);
     @Test
     public void validLogin(){
         loginPage.openLoginPage();
@@ -15,7 +21,7 @@ public class LoginTestWhitPageObject extends BaseTest {
         loginPage.clickButtonLogin();
 
         Assert.assertTrue("Button is not displayed",
-                homePage.isButtonSingOutDisplayed());
+                homePage.getHeaderElement().isButtonSingOutDisplayed());
 
     }
     @Test

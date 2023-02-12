@@ -12,8 +12,18 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy(xpath = ".//*[@class=\"d-flex justify-content-between\"]")
+    private WebElement titleNewPost;
+    @FindBy(xpath = ".//html/body/div[2]/div[3]/p/i/text()")
+    private WebElement notePost;
+
+    @FindBy(xpath = ".//html/body/div[2]/div[3]/p/i/u")
+    private WebElement statusPost;
+
     //ми вказуємо що в нас ще є пов'язані єлементи в іншому класі
     private HeaderElement headerElement = new HeaderElement(webDriver);
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -34,5 +44,27 @@ public class PostPage extends ParentPage{
     public PostPage checkTextInSuccessMessage(String expectedMessage){
         Assert.assertEquals("Text in success message element", expectedMessage, successMessage.getText());
         return this;
+    }
+    public PostPage checkTextInNewTitle(String expectedTitle){
+        Assert.assertEquals("Text in success title element", expectedTitle, titleNewPost.getText());
+        return this;
+    }
+    public PostPage checkNotePost(){
+        Assert.assertFalse("Text is displayed",isElementDisplayed(notePost));
+        return this;
+    }
+
+    public PostPage checkStatusPost(String expectedStatus){
+        Assert.assertEquals("Text in success status element",expectedStatus,statusPost.getText());
+        return this;
+    }
+
+
+
+
+
+    public MyProfilePage clickOnDeleteButton() {
+   clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }

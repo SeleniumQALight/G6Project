@@ -1,10 +1,14 @@
 package pages;
 
 
+import elements.HeaderElement;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static elements.HeaderElement.buttonCreatePost;
+import static elements.HeaderElement.isSignOutButtonDisplayed;
 
 public class HomePage extends ParentPage {
 
@@ -14,26 +18,27 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    private HeaderElement headerElement = new HeaderElement(webDriver);
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
 
     }
 
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        //login
-        //check that we are in homepage
-        loginPage.fillingLoginFormWithValidCred();
+        if (!isSignOutButtonDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
         return this;
     }
 
-
-    public boolean isSignOutButtonDisplayed() {
-        return isElementPresented(signOutButton);
-
-    }
 
     public HomePage checkIsRedirectToHomePage() {
         Assert.assertTrue("HomePage is not loaded", isSignOutButtonDisplayed());

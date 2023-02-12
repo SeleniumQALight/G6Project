@@ -39,12 +39,7 @@ public class LoginTest {
         System.out.println("Button was clicked");
         Assert.assertTrue("Button is not displayed",isButtonSingInDisplayed());
 
-//        WebElement buttonSingOut =
-//                webDriver.findElement(By.xpath(".//button[text()='Sign Out']"));
-//        buttonSingOut.click();
-//        System.out.println("Button was clicked");
-
-        Assert.assertTrue("Button is not displayed", isButtonSingOutDisplayed());
+        Assert.assertTrue("Button is not displayed",isButtonSingOutDisplayed());
 
         webDriver.quit();
         System.out.println("browser was closed");
