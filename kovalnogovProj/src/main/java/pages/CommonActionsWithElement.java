@@ -2,21 +2,32 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElement {
     protected Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
+    WebDriverWait wait10;
+    WebDriverWait wait15;
 
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
+        wait10=new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        wait15=new WebDriverWait(webDriver, Duration.ofSeconds(15));
         PageFactory.initElements(webDriver, this);
     }
 
     protected void typeTextToElement(WebElement element, String text) {
+        wait15.until(ExpectedConditions.visibilityOf(element));
         try {
             element.clear();
             element.sendKeys(text);
@@ -27,13 +38,20 @@ public class CommonActionsWithElement {
     }
 
     protected void clickOnElement(WebElement element) {
+        wait10.until(ExpectedConditions.elementToBeClickable(element));
         try {
             element.click();
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }
     }
-
+    protected void clickOnElement(String xpath) {
+        try {
+           clickOnElement(webDriver.findElement(By.xpath(xpath)));
+        } catch (Exception e) {
+            printErroAboutElementAndStopTest(e);
+        }
+    }
 
     protected boolean isElementDisplayed(WebElement element) {
         try {
@@ -62,10 +80,20 @@ public class CommonActionsWithElement {
         return text;
     }
 
+    protected String getTextDecorationCssProperty(WebElement element) {
+        try {
+            return element.getCssValue("text-decoration");
+        } catch (Exception e) {
+            printErroAboutElementAndStopTest(e);
+        }
+        return "";
+    }
+
     protected void selectTextInDropDownByUi(WebElement dropDown, String text) {
         try {
-            //TODO homework create method which will select in dd
-
+            clickOnElement(dropDown);
+            webDriver.findElement(By.xpath(".//select/option[contains(text(),'" + text + "')]"))
+                    .click();
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }

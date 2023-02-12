@@ -32,9 +32,11 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-
+        if(!headerElement.isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         //залогінитись
-        loginPage.fillingLoginFormWithValidCred();
+//        loginPage.fillingLoginFormWithValidCred();
 
         //перевірити що ми знаходимось на HomePage
         checkIsRedirectToHomePage();

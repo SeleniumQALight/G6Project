@@ -2,6 +2,7 @@ package pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -68,6 +69,17 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
         }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI (WebElement dropDown, String text){
+        try {
+            WebElement selectedOption = webDriver.findElement(By.xpath(".//option[text() = '" + text + "']"));
+            clickOnElement(dropDown);
+            clickOnElement(selectedOption);
+            logger.info(text + " was selected in Dropdown");
+        } catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
