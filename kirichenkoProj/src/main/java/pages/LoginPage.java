@@ -29,25 +29,13 @@ public class LoginPage extends ParentPage{
         }
     }
 
-    public void enterUserNameIntoInputLogin(String userName) {
-        /*try {
-            //WebElement inputUserName =
-            //        webDriver.findElement(By.xpath("//input[@name='username' and @placeholder='Username']"));
-            inputUserName.clear();
-            inputUserName.sendKeys(userName);
-            logger.info("login was inputted");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }*/
-        enterTextInToElement(inputUserName, userName);
+    public void enterUserNameIntoInputLogin(String userName) { enterTextInToElement(inputUserName, userName);
     }
-
     public void enterPasswordIntoInputPassword(String password) {
         enterTextInToElement(inputPassword, password);
     }
 
-    public void clickOnButtonLogin() {
-        clickOnElement(buttonLogin);
+    public void clickOnButtonLogin() { clickOnElement(buttonLogin);
     }
 
     public boolean isSignInButtonDisplayed(){
