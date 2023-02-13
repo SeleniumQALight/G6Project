@@ -52,7 +52,7 @@ public class PostPage extends ParentPage{
         return new MyProfilePage(webDriver);
     }
 
-    public EditPostPage openPostEditPage() {
+    public EditPostPage clickOnEditButton() {
         clickElement(editButton);
         return new EditPostPage(webDriver);
     }
