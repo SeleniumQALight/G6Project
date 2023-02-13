@@ -22,6 +22,9 @@ public class CreatePostPage extends ParentPage{
 
 
 
+
+
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -67,5 +70,8 @@ public class CreatePostPage extends ParentPage{
         selectTextInDropDownByUI(dropDownOptions,textInDropdown);
         return this;
     }
+
+
+
 
 }

@@ -26,6 +26,10 @@ public class MyProfilePage extends ParentPage{
     private WebElement nameUserInProfile;
 
 
+
+
+
+
     public MyProfilePage(WebDriver webDriver) {
 
         super(webDriver);
@@ -90,4 +94,30 @@ public class MyProfilePage extends ParentPage{
     }
 
 
+    public MyProfilePage EditPostsWithTitleTillPresent(String post_title, String new_postTitle) {
+        WebElement post=webDriver.findElement(By.xpath(String.format(titlePost, post_title)));
+        clickOnElement(post);
+        new  PostPage((webDriver))
+                .checkIsRedirectToPostPage()
+                .clickOnEditButton()
+                .enterTextInInputTitle(new_postTitle)
+                .clickOnSaveButton()
+                .checkEditPostTitleMessage()
+                .getHeaderElement()
+                .clickOnMyProfileButton()
+                .checkSizeListOfEditedPost(new_postTitle);
+        return this;
+    }
+
+
+
+
+
+
+
+    public  MyProfilePage checkSizeListOfEditedPost(String newtitlePost){
+        List<WebElement> listPosts=webDriver.findElements(By.xpath(String.format(titlePost, newtitlePost)));
+        Assert.assertTrue("Size of edited post is 1",listPosts.size()==1);
+        return this;
+    }
 }

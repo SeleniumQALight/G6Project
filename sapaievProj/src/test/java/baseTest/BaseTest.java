@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.apache.log4j.Logger;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.MyProfilePage;
 import pages.elements.HeaderElement;
 
 import java.time.Duration;
@@ -20,6 +21,8 @@ public class BaseTest {
     protected HomePage homePage;
     protected HeaderElement headerElement;
 
+    protected MyProfilePage myProfilePage;
+
 
 
 
@@ -31,6 +34,7 @@ public class BaseTest {
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         loginPage = new LoginPage(webDriver);
         homePage=new HomePage(webDriver);
+        myProfilePage=new MyProfilePage(webDriver);
 
 
     }

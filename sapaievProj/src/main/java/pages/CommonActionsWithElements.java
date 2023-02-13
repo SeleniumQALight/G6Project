@@ -40,6 +40,13 @@ public class CommonActionsWithElements {
     }
 
 
+
+
+
+
+
+
+
     protected void printErrorAndStopTest(Exception e){
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
