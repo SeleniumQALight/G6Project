@@ -16,6 +16,9 @@ public class MyProfilePage extends  ParentPage {
     @FindBy (xpath = ".//div[text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
 
+    @FindBy (xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
+    private WebElement profileName;
+
     public MyProfilePage (WebDriver webDriver) {
         super(webDriver);
     }
@@ -24,7 +27,7 @@ public class MyProfilePage extends  ParentPage {
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         //TODO check URL
-        Assert.assertTrue("MyProfilePage ss not loaded", isElementDisplayed(avatar));
+        Assert.assertTrue("MyProfilePage is not loaded", isElementDisplayed(avatar));
         return  this;
     }
 
@@ -65,6 +68,11 @@ public class MyProfilePage extends  ParentPage {
 
     private MyProfilePage checkIsSuccessDeletedPostMessagePresent() {
         Assert.assertTrue("Message delete Post is not displayed", isElementDisplayed(successDeletePostMessage));
+        return this;
+    }
+
+    public MyProfilePage checkIsLoggedUserNameOnPage (String profileNameText) {
+        Assert.assertEquals("", profileNameText, profileName.getText());
         return this;
     }
 }
