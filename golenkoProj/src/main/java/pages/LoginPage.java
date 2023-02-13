@@ -114,8 +114,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkErrorMessageWithText(String textMessage) {
-        WebElement element = webDriver.findElement(By.xpath(String.format(parametrizedAlert, textMessage)));
-        Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(element));
+        Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parametrizedAlert, textMessage)));
         return this;
     }
 
