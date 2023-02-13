@@ -1,6 +1,7 @@
 package postTest;
 
 import BaseTest.BaseTest;
+import libs.TestData;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
@@ -12,17 +13,24 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost(){
         homePage
                 .openHomePage()
-                .clickOnCreatePostButton()
+                .getHeaderElement().clickOnCreatePostButton()
              .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInBodyContent(POST_BODY)
 //                .selectTextInDropDownOption("Приватне повідомлення")
-                .selectValueInDropDownOption("One Person")
+//                .selectValueInDropDownOption("One Person")
+                .selectSecondTextInDropDownByUi()
                 .clickOnSavePostButton()
              .checkInSuccessMessage("New post successfully created.")
+             .checkTitleIsVisible()
+             .checkNoteIsVisibleByText(POST_BODY)
+             .checkNoteIsVisible()
+             .checkNoteSecondOptionIsVisible()
                 .getHeaderElement().clickOnMyProfileButton()
              .checkIsRedirectToMyProfilePage()
-                .checkPostWasCreated(POST_TITLE)
+//             .checkIsLoggedUserNameOnPage(TestData.VALID_LIGIN)
+             .checkPostWasCreated(POST_TITLE)
+             .checkIsLoggedUserNameOnPage(TestData.VALID_LIGIN)
         ;
     }
 

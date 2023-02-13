@@ -92,6 +92,17 @@ public class CommonActionWithElements {
         }
     }
 
+    protected void selectTextInDropDownByUi (WebElement postPostPageDropDown, WebElement postPageDropDownSecondOption) {
+        try {
+            clickOnElement(postPostPageDropDown);
+            logger.info("DropDown was clicked");
+            clickOnElement(postPageDropDownSecondOption);
+            logger.info("DropDownOption was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 
     protected  void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
