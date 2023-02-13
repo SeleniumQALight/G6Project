@@ -28,6 +28,7 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage enterTextInInputTitle(String postTitle) {
+        inputTitle.clear();
         enterTextIntoElement(inputTitle, postTitle);
         return this;
     }
