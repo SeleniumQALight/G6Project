@@ -19,7 +19,7 @@ public class CreatePostTest extends BaseTest {
 //                .selectTextInDropDownOption("Приватне повідомлення")
                 .selectValueInDropDownOption("One Person")
                 .clickOnSavePostButton()
-             .chechInSuccessMessage("New post successfully created.")
+             .checkInSuccessMessage("New post successfully created.")
                 .getHeaderElement().clickOnMyProfileButton()
              .checkIsRedirectToMyProfilePage()
                 .checkPostWasCreated(POST_TITLE)

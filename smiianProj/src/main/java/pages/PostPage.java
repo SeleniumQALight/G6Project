@@ -33,7 +33,7 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-    public PostPage chechInSuccessMessage(String expectedMessage){
+    public PostPage checkInSuccessMessage(String expectedMessage){
         Assert.assertEquals("Text in success message element ", expectedMessage, successMessage.getText());
 
         return this;

@@ -16,11 +16,34 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+    @FindBy (xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'" +
+            "and contains(text(), 'Username must be at least 3 characters.')]")
+    private WebElement usernameAlertMessage;
+
+    @FindBy (xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'" +
+            "and contains(text(), 'You must provide a valid email address.')]")
+    private WebElement emailAlertMessage;
+
+    @FindBy (xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'" +
+            "and contains(text(), 'Password must be at least 12 characters.')]")
+    private WebElement passwordAlertMessage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+//-------------------------------------------------------------------------------------------------------------
+//    public void openLoginPage() {
+//        try {
+//            webDriver.get("https://qa-complexapp.onrender.com/");
+//            logger.info("LoginPage is opened");
+//
+//        } catch (Exception e) {
+//            logger.error("Can not open Login Page" + e);  //Write message into log-file
+//            Assert.fail("Can not open Login Page" + e);  //Write message into console
+//        }
+//    }
 
-    public void openLoginPage() {
+    public LoginPage openLoginPage() {
         try {
             webDriver.get("https://qa-complexapp.onrender.com/");
             logger.info("LoginPage is opened");
@@ -29,7 +52,9 @@ public class LoginPage extends ParentPage {
             logger.error("Can not open Login Page" + e);  //Write message into log-file
             Assert.fail("Can not open Login Page" + e);  //Write message into console
         }
+        return this;
     }
+//-------------------------------------------------------------------------------------------------------------
 
     public void enterUserNameIntoInputLogin(String userName) {
 //        try {
@@ -47,6 +72,13 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputUserName, userName);
     }
 
+    public LoginPage enterDataIntoUsernameField(String userName) {
+        enterTextIntoElement(inputUserName, userName);
+        return  this;
+    }
+
+//-------------------------------------------------------------------------------------------------------------
+
     public void enterPasswordIntoInputpassword(String password) {
 //        try {
 ////            WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
@@ -59,6 +91,18 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputPassword, password);
 
     }
+    public LoginPage enterDataIntoPasswordField(String password) {
+        enterTextIntoElement(inputPassword, password);
+        return this;
+    }
+
+
+//-------------------------------------------------------------------------------------------------------------
+    public LoginPage enterDataIntoEmailField(String password) {
+    enterTextIntoElement(inputPassword, password);
+    return this;
+}
+
 
     public void clickOnButtonLogin() {
 //        try {
@@ -85,5 +129,12 @@ public class LoginPage extends ParentPage {
 
         return isObjectDisplayed(buttonLogin);
     }
+
+    //доробити!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    public LoginPage checkIsUsernameAlertMessageAppear(String expectedMessage){
+//        Assert.assertEquals("Text in success message element ", expectedMessage, successMessage.getText());
+//
+//        return this;
+//    }
 
 }
