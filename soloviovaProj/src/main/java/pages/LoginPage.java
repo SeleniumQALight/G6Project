@@ -2,20 +2,18 @@ package pages;
 
 import libraries.TestData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
-
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
-
     @FindBy(xpath = ".//input[@name='password' and @placeholder='Password']")
     private WebElement inputPassword;
-
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Pick a username']")
@@ -26,8 +24,8 @@ public class LoginPage extends ParentPage {
     private WebElement passwordForRegistration;
     @FindBy(xpath = ".//button[@type='submit']")
     private WebElement signUpButton;
-
-    private String alertMessage = ".//*[text()='%s']";
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> errorMessages;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -89,24 +87,24 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkIsAlertMessagesDisplayed() {
-        List<WebElement> elements = webDriver.findElements(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"));
-        Assert.assertEquals("One of the elements is not found", 3, elements.size());
-        logger.info("Three alert messages are displayed");
+    public LoginPage checkIsAlertMessagesDisplayed(int numberOfElements) {
+        Assert.assertEquals("Number of elements does not match.", numberOfElements, errorMessages.size());
+        logger.info("Number of Elements matches.");
         return this;
     }
 
-    public WebElement getAlertMessage(String message) {
-        return webDriver.findElement(By.xpath(String.format(alertMessage, message)));
-    }
-
-    public LoginPage checkAlertMessagesContent() {
-        Assert.assertEquals("Alert for User Name field does not match", TestData.MESSAGE_1, getAlertMessage("Username must be at least 3 characters.").getText());
-        logger.info("Alert for User Name field matches");
-        Assert.assertEquals("Alert for Email Field does not match", TestData.MESSAGE_2, getAlertMessage("You must provide a valid email address.").getText());
-        logger.info("Alert for Email Field matches");
-        Assert.assertEquals("Alert for Password Field does not match", TestData.MESSAGE_3, getAlertMessage("Password must be at least 12 characters.").getText());
-        logger.info("Alert for Password Field matches");
+    public LoginPage checkAlertMessagesContent(String expectedMessage) {
+        boolean found = false;
+        for (WebElement webElement : errorMessages) {
+            if (expectedMessage.equals(webElement.getText())) {
+                found = true;
+                logger.info(expectedMessage + " found its match");
+                break;
+            }
+        }
+        if (!found) {
+            Assert.fail("The expected error message was not found.");
+        }
         return this;
     }
 
