@@ -12,7 +12,13 @@ public class InvalidUserCreationTest extends BaseTest {
     loginPage
             .openLoginPage()
             .enterUserNameIntoInputSignUp(TestData.INVALID_USERNAME)
-            .checkErrorMessage(TestData.ERROR_MESSAGE_USERNAME);
+            .enterEmailIntoInputSignUp(TestData.INVALID_EMAIL)
+            .enterPasswordInputSignUp(TestData.INVALID_PASSWORD)
+            .checkErrorMessage(TestData.ERROR_MESSAGE_USERNAME)
+            .checkErrorMessage(TestData.ERROR_MESSAGE_EMAIL)
+            .checkErrorMessage(TestData.ERROR_MESSAGE_PASSWORD)
+
+    ;
 
     }
 
