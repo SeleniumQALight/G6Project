@@ -60,6 +60,10 @@ public class LoginPage extends ParentPage {
         return isElementDisplayed(buttonLogin);
     }
 
+    public boolean isButtonSignOutDisplayed(){
+        return isElementDisplayed(buttonLogin);
+    }
+
     public void clickOnButtonLogin() {
        clickOnElement(buttonLogin);
     }
