@@ -23,13 +23,16 @@ public class MyProfilePage extends  ParentPage {
         super(webDriver);
     }
 
-    private String titlePost = ".//*[text()='%s']";  // використовується в String.format
-
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         //TODO check URL
         Assert.assertTrue("MyProfilePage is not loaded", isElementDisplayed(avatar));
         return  this;
     }
+
+
+
+
+    private String titlePost = ".//*[text()='%s']";  // використовується в String.format
 
     public List<WebElement> getPostListWithTitle(String title){
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));   // String.format додає title замість %s
@@ -39,6 +42,9 @@ public class MyProfilePage extends  ParentPage {
         Assert.assertEquals("Number of posts with title", 1, getPostListWithTitle(postTitle).size());   // перевіряє що кількість постів (getPostListWithTitl....size) дорівнює 1
         return this;
     }
+
+
+
 
     public MyProfilePage deletePostWithTitleTillPresent(String postTitle) {
         List<WebElement> listOfPosts = getPostListWithTitle(postTitle);
@@ -55,7 +61,7 @@ public class MyProfilePage extends  ParentPage {
             ;
             logger.info("Post was deleted with title " + postTitle);
             listOfPosts = getPostListWithTitle(postTitle);
-            counter--;     //зменшуємо каунтер на 1
+            counter--;                                         //зменшуємо каунтер на 1
         }
         if (listOfPosts.size() == 0) {
             logger.info("All posts were deleted with title " + postTitle);

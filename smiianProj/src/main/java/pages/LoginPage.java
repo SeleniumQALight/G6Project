@@ -2,9 +2,12 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -15,6 +18,15 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
+
+    @FindBy (xpath = ".//input[@name='username'  and @class='form-control']")
+    private WebElement signupUsername;
+
+    @FindBy (xpath = ".//input[@name='email'  and @class='form-control']")
+    private WebElement signupEmail;
+
+    @FindBy (xpath = ".//input[@name='password'  and @class='form-control']")
+    private WebElement signupPassword;
 
     @FindBy (xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'" +
             "and contains(text(), 'Username must be at least 3 characters.')]")
@@ -73,7 +85,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage enterDataIntoUsernameField(String userName) {
-        enterTextIntoElement(inputUserName, userName);
+        enterTextIntoElement(signupUsername, userName);
         return  this;
     }
 
@@ -92,14 +104,14 @@ public class LoginPage extends ParentPage {
 
     }
     public LoginPage enterDataIntoPasswordField(String password) {
-        enterTextIntoElement(inputPassword, password);
+        enterTextIntoElement(signupPassword, password);
         return this;
     }
 
 
 //-------------------------------------------------------------------------------------------------------------
     public LoginPage enterDataIntoEmailField(String password) {
-    enterTextIntoElement(inputPassword, password);
+    enterTextIntoElement(signupEmail, password);
     return this;
 }
 
@@ -130,11 +142,32 @@ public class LoginPage extends ParentPage {
         return isObjectDisplayed(buttonLogin);
     }
 
-    //доробити!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//    public LoginPage checkIsUsernameAlertMessageAppear(String expectedMessage){
-//        Assert.assertEquals("Text in success message element ", expectedMessage, successMessage.getText());
-//
-//        return this;
-//    }
+
+    public LoginPage checkIsUsernameAlertMessageContainText(String expectedMessage){
+        Assert.assertEquals("Wrong text in the Username message element", expectedMessage, usernameAlertMessage.getText());
+        return this;
+    }
+
+    public LoginPage checkIsEmailAlertMessageContainText(String expectedMessage){
+        Assert.assertEquals("Wrong text in the Email message element", expectedMessage, emailAlertMessage.getText());
+        return this;
+    }
+
+    public LoginPage checkIsPasswordAlertMessageContainText(String expectedMessage){
+        Assert.assertEquals("Wrong text in the Email message element", expectedMessage, passwordAlertMessage.getText());
+        return this;
+    }
+//------------------------------------------------------------------------------------------------------------------------
+    private String alertMessageText = ".//*[text()='%s']";
+
+    public List<WebElement> getAlertMessage(String alertText1){
+        return webDriver.findElements(By.xpath(String.format(alertMessageText, alertText1)));
+    }
+
+    public LoginPage checkAlertMessage(String alertText2) {
+        Assert.assertEquals("Number of alerts with text", 1, getAlertMessage(alertText2).size());
+        return this;
+    }
+//------------------------------------------------------------------------------------------------------------------------
 
 }

@@ -1,7 +1,6 @@
 package signUpForm;
 
 import BaseTest.BaseTest;
-import libs.Util;
 import org.junit.Test;
 
 public class NotValidDataMessagesCheck extends BaseTest{
@@ -16,7 +15,12 @@ public class NotValidDataMessagesCheck extends BaseTest{
                 .enterDataIntoUsernameField(USER_NAME)
                 .enterDataIntoEmailField(EMAIL)
                 .enterDataIntoPasswordField(PASSWORD)
-
+             .checkAlertMessage("Username must be at least 3 characters.")
+             .checkIsUsernameAlertMessageContainText("Username must be at least 3 characters.")
+             .checkAlertMessage("You must provide a valid email address.")
+             .checkIsEmailAlertMessageContainText("You must provide a valid email address.")
+             .checkAlertMessage("Password must be at least 12 characters.")
+             .checkIsPasswordAlertMessageContainText("Password must be at least 12 characters.")
         ;
 
     }
