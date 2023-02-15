@@ -2,6 +2,7 @@ package postCreate;
 
 import baseTest.BaseTest;
 import libs.TestData;
+import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
@@ -30,9 +31,15 @@ homePage.openHomePage()
         .clickOnProfileButton()
         .checkIsRedirectProfilePage()
         .checkPostWasCreatred(POST_TITLE)
-
         .checkIsUserNameVisibleOnProfilePage(TestData.VALID_LOGIN);
     }
 
-
+@After
+public void deletePost(){
+        homePage.openHomePage()
+                .getHeaderElements()
+                .clickOnProfileButton()
+                .checkIsRedirectProfilePage()
+                .deletePostsWithTitleIfPresent(POST_TITLE);
+}
 }

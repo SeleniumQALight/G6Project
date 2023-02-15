@@ -33,7 +33,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='py-3 mt-4 btn btn-lg btn-success btn-block']")
     private WebElement buttonSignUp;
 
-    private String errorMessageSignUp = ".//*[text()='%s']";
+    private String errorMessageSignUp = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -110,7 +110,7 @@ public class LoginPage extends ParentPage {
    }
 
    public LoginPage checkErrorMessage (String expectedErrorMessage){
-        Assert.assertEquals("Error message is not displayed", expectedErrorMessage, getErrorMessageSignUp(expectedErrorMessage).getText());
+        Assert.assertTrue("Error message is not displayed", getErrorMessageSignUp(expectedErrorMessage).isDisplayed());
         return this;
    }
 
