@@ -38,6 +38,7 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    private TestData testData = new TestData();
 
     public void openLoginPage() {
         try {
