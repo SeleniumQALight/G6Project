@@ -1,4 +1,4 @@
-package PostTest;
+package postTest;
 
 import baseTest.BaseTest;
 import libs.TestData;

@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class CommonActionsWithElements {
@@ -110,6 +109,17 @@ public class CommonActionsWithElements {
             logger.info("Element isn't displayed" + e);
             return false;
         }
+    }
+
+    protected boolean isTextInWebElementListPresent(List<WebElement> listOfWebElements, String text) {
+        for (WebElement webElement : listOfWebElements) {
+            if (webElement.getText().equals(text)) {
+                logger.info("element with matching text was found");
+                return true;
+            }
+        }
+        logger.info("element with matching text wasn't found");
+        return false;
     }
 
     public void usersPressesKeyEnterTime(int numberOfTimes) {
