@@ -1,1 +1,124 @@
-1.
+TestCase #1
+Summery: Check the authorization form
+Pre-condition:
+1.The user is registered on the site
+
+Steps fo reproduce:
+1. Enter valid login
+2. Enter valid password
+3. Click "Sing in" button
+
+Expected result:
+1. Displayed "Sing Out" button
+-----------------------------------------------
+TestCase #2
+Summery:Check the creation of a "All Users" post
+Pre-condition:
+1.The user is authorization on the site
+
+Steps fo reproduce:
+1. Click "Create Post" button
+2. Enter Title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+3. Enter Body Content: Nullam iaculis magna ac ex lobortis, quis porttitor urna fringilla.
+                       Aliquam odio leo, fermentum sed magna euismod, fringilla semper ipsum.
+                       Proin lacus nunc, venenatis volutpat orci ac, maximus sollicitudin ex.
+                       Aliquam sit amet nibh eget ex euismod lacinia. Vestibulum semper quam
+                       dui, mattis elementum ipsum hendrerit sit amet. Aenean vel ornare massa.
+                        Curabitur metus nibh, bibendum non nisl sed, maximus ultrices arcu.
+                        Nunc ut erat ultricies, iaculis mi nec, hendrerit nulla. Etiam eros
+                        nisl, elementum et eros in, pharetra laoreet odio. Fusce a sollicitudin
+                        nunc, sit amet finibus nisl. In hac habitasse platea dictumst.
+                        Cras ullamcorper molestie massa, eget consectetur dolor elementum eu.
+                         Sed dapibus auctor lectus eu facilisis.
+4. Select value "All Users"
+5. Click "Save New Post" button
+
+Expected result:
+1. Alert "New post successfully created." displayed
+2. Note: This post was written for "All Users" displayed
+
+Post-condition:
+1.Delete post
+2.Close browser
+-------------------------------------------------
+TestCase #3
+Summery:Check the creation of a "unique" post
+Pre-condition:
+1.The user is authorization on the site
+
+Steps fo reproduce:
+1. Click "Create Post" button
+2. Enter Title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+3. Enter Body Content: Nullam iaculis magna ac ex lobortis, quis porttitor urna fringilla.
+                       Aliquam odio leo, fermentum sed magna euismod, fringilla semper ipsum.
+                       Proin lacus nunc, venenatis volutpat orci ac, maximus sollicitudin ex.
+                       Aliquam sit amet nibh eget ex euismod lacinia. Vestibulum semper quam
+                       dui, mattis elementum ipsum hendrerit sit amet. Aenean vel ornare massa.
+                        Curabitur metus nibh, bibendum non nisl sed, maximus ultrices arcu.
+                        Nunc ut erat ultricies, iaculis mi nec, hendrerit nulla. Etiam eros
+                        nisl, elementum et eros in, pharetra laoreet odio. Fusce a sollicitudin
+                        nunc, sit amet finibus nisl. In hac habitasse platea dictumst.
+                        Cras ullamcorper molestie massa, eget consectetur dolor elementum eu.
+                         Sed dapibus auctor lectus eu facilisis.
+4. Click "Is this post unique?" checkbox
+4. Select value "Private message"
+5. Click "Save New Post" button
+
+Expected result:
+1. Alert "New post successfully created." displayed
+2. Note: This post was written for " One Person" displayed
+3. Is this post unique? : yes displayed
+
+Post-condition:
+1.Delete post
+2.Close browser
+-------------------------------------------------
+TestCase #4
+Summery:Check the edit post
+Pre-condition:
+1.The user is authorization on the site
+2. Click "Create Post" button
+3. Enter Title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+4. Enter Body Content: Nullam iaculis magna ac ex lobortis, quis porttitor urna fringilla.
+                       Aliquam odio leo, fermentum sed magna euismod, fringilla semper ipsum.
+                       Proin lacus nunc, venenatis volutpat orci ac, maximus sollicitudin ex.
+                       Aliquam sit amet nibh eget ex euismod lacinia. Vestibulum semper quam
+                       dui, mattis elementum ipsum hendrerit sit amet. Aenean vel ornare massa.
+                        Curabitur metus nibh, bibendum non nisl sed, maximus ultrices arcu.
+                        Nunc ut erat ultricies, iaculis mi nec, hendrerit nulla. Etiam eros
+                        nisl, elementum et eros in, pharetra laoreet odio. Fusce a sollicitudin
+                        nunc, sit amet finibus nisl. In hac habitasse platea dictumst.
+                        Cras ullamcorper molestie massa, eget consectetur dolor elementum eu.
+                         Sed dapibus auctor lectus eu facilisis.
+5. Select value "Group Message"
+6. Click "Save New Post" button
+7. Alert "New post successfully created." displayed
+8. Note: This post was written for "Group Message" displayed
+
+Steps fo reproduce:
+1. Click "Edit" button
+2. Edit title: Lorem ipsum dolor sit amet
+3. Change select value "Private message"
+4. Click "Save Updates" button
+
+Expected result:
+1. Alert "Post successfully updated." displayed
+2. Click "Back to post permalink" button
+3. New title and new status displayed
+
+Post-condition:
+1.Delete post
+2.Close browser
+-------------------------------------------------
+TestCase #5
+Summery:Check if a chat message has been sent
+Pre-condition:
+1.The user is authorization on the site
+
+Steps fo reproduce:
+1. Click "Chat" button
+2. Enter message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+3. Press "Enter" key
+
+Expected result:
+1. The message will be displayed in chat

@@ -25,7 +25,9 @@ private WebElement buttonCreatePost;
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.fillValidCreds();
+        if (!getHeaderElements().isButtonSignOutDisplayed()){
+            loginPage.fillValidCreds();
+        }
         checkIsRedirectToHomePage();
         return this;
     }

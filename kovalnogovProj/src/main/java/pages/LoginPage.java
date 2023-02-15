@@ -65,4 +65,8 @@ public class LoginPage extends ParentPage {
         clickSignIn();
         return new HomePage(webDriver);
     }
+
+    public boolean isButtonSingInDisplayed() {
+        return signInBtn.isDisplayed();
+    }
 }
