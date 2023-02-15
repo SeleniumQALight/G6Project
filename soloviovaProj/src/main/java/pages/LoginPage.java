@@ -5,8 +5,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -26,6 +24,8 @@ public class LoginPage extends ParentPage {
     private WebElement signUpButton;
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> errorMessages;
+
+    private String messageAlert = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -94,17 +94,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkAlertMessagesContent(String expectedMessage) {
-        boolean found = false;
-        for (WebElement webElement : errorMessages) {
-            if (expectedMessage.equals(webElement.getText())) {
-                found = true;
-                logger.info(expectedMessage + " found its match");
-                break;
-            }
-        }
-        if (!found) {
-            Assert.fail("The expected error message was not found.");
-        }
+        Assert.assertTrue("Element with text '"+expectedMessage+"' is not found.", isElementDisplayed(String.format(messageAlert, expectedMessage)));
         return this;
     }
 
