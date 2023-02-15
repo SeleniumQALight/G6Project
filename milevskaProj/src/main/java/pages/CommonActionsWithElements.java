@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.elements.HeaderElement;
 
 import java.time.Duration;
 
@@ -16,6 +17,7 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    
 
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -78,6 +80,16 @@ public class CommonActionsWithElements {
             Select select = new Select(dropDown);
             select.selectByValue(value);
             logger.info(value + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI(WebElement dropDown, WebElement rowInDropdown){
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(rowInDropdown);
+            logger.info("One Person was selected in DropDown");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
