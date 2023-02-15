@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPage {
-    //  .//*[@name='title']
-    @FindBy (name = "title")
+
+    @FindBy (name = "title")     //  == .//*[@name='title']
     private WebElement inputTitle;
 
     @FindBy (id = "post-body")
@@ -16,8 +16,7 @@ public class CreatePostPage extends ParentPage {
     @FindBy (xpath = ".//button[@class='btn btn-primary']")
     private WebElement buttonSavePost;
 
-    //          .//select
-    @FindBy (tagName = "select")
+    @FindBy (tagName = "select")    //          .//select
     private WebElement dropDownOptions;
 
     @FindBy (xpath = ".//select[@name='select1']")

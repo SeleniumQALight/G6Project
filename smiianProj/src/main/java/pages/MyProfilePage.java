@@ -34,7 +34,7 @@ public class MyProfilePage extends  ParentPage {
 
     private String titlePost = ".//*[text()='%s']";  // використовується в String.format
 
-    public List<WebElement> getPostListWithTitle(String title){
+    public List<WebElement> getPostListWithTitle(String title){            // дозволяє обрати пост за текстом тайтла
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));   // String.format додає title замість %s
     }
 
@@ -72,6 +72,15 @@ public class MyProfilePage extends  ParentPage {
         return this;
     }
 
+    public PostPage clickOnThePostByTitle (String postTitle) {                   //клік по косту з переходом на сторінку поста
+        List<WebElement> listOfPosts = getPostListWithTitle(postTitle);
+        clickOnElement(String.format(titlePost, postTitle));
+
+        return new PostPage(webDriver);
+    }
+
+
+
     private MyProfilePage checkIsSuccessDeletedPostMessagePresent() {
         Assert.assertTrue("Message delete Post is not displayed", isElementDisplayed(successDeletePostMessage));
         return this;
@@ -81,4 +90,14 @@ public class MyProfilePage extends  ParentPage {
         Assert.assertEquals("", profileNameText, profileName.getText());
         return this;
     }
+
+
+    protected void clickOnElement(String xpath) {
+        try {
+            clickOnElement(webDriver.findElement(By.xpath(xpath)));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 }

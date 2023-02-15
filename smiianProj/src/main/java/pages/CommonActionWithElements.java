@@ -104,10 +104,15 @@ public class CommonActionWithElements {
     }
 
 
+
+
     protected  void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+
+
 
     public static boolean isObjectDisplayed(WebElement webElement){
         try {
