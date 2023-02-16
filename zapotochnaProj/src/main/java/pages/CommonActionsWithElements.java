@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -17,6 +18,9 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+
+    @FindBy(xpath = ".//*[contains(text(),'Приватне повідомлення')]")
+    WebElement findTextFromDD;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -70,10 +74,10 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void clickOnElement(String xpath) {  // сюди передаємо локатор у вигляді стрігни. щоб працювати з вебелементом.
+    protected void clickOnElement(String xpath  ) {  // сюди передаємо локатор у вигляді стрігни. щоб працювати з вебелементом.
 
         try {
-            clickOnElement(webDriver.findElement(By.xpath(xpath)));
+            clickOnElement(webDriver.findElement(By.xpath(String.valueOf(findTextFromDD))));
         } catch (Exception e) {
             printErrorAndStopTest(e);
 
@@ -110,6 +114,17 @@ public class CommonActionsWithElements {
     }
 
     //дз зробити byUi
+    protected void selectValueByUiInDropDown(WebElement webElement, String textByUi) {
+        try {
+
+            clickOnElement(webElement);
+            clickOnElement(webDriver.findElement(By.xpath(String.valueOf(findTextFromDD))));
+
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
@@ -141,10 +156,12 @@ public class CommonActionsWithElements {
     }
 
     public void userOpensNewTab() {
-        ((JavascriptExecutor)webDriver).executeScript("window.open()");
-        ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
+
 //
 //    метод moveToElement (аналог скрола )
 //

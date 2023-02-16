@@ -62,5 +62,15 @@ public class CreatePostPage extends ParentPage {
 
     }
 
+//hw3:
+    public CreatePostPage selectTextInDropDownByUI(String valueByUi) {
+        selectValueByUiInDropDown(dropDownOptions, valueByUi);
+
+
+        return null;
+    }
+
+
+    
 
 }
