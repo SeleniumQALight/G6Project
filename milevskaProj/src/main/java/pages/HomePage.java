@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 import java.util.logging.Logger;
 
@@ -16,9 +17,15 @@ public class HomePage extends ParentPage{
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    HeaderElement headerElement = new HeaderElement(webDriver);
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
     }
 
     @FindBy(xpath = ".//button[@class ='btn btn-sm btn-secondary']")
@@ -32,9 +39,10 @@ public class HomePage extends ParentPage{
         LoginPage loginPage = new LoginPage(webDriver);
         //login
         //check that we are in homepage
-        loginPage.fillingLoginFormWithValidCred();
+        if(!isButtonSignOutDisplayed()){
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
-
         return this;
     }
 

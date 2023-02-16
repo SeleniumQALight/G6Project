@@ -17,12 +17,17 @@ public class CreatePostTest extends BaseTest {
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody("Test")
              //   .selectTextInDropDownOptions("Приватне повідомлення")
-                .selectValueInDropDownOptions("One Person")
+             //   .selectValueInDropDownOptions("One Person")
+                .selectValueInDropDownOptionsUI("Приватне повідомлення")
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkTitleInCreatedPost(POST_TITLE)
+                .checkNoteInCreatedPost("Note: This post was written for")
+                .checkTextUnderLine("One Person")
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+                .checkUser("qaauto")
                 .checkPostWasCreated(POST_TITLE)
         ;
 
