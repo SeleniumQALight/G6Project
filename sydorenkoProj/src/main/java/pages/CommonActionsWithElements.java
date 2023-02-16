@@ -75,19 +75,9 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+
     protected boolean isElementDisplayed(String locator, String error) {
-        try {
-            boolean state = webDriver.findElement(By.xpath(String.format(locator, error))).isDisplayed();
-            String message;
-            if (state) {
-                message = "Element is displayed";
-            } else message = "Element is not displayed";
-            logger.info(message);
-            return state;
-        } catch (Exception e) {
-            logger.info("Element is not displayed");
-            return false;
-        }
+        return isElementDisplayed(webDriver.findElement(By.xpath(String.format(locator, error))));
     }
 
     protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
@@ -144,7 +134,7 @@ public class CommonActionsWithElements {
     }
 
     public void userOpensNewTab() {
-        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
