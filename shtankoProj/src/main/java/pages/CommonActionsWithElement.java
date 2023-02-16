@@ -72,18 +72,10 @@ public class CommonActionsWithElement {
             return false;
         }
     }
-    protected boolean isElementDisplayedAlert(String alert){
+    protected boolean isElementDisplayed(String alertLocator){
         try {
-            WebElement element = webDriver.findElement(By.xpath(alert));
-            boolean state = element.isDisplayed();
-            String message;
-            if (state){
-                message = "Element is displayed";
-            }else {
-                message = "Element is not displayed";
-            }
-            logger.info(message);
-            return state;
+            WebElement element = webDriver.findElement(By.xpath(alertLocator));
+            return isElementDisplayed(element);
         }catch (Exception e){
             logger.info("Element ai not displayed");
             return false;

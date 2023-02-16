@@ -55,7 +55,8 @@ public class EditPostTest extends BaseTest {
                 .openHomePage()
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostWithTitleTillPresent(POST_TITLE_EDIT);
+                .deletePostWithTitleTillPresent(POST_TITLE_EDIT)
+                .deletePostWithTitleTillPresent(POST_TITLE);
 
     }
 

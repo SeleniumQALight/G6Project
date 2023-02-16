@@ -6,11 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 
@@ -104,7 +101,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
     public LoginPage checkErrorMessageWithText(String alertMessage){
-        Assert.assertTrue(alertMessage + "The message is not equal", isElementDisplayedAlert(String.format(alertDangerText,alertMessage)));
+        Assert.assertTrue(alertMessage + "The message is not equal", isElementDisplayed(String.format(alertDangerText,alertMessage)));
         return this;
     }
 }
