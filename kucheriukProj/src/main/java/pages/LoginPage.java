@@ -60,6 +60,10 @@ public class LoginPage extends ParentPage{
         clickOnElement(buttonLogin);
     }
 
+    public boolean isButtonSignInDisplayed() {
+        return isElementDisplayed(buttonLogin);
+    }
+
     public HomePage fillingLoginForWithValidCred() {
         openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
