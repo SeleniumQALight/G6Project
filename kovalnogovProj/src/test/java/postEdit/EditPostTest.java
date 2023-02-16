@@ -49,6 +49,7 @@ public class EditPostTest extends BaseTest {
                 .getHeaderElements()
                 .clickOnProfileButton()
                 .checkIsRedirectProfilePage()
-                .deletePostsWithTitleIfPresent(POST_TITLE_UPDATED);
+                .deletePostsWithTitleIfPresent(POST_TITLE_UPDATED)
+                .deletePostsWithTitleIfPresent(POST_TITLE);
     }
 }

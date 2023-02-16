@@ -36,11 +36,11 @@ public class EditPostPage extends ParentPage{
         return this;
     }
     public EditPostPage clickSaveUpdates(){
-       savePostButton.click();
+     clickOnElement(savePostButton);
         return this;
     }
     public PostPage redirectToCurrentPostPage(){
-        backToPostButton.click();
+        clickOnElement(backToPostButton);
         return new PostPage(webDriver);
     }
 }

@@ -1,12 +1,11 @@
-package loginTest;
+package regisration;
 
 import baseTest.BaseTest;
-import org.junit.Assert;
 import org.junit.Test;
 
 import pages.LoginPage;
 
-public class LoginErrorsTest extends BaseTest {
+public class RegisrationFieldsErrorsTest extends BaseTest {
     public static final String USER_NAME_ERROR_TEXT = "Username must be at least 3 characters.";
     public static final String EMAIL_ERROR_TEXT = "You must provide a valid email address.";
     public static final String PASSWORD_ERROR_TEXT = "Password must be at least 12 characters.";
