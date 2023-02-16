@@ -50,6 +50,7 @@ public class ChangePostNameTest extends BaseTest {
         homePage.openHomePage()
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(POST_TITLE)
                 .deletePostsWithTitleTillPresent(NEW_POST_TITLE)
         ;
     }

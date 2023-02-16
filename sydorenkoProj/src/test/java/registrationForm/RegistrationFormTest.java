@@ -12,8 +12,8 @@ public class RegistrationFormTest extends BaseTest {
         loginPage.enterNameIntoNameRegisterField("tr");
         loginPage.enterEmailIntoEmailRegisterField("test.com");
         loginPage.enterPasswordIntoPasswordRegisterField("123");
-        assertTrue("Name field validation error isn't displayed", loginPage.isNameFieldValidationErrorDisplayed());
-        assertTrue("Email field validation error isn't displayed", loginPage.isEmailFieldValidationErrorDisplayed());
-        assertTrue("Password field validation error isn't displayed", loginPage.isPasswordFieldValidationErrorDisplayed());
+        assertTrue("Name field validation error isn't displayed", loginPage.isFieldValidationErrorDisplayed("Username must be at least 3 characters."));
+        assertTrue("Email field validation error isn't displayed", loginPage.isFieldValidationErrorDisplayed("You must provide a valid email address."));
+        assertTrue("Password field validation error isn't displayed", loginPage.isFieldValidationErrorDisplayed("Password must be at least 12 characters."));
     }
 }
