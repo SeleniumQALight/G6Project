@@ -16,6 +16,8 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    String value = "Приватне повідомлення";
+    String locatorForDropDown = "//option[contains(text(),'" + value + "')]";
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -85,6 +87,16 @@ public class CommonActionsWithElements {
             select.selectByValue(value);
             logger.info(value + " was select in DropDown");
         } catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUI(WebElement dropDown, String value){
+        try{
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(By.xpath(locatorForDropDown)));
+            logger.info(value + " was select in DropDown");
+        }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
