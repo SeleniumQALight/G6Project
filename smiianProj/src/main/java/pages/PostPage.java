@@ -35,6 +35,7 @@ public class PostPage extends ParentPage {
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }     //locator
+
     public HeaderElement getHeaderElement() {   //  метод звернення до елемента headerElement
         return headerElement;
     }

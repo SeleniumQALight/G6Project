@@ -1,8 +1,10 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class PostEditPage extends ParentPage{
 
@@ -19,7 +21,14 @@ public class PostEditPage extends ParentPage{
     @FindBy (xpath = ".//div[@class='alert alert-success text-center' and contains(text(), 'Post successfully updated.')]")
     private WebElement successMessage;
 
+    @FindBy (xpath = ".//a[@class='small font-weight-bold']")
+    private WebElement buttonBackToPost;
 
+
+    private HeaderElement headerElement = new HeaderElement(webDriver);   //  оголошує елемент headerElement
+    public HeaderElement getHeaderElement() {                             //  метод звернення до елемента headerElement
+        return headerElement;
+    }
 
     public PostEditPage enterTextInInputTitle(String postTitle) {
         enterTextIntoElement(inputTitle, postTitle);
@@ -31,7 +40,14 @@ public class PostEditPage extends ParentPage{
         return this;
     }
 
-    //  add method for checking success message
+    public PostEditPage checkSuccessMessageIsVisible() {
+        Assert.assertTrue("Message is not visible", isElementDisplayed(successMessage));
+        return this;
+    }
 
 
+    public PostEditPage checkOnThePostEditPage() {
+        Assert.assertTrue("PostEditPage is not loaded", isElementDisplayed(buttonBackToPost));
+        return this;
+    }
 }
