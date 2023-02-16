@@ -74,7 +74,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void clickOnElement(String xpath  ) {  // сюди передаємо локатор у вигляді стрігни. щоб працювати з вебелементом.
+    protected void clickOnElement(String xpath) {  // сюди передаємо локатор у вигляді стрігни. щоб працювати з вебелементом.
 
         try {
             clickOnElement(webDriver.findElement(By.xpath(String.valueOf(findTextFromDD))));
@@ -124,6 +124,12 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    //TODO
+    protected boolean isElementDisaplayed(String stringvalue) {
+    //isElementDisaplayed( );
+        return false;
     }
 
     protected void printErrorAndStopTest(Exception e) {
