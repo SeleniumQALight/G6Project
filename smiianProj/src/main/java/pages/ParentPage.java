@@ -34,7 +34,7 @@ abstract public class ParentPage extends CommonActionWithElements{
 
     /**
      * Example
-     * gooogle.com == gooogle -> true
+     * gooogle.com == gooogle -> true   //перевіряємо, чи містить URL шматочок gooogle
      */
     protected  void checkURLContainsRelative() {
         Assert.assertThat("Invalid page ",webDriver.getCurrentUrl() , CoreMatchers.containsString(base_url + getRelativeURL()));
