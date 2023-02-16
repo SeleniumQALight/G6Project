@@ -19,7 +19,15 @@ private WebElement inputTitle;
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+       // checkURL();
+        checkURLContainsRelative();
+        waitChatToBeHidden();
         Assert.assertTrue("CreatePostPage is not displayed", isElementDisplayed(inputTitle));
         return this;
     }

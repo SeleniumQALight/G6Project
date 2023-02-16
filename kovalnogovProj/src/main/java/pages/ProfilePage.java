@@ -23,13 +23,20 @@ public class ProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/profile/";
+    }
+
     public List<WebElement> getPostsListWithTitle(String title) {
 
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));
     }
 
     public ProfilePage checkIsRedirectProfilePage() {
-        //TODO check URL
+       // checkURL();
+        checkURLContainsRelative();
+        waitChatToBeHidden();
         Assert.assertTrue("My ProfilePage is not loaded", isElementDisplayed(avatar));
         return new ProfilePage(webDriver);
     }
@@ -57,10 +64,9 @@ public class ProfilePage extends ParentPage {
             listOfPosts = getPostsListWithTitle(postTitle);
             count--;
         }
-        if(listOfPosts.size()==0){
+        if (listOfPosts.size() == 0) {
             logger.info("All posts were deleted with title" + postTitle);
-        }
-        else {
+        } else {
             logger.error("Delete is failed");
             Assert.fail("Delete is failed");
         }
