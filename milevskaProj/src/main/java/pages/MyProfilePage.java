@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,9 @@ public class MyProfilePage extends ParentPage{
     private WebElement avatar;
 
     private String titlePost = ".//*[text()='%s']";
+
+    @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
+    private WebElement loggedUser;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -28,6 +32,11 @@ public class MyProfilePage extends ParentPage{
  }
     public MyProfilePage checkPostWasCreated(String postTitle) {
         Assert.assertEquals("Number of posts with title", 1, getPostsListWithTitle(postTitle).size());
+        return this;
+    }
+
+    public MyProfilePage checkIsCorrectUserLogin(String username){
+        Assert.assertEquals("This not correct user", username, loggedUser.getText());
         return this;
     }
 }

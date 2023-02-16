@@ -17,8 +17,6 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
-    
-
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -94,7 +92,6 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can't work with element" + e);
