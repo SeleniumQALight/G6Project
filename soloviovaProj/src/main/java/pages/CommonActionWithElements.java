@@ -3,7 +3,6 @@ package pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -71,13 +70,18 @@ public class CommonActionWithElements {
         }
     }
 
-    protected void forTextComparing(String expectedText, WebElement webElement) {
+    protected boolean isElementDisplayed(String locator) {
         try {
-            Assert.assertEquals("Text does not mach", expectedText, webElement.getText());
-            logger.info(expectedText + " found its mach.");
+           return isElementDisplayed(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
-            logger.info(expectedText + " does not found its mach.");
+            logger.info("Element is not displayed");
+            return false;
         }
+    }
+
+    protected void forTextComparing(String expectedText, WebElement webElement) {
+        Assert.assertEquals("Text does not mach", expectedText, webElement.getText());
+            logger.info(expectedText + " found its match!");
     }
 
     protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
