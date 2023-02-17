@@ -75,11 +75,8 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
-    public EditPage findAndOpenPostToEdit(String postTitle) {
-        checkPostWasCreated(postTitle);
+    public PostPage clickOnPostTitle(String postTitle) {
         clickOnElement(String.format(titlePost,postTitle));
-        new PostPage(webDriver).checkIsRedirectToPostPage();
-        clickOnElement(editButton);
-        return new EditPage(webDriver);
+        return new PostPage(webDriver);
     }
 }

@@ -16,7 +16,6 @@ public class EditPage extends ParentPage {
     private WebElement updateMessage;
 
     private HeaderElements headerElements = new HeaderElements(webDriver);
-    protected MyProfilePage myProfilePage = new MyProfilePage(webDriver);
 
     public EditPage(WebDriver webDriver) {
         super(webDriver);
@@ -45,4 +44,5 @@ public class EditPage extends ParentPage {
         forTextComparing(updateSuccessMessage, updateMessage);
         return this;
     }
+
 }

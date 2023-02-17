@@ -37,7 +37,9 @@ public class PostEditTest extends BaseTest {
                 .openHomePage()
                 .getHeaderElements().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .findAndOpenPostToEdit(POST_TITLE)
+                .clickOnPostTitle(POST_TITLE)
+                .checkIsRedirectToPostPage()
+                .clickOnEditButton()
                 .checkIsRedirectToEditPage()
                 .postTitleEdit(NEW_POST_TITLE)
                 .saveUpdatedTitle()
@@ -54,6 +56,7 @@ public void deletePost(){
                     .getHeaderElements().clickOnMyProfileButton()
                     .checkIsRedirectToMyProfilePage()
                     .deletePostsWithTitleTillPresent(NEW_POST_TITLE)
+                    .deletePostsWithTitleTillPresent(POST_TITLE);
         ;
 }
 }
