@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class EditPostPage extends ParentPage{
+public class EditPostPage extends ParentPage {
     @FindBy(xpath = ".//*[@class='btn btn-primary' and text()='Save Updates']")
     private WebElement saveUpdatedButton;
 
@@ -32,10 +32,13 @@ public class EditPostPage extends ParentPage{
         return this;
     }
 
-    public EditPostPage editPostTitle(String newTitle) {
-//        clickOnElement(titleInput);
-        titleInput.clear();
-        enterTextIntoElement(titleInput, newTitle);
+    public EditPostPage enterNewPostTitle(String newPostTitle) {
+        enterTextIntoElement(titleInput, newPostTitle);
+        return this;
+    }
+
+
+    public EditPostPage clickOnSaveUpdatesButton() {
         clickOnElement(saveUpdatedButton);
         return this;
     }
@@ -45,3 +48,7 @@ public class EditPostPage extends ParentPage{
         return this;
     }
 }
+
+
+
+
