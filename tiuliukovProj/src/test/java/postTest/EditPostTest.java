@@ -41,6 +41,7 @@ public class EditPostTest extends BaseTest {
                 .clickOnMyProfileButton()
                 .openPostByTitle(POST_TITLE)
                 .clickOnEditButton()
+                .checkIsRedirectToEditPostPage()
                 .changePostTitleTo(POST_TITLE_EDITED)
                 .changePostBodyTo(POST_BODY_EDITED)
                 .selectValueInDropDownOptions(OPTION_VALUE_GROUP_MESSAGE)

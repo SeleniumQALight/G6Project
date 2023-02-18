@@ -23,6 +23,18 @@ public class EditPostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/[a-zA-Z0-9]*/edit";
+    }
+
+    public EditPostPage checkIsRedirectToEditPostPage(){
+        checkURLWithPattern();
+        waitChatToBeHide();
+        return this;
+    }
+
+
     public EditPostPage changePostTitleTo(String postTitleEdited) {
         inputTitle.clear();
         enterTextIntoElement(inputTitle, postTitleEdited);
