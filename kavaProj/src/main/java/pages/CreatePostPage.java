@@ -1,13 +1,12 @@
 package pages;
 
-import libs.TestData;
+
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+
 
 public class CreatePostPage extends ParentPage {
     @FindBy(name = "title")
@@ -27,8 +26,15 @@ public class CreatePostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/create-post";
+    }
+
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("CreatePostPage is not loaded", isElementDisplayed(inputTitle));
         return this;
 

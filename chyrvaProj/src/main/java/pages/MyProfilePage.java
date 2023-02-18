@@ -30,7 +30,14 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("My Profile page is not loaded", isElementDisplayed(avatar));
         return this;
     }
@@ -64,12 +71,12 @@ public class MyProfilePage extends ParentPage {
             ;
             logger.info("Post was deleted with title " + postTitle);
             listOfPosts = getPostsListWithTitle(postTitle);
-            counter --; //counter=counter-1
+            counter--; //counter=counter-1
         }
         if (listOfPosts.size() == 0) {
 
             logger.info("All post were deleted with title" + postTitle);
-        }else {
+        } else {
             logger.error("Delete fail");
             Assert.fail("Delete fail");
         }
@@ -87,6 +94,7 @@ public class MyProfilePage extends ParentPage {
 
 
     public MyProfilePage checkUserIsDisplayedOnMyProfilePage(String expectUserName) {
-        Assert.assertEquals("qaauto", expectUserName,myProfilePageUserName.getText());
+        Assert.assertEquals("qaauto", expectUserName, myProfilePageUserName.getText());
         return this;
-    }}
+    }
+}
