@@ -15,13 +15,12 @@ public class RegisrationFieldsErrorsTest extends BaseTest {
     public void testValidLogin() {
 
         loginPage.openLoginPage()
-                .typeUserNameForRegistration("tr")
-                .checkErrorMessageWithText(USER_NAME_ERROR_TEXT, LoginPage.RegistrationFields.USER_NAME)
+                .typeUserNameForRegistration("val")
                 .typeEmailForRegistration("test.com")
-                .checkErrorMessageWithText(EMAIL_ERROR_TEXT, LoginPage.RegistrationFields.EMAIL)
                 .typePasswordForRegistration("123")
-                .checkErrorMessageWithText(PASSWORD_ERROR_TEXT, LoginPage.RegistrationFields.PASSWORD)
-        ;
+                .checkErrorMessageWithText(USER_NAME_ERROR_TEXT)
+                .checkErrorMessageWithText(EMAIL_ERROR_TEXT)
+                .checkErrorMessageWithText(PASSWORD_ERROR_TEXT);
 
 
     }

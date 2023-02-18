@@ -21,22 +21,8 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement passwordReg;
 
-    public enum RegistrationFields {
-        USER_NAME("1"),
-        EMAIL("2"),
-        PASSWORD("3");
-        private String index;
 
-        RegistrationFields(String index) {
-            this.index = index;
-        }
-
-        public String getIndex() {
-            return index;
-        }
-    }
-
-    private String errorMessage = "(.//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'])[%s]";
+    private String errorMessage = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'and text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -108,9 +94,9 @@ public class LoginPage extends ParentPage {
         return signInBtn.isDisplayed();
     }
 
-    public LoginPage checkErrorMessageWithText(String message, RegistrationFields field) {
-        String errorMessageText = getText(getWebElement(String.format(errorMessage, field.getIndex())));
-        Assert.assertEquals("Error message for " + field.name() + "field is wrong ", message, errorMessageText);
+    public LoginPage checkErrorMessageWithText(String message) {
+        String errorMessageText = getText(getWebElement(String.format(errorMessage,message)));
+        Assert.assertEquals("Error message for field is wrong", message, errorMessageText);
         return this;
     }
 }
