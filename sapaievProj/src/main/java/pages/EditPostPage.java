@@ -33,7 +33,7 @@ public class EditPostPage extends ParentPage{
     }
 
     public EditPostPage checkEditPostTitleMessage(){
-        editPostMessage.isDisplayed();
+        isElementDisplayed(editPostMessage);
         return this;
     }
 

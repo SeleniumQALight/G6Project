@@ -114,6 +114,13 @@ public class CommonActionsWithElements {
 
 
 
+    protected boolean isElementDisplayed(String text) {
+        WebElement webElement=webDriver.findElement(By.xpath(text));
+        return isElementDisplayed(webElement);
+    }
+
+
+
 
 
     protected boolean isElementDisplayed(WebElement webElement) {

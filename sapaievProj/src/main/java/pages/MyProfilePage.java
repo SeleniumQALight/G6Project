@@ -55,6 +55,11 @@ public class MyProfilePage extends ParentPage{
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));
     }
 
+    public WebElement getPostWithTitle(String title){
+        return webDriver.findElement(By.xpath(String.format(titlePost, title)));
+    }
+
+
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
        Assert.assertEquals("Number of posts with title",1,getPostsListWithTitle(postTitle).size());
@@ -94,19 +99,19 @@ public class MyProfilePage extends ParentPage{
     }
 
 
-    public MyProfilePage EditPostsWithTitleTillPresent(String post_title, String new_postTitle) {
-        WebElement post=webDriver.findElement(By.xpath(String.format(titlePost, post_title)));
+    public EditPostPage EditPostsWithTitle(String post_title, String new_postTitle) {
+        WebElement post=getPostWithTitle(post_title);
         clickOnElement(post);
         new  PostPage((webDriver))
                 .checkIsRedirectToPostPage()
                 .clickOnEditButton()
                 .enterTextInInputTitle(new_postTitle)
-                .clickOnSaveButton()
-                .checkEditPostTitleMessage()
-                .getHeaderElement()
-                .clickOnMyProfileButton()
-                .checkSizeListOfEditedPost(new_postTitle);
-        return this;
+                .clickOnSaveButton();
+                //.checkEditPostTitleMessage()
+                //.getHeaderElement()
+                //.clickOnMyProfileButton();
+                //.checkSizeListOfEditedPost(new_postTitle);
+        return new EditPostPage(webDriver);
     }
 
 

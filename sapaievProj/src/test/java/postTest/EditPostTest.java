@@ -39,7 +39,15 @@ public class EditPostTest extends BaseTest {
     @Test
     public void editPost(){
         myProfilePage
-                .EditPostsWithTitleTillPresent(post_Title, new_postTitle);
+
+
+
+
+                .EditPostsWithTitle(post_Title, new_postTitle)
+                .checkEditPostTitleMessage()
+                .getHeaderElement()
+                .clickOnMyProfileButton()
+                .checkSizeListOfEditedPost(new_postTitle);
     }
 
 
@@ -52,6 +60,7 @@ public class EditPostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsWithTitleTillPresent(new_postTitle)
+                .deletePostsWithTitleTillPresent(post_Title)
         ;
     }
 }

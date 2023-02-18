@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -38,6 +39,8 @@ public class LoginPage extends ParentPage {
 
 
     private String textError="//div[text()='%s']";
+
+
 
 
 
@@ -87,30 +90,48 @@ public class LoginPage extends ParentPage {
 
 
 
-    public LoginPage enterUserNameIntoInputUserNameForRegister(String userName, String text){
+
+
+
+    public LoginPage enterUserNameIntoInputUserNameForRegister(String userName) {
         enterTextIntiElement(userNameFieldForRegister, userName);
-        WebDriverWait webDriverWait=new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        WebElement errorOnField=webDriver.findElement(By.xpath(String.format(textError,text)));
-        webDriverWait.until(ExpectedConditions.visibilityOf(errorOnField));
-        Assert.assertTrue("The userName error text is not displayed.",errorOnField.isDisplayed());
         return this;
     }
 
-    public LoginPage enterEmailIntoInputEmailForRegister(String email, String text){
+    public LoginPage checkUserNameError(String text){
+        isElementDisplayed(String.format(textError,text));
+        WebElement error=webDriver.findElement(By.xpath(String.format(textError,text)));
+        WebDriverWait wait10=new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait10.until(ExpectedConditions.visibilityOf(error));
+        Assert.assertTrue("The userName error text is not displayed.",isElementDisplayed(String.format(textError,text)));
+        return this;
+    }
+
+    public LoginPage enterEmailIntoInputEmailForRegister(String email){
         enterTextIntiElement(emailFieldForRegister, email);
-        WebDriverWait webDriverWait=new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        WebElement errorOnField=webDriver.findElement(By.xpath(String.format(textError,text)));
-        webDriverWait.until(ExpectedConditions.visibilityOf(errorOnField));
-        Assert.assertTrue("The email error text is not displayed.",errorOnField.isDisplayed());
         return this;
     }
 
-    public LoginPage enterPasswordIntoInputPasswordForRegister(String password, String text){
+    public LoginPage checkEmailError(String text){
+        isElementDisplayed(String.format(textError,text));
+        WebElement error=webDriver.findElement(By.xpath(String.format(textError,text)));
+        WebDriverWait wait10=new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait10.until(ExpectedConditions.visibilityOf(error));
+        Assert.assertTrue("The email error text is not displayed.",isElementDisplayed(String.format(textError,text)));
+        return this;
+    }
+
+    public LoginPage enterPasswordIntoInputPasswordForRegister(String password){
         enterTextIntiElement(passwordFieldForRegister, password);
-        WebDriverWait webDriverWait=new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        WebElement errorOnField=webDriver.findElement(By.xpath(String.format(textError,text)));
-        webDriverWait.until(ExpectedConditions.visibilityOf(errorOnField));
-        Assert.assertTrue("The password error text is not displayed.",errorOnField.isDisplayed());
+        return this;
+    }
+
+    public LoginPage checkPasswordError(String text){
+        isElementDisplayed(String.format(textError,text));
+        WebElement error=webDriver.findElement(By.xpath(String.format(textError,text)));
+        WebDriverWait wait10=new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait10.until(ExpectedConditions.visibilityOf(error));
+        Assert.assertTrue("The password error text is not displayed.",isElementDisplayed(String.format(textError,text)));
         return this;
     }
 
