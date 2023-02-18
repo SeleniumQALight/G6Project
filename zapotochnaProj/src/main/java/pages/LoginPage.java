@@ -22,12 +22,15 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-
+    @Override
+    String getRelativeURL() { //зробили геттер бо є абстрактний клас
+        return "/";
+    }
 
     public void openLoginPage() {
 
         try {
-            webDriver.get("https://qa-complexapp.onrender.com/");
+            webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage was opened");
 
         } catch (Exception e) {
@@ -86,7 +89,6 @@ public class LoginPage extends ParentPage {
     }
 
     public HomePage fillingLoginFormWithValidCred() {
-        openLoginPage();
         enterUserNameIntoLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
