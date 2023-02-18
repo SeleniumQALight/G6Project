@@ -18,6 +18,17 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement signInButton;
 
+    @FindBy(id = "username-register")
+    private WebElement usernameInputRegistrationField;
+
+    @FindBy(id = "email-register")
+    private WebElement emailInputRegistrationField;
+
+    @FindBy(id = "password-register")
+    private WebElement passwordRegistrationInputField;
+
+    private String errorMessageLocator = ".//*[text()='%s']";
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -63,9 +74,8 @@ public class LoginPage extends ParentPage {
 
 
     public boolean isSignInButtonDisplayed() {
-       return isElementPresented(signInButton);
+        return isElementPresented(signInButton);
     }
-
 
 
     public HomePage fillingLoginFormWithValidCred() {
@@ -76,5 +86,25 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-}
+    public LoginPage enterUserNameToTheRegistrationField(String username) {
+        enterTextInToElement(usernameInputRegistrationField, username);
+        return this;
+    }
 
+    public LoginPage enterEmailToTheRegistrationField(String email) {
+        enterTextInToElement(emailInputRegistrationField, email);
+        return this;
+    }
+
+    public LoginPage enterPasswordToTheRegistrationField(String password) {
+        enterTextInToElement(passwordRegistrationInputField, password);
+        return this;
+    }
+
+    public LoginPage checkErrorMessageWithText(String enterText) {
+        isElementDisplayed(errorMessageLocator, enterText);
+        return this;
+
+    }
+
+}

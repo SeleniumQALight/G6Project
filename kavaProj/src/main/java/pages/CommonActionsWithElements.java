@@ -76,6 +76,11 @@ public class CommonActionsWithElements {
 
     }
 
+    protected boolean isElementDisplayed(String locator, String errorInfo) {
+        WebElement requiredLocator = webDriver.findElement(By.xpath(String.format(locator, errorInfo)));
+        return isElementDisplayed(requiredLocator);
+    }
+
     protected boolean isElementDisplayed(WebElement element) {
         try {
             return element.isDisplayed();
@@ -143,8 +148,8 @@ public class CommonActionsWithElements {
     }
 
     public void userOpensNewTab() {
-        ((JavascriptExecutor)webDriver).executeScript("window.open()");
-        ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
 //
