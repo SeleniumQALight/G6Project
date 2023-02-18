@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -16,7 +17,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
-
+    private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -59,8 +60,13 @@ public class LoginPage extends ParentPage {
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
-    public boolean isButtonSignInDisplayed(){
-        return isButtonDisplayed(buttonLogin); //?????
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
     }
+
+    //public boolean isButtonSignInDisplayed(){
+    //    return isButtonDisplayed(buttonLogin); //?????
+    //}
 }
 

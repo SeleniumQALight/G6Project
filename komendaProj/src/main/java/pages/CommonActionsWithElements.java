@@ -89,6 +89,19 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void selectTextInDropDownByUI(WebElement dropDown, String textInDD){
+        try {
+            dropDown.click();
+            String selectedXpath = String.format(".//option[text()=\"%s\"]", textInDD);
+            webDriver.findElement(By.xpath(selectedXpath)).click();
+            logger.info(textInDD+ " was selected in DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+
+    }
+
+
 
     protected void printErrorAndStopTest(Exception e){
         logger.error("Can not work with element " + e);
@@ -131,6 +144,7 @@ public class CommonActionsWithElements {
         ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
 //
 //    метод moveToElement (аналог скрола )
 //
