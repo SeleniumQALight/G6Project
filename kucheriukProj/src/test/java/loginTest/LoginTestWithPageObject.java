@@ -28,4 +28,19 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertFalse("Button is displayed",
                 homePage.getHeaderElement().isButtonSignOutDisplayed());
     }
+
+    @Test
+    public void checkFormRegistration(){
+        loginPage.openLoginPage();
+        loginPage.enterUserNameIntoRegistrationField("tr");
+        loginPage.enterEmailIntoEmailField("test.com");
+        loginPage.enterPasswordIntoPasswordRegistrationField("123");
+
+        Assert.assertTrue("Name field validation error is not displayed",
+                loginPage.isFieldValidationErrorIsDisplayed("Username must be at least 3 characters."));
+        Assert.assertTrue("Email field validation error is not displayed",
+                loginPage.isFieldValidationErrorIsDisplayed("You must provide a valid email address."));
+        Assert.assertTrue("Password field validation error is not displayed",
+                loginPage.isFieldValidationErrorIsDisplayed("Password must be at least 12 characters."));
+    }
 }
