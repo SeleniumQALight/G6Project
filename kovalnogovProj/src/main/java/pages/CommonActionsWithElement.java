@@ -26,6 +26,20 @@ public class CommonActionsWithElement {
         PageFactory.initElements(webDriver, this);
     }
 
+
+    protected  WebElement getWebElement(String xpath){
+        WebElement element = null;
+        try{
+            By elementBy = By.xpath(xpath);
+            wait15.until(ExpectedConditions.visibilityOfElementLocated(elementBy));
+            element= webDriver.findElement(elementBy);
+        }
+        catch (Exception e){
+            printErroAboutElementAndStopTest( e );
+        }
+
+        return element;
+    }
     protected void typeTextToElement(WebElement element, String text) {
         wait15.until(ExpectedConditions.visibilityOf(element));
         try {

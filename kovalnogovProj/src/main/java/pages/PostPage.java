@@ -80,4 +80,9 @@ public class PostPage extends ParentPage {
         clickOnElement(deleteButton);
         return new ProfilePage(webDriver);
     }
+
+    public EditPostPage editPost() {
+        clickOnElement(editButton);
+        return new EditPostPage(webDriver);
+    }
 }

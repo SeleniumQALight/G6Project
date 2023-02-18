@@ -14,6 +14,15 @@ public class LoginPage extends ParentPage {
     private WebElement passwordInput;
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement signInBtn;
+    @FindBy(id = "username-register")
+    private WebElement userNameReg;
+    @FindBy(id = "email-register")
+    private WebElement emailReg;
+    @FindBy(id = "password-register")
+    private WebElement passwordReg;
+
+
+    private String errorMessage = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'and text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -63,6 +72,21 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    public LoginPage typeUserNameForRegistration(String userName) {
+        typeTextToElement(userNameReg, userName);
+        return this;
+    }
+
+    public LoginPage typeEmailForRegistration(String email) {
+        typeTextToElement(emailReg, email);
+        return this;
+    }
+
+    public LoginPage typePasswordForRegistration(String password) {
+        typeTextToElement(passwordReg, password);
+        return this;
+    }
+
     public HomePage fillValidCreds() {
       //  openLoginPage();
         typeUserName(TestData.VALID_LOGIN);
@@ -73,5 +97,11 @@ public class LoginPage extends ParentPage {
 
     public boolean isButtonSingInDisplayed() {
         return signInBtn.isDisplayed();
+    }
+
+    public LoginPage checkErrorMessageWithText(String message) {
+        String errorMessageText = getText(getWebElement(String.format(errorMessage,message)));
+        Assert.assertEquals("Error message for field is wrong", message, errorMessageText);
+        return this;
     }
 }
