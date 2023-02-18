@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class PostPage extends ParentPage{
     @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
     private WebElement buttonEdit;
@@ -18,8 +22,22 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
+    @FindBy(xpath = "//div[@class='d-flex justify-content-between']")
+    private WebElement createPost;
+
+    @FindBy(xpath = "//i")
+    private WebElement notePost;
+
+    @FindBy(xpath = "//body//u")
+    private WebElement textUnderLine;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeURL() {
+        return "/post/";
     }
 
     public HeaderElement getHeaderElement(){
@@ -27,13 +45,29 @@ public class PostPage extends ParentPage{
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(buttonEdit));
         return this;
     }
 
     public PostPage checkTextInSuccessMessage(String expectMessage){
-        Assert.assertEquals("Text in success message element", expectMessage, successMessage.getText());
+        assertEquals("Text in success message element", expectMessage, successMessage.getText());
+        return this;
+    }
+
+    public PostPage checkTitleInCreatedPost(String title){
+        assertEquals("Text in title", title, createPost.getText());
+        return this;
+    }
+
+    public PostPage checkNoteInCreatedPost(String note) {
+        assertTrue("Note is absent", notePost.getText().contains(note));
+        return this;
+    }
+
+    public PostPage checkTextUnderLine(String text) {
+        assertEquals("Text is absent", text, textUnderLine.getText());
         return this;
     }
 
