@@ -33,6 +33,7 @@ public class LoginPage extends ParentPage {
     List<WebElement> errorMessageOnRegisterForm;
 
     private String errorMessageOnRegisterFormByXpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    private String errorMessageOnRegisterFormByXpathWithParamText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -88,7 +89,11 @@ public class LoginPage extends ParentPage {
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorMessageOnRegisterFormByXpath), 3));
     }
 
-    public void checkErrorMessageWithText(String errorText) {
+    public void checkErrorMessageWithTextInList(String errorText) {
         Assert.assertTrue("element with matching error text wasn't found", isTextInWebElementListPresent(errorMessageOnRegisterForm, errorText));
+    }
+
+    public void checkErrorMessageWithTextByParamLocator(String errorText) {
+        Assert.assertTrue("element with matching error text wasn't found", isElementDisplayed(String.format(errorMessageOnRegisterFormByXpathWithParamText, errorText)));
     }
 }

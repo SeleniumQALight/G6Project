@@ -94,6 +94,16 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected boolean isElementDisplayed(String xpath) {
+        try {
+            WebElement webElement = webDriver.findElement(By.xpath(xpath));
+            return isElementDisplayed(webElement);
+        } catch (Exception e) {
+            logger.info("Element isn't displayed" + e);
+        }
+        return false;
+    }
+
     protected boolean isElementDisplayed(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();

@@ -38,7 +38,6 @@ public class MyProfilePage extends ParentPage {
 
     public List<WebElement> getPostsListWithTitle(String title) {
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));
-
     }
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
