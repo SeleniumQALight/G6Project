@@ -24,14 +24,20 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO checkURL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("MyProfilePage is not loaded"
                 , isElementDisplayed(avatar));
         return this;
     }
 
-    public MyProfilePage checkIsUserNameMatches(String expectedUserName){
+    public MyProfilePage checkIsUserNameMatches(String expectedUserName) {
         Assert.assertEquals("User name doesn't match", expectedUserName, title.getText());
         return this;
     }

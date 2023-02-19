@@ -21,17 +21,31 @@ public class CommonActionsWithElement {
 
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
-        wait10=new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        wait15=new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        wait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        wait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
         PageFactory.initElements(webDriver, this);
     }
 
+
+    protected  WebElement getWebElement(String xpath){
+        WebElement element = null;
+        try{
+            By elementBy = By.xpath(xpath);
+            wait15.until(ExpectedConditions.visibilityOfElementLocated(elementBy));
+            element= webDriver.findElement(elementBy);
+        }
+        catch (Exception e){
+            printErroAboutElementAndStopTest( e );
+        }
+
+        return element;
+    }
     protected void typeTextToElement(WebElement element, String text) {
         wait15.until(ExpectedConditions.visibilityOf(element));
         try {
             element.clear();
             element.sendKeys(text);
-            logger.info("Text " + text + "was typed to " + element.toString());
+            logger.info("Text " + text + "was typed to " + getElementName(element));
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }
@@ -40,14 +54,16 @@ public class CommonActionsWithElement {
     protected void clickOnElement(WebElement element) {
         wait10.until(ExpectedConditions.elementToBeClickable(element));
         try {
+            logger.info(" Element was clicked: " + getElementName(element));
             element.click();
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }
     }
+
     protected void clickOnElement(String xpath) {
         try {
-           clickOnElement(webDriver.findElement(By.xpath(xpath)));
+            clickOnElement(webDriver.findElement(By.xpath(xpath)));
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }
@@ -58,9 +74,9 @@ public class CommonActionsWithElement {
             boolean state = element.isDisplayed();
             String message;
             if (state) {
-                message = "Element is displayed";
+                message = getElementName(element) + " Element is displayed";
             } else {
-                message = "Element is not displayed";
+                message = getElementName(element) + " Element is not displayed";
             }
             logger.info(message);
             return state;
@@ -96,6 +112,14 @@ public class CommonActionsWithElement {
                     .click();
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
+        }
+    }
+
+    private String getElementName(WebElement element) {
+        try {
+            return element.getAccessibleName();
+        } catch (Exception e) {
+            return "";
         }
     }
 
