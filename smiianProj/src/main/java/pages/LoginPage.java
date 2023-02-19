@@ -55,9 +55,14 @@ public class LoginPage extends ParentPage {
 //        }
 //    }
 
-    public LoginPage openLoginPage() {
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
+    public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complexapp.onrender.com/");
+            webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage is opened");
 
         } catch (Exception e) {
@@ -129,7 +134,7 @@ public class LoginPage extends ParentPage {
     }
 
     public HomePage fillingLoginFormWithValidCred() {
-        openLoginPage();
+//        openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LIGIN);
         enterPasswordIntoInputpassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
