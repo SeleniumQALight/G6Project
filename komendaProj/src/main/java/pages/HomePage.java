@@ -3,8 +3,6 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
@@ -58,10 +56,6 @@ public class HomePage extends ParentPage {
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(headerElement.getButtonCreatePost());
         return new CreatePostPage(webDriver);
-    }
-
-    public HeaderElement getHeaderElement() {
-          return headerElement;
     }
 
 }
