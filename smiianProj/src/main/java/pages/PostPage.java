@@ -31,11 +31,21 @@ public class PostPage extends ParentPage {
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }     //locator
+
+
+    @Override
+    String getRelativeURL() {    // адреса сторінка поста
+        return "/post/";
+    }
+
+
     public HeaderElement getHeaderElement() {   //  метод звернення до елемента headerElement
         return headerElement;
     }
+
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(buttonEdit));
         return this;
     }
