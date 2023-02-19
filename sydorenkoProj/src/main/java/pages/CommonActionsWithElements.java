@@ -76,9 +76,18 @@ public class CommonActionsWithElements {
             String message;
             if (state) {
                 message = getElementName(webElement) + " Element is displayed";
-            } else message = getElementName(webElement) +" Element is not displayed";
+            } else message = getElementName(webElement) + " Element is not displayed";
             logger.info(message);
             return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    protected boolean isElementDisplayed(String locator, String error) {
+        try {
+            return isElementDisplayed(webDriver.findElement(By.xpath(String.format(locator, error))));
         } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
