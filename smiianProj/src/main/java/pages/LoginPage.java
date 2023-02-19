@@ -34,9 +34,6 @@ public class LoginPage extends ParentPage {
 
 
     String signUpAlertMessages = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
-    public String getSignUpAlertMessages() {
-        return signUpAlertMessages;
-    }
 
 
 
@@ -60,7 +57,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
-    public void openLoginPage() {
+    public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage is opened");
@@ -176,6 +173,7 @@ public class LoginPage extends ParentPage {
        return webDriver.findElements(By.xpath(signUpAlertMessages));
     }
 
+    // додати очікування всередину
     public LoginPage checkAlertMessageQuantity() {
         Assert.assertEquals("Number of alerts is not 3", 3, getAlertMessageList().size());
         return this;

@@ -12,6 +12,11 @@ public class PostEditPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/[a-zA-Z0-9]*/edit";
+    }
+
     @FindBy(name = "title")     //  == .//*[@name='title']
     private WebElement inputTitle;
 
