@@ -1,9 +1,99 @@
-#1 Name
+#1 Sign up new user
+
+Pre:
+Open https://qa-complexapp.onrender.com/
+
 STR:
+1. In UserName field, enter user_1
+2. In Email field, enter email_1
+3. In Password field, enter password_1
+4. Click on 'Sign up for OurApp' button
+5. Click on 'Sign Out' button at the top right;
 
 ER:
+After 4 step: "Hello user_1, your feed is empty" should be displayed on the Home page
+After 5 step: "Remember Writing?" title should be displayed on Log in page
 
-#2 Name
+______________________________________________________________________________________
+
+#2 Log in to existing profile
+
+Pre:
+Open https://qa-complexapp.onrender.com/
+User_1 already registered and has Username and Password: user_1, password_1
+
 STR:
+1. Enter user_1 to the Username field;
+2. Enter password_1 to the Password field;
+3. Click on 'Sign in' button;
 
 ER:
+user_1 name and 'Sign out' is shown at the right top of Home page
+
+______________________________________________________________________________________
+
+#3 Create new post
+
+Pre:
+Open https://qa-complexapp.onrender.com/
+User_1 already registered and has Username and Password: user_1, password_1
+
+STR:
+1. Enter user_1 to the Username field;
+2. Enter password_1 to the Password field;
+3. Click on 'Sign in' button;
+4. Click on 'Create Post'
+5. In Title field, enter title_1
+6. In Body field, enter some_random_text_1
+7. Click on 'Save New Post' button;
+
+ER:
+"New post successfully created." should be displayed
+Page with title_1 and some_random_text_1 text should be displayed
+
+______________________________________________________________________________________
+
+#4 Edit and Delete
+
+Pre:
+Open https://qa-complexapp.onrender.com/
+User_1 already registered and has Username and Password: user_1, password_1
+Post_1 with title_1 already created
+
+STR:
+1. Enter user_1 to the Username field;
+2. Enter password_1 to the Password field;
+3. Click on 'Sign in' button;
+4. Click on 'My Profile' icon
+5. Find title_1 and click on it
+6. Click on 'Edit' icon
+7. In Title field, enter title_2
+6. In Body field, enter some_random_text_2
+7. Click on 'Save Updates' button;
+
+ER:
+"Post successfully updated." should be displayed
+Page with title_2 and some_random_text_2 text should be displayed
+
+______________________________________________________________________________________
+
+#5 Search some post
+
+Pre:
+Open https://qa-complexapp.onrender.com/
+User_1 already registered and has Username and Password: user_1, password_1
+Post_1 with title_1 and body_1 already created
+
+STR:
+1. Enter user_1 to the Username field;
+2. Enter password_1 to the Password field;
+3. Click on 'Sign in' button;
+4. Click on 'Search' icon;
+5. Enter title_1 in Search field;
+6. Wait for searching finished
+
+ER:
+Test result is shown
+All found posts should contain title_1 in Title
+
+______________________________________________________________________________________
