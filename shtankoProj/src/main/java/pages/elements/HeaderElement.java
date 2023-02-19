@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.CommonActionsWithElement;
 import pages.CreatePostPage;
+import pages.LoginPage;
 import pages.MyProfilePage;
 
 
@@ -35,8 +36,15 @@ public class HeaderElement extends CommonActionsWithElement {
     public boolean isButtonSingOutDisplayed(){
         return isElementDisplayed(buttonSingOut);
     }
+    public LoginPage clickButtonSingOut(){
+        clickOnElement(buttonSingOut);
+        return new LoginPage(webDriver);
+    }
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+    public void switchToPreviousTab(){
+        switchToPreviousTabAndRefreshPage();
     }
 }

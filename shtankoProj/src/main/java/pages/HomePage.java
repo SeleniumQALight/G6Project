@@ -34,4 +34,9 @@ public class HomePage extends ParentPage{
         Assert.assertTrue("HomePage is not loaded", getHeaderElement().isButtonSingOutDisplayed());
         return this;
     }
+    public HomePage openNewTabHomePage(){
+        userOpensNewTab();
+        webDriver.get("https://qa-complexapp.onrender.com/");
+        return this;
+    }
 }
