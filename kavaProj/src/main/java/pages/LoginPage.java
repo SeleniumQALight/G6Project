@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -103,6 +104,8 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkErrorMessageWithText(String enterText) {
         isElementDisplayed(errorMessageLocator, enterText);
+        Assert.assertTrue("Element is not displayed",
+                isElementDisplayed(errorMessageLocator, enterText));
         return this;
 
     }

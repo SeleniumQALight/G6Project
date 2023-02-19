@@ -6,15 +6,25 @@ import org.junit.Test;
 public class CheckErrorMessageTest extends BaseTest {
 
     @Test
-    public void errorMessageTest() {
+    public void usernameErrorMessageTest() {
         loginPage.openLoginPage();
         loginPage.enterUserNameToTheRegistrationField("tr")
-                .checkErrorMessageWithText("Username must be at least 3 characters.")
-                .enterEmailToTheRegistrationField("test.com")
-                .checkErrorMessageWithText("You must provide a valid email address.")
-                .enterPasswordToTheRegistrationField("123")
-                .checkErrorMessageWithText("Password must be at least 12 characters.");
+                 .checkErrorMessageWithText("Username must be at least 3 characters.");
 
+    }
 
+    @Test
+    public void emailErrorMessageTest() {
+        loginPage.openLoginPage();
+        loginPage.enterEmailToTheRegistrationField("test.com")
+                 .checkErrorMessageWithText("You must provide a valid email address.");
+
+    }
+
+    @Test
+    public void passwordErrorMessageTest() {
+        loginPage.openLoginPage();
+        loginPage.enterPasswordToTheRegistrationField("123")
+                 .checkErrorMessageWithText("Password must be at least 12 characters.");
     }
 }

@@ -77,8 +77,13 @@ public class CommonActionsWithElements {
     }
 
     protected boolean isElementDisplayed(String locator, String errorInfo) {
-        WebElement requiredLocator = webDriver.findElement(By.xpath(String.format(locator, errorInfo)));
-        return isElementDisplayed(requiredLocator);
+        try {
+            WebElement requiredLocator = webDriver.findElement(By.xpath(String.format(locator, errorInfo)));
+            return isElementDisplayed(requiredLocator);
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     protected boolean isElementDisplayed(WebElement element) {
