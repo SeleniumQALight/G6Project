@@ -16,6 +16,8 @@ public class MyProfilePage extends ParentPage {
     private WebElement userName;
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement successDeleteMessage;
+    @FindBy(xpath = ".//a[@class='text-primary mr-2']")
+    private WebElement editButton;
 
     private String titlePost = ".//*[text()='%s']";
 
@@ -35,6 +37,7 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
         Assert.assertEquals("Post is not unique", 1, getPostListWithTitle(postTitle).size());
+        logger.info("Post has been created!");
         return this;
     }
 
@@ -72,4 +75,8 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    public PostPage clickOnPostTitle(String postTitle) {
+        clickOnElement(String.format(titlePost,postTitle));
+        return new PostPage(webDriver);
+    }
 }

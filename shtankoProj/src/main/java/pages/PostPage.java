@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class PostPage extends ParentPage{
-    @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
+    @FindBy(xpath = "//*[@class=\"text-primary mr-2\"]")
     private WebElement buttonEdit;
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
@@ -29,12 +29,18 @@ public class PostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/";
+    }
+
     public HeaderElement getHeaderElement(){
         return headerElement;
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not loaded",
                 isElementDisplayed(buttonEdit));
         return this;

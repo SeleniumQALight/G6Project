@@ -28,6 +28,9 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
 
+
+                //.checkIsProfileCorrect
+
                 .checkPostWasCreated(POST_TITLE)
 
 
@@ -42,11 +45,7 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsWithTittleTillPresent(POST_TITLE)
-
-
         ;
-
-
     }
 
 }

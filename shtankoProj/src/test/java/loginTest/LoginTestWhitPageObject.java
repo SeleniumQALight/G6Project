@@ -8,11 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class LoginTestWhitPageObject extends BaseTest {
-    public HeaderElement getHeaderElement() {
-        return headerElement;
-    }
 
-    private HeaderElement headerElement = new HeaderElement(webDriver);
     @Test
     public void validLogin(){
         loginPage.openLoginPage();
