@@ -22,11 +22,18 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO Check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         assertTrue("MyProfilePage isn't loaded", isElementDisplayed(avatar));
         return this;
     }
+
     public MyProfilePage checkIfMyProfilePageHasCorrectUser(String userName) {
         assertTrue("User name is not on page", userNamePlace.getText().contains(userName));
         return this;

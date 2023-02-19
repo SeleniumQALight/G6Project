@@ -19,12 +19,18 @@ private WebElement buttonCreatePost;
        this.headerElements=new HeaderElements(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "/";
+    }
+
     public HeaderElements getHeaderElements() {
         return headerElements;
     }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
         if (!getHeaderElements().isButtonSignOutDisplayed()){
             loginPage.fillValidCreds();
         }
@@ -33,6 +39,8 @@ private WebElement buttonCreatePost;
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkURL();
+        waitChatToBeHidden();
         Assert.assertTrue("Home page is not opened",headerElements.isButtonSignOutDisplayed());
         return this;
     }
