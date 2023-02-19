@@ -28,17 +28,17 @@ public class LoginPage extends ParentPage {
     @FindBy (xpath = ".//input[@name='password'  and @class='form-control']")
     private WebElement signupPassword;
 
-    @FindBy (xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'" +
-            "and contains(text(), 'Username must be at least 3 characters.')]")
-    private WebElement usernameAlertMessage;
+    private String alertMessageText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and contains(text(), '%s')]";
 
-    @FindBy (xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'" +
-            "and contains(text(), 'You must provide a valid email address.')]")
-    private WebElement emailAlertMessage;
 
-    @FindBy (xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'" +
-            "and contains(text(), 'Password must be at least 12 characters.')]")
-    private WebElement passwordAlertMessage;
+
+
+    String signUpAlertMessages = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    public String getSignUpAlertMessages() {
+        return signUpAlertMessages;
+    }
+
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -143,31 +143,37 @@ public class LoginPage extends ParentPage {
     }
 
 
-    public LoginPage checkIsUsernameAlertMessageContainText(String expectedMessage){
-        Assert.assertEquals("Wrong text in the Username message element", expectedMessage, usernameAlertMessage.getText());
+
+    public LoginPage checkAlertMessageContainText(String expectedMessage){
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(getAlertMessage(expectedMessage)));
         return this;
     }
 
-    public LoginPage checkIsEmailAlertMessageContainText(String expectedMessage){
-        Assert.assertEquals("Wrong text in the Email message element", expectedMessage, emailAlertMessage.getText());
-        return this;
+    public WebElement getAlertMessage(String alertText1){
+      return webDriver.findElement(By.xpath(String.format(alertMessageText, alertText1)));
     }
 
-    public LoginPage checkIsPasswordAlertMessageContainText(String expectedMessage){
-        Assert.assertEquals("Wrong text in the Email message element", expectedMessage, passwordAlertMessage.getText());
-        return this;
-    }
+
+
 //------------------------------------------------------------------------------------------------------------------------
-    private String alertMessageText = ".//*[text()='%s']";
 
-    public List<WebElement> getAlertMessage(String alertText1){
+    public List<WebElement> getAlertMessageCheckList(String alertText1){
         return webDriver.findElements(By.xpath(String.format(alertMessageText, alertText1)));
     }
 
-    public LoginPage checkAlertMessage(String alertText2) {
-        Assert.assertEquals("Number of alerts with text", 1, getAlertMessage(alertText2).size());
+    public LoginPage checkAlertMessageIsOnlyOne(String alertText2) {
+        Assert.assertEquals("Number of alerts with text", 1, getAlertMessageCheckList(alertText2).size());
         return this;
     }
 //------------------------------------------------------------------------------------------------------------------------
+
+    public List<WebElement> getAlertMessageList(){
+       return webDriver.findElements(By.xpath(signUpAlertMessages));
+    }
+
+    public LoginPage checkAlertMessageQuantity() {
+        Assert.assertEquals("Number of alerts is not 3", 3, getAlertMessageList().size());
+        return this;
+    }
 
 }
