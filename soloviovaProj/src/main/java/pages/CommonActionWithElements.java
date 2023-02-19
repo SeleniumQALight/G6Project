@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
 
 public class CommonActionWithElements {
     protected WebDriver webDriver; //protected makes this element available for classes in other packages.
@@ -28,7 +27,7 @@ public class CommonActionWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " is entered into field ");
+            logger.info(text + " is entered into field "+getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -37,8 +36,9 @@ public class CommonActionWithElements {
     protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element is clicked");
+            logger.info( name +" is clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -47,7 +47,7 @@ public class CommonActionWithElements {
     protected void clickOnElement(String xpath) {
         try {
             clickOnElement(webDriver.findElement(By.xpath(xpath)));
-            logger.info("Element is clicked");
+            logger.info("Element is clicked ");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -58,11 +58,11 @@ public class CommonActionWithElements {
             boolean state = element.isDisplayed();
             String message;
             if (state) {
-                message = "Element is displayed";
+                message = getElementName(element) + " is displayed";
             } else {
-                message = "Element is not displayed";
+                message = getElementName(element) + " is not displayed";
             }
-            logger.info("Element is displayed");
+            logger.info(message);
             return state;
         } catch (Exception e) {
             logger.info("Element is not displayed");
@@ -103,6 +103,15 @@ public class CommonActionWithElements {
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+    private String getElementName(WebElement webElement){
+        try{
+            return webElement.getAccessibleName();
+        }catch(Exception e){
+            return  "";
+        }
+
     }
 
     protected void printErrorAndStopTest(Exception e) {
