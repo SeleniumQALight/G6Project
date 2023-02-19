@@ -76,7 +76,7 @@ public class CommonActionsWithElements {
             String message;
             if (state) {
                 message = getElementName(webElement) + " Element is displayed";
-            } else message = getElementName(webElement) +" Element is not displayed";
+            } else message = getElementName(webElement) + " Element is not displayed";
             logger.info(message);
             return state;
         } catch (Exception e) {
@@ -86,7 +86,13 @@ public class CommonActionsWithElements {
     }
 
     protected boolean isElementDisplayed(String locator, String error) {
-        return isElementDisplayed(webDriver.findElement(By.xpath(String.format(locator, error))));
+        boolean result = false;
+        try {
+            result = isElementDisplayed(webDriver.findElement(By.xpath(String.format(locator, error))));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        return result;
     }
 
     protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
