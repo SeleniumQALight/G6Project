@@ -31,7 +31,7 @@ public class CommonActionsWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted in to element");
+            logger.info(text + "was inputted in to element " + getElementName(webElement));
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -40,8 +40,9 @@ public class CommonActionsWithElements {
     protected void clickOnElement(WebElement webElement){
         try{
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(name + " Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -60,9 +61,9 @@ public class CommonActionsWithElements {
             boolean state = webElement.isDisplayed();
             String message;
             if(state){
-                message ="Element is displayed";
+                message = getElementName(webElement) + " Element is displayed";
             }else{
-                message = "Element is not displayed";
+                message = getElementName(webElement) + " Element is not displayed";
             }
             logger.info(message);
             return state;
@@ -98,6 +99,14 @@ public class CommonActionsWithElements {
             logger.info(value + " was select in DropDown");
         }catch (Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    private String getElementName(WebElement webElement){
+        try{
+            return webElement.getAccessibleName();
+        }catch (Exception e){
+            return "";
         }
     }
 

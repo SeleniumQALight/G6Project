@@ -7,13 +7,13 @@ import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 import static org.junit.Assert.assertEquals;
 
-public class PostPage extends ParentPage{
-@FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
+public class PostPage extends ParentPage {
+    @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
     private WebElement buttonEdit;
-@FindBy(xpath = ".//div[@class='alert alert-success text-center']")
-private WebElement successMessage;
+    @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
+    private WebElement successMessage;
 
-private HeaderElement headerElement = new HeaderElement(webDriver);
+    private HeaderElement headerElement = new HeaderElement(webDriver);
 
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
@@ -31,20 +31,26 @@ private HeaderElement headerElement = new HeaderElement(webDriver);
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
-    public PostPage checkIsRedirectToPostPage(){
-//        TODO check URL
-    Assert.assertTrue("PostPage is not load ", isElementDisplayed(buttonEdit));
-    return this;
-}
-
-public PostPage checkTextInSuccessMessage(String expectMessage){
-        assertEquals("Text in success message element ", expectMessage, successMessage.getText());
+    public PostPage checkIsRedirectToPostPage() {
+        checkURLContainsRelative();
+        waitChatToBeHide();
+        Assert.assertTrue("PostPage is not load ", isElementDisplayed(buttonEdit));
         return this;
-}
+    }
+
+    public PostPage checkTextInSuccessMessage(String expectMessage) {
+        Assert.assertEquals("Text in success message element ", expectMessage, successMessage.getText());
+        return this;
+    }
 
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);

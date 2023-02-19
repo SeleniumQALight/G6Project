@@ -34,7 +34,7 @@ public class CommonActionsWithElements {
             webElement.clear();
             webElement.sendKeys(text);
 
-            logger.info(text + " Was inputted in to element");
+            logger.info(text + " Was inputted in to element" + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -47,9 +47,9 @@ public class CommonActionsWithElements {
             boolean state = webElement.isDisplayed();
             String message;
             if (state) {
-                message = "Element is Displayed";
+                message = getElementName(webElement) + " Element is Displayed";
             } else {
-                message = "Element is not Displayed";
+                message = getElementName(webElement) + " Element is not Displayed" ;
             }
             logger.info(message);
             return state;
@@ -62,8 +62,9 @@ public class CommonActionsWithElements {
     protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+           String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(name + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
 
@@ -111,6 +112,17 @@ public class CommonActionsWithElements {
 
     //дз зробити byUi
 
+
+    private String getElementName(WebElement webElement) {
+
+        try {
+            return webElement.getAccessibleName();
+        } catch (Exception e) {
+            return " ";
+        }
+    }
+
+
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
@@ -141,8 +153,8 @@ public class CommonActionsWithElements {
     }
 
     public void userOpensNewTab() {
-        ((JavascriptExecutor)webDriver).executeScript("window.open()");
-        ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
 //
