@@ -2,6 +2,7 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,18 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+    @FindBy(xpath = ".//input[@id='username-register']")
+    private WebElement inputUserNameRegistration;
+
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegistration;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPasswordRegistration;
+
+    private String actualAlertMessage = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
+
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -27,7 +40,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
-    public void openLoginPage(){
+    public LoginPage openLoginPage(){
         try {
             webDriver.get(baseURL + getRelativeURL());
             logger.info("Login page was opened");
@@ -35,17 +48,11 @@ public class LoginPage extends ParentPage{
             logger.error("Can't open login page" +e);
             Assert.fail("Can't open login page" +e);
         }
+        return this;
     }
 
     public void enterUserNameIntoInputLogin(String userName) {
-//        try {
-////            WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
-//            inputUserName.clear();
-//            inputUserName.sendKeys(userName);
-//            logger.info("Login was inputted");
-//        }catch (Exception e){
-//            printErrorAndStopTest(e);
-//        }
+
         enterTextIntoElement(inputUserName, userName);
     }
 
@@ -68,4 +75,30 @@ public class LoginPage extends ParentPage{
 
         return new HomePage(webDriver);
     }
+
+    public LoginPage enterUserNameIntoRegistrationInput(String userName) {
+        enterTextIntoElement(inputUserNameRegistration, userName);
+        return this;
+    }
+
+    public LoginPage enterEmailIntoRegistrationInput(String email) {
+        enterTextIntoElement(inputEmailRegistration, email);
+        return this;
+    }
+
+    public LoginPage enterPasswordIntoRegistrationInput(String password) {
+        enterTextIntoElement(inputPasswordRegistration, password);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertMessage(String expectedAlertTitle) {
+        Assert.assertTrue("Alert message does not correspond", findAlertMessage(expectedAlertTitle).isDisplayed());
+        return this;
+    }
+
+    private WebElement findAlertMessage(String expectedAlertTitle) {
+        return webDriver.findElement(By.xpath(String.format(actualAlertMessage, expectedAlertTitle)));
+    }
+
+
 }
