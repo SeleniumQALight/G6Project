@@ -5,36 +5,30 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
-    @FindBy(xpath = ".//*[@href='/create-post']")
-    private WebElement buttonCreatePost;
-
-    @FindBy(xpath = ".//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+    private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
-    public boolean isButtonSignOutDisplayed(){
-            return isElementDisplayed(buttonSignOut);
-        }
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.fillingLoginFormWithValidCred();
+        if (!headerElement.isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
-
         return this;
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("", isButtonSignOutDisplayed());
+        Assert.assertTrue("Home page is not loaded", headerElement.isButtonSignOutDisplayed());
         return this;
     }
 
-    public CreatePostPage clickOnCreatePostButton() {
-        clickOnElement(buttonCreatePost);
-        return new CreatePostPage(webDriver);
-    }
 }
