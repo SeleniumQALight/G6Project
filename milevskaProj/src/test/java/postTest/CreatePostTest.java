@@ -27,7 +27,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkTitleOfCreatedPost(POST_TITLE)
-                .checkLabelNote()
+                .checkLabelNote("Note: This post was written for")
                 .checkCorrectSelectedValueInDropdown(dropdownValue)
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()

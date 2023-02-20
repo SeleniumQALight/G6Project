@@ -1,7 +1,6 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +18,7 @@ public class PostPage extends ParentPage{
     private WebElement successTitle;
 
     @FindBy(xpath = ".//*[contains(text(),'Note: This post was written for')]")
-    private WebElement expectNote;
+    private WebElement successNote;
 
     @FindBy(xpath = ".//div[@class='body-content']//u")
     private WebElement successValueFromDropdown;
@@ -50,8 +49,8 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage checkTextInSuccessMessage(String expextMessage){
-        Assert.assertEquals("Text in success massage element ", expextMessage, successMessage.getText());
+    public PostPage checkTextInSuccessMessage(String expectMessage){
+        Assert.assertEquals("Text in success massage element ", expectMessage, successMessage.getText());
         return this;
     }
      public PostPage checkTitleOfCreatedPost(String expectTitle){
@@ -59,8 +58,9 @@ public class PostPage extends ParentPage{
          return this;
      }
 
-     public PostPage checkLabelNote(){
-         //isElementDisplayed(expectNote);
+     public PostPage checkLabelNote(String expectNote){
+         isElementDisplayed(successNote);
+         Assert.assertEquals("Not expected note",expectNote, successNote.getText());
          return this;
      }
 
