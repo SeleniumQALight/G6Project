@@ -13,6 +13,7 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class ='body-content'][1]") private WebElement createdPostNote;
 
 
+
     private HeaderElements headerElement = new HeaderElements(webDriver);
     @FindBy (xpath = "//button[@class='delete-post-button text-danger']") private WebElement buttonDelete;
 
@@ -20,12 +21,18 @@ public class PostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/";
+    }
+
     public HeaderElements getHeaderElement() {
         return headerElement;
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO Check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(editButton));
         return this;
     }
@@ -50,4 +57,12 @@ public class PostPage extends ParentPage{
         clickElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+
+    public EditPostPage clickOnEditButton() {
+        clickElement(editButton);
+        return new EditPostPage(webDriver);
+    }
+
+
+
 }

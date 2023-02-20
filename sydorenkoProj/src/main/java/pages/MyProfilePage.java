@@ -22,11 +22,18 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO Check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         assertTrue("MyProfilePage isn't loaded", isElementDisplayed(avatar));
         return this;
     }
+
     public MyProfilePage checkIfMyProfilePageHasCorrectUser(String userName) {
         assertTrue("User name is not on page", userNamePlace.getText().contains(userName));
         return this;
@@ -66,5 +73,9 @@ public class MyProfilePage extends ParentPage {
     private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
         assertTrue("Success Deleted PostMessage is not displayed", isElementDisplayed(successDeletePostMessage));
         return this;
+    }
+    public PostPage clickOnPostWithTitle(String postTitle) {
+        clickOnElement(getPostsListWithTitle(postTitle).get(0));
+        return new PostPage(webDriver);
     }
 }

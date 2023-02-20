@@ -32,7 +32,7 @@ public class CommonActionWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement)); //виокористання очікування 15
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element");
+            logger.info(text + " was inputted into element " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -41,8 +41,9 @@ public class CommonActionWithElements {
     protected void clickOnElement(WebElement webElement){
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));   //виокористання очікування 10
+            String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(name + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -61,9 +62,9 @@ public class CommonActionWithElements {
             boolean state = webElement.isDisplayed();
             String message;
             if (state == true) {
-                message = "Element is displayed";
+                message = getElementName(webElement) + " Element is displayed";
             } else {
-                message = "Element is not displayed";
+                message = getElementName(webElement) + " Element is not displayed";
             }
                 logger.info(message);
             return state;
@@ -83,10 +84,37 @@ public class CommonActionWithElements {
         }
     }
 
+
+
+
+
+    private String getElementName (WebElement webElement) {      //дістає ім'я елемента. Потім це додаєм до повідомлень, на випадок помилок.
+        try {
+            return webElement.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+
+
+
+
     protected void selectValueInDropDown(WebElement dropDown, String value) {
         try {
             Select select = new Select(dropDown);
             select.selectByValue(value);
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectTextInDropDownByUi (WebElement postPostPageDropDown, WebElement postPageDropDownSecondOption) {
+        try {
+            clickOnElement(postPostPageDropDown);
+            logger.info("DropDown was clicked");
+            clickOnElement(postPageDropDownSecondOption);
+            logger.info("DropDownOption was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
