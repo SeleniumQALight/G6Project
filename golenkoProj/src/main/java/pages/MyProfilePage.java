@@ -8,30 +8,36 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class MyProfilePage extends ParentPage{
-    @FindBy (xpath = ".//img[@class='avatar-small']")
+public class MyProfilePage extends ParentPage {
+    @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
 
-    @FindBy (xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
+    @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
     private WebElement login;
 
     @FindBy(xpath = ".//div[text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
 
-    private String titlePost = ".//*[text()='%s']";
+    private final String titlePost = ".//*[text()='%s']";
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("MyProfilePage is not loaded",
                 isElementDisplayed(avatar));
         return this;
     }
 
-    public List<WebElement> getPostsListWithTitle (String title){
+    public List<WebElement> getPostsListWithTitle(String title) {
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));
     }
 
@@ -43,7 +49,7 @@ public class MyProfilePage extends ParentPage{
     public MyProfilePage deletePostsWithTitleTillPresent(String postTitle) {
         List<WebElement> listOfPosts = getPostsListWithTitle(postTitle);
         int counter = listOfPosts.size();
-        while (!listOfPosts.isEmpty() && counter > 0 ){
+        while (!listOfPosts.isEmpty() && counter > 0) {
             clickOnElement(String.format(titlePost, postTitle));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
@@ -57,7 +63,7 @@ public class MyProfilePage extends ParentPage{
         }
         if (listOfPosts.size() == 0) {
             logger.info("All posts were deleted with title " + postTitle);
-        }else {
+        } else {
             logger.error("Delete fail");
             Assert.fail("Delete fail");
         }
@@ -73,6 +79,17 @@ public class MyProfilePage extends ParentPage{
     public MyProfilePage checkIsCorrectLoginDisplayed(String expectedLogin) {
         Assert.assertTrue("Correct login is displayed", isElementDisplayed(login));
         Assert.assertEquals("Incorrect login", expectedLogin, login.getText());
+        return this;
+    }
+
+    public PostPage clickOnCreatedPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
+    }
+
+    public MyProfilePage checkPostIsPresentAndUnique(String PostTitle) {
+        List<WebElement> listOfPosts = getPostsListWithTitle(PostTitle);
+        Assert.assertEquals("Post in not present or not unique", 1, listOfPosts.size());
         return this;
     }
 }

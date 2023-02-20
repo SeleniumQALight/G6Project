@@ -28,12 +28,18 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(buttonEdit));
 
         return this;
@@ -45,7 +51,7 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkNewTitleIsDisplayed(String expectTitle) {
-        Assert.assertEquals("POST_TITLE" ,expectTitle, createdTitle.getText());
+        Assert.assertEquals("POST_TITLE", expectTitle, createdTitle.getText());
         return this;
     }
 
@@ -56,7 +62,7 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkTextisDisplayedInBody(String expectOnePersonText) {
-        Assert.assertEquals("One Person", expectOnePersonText,textOnePerson.getText());
+        Assert.assertEquals("One Person", expectOnePersonText, textOnePerson.getText());
         return this;
     }
 

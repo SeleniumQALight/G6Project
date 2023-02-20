@@ -21,6 +21,11 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
@@ -35,6 +40,7 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver); // залогінитися
+        loginPage.openLoginPage();
         if(!isButtonSignOutDisplayed()){
             loginPage.fillingLoginFormWithValidCred(); // перевірити що ми на HomePage
         }
@@ -43,6 +49,8 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkUrl();
+        waitChatToBeHide();
         Assert.assertTrue("HomePage is not loaded", isButtonSignOutDisplayed());
         return this;
     }
