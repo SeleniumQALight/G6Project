@@ -12,7 +12,7 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost() { //number of the test can be taken from TestRail and should match
     homePage
             .openHomePage()
-            .clickOnCreatePostButton()
+            .getHeaderElement().clickOnCreatePostButton()
             .checkIsRedirectToCreatePostPage()
             .enterTextInputTitle(POST_TITLE)
             .enterTextInputBody("Text Body")
@@ -36,7 +36,7 @@ public class CreatePostTest extends BaseTest {
     @After
     public void deletePost(){
         homePage.openHomePage()
-                .clickOnMyProfileButton()
+                .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsWithTitleTillPresent(POST_TITLE)
 

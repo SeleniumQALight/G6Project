@@ -39,4 +39,15 @@ public class HeaderElement extends CommonActionsWithElements {
         return new CreatePostPage(webDriver);
     }
 
+    public WebElement getButtonMyProfile() {
+        return buttonMyProfile;
+    }
+
+    public WebElement getSignOutButton() {
+        return signOutButton;
+    }
+
+    public WebElement getButtonCreatePost() {
+        return buttonCreatePost;
+    }
 }

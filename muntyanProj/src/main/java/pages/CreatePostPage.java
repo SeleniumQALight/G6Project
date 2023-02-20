@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class CreatePostPage extends HeaderElement {
+public class CreatePostPage extends ParentPage {
     @FindBy(name = "title") // it's the same as locator .//*[@name = 'title']
     private WebElement inputTitle;
 

@@ -7,15 +7,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class HomePage extends HeaderElement {
+public class HomePage extends ParentPage {
 //    @FindBy(xpath = ".//*[@href='/create-post']")
 //    private WebElement buttonCreatePost;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
+    private HeaderElement headerElement = new HeaderElement(webDriver);
 
-//    @FindBy(xpath = ".//button[@class ='btn btn-sm btn-secondary']")
+    public HeaderElement getHeaderElement() {
+        return headerElement;
+    }
+    //    @FindBy(xpath = ".//button[@class ='btn btn-sm btn-secondary']")
 //    private WebElement signOutButton;
 
 //    public boolean isButtonSignOutDisplayed() {
@@ -25,7 +29,7 @@ public class HomePage extends HeaderElement {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        if(!isButtonSignOutDisplayed()) {
+        if(!headerElement.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
         checkIsRedirectToHomePage();
@@ -33,7 +37,7 @@ public class HomePage extends HeaderElement {
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        Assert.assertTrue("Home Page is not loaded", isButtonSignOutDisplayed());
+        Assert.assertTrue("Home Page is not loaded", headerElement.isButtonSignOutDisplayed());
 
         return this;
     }

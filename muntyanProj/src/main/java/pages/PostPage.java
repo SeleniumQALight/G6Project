@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class PostPage extends HeaderElement{
+public class PostPage extends ParentPage{
 
     @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
     private WebElement buttonEdit;
@@ -68,7 +68,7 @@ return this;
     }
 
     public PostPage checkisBodyEqualesToDDSelection(String expectedBodyValue){
-        forTextComparing (expectedBodyValue, bodyWithUnderline);
+        Assert.assertEquals (expectedBodyValue, bodyWithUnderline);
         return this;
     }
 
