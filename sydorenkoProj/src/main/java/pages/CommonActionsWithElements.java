@@ -32,7 +32,7 @@ public class CommonActionsWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element");
+            logger.info(text + " was inputted into element" + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -41,8 +41,9 @@ public class CommonActionsWithElements {
     protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(name + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -56,6 +57,14 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected String getElementName(WebElement webElement) {
+        try {
+            return webElement.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
@@ -66,10 +75,19 @@ public class CommonActionsWithElements {
             boolean state = webElement.isDisplayed();
             String message;
             if (state) {
-                message = "Element is displayed";
-            } else message = "Element is not displayed";
+                message = getElementName(webElement) + " Element is displayed";
+            } else message = getElementName(webElement) + " Element is not displayed";
             logger.info(message);
             return state;
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    protected boolean isElementDisplayed(String locator, String error) {
+        try {
+            return isElementDisplayed(webDriver.findElement(By.xpath(String.format(locator, error))));
         } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
@@ -130,7 +148,7 @@ public class CommonActionsWithElements {
     }
 
     public void userOpensNewTab() {
-        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }

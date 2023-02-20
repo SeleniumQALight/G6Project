@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 import java.util.logging.Logger;
 
@@ -16,9 +17,20 @@ public class HomePage extends ParentPage{
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    HeaderElement headerElement = new HeaderElement(webDriver);
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
     }
 
     @FindBy(xpath = ".//button[@class ='btn btn-sm btn-secondary']")
@@ -30,15 +42,18 @@ public class HomePage extends ParentPage{
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
         //login
         //check that we are in homepage
-        loginPage.fillingLoginFormWithValidCred();
+        if(!isButtonSignOutDisplayed()){
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
-
         return this;
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkURL();
         Assert.assertTrue("HomePage is not loaded", isButtonSignOutDisplayed());
         return this;
 
