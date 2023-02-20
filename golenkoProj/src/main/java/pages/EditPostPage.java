@@ -20,6 +20,11 @@ public class EditPostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/[a-zA-Z0-9]*/edit";
+    }
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HeaderElement getHeaderElement() {
@@ -27,6 +32,8 @@ public class EditPostPage extends ParentPage {
     }
 
     public EditPostPage checkIsRedirectToEditPostPage() {
+        checkURLWithPattern();
+        waitChatToBeHide();
         Assert.assertTrue("EditPostPage is not opened",
                 isElementDisplayed(saveUpdatedButton));
         return this;
@@ -44,7 +51,8 @@ public class EditPostPage extends ParentPage {
     }
 
     public EditPostPage checkMessagePostUpdated() {
-        isElementDisplayed(successAlert);
+        Assert.assertTrue("Post is not updated",
+        isElementDisplayed(successAlert));
         return this;
     }
 }
