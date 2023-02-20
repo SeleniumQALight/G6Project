@@ -28,12 +28,18 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/";
+    }
+
     public HeaderElements getHeaderElements() {
         return headerElements;
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check URL
+        checkURLContains();
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not load", isElementDisplayed(buttnEdit));
         return this;
     }

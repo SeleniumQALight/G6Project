@@ -25,8 +25,14 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        // TODO check URL
+        checkURLContains();
+        waitChatToBeHide();
         Assert.assertTrue("My Profile page is not loaded", isElementDisplayed(avatar));
         return this;
     }

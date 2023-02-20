@@ -38,7 +38,7 @@ public class CommonActionWithElements {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             String name = getElementName(webElement);
             webElement.click();
-            logger.info( name +" is clicked");
+            logger.info( name +" element is clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -58,9 +58,9 @@ public class CommonActionWithElements {
             boolean state = element.isDisplayed();
             String message;
             if (state) {
-                message = getElementName(element) + " is displayed";
+                message = getElementName(element) + " element is displayed";
             } else {
-                message = getElementName(element) + " is not displayed";
+                message = getElementName(element) + " element is not displayed";
             }
             logger.info(message);
             return state;
