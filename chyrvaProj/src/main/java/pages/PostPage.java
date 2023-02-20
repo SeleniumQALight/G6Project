@@ -6,14 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-public class PostPage extends ParentPage{
+public class PostPage extends ParentPage {
     @FindBy(xpath = ".//*[contains(text(), \"One Person\")]")
     private WebElement textOnePerson;
     @FindBy(xpath = ".//div[@class = 'body-content' ]")
     private WebElement noteText;
     @FindBy(xpath = ".//div[@class = 'd-flex justify-content-between']")
     private WebElement createdTitle;
-    @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]" )
+    @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
     private WebElement buttonEdit;
 
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
@@ -22,7 +22,7 @@ public class PostPage extends ParentPage{
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
-    private  WebElement buttonDelete;
+    private WebElement buttonDelete;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -38,7 +38,8 @@ public class PostPage extends ParentPage{
 
         return this;
     }
-    public PostPage checkTextInSuccessMessage(String expectMessage){
+
+    public PostPage checkTextInSuccessMessage(String expectMessage) {
         Assert.assertEquals("Text in success message element", expectMessage, successMessage.getText());
         return this;
     }

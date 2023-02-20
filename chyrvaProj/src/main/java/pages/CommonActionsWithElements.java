@@ -112,6 +112,28 @@ public class CommonActionsWithElements {
             return false;
         }
 
+
+        }
+
+    protected boolean isElementDisplayed(String xpath) {
+        try {
+
+            boolean state = webDriver.findElement(By.xpath(xpath)).isDisplayed();
+            String message;
+            if (state) {
+                message = "Element is displayed";
+            } else {
+                message = "Element is not displayed";
+            }
+            logger.info(message);
+            return state;
+
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+
+
     }
 
     public void selectTextInDropDownByUI() {
