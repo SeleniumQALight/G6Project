@@ -15,7 +15,7 @@ public class NotValidDataMessagesCheck extends BaseTest{
                 .enterDataIntoUsernameField(USER_NAME)
                 .enterDataIntoEmailField(EMAIL)
                 .enterDataIntoPasswordField(PASSWORD)
-
+             .checkAlertMessageQuantity()
              .checkAlertMessageIsOnlyOne("Username must be at least 3 characters.")
              .checkAlertMessageContainText("Username must be at least 3 characters.")
              .checkAlertMessageIsOnlyOne("You must provide a valid email address.")
@@ -23,7 +23,7 @@ public class NotValidDataMessagesCheck extends BaseTest{
              .checkAlertMessageIsOnlyOne("Password must be at least 12 characters.")
              .checkAlertMessageContainText("Password must be at least 12 characters.")
 
-             .checkAlertMessageQuantity()
+
         ;
 
     }
