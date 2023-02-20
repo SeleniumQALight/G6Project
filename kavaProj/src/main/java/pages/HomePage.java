@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static elements.HeaderElement.buttonCreatePost;
 import static elements.HeaderElement.isSignOutButtonDisplayed;
 
 public class HomePage extends ParentPage {
@@ -26,12 +25,18 @@ public class HomePage extends ParentPage {
 
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
         if (!isSignOutButtonDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
@@ -41,6 +46,8 @@ public class HomePage extends ParentPage {
 
 
     public HomePage checkIsRedirectToHomePage() {
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("HomePage is not loaded", isSignOutButtonDisplayed());
         return this;
 
