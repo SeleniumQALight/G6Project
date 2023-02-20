@@ -14,6 +14,9 @@ public class EditPostPage extends CreatePostPage {
         super(webDriver);
     }
 
+    String getRelativeURL() {
+        return "/post/[a-zA-Z0-9]*/edit";
+    }
     public PostPage modifyPostTitle(String newTitle) {
         postTitle.clear();
         enterTextInInputTitle(newTitle);

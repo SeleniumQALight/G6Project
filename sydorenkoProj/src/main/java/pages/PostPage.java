@@ -28,12 +28,18 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         assertTrue("PostPage isn't loaded", isElementDisplayed(buttonEdit));
         return this;
     }
@@ -61,5 +67,9 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+    public CreatePostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new CreatePostPage(webDriver);
     }
 }

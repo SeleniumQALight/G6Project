@@ -16,37 +16,33 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {    // адреса домашньої сторінки
+        return "/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
-//    @FindBy(xpath = ".//button[@class='btn btn-sm btn-secondary']")
-//    private WebElement buttonLogOut;
 
-
-
-//    public boolean isButtonSignOutDisplayed(){
-//
-//        return isObjectDisplayed(buttonLogOut);
-//    }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
         if(!headerElement.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
-        //залогінитись
-//        loginPage.fillingLoginFormWithValidCred();
 
-        //перевірити що ми знаходимось на HomePage
         checkIsRedirectToHomePage();
 
         return this;
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
-
         return this;
     }
 
