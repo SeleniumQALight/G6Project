@@ -4,7 +4,7 @@ Pre:
 Open https://qa-complexapp.onrender.com/
 
 STR:
-1. In UserName field, enter user_1
+1. In UserName field, enter 'user' + timestamp
 2. In Email field, enter email_1
 3. In Password field, enter password_1
 4. Click on 'Sign up for OurApp' button
@@ -51,6 +51,9 @@ ER:
 "New post successfully created." should be displayed
 Page with title_1 and some_random_text_1 text should be displayed
 
+Post:
+Delete newly created post
+
 ______________________________________________________________________________________
 
 #4 Edit and Delete
@@ -74,6 +77,9 @@ STR:
 ER:
 "Post successfully updated." should be displayed
 Page with title_2 and some_random_text_2 text should be displayed
+
+Post:
+Delete edited post from precondition
 
 ______________________________________________________________________________________
 
