@@ -1,12 +1,16 @@
 package pages;
 
+
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import java.util.List;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
@@ -28,6 +32,9 @@ public class LoginPage extends ParentPage{
 
     String errorMessage = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
+    @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> notificationsWithErrors;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -37,11 +44,11 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
-    public void openLoginPage(){
-        try{
+    public void openLoginPage() {
+        try {
             webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage was opened");
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not open Login Page" + e);
             Assert.fail("Can not open Login Page" + e);
         }
@@ -103,7 +110,15 @@ public class LoginPage extends ParentPage{
     public boolean isFieldValidationErrorIsDisplayed(String error) {
         return isElementDisplayed(errorMessage, error);
     }
+
+    public LoginPage checkErrorCountMessage(int quantityErrors) {
+        webDriverWait10.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='Password must be at least 12 characters.']"))));
+        Assert.assertEquals("The number of errors is not as expected",
+                quantityErrors, notificationsWithErrors.size());
+        return this;
+    }
 }
+
 
 
 

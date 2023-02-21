@@ -31,7 +31,7 @@ public class CommonActionsWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted in to element " + getElementName(webElement));
+            logger.info(text + " was inputted in to element " + getElementName(webElement));
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -73,7 +73,12 @@ public class CommonActionsWithElements {
         }
     }
     protected boolean isElementDisplayed(String element, String error) {
-        return isElementDisplayed(webDriver.findElement(By.xpath(String.format(element, error))));
+        try {
+            return isElementDisplayed(webDriver.findElement(By.xpath(String.format(element, error))));
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
     }
 
     protected void selectTextInDropDown(WebElement dropDown, String visibleText){

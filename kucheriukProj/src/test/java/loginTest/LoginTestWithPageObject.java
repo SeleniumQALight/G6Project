@@ -35,6 +35,7 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterUserNameIntoRegistrationField("tr");
         loginPage.enterEmailIntoEmailField("test.com");
         loginPage.enterPasswordIntoPasswordRegistrationField("123");
+        loginPage.checkErrorCountMessage(3);
 
         Assert.assertTrue("Name field validation error is not displayed",
                 loginPage.isFieldValidationErrorIsDisplayed("Username must be at least 3 characters."));
