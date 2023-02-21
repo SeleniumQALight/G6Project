@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.PostEditPage;
 import pages.elements.HeaderElement;
 
 import java.time.Duration;
@@ -19,6 +20,7 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected HeaderElement headerElement;
+    protected PostEditPage postEditPage;
 
 
 
@@ -32,6 +34,7 @@ public class BaseTest {
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
         headerElement = new HeaderElement(webDriver);
+        postEditPage = new PostEditPage(webDriver);
 
 
     }
