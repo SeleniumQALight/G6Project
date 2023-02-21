@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
@@ -19,6 +21,7 @@ public class BaseTest { //батьківський клас для всіх кл
 
     @Before //pre-cond
     public void setUp() {
+        logger.info("-------- " + testName.getMethodName()+" --------");
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
@@ -35,7 +38,12 @@ public class BaseTest { //батьківський клас для всіх кл
     public void tearDown() {
         webDriver.quit();
         logger.info("browser closed");
+
+        logger.info("test is ended " + testName.getMethodName()+" --------");
+
     }
 
+    @Rule // ця анотація запускається незалежно. перед раном тесту, запише в змінну ім'я тесту який зараз запускається
+    public TestName testName = new TestName();
 
 }
