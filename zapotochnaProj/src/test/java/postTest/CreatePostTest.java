@@ -12,7 +12,7 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost() {
         homePage
                 .openHomePage()
-                .clickOnCreatePostButton()
+                .getHeaderElement().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
 
@@ -25,11 +25,13 @@ public class CreatePostTest extends BaseTest {
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+
+                .checkIfPostTitleCorrect(POST_TITLE)
+
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
 
-
-                //.checkIsProfileCorrect()
+                .checkIsProfileCorrect("qaauto")
 
                 .checkPostWasCreated(POST_TITLE)
 
