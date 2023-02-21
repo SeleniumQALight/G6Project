@@ -16,7 +16,8 @@ import java.util.ArrayList;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-    WebDriverWait webDriverWait10, webDriverWait15;
+    WebDriverWait webDriverWait10;
+    protected WebDriverWait webDriverWait15;
     String value = "Приватне повідомлення";
     String locatorForDD = "//option[contains(text(),'" + value + "')]";
 
