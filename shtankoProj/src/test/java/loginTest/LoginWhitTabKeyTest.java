@@ -9,10 +9,8 @@ public class LoginWhitTabKeyTest extends BaseTest {
     @Test
     public void validLoginTabKey(){
         loginPage.openLoginPage();
-        loginPage.logoTabKey(1);
         loginPage.userNameTabKey(USER_NAME);
         loginPage.passwordTabKey(PASSWORD);
-        loginPage.singInTabKey();
         homePage.getHeaderElement().isButtonSingOutDisplayed();
         homePage.checkIsRedirectToHomePage();
 

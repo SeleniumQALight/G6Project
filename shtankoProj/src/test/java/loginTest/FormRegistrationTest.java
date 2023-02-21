@@ -13,7 +13,7 @@ public class FormRegistrationTest extends BaseTest {
         loginPage.enterUserNameIntoInputRegisteredForm(USER_NAME);
         loginPage.enterEmailIntoInputRegistered(EMAIL);
         loginPage.enterPasswordIntoInputRegisteredForm(PASSWORD);
-        loginPage.checkAlertMessageWithText()
+        loginPage.checkAlertMessageWithText(3)
                 .checkErrorMessageWithText("Username must be at least 3 characters.")
                 .checkErrorMessageWithText("You must provide a valid email address.")
                 .checkErrorMessageWithText("Password must be at least 12 characters.")

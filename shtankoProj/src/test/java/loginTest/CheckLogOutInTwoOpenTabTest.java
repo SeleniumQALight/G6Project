@@ -7,12 +7,12 @@ public class CheckLogOutInTwoOpenTabTest extends BaseTest {
     @Test
     public void logOutInTwoOpenTabTest(){
         homePage.openHomePage()
-                .getHeaderElement().isButtonSingOutDisplayed();
-        homePage.openNewTabHomePage()
-                .getHeaderElement().isButtonSingOutDisplayed();
+                .getHeaderElement().checkButtonSingOutIsDisplayed();
+        homePage.getUrlHomepage()
+                .getHeaderElement().checkButtonSingOutIsDisplayed();
         homePage.getHeaderElement().clickButtonSingOut();
         loginPage.checkSingInButtonIsDisplayed();
-        homePage.getHeaderElement().switchToPreviousTab();
+        loginPage.switchToPreviousTabAndRefreshPage();
         loginPage.checkSingInButtonIsDisplayed();
     }
 }

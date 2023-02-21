@@ -1,9 +1,11 @@
 package pages.elements;
 
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.CommonActionsWithElement;
 import pages.CreatePostPage;
 import pages.LoginPage;
@@ -29,22 +31,25 @@ public class HeaderElement extends CommonActionsWithElement {
 
     //метод який буде клікати на цю кнопку
     //Як що в методі є return то треба указати шо ми повертаємо сторінку або щось інше...
-    public MyProfilePage clickOnMyProfileButton(){
+    public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
-    public boolean isButtonSingOutDisplayed(){
+
+    public boolean isButtonSingOutDisplayed() {
         return isElementDisplayed(buttonSingOut);
     }
-    public LoginPage clickButtonSingOut(){
+
+    public LoginPage clickButtonSingOut() {
         clickOnElement(buttonSingOut);
         return new LoginPage(webDriver);
     }
+    public void checkButtonSingOutIsDisplayed(){
+        Assert.assertTrue(buttonSingOut + "Button is not displayed",isElementDisplayed(buttonSingOut));
+    }
+
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
-    }
-    public void switchToPreviousTab(){
-        switchToPreviousTabAndRefreshPage();
     }
 }

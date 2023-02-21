@@ -99,9 +99,9 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputPasswordRegistered,passwordRegistered);
     }
 
-    public LoginPage checkAlertMessageWithText(){
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(alertDanger),3));
-        Assert.assertEquals("The message is not displayed",3, alertText.size());
+    public LoginPage checkAlertMessageWithText(int numberOfErrors){
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(alertDanger),numberOfErrors));
+        Assert.assertEquals("The message is not displayed",numberOfErrors, alertText.size());
         return this;
     }
     public LoginPage checkSingInButtonIsDisplayed(){
@@ -113,33 +113,33 @@ public class LoginPage extends ParentPage {
         Assert.assertTrue(alertMessage + "The message is not equal", isElementDisplayed(String.format(alertDangerText,alertMessage)));
         return this;
     }
-    public LoginPage logoTabKey(int number){
-        usersPressesKeyTabTime(number);
-        return this;
-    }
+
     public LoginPage userNameTabKey(String userName){
-        usersPressesKeyTabTime(1,userName);
+        usersPressesKeyTabTime(2);
+        userEnterText(userName);
         return this;
     }
     public LoginPage passwordTabKey(String passwordEnter){
-        usersPressesKeyTabTime(1,passwordEnter);
-        return this;
-    }
-    public LoginPage singInTabKey(){
-        usersPressesKeyEnterTime(1);
+        usersPressesKeyTabTime(1);
+        userEnterText(passwordEnter);
+        usersPressesKeyTabTime(1);
         usersPressesKeyEnterTime(1);
         return this;
     }
+
     public LoginPage registrationUserNameTabKey(String userName){
-        usersPressesKeyTabTime(1,userName);
+        usersPressesKeyTabTime(5);
+        userEnterText(userName);
         return this;
     }
     public LoginPage registrationEmailTabKey(String email){
-        usersPressesKeyTabTime(1,email);
+        usersPressesKeyTabTime(1);
+        userEnterText(email);
         return this;
     }
     public LoginPage registrationPasswordTabKey(String password){
-        usersPressesKeyTabTime(1,password);
+        usersPressesKeyTabTime(1);
+        userEnterText(password);
         return this;
     }
 }

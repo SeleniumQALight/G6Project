@@ -10,11 +10,10 @@ public class AlertRegistrationTabKeyTest extends BaseTest {
     @Test
     public void invalidAlertRegistrationTabKey(){
         loginPage.openLoginPage();
-        loginPage.logoTabKey(4);
         loginPage.registrationUserNameTabKey(USER_NAME);
         loginPage.registrationEmailTabKey(EMAIL);
         loginPage.registrationPasswordTabKey(PASSWORD);
-        loginPage.checkAlertMessageWithText()
+        loginPage.checkAlertMessageWithText(3)
                 .checkErrorMessageWithText("Username must be at least 3 characters.")
                 .checkErrorMessageWithText("You must provide a valid email address.")
                 .checkErrorMessageWithText("Password must be at least 12 characters.")

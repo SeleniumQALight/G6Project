@@ -7,9 +7,10 @@ public class CheckLogInNewOpenWindowTest extends BaseTest {
     @Test
     public void checkLogInNewOpenWindow(){
         homePage.openHomePage()
-                .getHeaderElement().isButtonSingOutDisplayed();
-        homePage.openNewTabHomePage()
-                .getHeaderElement().isButtonSingOutDisplayed();
-        homePage.getHeaderElement().clickOnMyProfileButton();
+                .getHeaderElement().checkButtonSingOutIsDisplayed();
+        homePage.userOpensNewTab();
+        homePage.getUrlHomepage();
+        homePage.getHeaderElement().checkButtonSingOutIsDisplayed();
     }
 }
+

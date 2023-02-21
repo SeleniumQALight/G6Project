@@ -142,11 +142,10 @@ public class CommonActionsWithElement {
         }
 
     }
-    public void usersPressesKeyTabTime(int numberOfTimes, String text) {
+
+    public void userEnterText(String text){
         Actions actions = new Actions(webDriver);
-        for (int i = 0; i < numberOfTimes; i++) {
-            actions.sendKeys(Keys.TAB).sendKeys(text).perform();
-        }
+        actions.sendKeys(text).perform();
     }
 
     public void usersPressesKeyTime(Keys keys, int numberOfTimes) {
