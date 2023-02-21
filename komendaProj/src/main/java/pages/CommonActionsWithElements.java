@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-    WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
