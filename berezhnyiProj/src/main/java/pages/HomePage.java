@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.elements.HeaderElements;
 
 public class HomePage extends ParentPage{
@@ -32,6 +33,7 @@ public class HomePage extends ParentPage{
     }
 
     public boolean isButtonSignOutDisplayed(){
+        webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
        return isElementDisplayed(buttonSignOut);
     }
 
