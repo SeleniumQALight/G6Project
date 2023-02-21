@@ -38,13 +38,18 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
-    public CreatePostPage selectDropDownOptions(String textInDD) {
+    public CreatePostPage selectTextDropDownOptions(String textInDD) {
         selectTextInDropDown(dropDownOptions, textInDD);
         return this;
     }
 
     public CreatePostPage selectValueDropDownOptions(String value) {
         selectValueInDropDown(dropDownOptions, value);
+        return this;
+    }
+
+    public CreatePostPage selectTextInDropDownByUI(String text){
+        selectTextInDropDownByUI(dropDownOptions,text);
         return this;
     }
 
