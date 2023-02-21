@@ -43,6 +43,8 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+
 //-------------------------------------------------------------------------------------------------------------
 
     @Override
@@ -54,7 +56,7 @@ public class LoginPage extends ParentPage {
         try {
             webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage is opened");
-
+            logger.info(base_url);      // робиться запис про URL в логах, при запуску метода openLoginPage
         } catch (Exception e) {
             logger.error("Can not open Login Page" + e);  //Write message into log-file
             Assert.fail("Can not open Login Page" + e);  //Write message into console
