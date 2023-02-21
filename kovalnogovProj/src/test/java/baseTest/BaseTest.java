@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
@@ -14,24 +16,31 @@ import java.time.Duration;
 
 public class BaseTest {
     protected WebDriver webDriver;
-    Logger logger = Logger.getLogger( getClass() );
-    protected LoginPage loginPage ;
+    Logger logger = Logger.getLogger(getClass());
+    protected LoginPage loginPage;
     protected HomePage homePage;
 
     @Before
     public void beforeTest() {
+        logger.info("----"+testName.getMethodName()+" was started ----");
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait( Duration.ofSeconds( 5 ) );
-        loginPage = new LoginPage( webDriver );
-        homePage= new HomePage(webDriver);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        loginPage = new LoginPage(webDriver);
+        homePage = new HomePage(webDriver);
     }
 
 
     @After
     public void afterTest() {
+        logger.info("----"+testName.getMethodName()+" was finished ----");
         webDriver.quit();
-        logger.info( "Browser is closed" );
+        logger.info("Browser is closed");
     }
+
+    @Rule
+    public TestName testName = new TestName();
+
+
 }
