@@ -172,31 +172,6 @@ public class LoginPage extends ParentPage {
     }
 //------------------------------------------------------------------------------------------------------------------------
 
-//    public List<WebElement> getAlertMessageList(){
-////        WebDriver tempElement = new WebElement(webDriverWait10.until(ExpectedConditions.presenceOfAllElementsLocatedBy();
-////        webDriverWait10.until(ExpectedConditions.alertIsPresent();
-//        return webDriver.findElements(By.xpath(signUpAlertMessages));
-//    }
-//
-//    // додати очікування всередину
-//    public LoginPage checkAlertMessageQuantity() {
-////        webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
-//        Assert.assertEquals("Number of alerts is not 3", 3, getAlertMessageList().size());
-//        return this;
-//    }
-
-
-
-//    public List<WebElement> getAlertMessageList(WebDriver driver, String xPath, int timeout) {
-//        WebDriverWait wait = new WebDriverWait(driver, timeout);
-//        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(xPath)));
-//    }
-//
-//    public LoginPage checkAlertMessageQuantity() {
-//        Assert.assertEquals("Number of alerts is not 3", 3, getAlertMessageList(webDriver, signUpAlertMessages, 10).size());
-//        return this;(driver, timeout)
-//    }
-
 
 
     public List<WebElement> getAlertMessageList() {
