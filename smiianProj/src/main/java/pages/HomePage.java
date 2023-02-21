@@ -46,9 +46,4 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-//    public CreatePostPage clickOnCreatePostButton() {
-//        clickOnElement(buttonCreatePost);
-//
-//        return new CreatePostPage(webDriver);
-//    }
 }
