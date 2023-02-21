@@ -90,6 +90,19 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void selectTextInDropDownByUI(WebElement dropDown, String textInDD){
+        try {
+            dropDown.click();
+            String selectedXpath = String.format(".//option[text()=\"%s\"]", textInDD);
+            webDriver.findElement(By.xpath(selectedXpath)).click();
+            logger.info(textInDD+ " was selected in DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+
+    }
+
+
     private String getElementName(WebElement webElement){
         try{
             return webElement.getAccessibleName();
