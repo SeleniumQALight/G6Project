@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -199,15 +200,13 @@ public class LoginPage extends ParentPage {
 
 
     public List<WebElement> getAlertMessageList() {
-        WebDriverWait waitAlertMessages = new WebDriverWait(webDriver, 10);
-        return waitAlertMessages.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(signUpAlertMessages)));
+        WebDriverWait waitAlertMessages = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        return waitAlertMessages.until(ExpectedConditions.numberOfElementsToBe(By.xpath(signUpAlertMessages), 3));
     }
 
     public LoginPage checkAlertMessageQuantity() {
         Assert.assertEquals("Number of alerts is not 3", 3, getAlertMessageList().size());
         return this;
     }
-
-
 
 }
