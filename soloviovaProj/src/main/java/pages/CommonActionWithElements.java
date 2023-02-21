@@ -13,7 +13,7 @@ import java.time.Duration;
 public class CommonActionWithElements {
     protected WebDriver webDriver; //protected makes this element available for classes in other packages.
     Logger logger = Logger.getLogger(getClass());
-    WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
