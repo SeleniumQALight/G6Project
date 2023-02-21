@@ -15,6 +15,9 @@ public class MyProfilePage extends ParentPage {
     @FindBy(xpath = ".//div[text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
 
+    @FindBy(xpath = ".//h2")
+    private WebElement userNameLocator;
+
     private String titlePost = ".//*[text()='%s']";
 
     public MyProfilePage(WebDriver webDriver) {
@@ -68,6 +71,11 @@ public class MyProfilePage extends ParentPage {
 
     private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
     Assert.assertTrue("Message delete Post is not displayed", isElementDisplayed(successDeletePostMessage));
+        return this;
+    }
+
+    public MyProfilePage checkUserNameOnProfilePage(String userName) {
+        Assert.assertTrue("User name is not valid", userNameLocator.getText().contains(userName));
         return this;
     }
 }
