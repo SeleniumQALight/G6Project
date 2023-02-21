@@ -29,7 +29,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToMyProfilePage()
 
 
-                //.checkIsProfileCorrect
+                //.checkIsProfileCorrect()
 
                 .checkPostWasCreated(POST_TITLE)
 

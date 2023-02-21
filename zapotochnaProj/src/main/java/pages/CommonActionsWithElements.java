@@ -19,9 +19,10 @@ public class CommonActionsWithElements {
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
 
-    @FindBy(xpath = ".//*[contains(text(),'Приватне повідомлення')]")
-    WebElement findTextFromDD;
+    //@FindBy(xpath = ".//*[contains(text(),'Групове повідомлення')]")
+   // WebElement findTextFromDD;
 
+   String findTextFromDD = ".//*[contains(text(),'Приватне повідомлення')]";
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізація елементів з FindBy.  це патерн почитати додатково
@@ -78,7 +79,7 @@ public class CommonActionsWithElements {
     protected void clickOnElement(String xpath) {  // сюди передаємо локатор у вигляді стрігни. щоб працювати з вебелементом.
 
         try {
-            clickOnElement(webDriver.findElement(By.xpath(String.valueOf(findTextFromDD))));
+            clickOnElement(webDriver.findElement(By.xpath(String.valueOf(xpath))));
         } catch (Exception e) {
             printErrorAndStopTest(e);
 
@@ -120,7 +121,7 @@ public class CommonActionsWithElements {
 
             clickOnElement(webElement);
             clickOnElement(webDriver.findElement(By.xpath(String.valueOf(findTextFromDD))));
-
+logger.info("this is what you selected: " + textByUi);
 
         } catch (Exception e) {
             printErrorAndStopTest(e);
