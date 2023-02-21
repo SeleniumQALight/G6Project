@@ -21,11 +21,18 @@ public class EditPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/.*/edit";
+    }
+
     public HeaderElements getHeaderElements() {
         return headerElements;
     }
 
     public EditPage checkIsRedirectToEditPage() {
+        checkURLWithPattern();
+        waitChatToBeHide();
         Assert.assertTrue("Edit page is not loaded", isElementDisplayed(saveUpdates));
         return this;
     }

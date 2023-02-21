@@ -7,16 +7,17 @@ import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
 import pages.MyProfilePage;
 
-public class HeaderElement extends CommonActionsWithElements {
+public class HeaderElements extends CommonActionsWithElements {
     @FindBy(xpath = ".//*[@data-original-title='My Profile']")
     private WebElement buttonMyProfile;
 
-    @FindBy(xpath =".//button[text()='Sign Out']")
-    private WebElement signOutButton;
-    @FindBy(xpath = ".//*[@href='/create-post']")
+    @FindBy(xpath = ".//*[@href=\"/create-post\"]")
     private WebElement buttonCreatePost;
 
-    public HeaderElement(WebDriver webDriver) {
+    @FindBy(xpath = ".//button[text()='Sign Out']")
+    private WebElement buttonSignOut;
+
+    public HeaderElements(WebDriver webDriver) {
         super(webDriver);
     }
 
@@ -26,12 +27,11 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     public boolean isButtonSignOutDisplayed() {
-        return isElementDisplayed(signOutButton);
+        return isButtonDisplayed(buttonSignOut);
     }
 
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
-
 }
