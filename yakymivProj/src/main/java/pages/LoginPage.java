@@ -2,6 +2,7 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,8 +46,20 @@ public class LoginPage extends ParentPage {
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();
         enterUserNameintoInputLogin(TestData.VALID_LOGIN);
-        enterPasswordIntoInputPassword(TestData.VALID_PASSWROD);
+        enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+
+    public HomePage fillingLoginFormWithInvalidCred() {
+        openLoginPage();
+        enterUserNameintoInputLogin(TestData.INVALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        clickOnButtonLogin();
+        return new HomePage(webDriver);
+    }
+
+    public boolean isButtonSignInDisplayed() {
+        return isButtonDisplayed(buttonSignIn);
     }
 }
