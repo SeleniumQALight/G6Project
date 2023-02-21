@@ -50,7 +50,6 @@ public class CommonActionsWithElements {
     protected void clickOnElement (String xpath){
         try {
             clickOnElement(webDriver.findElement(By.xpath(xpath)));
-            logger.info("Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -71,6 +70,17 @@ public class CommonActionsWithElements {
             logger.info("element is not displayed");
             return false;
         }
+    }
+
+    protected boolean isElementDisplayed(String xpath){
+        try {
+            return isElementDisplayed(webDriver.findElement(By.xpath(xpath)));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+            return false;
+        }
+
+
     }
 
     protected void selectTextInDropDown (WebElement dropDown, String visibleText){
