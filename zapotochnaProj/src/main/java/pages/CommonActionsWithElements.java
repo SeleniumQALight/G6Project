@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -18,6 +20,8 @@ public class CommonActionsWithElements {
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
 
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізація елементів з FindBy.  це патерн почитати додатково
@@ -28,12 +32,9 @@ public class CommonActionsWithElements {
     protected void enterTextInToElement(WebElement webElement, String text) {
 
         try {
-
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement)); //дочекатись поки інпут буде показаний, а вже потім щось з ним робити
-
             webElement.clear();
             webElement.sendKeys(text);
-
             logger.info(text + " Was inputted in to element" + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
