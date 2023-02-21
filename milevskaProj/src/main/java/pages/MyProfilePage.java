@@ -16,7 +16,6 @@ public class MyProfilePage extends ParentPage{
     @FindBy(xpath = ".//*[text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
 
-
     @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
     private WebElement loggedUser;
 
