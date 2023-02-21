@@ -61,7 +61,7 @@ public class BaseTest {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
         } else if ("ie".equalsIgnoreCase(browser)) {
-            //WebDriverManager.iedriver().setup();
+            // WebDriverManager.iedriver().setup();
             // in most cases 32bit version is needed
             WebDriverManager.iedriver().arch32().setup();
             return new InternetExplorerDriver();
