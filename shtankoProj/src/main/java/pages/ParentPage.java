@@ -11,9 +11,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 //тут все наслідується від CommonActionsWithElement
 //все що пишется в класі CommonActionsWithElement передається сюди, а потім наслідується в інші класи
 abstract public class ParentPage extends CommonActionsWithElement{
-    protected String base_url = "https://qa-complexapp.onrender.com";
+    protected String base_url;
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
+        base_url = "https://[env]-complexapp.onrender.com"
+                .replace("[env]",System.getProperty("env", "qa"));
     }
     protected void waitChatToBeHide(){
         webDriverWait10
