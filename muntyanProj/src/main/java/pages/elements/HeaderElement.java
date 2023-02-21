@@ -24,7 +24,7 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     public MyProfilePage clickOnMyProfileButton(){
-        clickOnElement(buttonMyProfile);
+        clickOnElement(getButtonMyProfile());
         return new MyProfilePage(webDriver);
 }
 

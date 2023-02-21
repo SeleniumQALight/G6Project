@@ -32,6 +32,7 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         //TODO check URL
         Assert.assertTrue("MyProfilePage is not loaded", isElementDisplayed(avatar) );
@@ -44,7 +45,7 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage checkifUserNameCorrect (String expectedUserName){
-        forTextComparing(expectedUserName, usernameTextInMyProfile);
+        Assert.assertEquals(expectedUserName, usernameTextInMyProfile);
         return this;
     }
 
@@ -86,4 +87,10 @@ public class MyProfilePage extends ParentPage {
         Assert.assertTrue("Message delete Post is not displayed ", isElementDisplayed(successDeletePostMessage));
         return this;
     }
+
+    public PostPage clickOnCreatedPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
+    }
+
 }

@@ -8,6 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage {
+
+
+    private String titlePost = ".//*[text()='%s']";
 //    @FindBy(xpath = ".//*[@href='/create-post']")
 //    private WebElement buttonCreatePost;
 
@@ -40,6 +43,12 @@ public class HomePage extends ParentPage {
         Assert.assertTrue("Home Page is not loaded", headerElement.isButtonSignOutDisplayed());
 
         return this;
+    }
+
+
+    public PostPage clickOnCreatedPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
     }
 
 //    public CreatePostPage clickOnCreatePostButton() {

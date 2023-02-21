@@ -1,3 +1,4 @@
+
 package pages;
 
 import libs.TestData;
@@ -16,12 +17,33 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+    @FindBy(xpath = ".//input[@name='username' and @id='username-register']")
+    private WebElement pick_a_username;
+
+    @FindBy(xpath = ".//input[@id='email-register']")
+    private WebElement emailElement;
+
+    @FindBy(xpath = ".//input[@name='password' and @id='password-register']")
+    private WebElement create_a_password;
+
+    @FindBy(xpath = ".//button[@type='submit']")
+    private WebElement buttonSign_up_for_OurApp;
+
+    @FindBy(xpath = ".//*[text() = 'Username must be at least 3 characters.']")
+    private WebElement usernameMessage;
+
+    @FindBy(xpath = ".//*[text() = 'You must provide a valid email address.']")
+    private WebElement emailMessage;
+
+    @FindBy(xpath = ".//*[text() = 'Password must be at least 12 characters.']")
+    private WebElement passwordMessage;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void openLoginPage() {
+    public LoginPage openLoginPage() {
         try {
             webDriver.get("https://qa-complexapp.onrender.com/");
             logger.info("LoginPage was opened");
@@ -29,11 +51,12 @@ public class LoginPage extends ParentPage {
             logger.error("Can not open Login Page " + e);
             Assert.fail("Can not open Login Page " + e);
         }
+        return this;
     }
 
-    public void enterUserNameIntoInpuLogin(String userName) {
+    public LoginPage enterUserNameIntoInpuLogin(String userName) {
         enterTextInToElement(inputUserName, userName);
-
+        return this;
     }
 
 
@@ -55,5 +78,39 @@ public class LoginPage extends ParentPage {
         enterPasswordIntoInputPassword(TestData.VALID_PASSPORT);
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage enterUserNameIntoInpuPick_a_username(String   pickUserName) {
+        enterTextInToElement(pick_a_username, pickUserName);
+        return this;
+    }
+
+    public LoginPage enterEmailIntoInputEmail(String email) {
+        enterTextInToElement(emailElement, email);
+        return this;
+    }
+
+    public LoginPage enterPasswordIntoInputCreate_a_password(String password) {
+        enterTextInToElement(create_a_password, password);
+        return this;
+    }
+
+    public void clickOnSign_up_for_OurApp() {
+        clickOnElement(buttonSign_up_for_OurApp);
+    }
+
+    public LoginPage checkIsUsernameMessageDisaplyed() {
+        isElementDisplayed(usernameMessage);
+        return this;
+    }
+
+    public LoginPage checkIsEmailMessageDisaplyed() {
+        isElementDisplayed(emailMessage);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordMessageDisaplyed() {
+        isElementDisplayed(passwordMessage);
+        return this;
     }
 }
