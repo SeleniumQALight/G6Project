@@ -5,9 +5,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -51,10 +52,10 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected boolean isButtonDisplayed(WebElement webElement){
+    protected boolean isButtonDisplayed(WebElement webElement) {
         try {
             return webElement.isDisplayed();
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
@@ -64,5 +65,24 @@ public class CommonActionsWithElements {
         Assert.fail("Can't work with element " + e);
     }
 
+    protected void selectTextInDropDown(WebElement dropdown, String visibleText) {
+        try {
+            Select select = new Select(dropdown);
+            select.selectByVisibleText(visibleText);
+            logger.info(visibleText + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 
+    protected void selectValueInDropDown(WebElement dropdown, String value) {
+        try {
+            Select select = new Select(dropdown);
+            select.selectByValue(value);
+            logger.info(value + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+
+    }
 }
