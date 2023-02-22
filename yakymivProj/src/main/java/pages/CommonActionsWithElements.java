@@ -84,7 +84,7 @@ public class CommonActionsWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted in to element");
+            logger.info(text + "was inputted in to element " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -109,13 +109,14 @@ public class CommonActionsWithElements {
     }
 
     protected boolean isElementDisplayed(WebElement webElement) {
+        String nameElement = getElementName(webElement);
         try {
             boolean state = webElement.isDisplayed();
             String message;
             if (state) {
-                message = "Element is displayed";
+                message = nameElement + " Element is displayed";
             } else {
-                message = "Element is not displayed";
+                message = nameElement + " Element is not displayed";
             }
             logger.info(message);
             return state;
@@ -130,6 +131,14 @@ public class CommonActionsWithElements {
             return webElement.isDisplayed();
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    private String getElementName(WebElement webElement){
+        try {
+            return webElement.getAccessibleName();
+        }catch (Exception e){
+            return "";
         }
     }
 
