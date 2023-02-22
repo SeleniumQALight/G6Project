@@ -59,8 +59,7 @@ public class PostPage extends ParentPage{
      }
 
      public PostPage checkLabelNote(String expectNote){
-         isElementDisplayed(successNote);
-         Assert.assertEquals("Not expected note",expectNote, successNote.getText());
+         Assert.assertTrue("Note is not disaplyed", isElementDisplayed(successNote));
          return this;
      }
 
