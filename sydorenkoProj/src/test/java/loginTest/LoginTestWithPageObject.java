@@ -17,6 +17,26 @@ public class LoginTestWithPageObject extends BaseTest {
 
         assertTrue("Button is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
     }
+    @Test
+    public void validLoginWithButtons() {
+        loginPage.openLoginPage();
+        loginPage.enterLoginAndPasswordIntoInputsAndClickingOnSignInWithEnter("qaauto", "123456qwerty");
+
+        assertTrue("Button is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
+    }
+    @Test
+    public void isLoginValidInNewTab() {
+        loginPage.openLoginPage();
+        loginPage.enterLoginAndPasswordIntoInputsAndClickingOnSignInWithEnter("qaauto", "123456qwerty");
+        loginPage.openNewTabWithSameUrl();
+
+        assertTrue("Button is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
+
+        homePage.getHeaderElement().clickOnSignOutButton();
+        loginPage.switchToFirstTabAndRefresh();
+
+        assertTrue("Button is not displayed", loginPage.isButtonSignInDisplayed());
+    }
 
     @Test
     public void inValidLogin() {

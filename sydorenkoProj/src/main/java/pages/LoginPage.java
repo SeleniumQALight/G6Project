@@ -2,9 +2,13 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
 
 
 public class LoginPage extends ParentPage {
@@ -63,6 +67,21 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputUserName, userName);
     }
 
+    public void enterLoginAndPasswordIntoInputsAndClickingOnSignInWithEnter(String login, String password) {
+        inputUserName.sendKeys(login + Keys.TAB + password + Keys.TAB + Keys.ENTER);
+    }
+    public void openNewTabWithSameUrl() {
+        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(1));
+        openLoginPage();
+    }
+    public void switchToFirstTabAndRefresh() {
+        ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(0));
+        webDriver.navigate().refresh();
+    }
+
     public void enterPasswordIntoInputPassword(String password) {
         enterTextIntoElement(inputPassword, password);
     }
@@ -81,15 +100,23 @@ public class LoginPage extends ParentPage {
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
+
     public void enterNameIntoNameRegisterField(String name) {
         enterTextIntoElement(usernameRegisterField, name);
     }
+
+    public void enterTextIntoRegistrationFormFieldsUsingKeys(String name, String email, String password) {
+        usernameRegisterField.sendKeys(name + Keys.TAB + email + Keys.TAB + password + Keys.ENTER);
+    }
+
     public void enterEmailIntoEmailRegisterField(String email) {
         enterTextIntoElement(emailRegisterField, email);
     }
+
     public void enterPasswordIntoPasswordRegisterField(String password) {
         enterTextIntoElement(passwordRegisterField, password);
     }
+
     public boolean isFieldValidationErrorDisplayed(String error) {
         return isElementDisplayed(locatorForFieldValidationError, error);
     }
