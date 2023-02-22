@@ -124,12 +124,13 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void loginFromKeyboard(String login, String password) {
+    public LoginPage loginFromKeyboard(String login, String password) {
         usersPressesKeyTabTime(2);
         inputFromKeyboard(login);
         usersPressesKeyTabTime(1);
         inputFromKeyboard(password);
         usersPressesKeyEnterTime(1);
+        return this;
     }
 
     private void inputFromKeyboard(String text) {
@@ -138,7 +139,15 @@ public class LoginPage extends ParentPage {
         logger.info(text + " was inputted from keyboard");
     }
 
-
+    public LoginPage registrationFromKeyBoard(String username, String email, String password) {
+        usersPressesKeyTabTime(5);
+        inputFromKeyboard(username);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(email);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(password);
+        return this;
+    }
 
 
 //    public void checkErrorMessageWithText(String expected) {
