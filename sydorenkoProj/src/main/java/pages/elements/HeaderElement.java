@@ -3,6 +3,7 @@ package pages.elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
 import pages.MyProfilePage;
@@ -24,6 +25,7 @@ public class HeaderElement extends CommonActionsWithElements {
         return new MyProfilePage(webDriver);
     }
     public boolean isButtonSignOutDisplayed() {
+        webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
         return isElementDisplayed(buttonSignOut);
     }
     public CreatePostPage clickOnCreatePostButton() {

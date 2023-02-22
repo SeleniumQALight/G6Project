@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -16,8 +18,9 @@ import java.time.Duration;
 public class CommonActionsWithElement {
     protected Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
-    WebDriverWait wait10;
-    WebDriverWait wait15;
+    protected   WebDriverWait wait10;
+    protected  WebDriverWait wait15;
+    public static ConfigProperties configProperties= ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
