@@ -43,17 +43,9 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+
 //-------------------------------------------------------------------------------------------------------------
-//    public void openLoginPage() {
-//        try {
-//            webDriver.get("https://qa-complexapp.onrender.com/");
-//            logger.info("LoginPage is opened");
-//
-//        } catch (Exception e) {
-//            logger.error("Can not open Login Page" + e);  //Write message into log-file
-//            Assert.fail("Can not open Login Page" + e);  //Write message into console
-//        }
-//    }
 
     @Override
     String getRelativeURL() {
@@ -64,7 +56,7 @@ public class LoginPage extends ParentPage {
         try {
             webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage is opened");
-
+            logger.info(base_url);      // робиться запис про URL в логах, при запуску метода openLoginPage
         } catch (Exception e) {
             logger.error("Can not open Login Page" + e);  //Write message into log-file
             Assert.fail("Can not open Login Page" + e);  //Write message into console
@@ -74,18 +66,7 @@ public class LoginPage extends ParentPage {
 //-------------------------------------------------------------------------------------------------------------
 
     public void enterUserNameIntoInputLogin(String userName) {
-//        try {
 
-////            WebElement inputUserName =
-////                    webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"))
-////       !!! the same as:   @FindBy(xpath = "...") private WebElement inputUserName;
-
-//            inputUserName.clear();
-//            inputUserName.sendKeys(userName);
-//            logger.info("login was inputted");
-//        } catch (Exception e) {
-//            printErrorAndStopTest(e);
-//        }
         enterTextIntoElement(inputUserName, userName);
     }
 
@@ -97,14 +78,7 @@ public class LoginPage extends ParentPage {
 //-------------------------------------------------------------------------------------------------------------
 
     public void enterPasswordIntoInputpassword(String password) {
-//        try {
-////            WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
-//            inputPassword.clear();
-//            inputPassword.sendKeys(password);
-//            logger.info("Password was entered");
-//        } catch (Exception e) {
-//            printErrorAndStopTest(e);
-//        }
+
         enterTextIntoElement(inputPassword, password);
 
     }

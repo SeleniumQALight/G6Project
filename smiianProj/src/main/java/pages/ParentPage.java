@@ -10,10 +10,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 abstract public class ParentPage extends CommonActionWithElements{
 
-    protected String base_url = "https://qa-complexapp.onrender.com";
+    protected String base_url;
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
+        base_url = configProperties.base_url()                                       // змінює [env] енв через налаштування в Edit Configuration
+                .replace("[env]", System.getProperty("env", "qa"));   // за замовчуванням qa
     }
 
     protected void waitChatToBeHide() {
