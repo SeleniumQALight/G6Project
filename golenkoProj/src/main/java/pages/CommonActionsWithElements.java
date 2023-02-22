@@ -152,7 +152,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void inputFromKeyboard(String text) {
+    public void inputFromKeyboard(String text) {
         Actions actions = new Actions(webDriver);
         actions.sendKeys(text).build().perform();
         logger.info(text + " was inputted from keyboard");
