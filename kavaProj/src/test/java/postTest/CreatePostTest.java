@@ -1,3 +1,5 @@
+package postTest;
+
 import baseTest.BaseTest;
 import libs.Util;
 import org.junit.After;
