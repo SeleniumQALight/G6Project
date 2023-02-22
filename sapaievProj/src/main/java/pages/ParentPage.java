@@ -8,12 +8,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 abstract public class ParentPage extends CommonActionsWithElements{
 
-    protected String base_URL="https://qa-complexapp.onrender.com";
+    protected String base_URL;
 
 
     public ParentPage(WebDriver webDriver) {
-
         super(webDriver);
+        base_URL= configProperties.base_url()
+                .replace("[env]",System.getProperty("env","qa"));
     }
 
 
