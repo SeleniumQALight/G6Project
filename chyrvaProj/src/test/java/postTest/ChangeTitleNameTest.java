@@ -2,7 +2,7 @@ package postTest;
 
 
 import baseTest.BaseTest;
-import library.Util;
+import libs.Util;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
