@@ -1,10 +1,11 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libs.Util;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_Yakymiv";
+    final String POST_TITLE = "TC1_Yakymiv" + Util.getDateAndTimeFormatted();
     final String POST_BODY = "Some interesting body ";
     final String POST_LABEL = "One Person";
     final String NOTE = "Note: This post was written for";
@@ -30,6 +31,7 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkIsUserPresent(NAME)
+                .checkPostWasCreated(POST_TITLE)
 
 
 

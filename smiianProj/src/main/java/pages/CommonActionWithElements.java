@@ -1,6 +1,8 @@
 package pages;
 
 import io.opentelemetry.sdk.trace.internal.data.ExceptionEventData;
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -18,6 +20,7 @@ public class CommonActionWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;             // оголошуємо драйвери для використання методів очікування
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);  // працює з файлами config.properties з пекеджів libs та resources
 
     public CommonActionWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -121,10 +124,15 @@ public class CommonActionWithElements {
     }
 
 
+
+
     protected  void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+
+
 
     public static boolean isObjectDisplayed(WebElement webElement){
         try {
