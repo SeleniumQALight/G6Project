@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,6 +23,7 @@ public class CommonActionsWithElement {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -70,6 +73,15 @@ public class CommonActionsWithElement {
             return state;
         }catch (Exception e){
             logger.info("Element is not displayed");
+            return false;
+        }
+    }
+    protected boolean isElementDisplayed(String alertLocator){
+        try {
+            WebElement element = webDriver.findElement(By.xpath(alertLocator));
+            return isElementDisplayed(element);
+        }catch (Exception e){
+            logger.info("Element ai not displayed");
             return false;
         }
     }

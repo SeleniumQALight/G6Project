@@ -2,10 +2,6 @@ package loginTest;
 import baseTest.BaseTest;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import pages.elements.HeaderElement;
 
 public class LoginTestWhitPageObject extends BaseTest {
 
