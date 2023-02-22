@@ -5,12 +5,12 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -133,8 +133,6 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-
-
     public LoginPage registrationFromKeyBoard(String username, String email, String password) {
         usersPressesKeyTabTime(5);
         inputFromKeyboard(username);
@@ -142,6 +140,13 @@ public class LoginPage extends ParentPage {
         inputFromKeyboard(email);
         usersPressesKeyTabTime(1);
         inputFromKeyboard(password);
+        return this;
+    }
+
+    public LoginPage switchToPreviousTabAndRefresh() {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(0));
+        webDriver.navigate().refresh();
         return this;
     }
 
