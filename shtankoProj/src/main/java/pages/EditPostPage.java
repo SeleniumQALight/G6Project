@@ -19,6 +19,12 @@ public class EditPostPage extends ParentPage{
     public EditPostPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    String getRelativeURL() {
+        return "https://qa-complexapp.onrender.com/post/.*/edit";
+    }
+
     public EditPostPage enterEditTextInInputTitle(String postTitle){
         enterTextInToElement(inputTitle,postTitle);
         return this;
@@ -29,6 +35,7 @@ public class EditPostPage extends ParentPage{
     }
 
     public EditPostPage checkTextInSuccessUpdatedMessage(String expectedMessage) {
+        checkURLWhitPattern();
         Assert.assertEquals("Text in success message element", expectedMessage,successMessage.getText());
         return this;
     }
