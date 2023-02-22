@@ -30,4 +30,12 @@ public class LoginTestWithPageObject extends BaseTest {
                 loginPage.isButtonSignInDisplayed());
 
     }
+
+    @Test
+    public void validLoginWithButtons(){
+        loginPage.openLoginPage();
+        loginPage.loginFromKeyboard("qaauto", "123456qwerty");
+        Assert.assertTrue("Button is not displayed",
+                homePage.getHeaderElement().isButtonSignOutDisplayed());
+    }
 }
