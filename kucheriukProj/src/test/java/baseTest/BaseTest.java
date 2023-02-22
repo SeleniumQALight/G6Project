@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import pages.HomePage;
 import pages.LoginPage;
 
@@ -22,8 +24,10 @@ public class BaseTest {
     @Before
     public void setUp(){
         logger.info("------- " + testName.getMethodName() + " was started-------");
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
+//        WebDriverManager.chromedriver().setup();
+//        webDriver = new ChromeDriver();
+        webDriver = initDriver();
+
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
@@ -40,4 +44,21 @@ public class BaseTest {
     }
     @Rule
     public TestName testName = new TestName();
+
+    private WebDriver initDriver(){
+        String browser = System.getProperty("browser");
+        if((browser==null) || "chrome".equals(browser)){
+            WebDriverManager.chromedriver().setup();
+            webDriver = new ChromeDriver();
+        }else if ("firefox".equalsIgnoreCase(browser)){
+            WebDriverManager.firefoxdriver().setup();//exe для firefox называется гекодрайвер
+            webDriver = new FirefoxDriver();
+        }else if("safari".equalsIgnoreCase(browser)){
+            WebDriverManager.safaridriver().setup();
+            webDriver = new SafariDriver();
+        }else if("edge".equalsIgnoreCase(browser)){
+            WebDriverManager.edgedriver().setup();
+        }
+        return webDriver;
+    }
 }
