@@ -26,7 +26,7 @@ public class CreatePostPage extends ParentPage{
     }
 
     @Override
-    String getRelativeURL() {
+    public String getRelativeURL() {
         return "/create-post";
     }
 
@@ -66,4 +66,6 @@ public class CreatePostPage extends ParentPage{
         selectTextInDropDownByUI(dropDownOptions, textInElement);
         return this;
     }
+
+
 }

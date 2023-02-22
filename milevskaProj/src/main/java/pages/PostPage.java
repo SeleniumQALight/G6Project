@@ -34,7 +34,7 @@ public class PostPage extends ParentPage{
     }
 
     @Override
-    String getRelativeURL() {
+    public String getRelativeURL() {
         return "/post/";
     }
 
@@ -73,4 +73,9 @@ public class PostPage extends ParentPage{
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+    public EditPostPage clickOnEditButton(){
+        clickOnElement(buttonEdit);
+        return new EditPostPage(webDriver);
+    }
+
 }
