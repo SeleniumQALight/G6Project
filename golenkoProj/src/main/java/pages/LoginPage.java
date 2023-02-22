@@ -133,11 +133,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    private void inputFromKeyboard(String text) {
-        Actions actions = new Actions(webDriver);
-        actions.sendKeys(text).build().perform();
-        logger.info(text + " was inputted from keyboard");
-    }
+
 
     public LoginPage registrationFromKeyBoard(String username, String email, String password) {
         usersPressesKeyTabTime(5);

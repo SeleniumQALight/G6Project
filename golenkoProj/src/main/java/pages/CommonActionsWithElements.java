@@ -152,6 +152,12 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void inputFromKeyboard(String text) {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(text).build().perform();
+        logger.info(text + " was inputted from keyboard");
+    }
+
     public void usersPressesKeyTabTime(int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
