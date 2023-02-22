@@ -16,6 +16,7 @@ public class CheckValidationMessages extends BaseTest {
                 .enterUserNameIntoRegistrationInput("tr")
                 .enterEmailIntoRegistrationInput("test.com")
                 .enterPasswordIntoRegistrationInput("123")
+                .checkNumberOfAlertMessages()
                 .checkTextInAlertMessage(USERNAME_ALERT_TITLE)
                 .checkTextInAlertMessage(EMAIL_ALERT_TITLE)
                 .checkTextInAlertMessage(PASSWORD_ALERT_TITLE)

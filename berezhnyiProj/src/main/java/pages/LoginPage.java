@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class LoginPage extends ParentPage{
 
@@ -26,6 +29,9 @@ public class LoginPage extends ParentPage{
 
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfAlertMessages;
 
     private String actualAlertMessage = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
@@ -93,12 +99,15 @@ public class LoginPage extends ParentPage{
     }
 
     public LoginPage checkTextInAlertMessage(String expectedAlertTitle) {
-        Assert.assertTrue("Alert message does not correspond", findAlertMessage(expectedAlertTitle).isDisplayed());
+        Assert.assertTrue("Alert message does not correspond", isElementDisplayed(String.format(actualAlertMessage, expectedAlertTitle)));
         return this;
     }
 
-    private WebElement findAlertMessage(String expectedAlertTitle) {
-        return webDriver.findElement(By.xpath(String.format(actualAlertMessage, expectedAlertTitle)));
+
+    public LoginPage checkNumberOfAlertMessages() {
+        webDriverWait15.until(ExpectedConditions.numberOfElementsToBe(By.xpath(".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']"), 3));
+        Assert.assertEquals("The number of messages is not equal to 3", 3, listOfAlertMessages.size());
+        return this;
     }
 
 
