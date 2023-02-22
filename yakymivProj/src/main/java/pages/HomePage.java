@@ -2,8 +2,6 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElements;
 
 public class HomePage extends ParentPage {
@@ -21,7 +19,9 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.fillingLoginFormWithValidCred();
+        if(!getHeaderElement().isButtonSignOutDisplayed()){
+            loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectHomePage();
         return this;
     }
