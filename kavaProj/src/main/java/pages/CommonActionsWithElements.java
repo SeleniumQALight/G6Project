@@ -82,6 +82,7 @@ public class CommonActionsWithElements {
             WebElement requiredLocator = webDriver.findElement(By.xpath(String.format(locator, errorInfo)));
             return isElementDisplayed(requiredLocator);
         } catch (Exception e) {
+            logger.info("Element is not displayed");
             return false;
         }
     }
