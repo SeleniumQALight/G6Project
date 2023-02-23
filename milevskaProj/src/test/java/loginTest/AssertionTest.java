@@ -8,6 +8,8 @@ public class AssertionTest extends BaseTest {
 
     public void assertionCheck(){
         loginPage.openLoginPage();
-        loginPage.checkAssertsDisplaed();
+        loginPage.fillingRegistationFormWithInvalidCred()
+                .checkIsUsernameAssertionsIsDisplayed()
+
     }
 }

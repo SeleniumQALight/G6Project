@@ -146,8 +146,8 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-     public LoginPage checkAssertsDisplaed(){
-        fillingRegistationFormWithInvalidCred();
+     public LoginPage checkAssertsDisplayed(){
+
          String assertion1 = "Username must be at least 3 characters.";
          String assertion2 = "You must provide a valid email address.";
          String assertion3 = "Password must be at least 12 characters.";
