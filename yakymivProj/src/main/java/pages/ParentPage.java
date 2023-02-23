@@ -11,7 +11,8 @@ abstract public class ParentPage extends CommonActionsWithElements {
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
-        base_url = "https://[env]-complexapp.onrender.com".replace("[env]", System.getProperty("env","qa"));
+        base_url = configProperties.base_url().replace("[env]", System.getProperty("env","qa"));
+
     }
 
     protected void waitChatToBeHide(){
