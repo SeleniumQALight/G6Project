@@ -1,6 +1,37 @@
-#Login page:
+#LogInSignUpPage
 
-loginPage.input.userName = .//*[@name = 'test']
+LogInSignUpPage.input.username = .//input[@id='username-register']
+LogInSignUpPage.input.email = .//input[@id='email-register']
+LogInSignUpPage.input.password = .//input[@id='password-register']
+LogInSignUpPage.input.username = .//div[starts-with(@class,'col')]/input[@name='username']
+LogInSignUpPage.input.password = .//div[starts-with(@class,'col')]/input[@name='password']
+LogInSignUpPage.button.signIN = .//button[@class='btn btn-primary btn-sm']
 
-#Home Page
+______________________________________________________________________________________
 
+#HomePage
+
+HomePage.title = .//h2
+HomePage.button.signOut = .//button[contains(text(),'Sign Out')]
+HomePage.createPost = .//a[@href='/create-post']
+HomePage.My_Profile_icon=.//*[@data-original-title="My Profile"]
+HomePage.input.chatBoxField = .//input[@id='chatField']
+HomePage.searchIcon = .//a[@href='#']
+HomePage.searchBar = .//input[@id='live-search-field']
+
+______________________________________________________________________________________
+
+#CreatePostPage
+
+CreatePostPage.title=.//input[@id="post-title"]
+CreatePostPage.Body_Content=.//textarea[@id="post-body"]
+CreatePostPage.Save_New_PostBTN=.//button[@class="btn btn-primary"]
+CreatePostPage.SuccessCreationMessage=.//*[@class='alert alert-success text-center']
+
+______________________________________________________________________________________
+
+#Search
+
+Search.searchField=//input[@placeholder='What are you interested in?']
+Search.input=.//input[@id='live-search-field']
+Search.listOfPosts=//div[@class="live-search-results live-search-results--visible"]

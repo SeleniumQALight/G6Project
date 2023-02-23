@@ -1,10 +1,11 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -23,6 +24,8 @@ public class CommonActionsWithElements {
    // WebElement findTextFromDD;
 
    String findTextFromDD = ".//*[contains(text(),'Приватне повідомлення')]";
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізація елементів з FindBy.  це патерн почитати додатково
@@ -79,7 +82,7 @@ public class CommonActionsWithElements {
     protected void clickOnElement(String xpath) {  // сюди передаємо локатор у вигляді стрігни. щоб працювати з вебелементом.
 
         try {
-            clickOnElement(webDriver.findElement(By.xpath(String.valueOf(xpath))));
+            clickOnElement(webDriver.findElement(By.xpath(xpath)));
         } catch (Exception e) {
             printErrorAndStopTest(e);
 
@@ -179,8 +182,6 @@ logger.info("this is what you selected: " + textByUi);
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
-
-
 //
 //    метод moveToElement (аналог скрола )
 //

@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -11,13 +13,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -104,6 +106,16 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected boolean isElementDisplayed(String xpath) {
+        try {
+            WebElement webElement = webDriver.findElement(By.xpath(xpath));
+            return isElementDisplayed(webElement);
+        } catch (Exception e) {
+            logger.info("Element isn't displayed" + e);
+        }
+        return false;
+    }
+
     protected boolean isElementDisplayed(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
@@ -119,6 +131,17 @@ public class CommonActionsWithElements {
             logger.info("Element isn't displayed" + e);
             return false;
         }
+    }
+
+    protected boolean isTextInWebElementListPresent(List<WebElement> listOfWebElements, String text) {
+        for (WebElement webElement : listOfWebElements) {
+            if (webElement.getText().equals(text)) {
+                logger.info("element with matching text was found");
+                return true;
+            }
+        }
+        logger.info("element with matching text wasn't found");
+        return false;
     }
 
     public void usersPressesKeyEnterTime(int numberOfTimes) {
