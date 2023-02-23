@@ -42,6 +42,7 @@ public class LoginPage extends ParentPage {
     private String errorsForRegistr = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
+
     public LoginPage(WebDriver webDriver) {
 
         super(webDriver);
@@ -89,13 +90,13 @@ public class LoginPage extends ParentPage {
     }
 
 
-    public List<WebElement> getErrorList(String title) {
+   public List<WebElement> getErrorList(String title) {
         return webDriver.findElements(By.xpath(title));
     }
 
     public LoginPage checkSizeOfErrorsList(int size) {
         WebDriverWait webDriverWait=new WebDriverWait(webDriver,Duration.ofSeconds(10));
-        webDriverWait.until(ExpectedConditions.invisibilityOfAllElements(getErrorList(errorsForRegistr)));
+        webDriverWait.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsForRegistr),3));
         Assert.assertTrue("The number of errors is"+size, getErrorList(errorsForRegistr).size() == size);
         return this;
     }
