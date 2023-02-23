@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -33,10 +35,12 @@ public class LoginPage extends ParentPage {
 
     private String alertMessageText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and contains(text(), '%s')]";
 
+    @FindBy (xpath = signUpAlertMessages)
+    private List<WebElement> listOfErrors;
 
 
 
-    String signUpAlertMessages = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    private static final String signUpAlertMessages = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
 
 
@@ -157,5 +161,31 @@ public class LoginPage extends ParentPage {
         Assert.assertEquals("Number of alerts is not 3", 3, getAlertMessageList().size());
         return this;
     }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {    // бере список текстів помилок, підрахує
+        // error1, error2, -> array[0] = error1, array[1] = error2,
+        String[] expectedErrorsArray = expectedErrors.split(",");
+        webDriverWait10
+                .withMessage("Number of messages should be " + expectedErrorsArray.length)
+                .until(ExpectedConditions
+                        .numberOfElementsToBe(By.xpath(signUpAlertMessages), expectedErrorsArray.length));
+
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element: listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equal").isIn(actualTextFromErrors);
+        }
+
+        softAssertions.assertAll();
+
+        return this;
+    }
+
+
+
 
 }
