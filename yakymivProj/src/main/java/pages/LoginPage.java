@@ -45,8 +45,20 @@ public class LoginPage extends ParentPage {
     public HomePage fillingLoginFormWithValidCred() {
         openLoginPage();
         enterUserNameintoInputLogin(TestData.VALID_LOGIN);
-        enterPasswordIntoInputPassword(TestData.VALID_PASSWROD);
+        enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+
+    public HomePage fillingLoginFormWithInvalidCred() {
+        openLoginPage();
+        enterUserNameintoInputLogin(TestData.INVALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        clickOnButtonLogin();
+        return new HomePage(webDriver);
+    }
+
+    public boolean isButtonSignInDisplayed() {
+        return isButtonDisplayed(buttonSignIn);
     }
 }

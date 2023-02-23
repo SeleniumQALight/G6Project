@@ -22,6 +22,11 @@ public class EditPostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeUrl() {
+        return "Need to fix relative URL via regex";
+    }
+
     public EditPostPage typePostTitle(String testTitle) {
         typeTextToElement(inputTitle ,testTitle);
         return this;

@@ -1,5 +1,8 @@
 package pages;
 
+
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -15,9 +18,11 @@ import java.util.ArrayList;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-    WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait10, webDriverWait15;
     String value = "Приватне повідомлення";
     String locatorForDropDown = "//option[contains(text(),'" + value + "')]";
+
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
