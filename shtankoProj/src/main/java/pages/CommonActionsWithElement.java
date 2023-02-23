@@ -146,6 +146,11 @@ public class CommonActionsWithElement {
 
     }
 
+    public void userEnterText(String text){
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(text).perform();
+    }
+
     public void usersPressesKeyTime(Keys keys, int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
@@ -159,6 +164,18 @@ public class CommonActionsWithElement {
         ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
+    public void switchToPreviousTabAndRefreshPage() {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        if (tabs.size() > 1) {
+            webDriver.switchTo().window(tabs.get(tabs.size() - 2));
+            webDriver.navigate().refresh();
+        } else {
+            logger.info("Switch to previous tab as there is only one tab open");
+        }
+    }
+
+
 //
 //    метод moveToElement (аналог скрола )
 //
