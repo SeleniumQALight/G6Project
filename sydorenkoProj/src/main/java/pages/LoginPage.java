@@ -6,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
@@ -68,14 +69,17 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterLoginAndPasswordIntoInputsAndClickingOnSignInWithEnter(String login, String password) {
-        inputUserName.sendKeys(login + Keys.TAB + password + Keys.TAB + Keys.ENTER);
+        Actions action = new Actions(webDriver);
+        action.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(login).sendKeys(Keys.TAB).sendKeys(password).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).build().perform();
     }
+
     public void openNewTabWithSameUrl() {
-        ((JavascriptExecutor)webDriver).executeScript("window.open()");
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
         openLoginPage();
     }
+
     public void switchToFirstTabAndRefresh() {
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(0));
@@ -106,7 +110,12 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoRegistrationFormFieldsUsingKeys(String name, String email, String password) {
-        usernameRegisterField.sendKeys(name + Keys.TAB + email + Keys.TAB + password + Keys.ENTER);
+        Actions action = new Actions(webDriver);
+        action.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB)
+                .sendKeys(name).sendKeys(Keys.TAB)
+                .sendKeys(email).sendKeys(Keys.TAB)
+                .sendKeys(password)
+                .sendKeys(Keys.ENTER).build().perform();
     }
 
     public void enterEmailIntoEmailRegisterField(String email) {
