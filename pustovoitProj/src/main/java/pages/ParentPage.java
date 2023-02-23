@@ -11,7 +11,7 @@ abstract public class ParentPage extends CommonActionsWithElements{
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
-        base_url = base_url = "https://[env]-complexapp.onrender.com"
+        base_url = base_url = configProperties.base_url()
                 .replace("[env]", System.getProperty("env","qa"));
     }
 
