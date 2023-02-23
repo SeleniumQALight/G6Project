@@ -105,9 +105,9 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public boolean checkErrorMessageWithText(String enterTextError) {
-        return isElementDisplayed(errorMessageLocator, enterTextError);
-
+    public LoginPage checkErrorMessageWithText(String enterTextError) {
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(errorMessageLocator, enterTextError));
+        return this;
 
     }
 
