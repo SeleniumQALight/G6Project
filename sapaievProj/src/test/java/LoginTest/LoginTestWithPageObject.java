@@ -39,10 +39,11 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.openLoginPage();
         loginPage
                 .enterUserNameIntoInputUserNameForRegister("tr")
-                .checkUserNameError("Username must be at least 3 characters.")
                 .enterEmailIntoInputEmailForRegister("test.com" )
-                .checkEmailError("You must provide a valid email address.")
                 .enterPasswordIntoInputPasswordForRegister("123")
+                .checkSizeOfErrorsList(3)
+                .checkUserNameError("Username must be at least 3 characters.")
+                .checkEmailError("You must provide a valid email address.")
                 .checkPasswordError("Password must be at least 12 characters.");
     }
 
