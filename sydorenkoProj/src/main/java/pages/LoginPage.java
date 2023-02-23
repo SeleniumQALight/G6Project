@@ -70,7 +70,7 @@ public class LoginPage extends ParentPage {
 
     public void enterLoginAndPasswordIntoInputsAndClickingOnSignInWithEnter(String login, String password) {
         Actions action = new Actions(webDriver);
-        action.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(login).sendKeys(Keys.TAB).sendKeys(password).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).build().perform();
+        action.sendKeys(Keys.TAB, Keys.TAB, login, Keys.TAB, password, Keys.TAB, Keys.ENTER).build().perform();
     }
 
     public void openNewTabWithSameUrl() {
@@ -111,11 +111,7 @@ public class LoginPage extends ParentPage {
 
     public void enterTextIntoRegistrationFormFieldsUsingKeys(String name, String email, String password) {
         Actions action = new Actions(webDriver);
-        action.sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB).sendKeys(Keys.TAB)
-                .sendKeys(name).sendKeys(Keys.TAB)
-                .sendKeys(email).sendKeys(Keys.TAB)
-                .sendKeys(password)
-                .sendKeys(Keys.ENTER).build().perform();
+        action.sendKeys(Keys.TAB, Keys.TAB, Keys.TAB, Keys.TAB, Keys.TAB, name, Keys.TAB, email, Keys.TAB, password, Keys.ENTER).build().perform();
     }
 
     public void enterEmailIntoEmailRegisterField(String email) {
