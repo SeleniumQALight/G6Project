@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -17,6 +19,12 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+
+    //@FindBy(xpath = ".//*[contains(text(),'Групове повідомлення')]")
+   // WebElement findTextFromDD;
+
+   String findTextFromDD = ".//*[contains(text(),'Приватне повідомлення')]";
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -111,6 +119,23 @@ public class CommonActionsWithElements {
     }
 
     //дз зробити byUi
+    protected void selectValueByUiInDropDown(WebElement webElement, String textByUi) {
+        try {
+
+            clickOnElement(webElement);
+            clickOnElement(webDriver.findElement(By.xpath(String.valueOf(findTextFromDD))));
+logger.info("this is what you selected: " + textByUi);
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //TODO
+    protected boolean isElementDisaplayed(String stringvalue) {
+    //isElementDisaplayed( );
+        return false;
+    }
 
 
     private String getElementName(WebElement webElement) {

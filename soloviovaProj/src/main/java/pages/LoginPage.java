@@ -31,10 +31,16 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
     public LoginPage openLoginPage() {
         try {
-            webDriver.get("https://qa-complexapp.onrender.com/");
+            webDriver.get(base_url + getRelativeURL());
             logger.info("Loggin page is opened.");
+            logger.info(base_url);
         } catch (Exception e) {
             logger.error("Cannot open Login Page!" + e);
             Assert.fail("Cannot open Login Page!" + e);
@@ -59,7 +65,6 @@ public class LoginPage extends ParentPage {
     }
 
     public HomePage fillingLoginFormWithWalidCred() {
-        openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PAsSWORD);
         clickOnButtonLogIn();

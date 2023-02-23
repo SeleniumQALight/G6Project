@@ -20,9 +20,14 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
     public void openLoginPage() {
         try {
-            webDriver.get("https://qa-complexapp.onrender.com/");
+            webDriver.get(base_url + getRelativeURL());
             logger.info("Page was opened");
         } catch (Exception e) {
             logger.error("Can't open Login Page " + e);
@@ -43,10 +48,21 @@ public class LoginPage extends ParentPage {
     }
 
     public HomePage fillingLoginFormWithValidCred() {
-        openLoginPage();
         enterUserNameintoInputLogin(TestData.VALID_LOGIN);
-        enterPasswordIntoInputPassword(TestData.VALID_PASSWROD);
+        enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+
+    public HomePage fillingLoginFormWithInvalidCred() {
+        openLoginPage();
+        enterUserNameintoInputLogin(TestData.INVALID_LOGIN);
+        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        clickOnButtonLogin();
+        return new HomePage(webDriver);
+    }
+
+    public boolean isButtonSignInDisplayed() {
+        return isButtonDisplayed(buttonSignIn);
     }
 }

@@ -18,7 +18,14 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
+    @FindBy(xpath = "//div[@class='d-flex justify-content-between']/h2")
+    private WebElement nameTitle;
 
+    @FindBy(xpath = "//div[@class='body-content']/p/i[text()=' Note: This post was written for ']")
+    private WebElement nameNote;
+    
+    @FindBy(xpath = "//div[@class='body-content']/p/i/u")
+    private WebElement textUnderLine;
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -41,7 +48,6 @@ public class PostPage extends ParentPage {
 
     public PostPage checkTextInSuccessMessage(String expectMessage){
         Assert.assertEquals("Text in success message element", expectMessage, successMessage.getText());
-
         return this;
     }
 
@@ -49,5 +55,22 @@ public class PostPage extends ParentPage {
         clickOnElement(buttonDelete);
 
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkIsTitleDisplayed(String title) {
+        nameTitle.isDisplayed();
+        Assert.assertEquals("Title is displayed", title, nameTitle.getText()); // 1. messeage, 2.expected виводимо те що очікуємо. 3.actual
+        return this;
+    }
+
+    public PostPage checkIsNoteDisplayed(String note) {
+        Assert.assertTrue("Not is not displayed", isElementDisplayed(nameNote));
+        nameNote.isDisplayed();
+        return this;
+    }
+
+    public PostPage checkIsUnderLineText(String text) {
+        Assert.assertEquals("Wrong value", text, textUnderLine.getText());
+        return this;
     }
 }

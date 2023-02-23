@@ -1,10 +1,9 @@
 package postTest;
 
 import baseTest.BaseTest;
-import library.Util;
+import libs.Util;
 import org.junit.After;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
 
 public class CreatePostTest extends BaseTest {
     final String POST_TITLE = "TC1_chyrva_" + Util.getDateAndTimeFormatted();

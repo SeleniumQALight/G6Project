@@ -12,23 +12,28 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
     public HeaderElements getHeaderElements() {
         return headerElements;
     }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        // log in method
+        loginPage.openLoginPage();
         if (!headerElements.isButtonSignOutDisplayed()){
             loginPage.fillingLoginFormWithWalidCred();
         }
-       // loginPage.fillingLoginFormWithWalidCred();
-        // check where wee are
         checkIsRedirectToHomePage();
         return this;
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("Home page is not loaded. ", headerElements.isButtonSignOutDisplayed());
         return new HomePage(webDriver);
     }
