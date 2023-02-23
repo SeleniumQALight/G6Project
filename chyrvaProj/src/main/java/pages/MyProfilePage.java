@@ -119,7 +119,7 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage checkEditedPostOneAndDisplayed(String postTitle) {
         List<WebElement> listOfPosts = getPostsListWithTitle(postTitle);
         int counter = listOfPosts.size();
-        isElementDisplayed(String.format(titlePost, postTitle));
+        Assert.assertTrue("Edited post is not displayed",isElementDisplayed(String.format(titlePost, postTitle)));
         logger.info("Edited Post was displayed " + postTitle);
 
         listOfPosts = getPostsListWithTitle(postTitle);

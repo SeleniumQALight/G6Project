@@ -14,7 +14,7 @@ public class CreateTestForValidationMessages extends BaseTest {
                 .enterTextInPickAUsername(INVALID_USERNAME)
                 .enterTextInYourEmailExpample(INVALID_EMAIL)
                 .enterTextInCreatePass(INVALID_PASS)
-                .checkThreeErrorMessagesIsDisplayed()
+                .checkErrorMessagesIsDisplayed(3)
                 .checkErrorMessageWithText("Username must be at least 3 characters.")
                 .checkErrorMessageWithText("You must provide a valid email address.")
                 .checkErrorMessageWithText("Password must be at least 12 characters.")

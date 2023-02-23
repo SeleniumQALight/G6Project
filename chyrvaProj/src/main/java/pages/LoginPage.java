@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends ParentPage {
     public boolean isButtonSignInDisplayed(){
@@ -140,9 +139,9 @@ public class LoginPage extends ParentPage {
     }
 
 
-    public LoginPage checkThreeErrorMessagesIsDisplayed(){
+    public LoginPage checkErrorMessagesIsDisplayed(int expectedSize){
         Assert.assertEquals("Number of messages is not three"
-                , 3, getMessagesList().size());
+                , expectedSize, getMessagesList().size());
 
         return this;
     }
