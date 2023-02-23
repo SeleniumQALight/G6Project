@@ -44,6 +44,7 @@ public class HomePage extends ParentPage{
             loginPage.fillingLoginFormWithValidCred();
         }
         checkIsRedirectToHomePage();
+
         return this;
     }
 

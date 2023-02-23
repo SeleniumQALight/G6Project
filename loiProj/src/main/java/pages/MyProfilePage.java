@@ -44,7 +44,6 @@ public class MyProfilePage extends ParentPage {
 
     public List<WebElement> getPostsListWithTitle(String title) {
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));
-
     }
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
@@ -78,5 +77,10 @@ public class MyProfilePage extends ParentPage {
     private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
         Assert.assertTrue("Message delete post isn't displayed", isElementDisplayed(successDeletePostMessage));
         return this;
+    }
+
+    public PostPage clickOnPostItem(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
     }
 }

@@ -2,19 +2,38 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
-    private WebElement inputUserName;
+    private WebElement inputUserNameLogin;
 
     @FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement inputPassword;
+    private WebElement inputPasswordLogin;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
+
+    @FindBy(id = "username-register")
+    private WebElement inputUserNameRegister;
+
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegister;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPasswordRegister;
+
+    @FindBy(xpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    List<WebElement> errorMessageOnRegisterForm;
+
+    private String errorMessageOnRegisterFormByXpath = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    private String errorMessageOnRegisterFormByXpathWithParamText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -37,11 +56,11 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterUserNameIntoInputLogin(String userName) {
-        enterTextIntoElement(inputUserName, userName);
+        enterTextIntoElement(inputUserNameLogin, userName);
     }
 
     public void enterPasswordIntoInputPassword(String password) {
-        enterTextIntoElement(inputPassword, password);
+        enterTextIntoElement(inputPasswordLogin, password);
     }
 
     public void clickOnButtonLogin() {
@@ -57,5 +76,29 @@ public class LoginPage extends ParentPage {
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+
+    public void enterNameIntoInputUserNameRegister(String userName) {
+        enterTextIntoElement(inputUserNameRegister, userName);
+    }
+
+    public void enterEmailIntoFormRegister(String email) {
+        enterTextIntoElement(inputEmailRegister, email);
+    }
+
+    public void enterPasswordIntoFormRegister(String password) {
+        enterTextIntoElement(inputPasswordRegister, password);
+    }
+
+    public void checkIsThreeErrorMessagesDisplayed() {
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorMessageOnRegisterFormByXpath), 3));
+    }
+
+    public void checkErrorMessageWithTextInList(String errorText) {
+        Assert.assertTrue("element with matching error text wasn't found", isTextInWebElementListPresent(errorMessageOnRegisterForm, errorText));
+    }
+
+    public void checkErrorMessageWithTextByParamLocator(String errorText) {
+        Assert.assertTrue("element with matching error text wasn't found", isElementDisplayed(String.format(errorMessageOnRegisterFormByXpathWithParamText, errorText)));
     }
 }
