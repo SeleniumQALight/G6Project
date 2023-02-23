@@ -1,12 +1,14 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libs.TestData;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_zapotochna_" + Util.getDateAndTimeFormatted();
+    final String POST_TITLE = "TC1_Loi_" + Util.getDateAndTimeFormatted();
+    final String POST_BODY_CONTENT = "text";
 
     @Test
     public void TC1_createNewPost() {
@@ -15,39 +17,29 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
-
-                .enterTextInInputBody("Body. Text testing")
-               // .selectTextInDropDownOptions("Приватне повідомлення")
-               // .selectValueInDropDownOptions("One Person")
-
-              .selectTextInDropDownByUI("Приватне повідомлення")
-
-                .clickOnSavePostButton()
+                .enterTextInTextareaBodyContent(POST_BODY_CONTENT)
+                .selectTextInDropDownOptions("Приватне повідомлення")
+//              .selectValueInDropDownOptions("One Person")
+                .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
-
-                .checkIfPostTitleCorrect(POST_TITLE)
-
+                .checkIsTitleMatches(POST_TITLE)
+                .checkIsNotePresent()
+                .checkIsAccessRightMatches("One Person")
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-
-                .checkIsProfileCorrect("qaauto")
-
+                .checkIsUserNameMatches(TestData.VALID_LOGIN)
                 .checkPostWasCreated(POST_TITLE)
-
-
         ;
-
     }
 
-    @After //якщо буде два after , то буде сортуваання по назві метода
+    @After
     public void deletePost() {
         homePage
                 .openHomePage()
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostsWithTittleTillPresent(POST_TITLE)
+                .deletePostsWithTitleTillPresent(POST_TITLE)
         ;
     }
-
 }

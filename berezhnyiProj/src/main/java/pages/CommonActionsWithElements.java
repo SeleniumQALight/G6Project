@@ -100,6 +100,15 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected boolean isElementDisplayed(String locator){
+        try {
+            return webDriver.findElement(By.xpath(locator)).isDisplayed();
+        }catch (Exception e){
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
     private String getElementName(WebElement webElement){
         try {
             return webElement.getAccessibleName();

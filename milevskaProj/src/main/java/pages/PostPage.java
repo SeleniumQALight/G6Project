@@ -14,6 +14,15 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy(xpath = ".//div[@class='d-flex justify-content-between']//h2")
+    private WebElement successTitle;
+
+    @FindBy(xpath = ".//*[contains(text(),'Note: This post was written for')]")
+    private WebElement successNote;
+
+    @FindBy(xpath = ".//div[@class='body-content']//u")
+    private WebElement successValueFromDropdown;
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
@@ -40,10 +49,24 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage checkTextInSuccessMessage(String expextMessage){
-        Assert.assertEquals("Text in success massage element ", expextMessage, successMessage.getText());
+    public PostPage checkTextInSuccessMessage(String expectMessage){
+        Assert.assertEquals("Text in success massage element ", expectMessage, successMessage.getText());
         return this;
     }
+     public PostPage checkTitleOfCreatedPost(String expectTitle){
+        Assert.assertEquals("Not expected title", expectTitle, successTitle.getText());
+         return this;
+     }
+
+     public PostPage checkLabelNote(String expectNote){
+         Assert.assertTrue("Note is not disaplyed", isElementDisplayed(successNote));
+         return this;
+     }
+
+     public PostPage checkCorrectSelectedValueInDropdown(String selectedValueInDropdown){
+         Assert.assertEquals("Note label is not displayed", selectedValueInDropdown, successValueFromDropdown.getText());
+         return this;
+     }
 
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);

@@ -42,4 +42,8 @@ public class HomePage extends ParentPage{
         Assert.assertTrue("HomePage is not loaded", getHeaderElement().isButtonSingOutDisplayed());
         return this;
     }
+    public HomePage getUrlHomepage(){
+        webDriver.get(base_url);
+        return this;
+    }
 }

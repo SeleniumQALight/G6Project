@@ -36,7 +36,7 @@ public class EditPostTest extends BaseTest {
         homePage
                 .openHomePage()
                 .getHeaderElement().clickOnMyProfileButton()
-                .clickOnPostPage(POST_TITLE)
+                .clickOnTitlePost(POST_TITLE)
                 .checkTextInNewTitle(POST_TITLE)
                 .clickOnEditButton()
                 .enterEditTextInInputTitle(POST_TITLE_EDIT)

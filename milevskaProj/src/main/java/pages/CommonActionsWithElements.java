@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -9,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -17,7 +20,7 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
-
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -93,15 +96,23 @@ public class CommonActionsWithElements {
         }
     }
 
-    private String getElementName(WebElement webElement){
+    protected void selectTextInDropDownByUI(WebElement dropDown, WebElement rowInDropdown){
         try {
-            return webElement.getAccessibleName();
-        }catch (Exception e){
-            return "";
+            clickOnElement(dropDown);
+            clickOnElement(rowInDropdown);
+            logger.info("One Person was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
         }
     }
 
-
+    private String getElementName (WebElement webElement){
+        try{
+            return webElement.getAccessibleName();
+        }catch (Exception e) {
+            return "";
+        }
+    }
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can't work with element" + e);
         Assert.fail("Can't work with element" + e);

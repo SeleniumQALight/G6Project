@@ -1,6 +1,5 @@
 package pages;
 
-import com.beust.ah.A;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +16,11 @@ public class PostPage extends ParentPage {
     private HeaderElement headerElement = new HeaderElement(webDriver);
     @FindBy(xpath =".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
+
+    //hw body >  div.d-flex.justify-content-between > h2
+    @FindBy (xpath=".//div[@class='d-flex justify-content-between']/h2")
+    private WebElement checkPostTitle;
+
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -50,5 +54,10 @@ public class PostPage extends ParentPage {
 
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkIfPostTitleCorrect(String postTitle) {
+        Assert.assertEquals("Title is found ", postTitle, checkPostTitle.getText()  );
+        return this;
     }
 }
