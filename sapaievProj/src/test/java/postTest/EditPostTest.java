@@ -1,7 +1,6 @@
 package postTest;
 
 import baseTest.BaseTest;
-import libs.TestData;
 import libs.Util;
 import org.junit.After;
 import org.junit.Before;
@@ -43,7 +42,7 @@ public class EditPostTest extends BaseTest {
 
 
 
-                .EditPostsWithTitle(post_Title, new_postTitle)
+                .editPostsWithTitle(post_Title, new_postTitle)
                 .checkEditPostTitleMessage()
                 .getHeaderElement()
                 .clickOnMyProfileButton()

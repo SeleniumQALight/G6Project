@@ -1,6 +1,5 @@
 package pages;
 
-import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -105,7 +104,7 @@ public class MyProfilePage extends ParentPage{
     }
 
 
-    public EditPostPage EditPostsWithTitle(String post_title, String new_postTitle) {
+    public EditPostPage editPostsWithTitle(String post_title, String new_postTitle) {
         WebElement post=getPostWithTitle(post_title);
         clickOnElement(post);
         new  PostPage((webDriver))

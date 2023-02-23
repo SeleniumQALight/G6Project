@@ -28,6 +28,11 @@ public class EditPostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
