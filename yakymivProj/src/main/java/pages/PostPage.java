@@ -22,6 +22,9 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//u")
     private WebElement selectedLabelForPost;
 
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDelete;
+
     private HeaderElements headerElements = new HeaderElements(webDriver);
 
     public HeaderElements getHeaderElement() {
@@ -60,5 +63,10 @@ public class PostPage extends ParentPage {
     public PostPage checkPostLabel(String expected_label) {
         Assert.assertEquals("Label in created Post: ", expected_label, selectedLabelForPost.getText());
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDelete);
+        return new MyProfilePage(webDriver);
     }
 }
