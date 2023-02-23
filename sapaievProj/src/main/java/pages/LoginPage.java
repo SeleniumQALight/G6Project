@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,6 +42,10 @@ public class LoginPage extends ParentPage {
     private String textError = "//div[text()='%s']";
 
     private String errorsForRegistr = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+
+    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrors;
 
 
 
@@ -143,6 +149,29 @@ public class LoginPage extends ParentPage {
         Assert.assertTrue("The password error text is not displayed.", isElementDisplayed(String.format(textError, text)));
         return this;
     }
+
+
+    //Второй вариант проверки списка ошибок
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        String[] expectedErrorsArray=expectedErrors.split(",");
+        webDriverWait15.withMessage("Namber messages should be"+expectedErrorsArray.length)
+                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsForRegistr),expectedErrorsArray.length));
+
+        ArrayList<String> actualTextFromErrors=new ArrayList<>();
+
+        for (WebElement element:listOfErrors){
+            actualTextFromErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions=new SoftAssertions();
+        for (int i=0; i<expectedErrorsArray.length; i++){
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals").isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+        return this;
+    }
+
+
 
 
 }
