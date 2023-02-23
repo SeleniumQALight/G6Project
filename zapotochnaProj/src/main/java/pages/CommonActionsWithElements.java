@@ -20,6 +20,10 @@ public class CommonActionsWithElements {
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
 
+    //@FindBy(xpath = ".//*[contains(text(),'Групове повідомлення')]")
+   // WebElement findTextFromDD;
+
+   String findTextFromDD = ".//*[contains(text(),'Приватне повідомлення')]";
     public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -32,9 +36,12 @@ public class CommonActionsWithElements {
     protected void enterTextInToElement(WebElement webElement, String text) {
 
         try {
+
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement)); //дочекатись поки інпут буде показаний, а вже потім щось з ним робити
+
             webElement.clear();
             webElement.sendKeys(text);
+
             logger.info(text + " Was inputted in to element" + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -112,6 +119,23 @@ public class CommonActionsWithElements {
     }
 
     //дз зробити byUi
+    protected void selectValueByUiInDropDown(WebElement webElement, String textByUi) {
+        try {
+
+            clickOnElement(webElement);
+            clickOnElement(webDriver.findElement(By.xpath(String.valueOf(findTextFromDD))));
+logger.info("this is what you selected: " + textByUi);
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //TODO
+    protected boolean isElementDisaplayed(String stringvalue) {
+    //isElementDisaplayed( );
+        return false;
+    }
 
 
     private String getElementName(WebElement webElement) {
