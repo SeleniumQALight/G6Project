@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,14 +24,18 @@ public class PostPage extends ParentPage {
     @FindBy (xpath = ".//u[contains(text(), 'One Person')]")    // was "All Users"
     private WebElement postNoteSecondOption;
 
-    private HeaderElement headerElement = new HeaderElement(webDriver); //  оголошує елемент headerElement
     @FindBy (xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
+
+
+
+    private HeaderElement headerElement = new HeaderElement(webDriver); //  оголошує елемент headerElement
 
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }     //locator
+
 
 
     @Override
@@ -42,6 +47,8 @@ public class PostPage extends ParentPage {
     public HeaderElement getHeaderElement() {   //  метод звернення до елемента headerElement
         return headerElement;
     }
+
+
 
     public PostPage checkIsRedirectToPostPage() {
         checkURLContainsRelative();
@@ -78,5 +85,12 @@ public class PostPage extends ParentPage {
         clickOnElement(buttonDelete);
 
         return new MyProfilePage(webDriver);
+    }
+
+
+    public PostEditPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+
+        return new PostEditPage(webDriver);
     }
 }
