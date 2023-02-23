@@ -3,12 +3,14 @@ package pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class CommonActionWithElements {
     protected WebDriver webDriver; //protected makes this element available for classes in other packages.
@@ -119,35 +121,61 @@ public class CommonActionWithElements {
         Assert.fail("Cannot work with element " + e);
     }
 //-------------------
-//    public void usersPressesKeyEnterTime(int numberOfTimes) {
-//        Actions actions = new Actions(webDriver);
-//        for (int i = 0; i < numberOfTimes; i++) {
-//            actions.sendKeys(Keys.ENTER).build().perform();
-//        }
-//    }
-//
-//    public void usersPressesKeyTabTime(int numberOfTimes) {
-//        Actions actions = new Actions(webDriver);
-//        for (int i = 0; i < numberOfTimes; i++) {
-//            actions.sendKeys(Keys.TAB).build().perform();
-//        }
-//
-//    }
-//
-//    public void usersPressesKeyTime(Keys keys, int numberOfTimes) {
-//        Actions actions = new Actions(webDriver);
-//        for (int i = 0; i < numberOfTimes; i++) {
-//            actions.sendKeys(keys).build().perform();
-//        }
-//
-//    }
-//
-//    public void userOpensNewTab() {
-//        ((JavascriptExecutor)webDriver).executeScript("window.open()");
-//        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-//        webDriver.switchTo().window(tabs.get(1));
-//    }
-//
+    public void usersPressesKeyEnterTime(int numberOfTimes) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(Keys.ENTER).build().perform();
+        }
+    }
+
+    public void usersPressesKeyTabTime(int numberOfTimes) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(Keys.TAB).build().perform();
+        }
+
+    }
+
+    public void usersPressesKeyTime(Keys keys, int numberOfTimes) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(keys).build().perform();
+        }
+
+    }
+
+    public void usersPressesKeyWordTime(String keys, int numberOfTimes) {
+        Actions actions = new Actions(webDriver);
+        for (int i = 0; i < numberOfTimes; i++) {
+            actions.sendKeys(keys).build().perform();
+        }
+
+    }
+
+    public void userOpensNewTab() {
+        ((JavascriptExecutor)webDriver).executeScript("window.open('https://qa-complexapp.onrender.com/')");
+        webDriverWait15.until(ExpectedConditions.numberOfWindowsToBe(2));
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(1));
+    }
+
+    public void userOpensNewTab(int num) {
+        ((JavascriptExecutor)webDriver).executeScript("window.open('https://qa-complexapp.onrender.com/')");
+        webDriverWait15.until(ExpectedConditions.numberOfWindowsToBe(2));
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(num));
+    }
+
+    public void switchBackToOriginTab(){
+        String firstWindow = webDriver.getWindowHandles().iterator().next();
+        webDriver.switchTo().window(firstWindow);
+    }
+
+    public void userRefreshTab(){
+        webDriver.navigate().refresh();
+    }
+
+
 //    метод moveToElement (аналог скрола )
 //
 //    WebElement element = driver.findElement(By.id("my-id"));
