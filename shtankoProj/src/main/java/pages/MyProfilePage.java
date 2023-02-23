@@ -43,7 +43,7 @@ public class MyProfilePage extends ParentPage{
         Assert.assertEquals("Number of posts with title", 1,getPostListWithTitle(postTitle).size());
         return this;
     }
-    public PostPage clickOnPostPage (String postTitle){
+    public PostPage clickOnTitlePost(String postTitle){
         clickOnElement(String.format(titlePost, postTitle));
         return new PostPage(webDriver);
     }
