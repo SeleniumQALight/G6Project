@@ -9,7 +9,7 @@ public class CreateTestForValidationMessages extends BaseTest {
     public final static String INVALID_USERNAME = "tr";
 
     @Test
-    public void TC2_verifyValidatinMessages(){
+    public void TC2_verifyValidatinMessages() {
         loginPage.openLoginPage()
                 .enterTextInPickAUsername(INVALID_USERNAME)
                 .enterTextInYourEmailExpample(INVALID_EMAIL)
@@ -24,19 +24,7 @@ public class CreateTestForValidationMessages extends BaseTest {
 ////*[@class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible']
 
 
-
-
-
-
-
-
-
     }
-
-
-
-
-
 
 
 }
