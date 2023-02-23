@@ -1,10 +1,12 @@
+package postTest;
+
 import baseTest.BaseTest;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_Kava_" + Util.getDateAndTimeFormatted();
+    final String POST_TITLE = "TC1_Kava_EditPost" + Util.getDateAndTimeFormatted();
 
     @Test
     public void TC1_createNewPost() {
