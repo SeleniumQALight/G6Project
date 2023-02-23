@@ -110,16 +110,9 @@ public class LoginPage extends ParentPage {
             actualTextFromErrors.add(element.getText());
         }
         SoftAssertions softAssertions = new SoftAssertions();
-//       expectedErrors.length();  doesn't works
-        for (int i = 0; i < actualTextFromErrors.size(); i++) {
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
             softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals ").isIn(actualTextFromErrors);
         }
         softAssertions.assertAll();
     }
-//    public boolean isEmailFieldValidationErrorDisplayed() {
-//        return isElementDisplayed(registrationFormEmailFieldAlert);
-//    }
-//    public boolean isPasswordFieldValidationErrorDisplayed() {
-//        return isElementDisplayed(registrationFormPasswordFieldAlert);
-//    }
 }
