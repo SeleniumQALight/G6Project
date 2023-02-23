@@ -95,8 +95,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkSizeOfErrorsList(int size) {
-        WebDriverWait webDriverWait=new WebDriverWait(webDriver,Duration.ofSeconds(10));
-        webDriverWait.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsForRegistr),size));
+        webDriverWait15.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsForRegistr),size));
         Assert.assertTrue("The number of errors is"+size, getErrorList(errorsForRegistr).size() == size);
         return this;
     }
