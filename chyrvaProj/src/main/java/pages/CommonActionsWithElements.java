@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class CommonActionsWithElements {
 
 
-
     @FindBy(xpath = ".//select[@name=\"select1\"]")
     private WebElement dropDown;
     @FindBy(xpath = ".//*[@value=\"One Person\"]")
@@ -28,13 +27,13 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
-public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGHT()));
 
     }
 
@@ -52,7 +51,7 @@ public static ConfigProperties configProperties = ConfigFactory.create(ConfigPro
     protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
-            String name =getElementName(webElement);
+            String name = getElementName(webElement);
             webElement.click();
             logger.info("Element was clicked");
 
@@ -62,10 +61,10 @@ public static ConfigProperties configProperties = ConfigFactory.create(ConfigPro
 
     }
 
-    protected void clickOnElement(String xpath){
-        try{
+    protected void clickOnElement(String xpath) {
+        try {
             clickOnElement(webDriver.findElement(By.xpath(xpath)));
-        }catch (Exception e){
+        } catch (Exception e) {
             printErrorAndStopTest(e);
         }
 
@@ -90,13 +89,14 @@ public static ConfigProperties configProperties = ConfigFactory.create(ConfigPro
             printErrorAndStopTest(e);
         }
     }
-private String getElementName(WebElement webElement){
-        try{
+
+    private String getElementName(WebElement webElement) {
+        try {
             return webElement.getAccessibleName();
-        }catch (Exception e){
+        } catch (Exception e) {
             return "";
         }
-}
+    }
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element" + e);
@@ -121,21 +121,45 @@ private String getElementName(WebElement webElement){
             return false;
         }
 
+
     }
 
+    protected boolean isElementDisplayed(String xpath) {
+        try {
+
+            boolean state = webDriver.findElement(By.xpath(xpath)).isDisplayed();
+//            String message;
+//            if (state) {
+//                message = "Element is displayed";
+//            } else {
+//                message = "Element is not displayed";
+//            }
+//            logger.info(message);
+
+            //           return state;
+            WebElement element = webDriver.findElement(By.xpath(xpath));
+           isElementDisplayed(element);
+            return state;
+
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+
+        }
+
+
+    }
+
+
     public void selectTextInDropDownByUI() {
-       try {
-          dropDown.click();
-           clickOnElement(dropDownValue);
-           logger.info(dropDownValue + "was selected in DropDown");
+        try {
+            dropDown.click();
+            clickOnElement(dropDownValue);
+            logger.info(dropDownValue + "was selected in DropDown");
 
-       }catch (Exception e){
-           printErrorAndStopTest(e);
-       }
-
-
-
-
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
 
 
     }
@@ -165,8 +189,8 @@ private String getElementName(WebElement webElement){
     }
 
     public void userOpensNewTab() {
-        ((JavascriptExecutor)webDriver).executeScript("window.open()");
-        ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
 //
