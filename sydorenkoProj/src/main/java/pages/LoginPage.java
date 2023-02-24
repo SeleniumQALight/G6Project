@@ -3,9 +3,8 @@ package pages;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,8 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import java.util.ArrayList;
 
 
 public class LoginPage extends ParentPage {
@@ -35,12 +32,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@id='password-register']")
     private WebElement passwordRegisterField;
     String locatorForFieldValidationError = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
-//    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='Username must be at least 3 characters.']")
-//    private WebElement registrationFormUserNameFieldAlert;
-//    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='You must provide a valid email address.']")
-//    private WebElement registrationFormEmailFieldAlert;
-//    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='Password must be at least 12 characters.']")
-//    private WebElement registrationFormPasswordFieldAlert;
+    private static final String listOfErrorsLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(xpath = listOfErrorsLocator)
+    private List<WebElement> listOfErrors;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -109,15 +103,19 @@ public class LoginPage extends ParentPage {
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
+
     public void enterNameIntoNameRegisterField(String name) {
         enterTextIntoElement(usernameRegisterField, name);
     }
+
     public void enterEmailIntoEmailRegisterField(String email) {
         enterTextIntoElement(emailRegisterField, email);
     }
+
     public void enterPasswordIntoPasswordRegisterField(String password) {
         enterTextIntoElement(passwordRegisterField, password);
     }
+
     public boolean isFieldValidationErrorDisplayed(String error) {
         return isElementDisplayed(locatorForFieldValidationError, error);
     }
