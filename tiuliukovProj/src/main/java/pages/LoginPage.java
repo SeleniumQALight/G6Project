@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -27,8 +29,11 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class = 'py-3 mt-4 btn btn-lg btn-success btn-block']")
     private WebElement buttonSignUp;
 
+    @FindBy(xpath = registrationValidationMessages)
+    private List<WebElement> listOfErrors;
+
     private String validationMessage = ".//*[@class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = '%s']";
-    private String registrationValidationMessages = ".//*[@class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    private static final String registrationValidationMessages = ".//*[@class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -97,14 +102,32 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public List<WebElement> getValidationMesagesList(){
+    public List<WebElement> getValidationMessagesList(){
         webDriverWait10.until(ExpectedConditions.attributeContains(By.xpath(registrationValidationMessages), "class", "liveValidateMessage--visible"));
         return  webDriver.findElements(By.xpath(registrationValidationMessages));
     }
 
     public LoginPage checkValidationMessagesAmount() {
-        List<WebElement> listOfValidationMessages = getValidationMesagesList();
+        List<WebElement> listOfValidationMessages = getValidationMessagesList();
         Assert.assertEquals("Number of Alerts",3, listOfValidationMessages.size());
+        return this;
+    }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        String[] expectedErrorsArray = expectedErrors.split(",");
+        webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(registrationValidationMessages), expectedErrorsArray.length));
+
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element: listOfErrors){
+            actualTextFromErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++){
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals ").isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+
         return this;
     }
 }
