@@ -68,16 +68,15 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputUserName, userName);
     }
 
-    public void enterLoginAndPasswordIntoInputsAndClickingOnSignInWithEnter(String login, String password) {
+    public void actionsSendKeys(String text) {
         Actions action = new Actions(webDriver);
-        action.sendKeys(Keys.TAB, Keys.TAB, login, Keys.TAB, password, Keys.TAB, Keys.ENTER).build().perform();
+        action.sendKeys(text).build().perform();
     }
 
     public void openNewTabWithSameUrl() {
         ((JavascriptExecutor) webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
-        openLoginPage();
     }
 
     public void switchToFirstTabAndRefresh() {
