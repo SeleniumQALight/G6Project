@@ -121,7 +121,11 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkErrorCountMessage(int quantityErrors) {
-        webDriverWait10.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='Password must be at least 12 characters.']"))));
+        webDriverWait10
+                .withMessage("Number of message should be " + quantityErrors)
+                .until(ExpectedConditions
+                        .numberOfElementsToBe(By.xpath(listOfErrorsLocator)
+                                , quantityErrors));
         Assert.assertEquals("The number of errors is not as expected",
                 quantityErrors, notificationsWithErrors.size());
         return this;
