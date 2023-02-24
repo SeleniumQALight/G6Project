@@ -13,6 +13,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.MyProfilePage;
+import pages.PostPage;
 
 import java.time.Duration;
 
@@ -21,6 +23,8 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected PostPage postPage;
+    protected MyProfilePage myProfilePage;
 
     @Before
     public void setUp() {

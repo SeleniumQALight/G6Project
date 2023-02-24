@@ -2,10 +2,16 @@ package pages;
 
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -20,7 +26,11 @@ public class LoginPage extends ParentPage {
     private WebElement emailReg;
     @FindBy(id = "password-register")
     private WebElement passwordReg;
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrors;
 
+
+    private String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     private String errorMessage = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'and text()='%s']";
 
@@ -35,7 +45,7 @@ public class LoginPage extends ParentPage {
 
     public LoginPage openLoginPage() {
         try {
-            webDriver.get(baseURL+"/");
+            webDriver.get(baseURL + "/");
             logger.info("Login page was open");
             logger.info(baseURL);
         } catch (Exception e) {
@@ -89,7 +99,7 @@ public class LoginPage extends ParentPage {
     }
 
     public HomePage fillValidCreds() {
-      //  openLoginPage();
+        //  openLoginPage();
         typeUserName(TestData.VALID_LOGIN);
         typeUserPassword(TestData.VALID_PASSWORD);
         clickSignIn();
@@ -101,8 +111,24 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkErrorMessageWithText(String message) {
-        String errorMessageText = getText(getWebElement(String.format(errorMessage,message)));
+        String errorMessageText = getText(getWebElement(String.format(errorMessage, message)));
         Assert.assertEquals("Error message for field is wrong", message, errorMessageText);
+        return this;
+    }
+
+    public LoginPage checkErrorMessageUniversal(String message) {
+        String[] expectedErrorsArr = message.split(",");
+        wait10.withMessage("Number of messages should be " + expectedErrorsArr.length)
+                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArr.length));
+        List<String> actualFromErrors = new ArrayList();
+        for (WebElement e : listOfErrors) {
+            actualFromErrors.add(e.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArr.length; i++) {
+            softAssertions.assertThat(expectedErrorsArr[i]).isIn(actualFromErrors);
+        }
+        softAssertions.assertAll();
         return this;
     }
 }

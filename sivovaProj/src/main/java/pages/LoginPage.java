@@ -1,11 +1,18 @@
 package pages;
 
+
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
 
@@ -34,6 +41,11 @@ public class LoginPage extends ParentPage {
     private WebElement buttonSignUp;
 
     private String errorMessageSignUp = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
+
+    private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = listOfErrorsLocator)
+        private List<WebElement> listOfErrors;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -67,11 +79,11 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage enterUserNameIntoInputSignUp (String userName) {
-        enterTextIntoElement(userNameInputSignUp,userName);
+        enterTextIntoElement(userNameInputSignUp, userName);
         return this;
     }
     public LoginPage enterEmailIntoInputSignUp (String email) {
-        enterTextIntoElement(emailInput,email);
+        enterTextIntoElement(emailInput, email);
         return this;
     }
 
@@ -126,5 +138,28 @@ public class LoginPage extends ParentPage {
         clickButtonLogin();
         return new HomePage(webDriver);
     }
+
+    public LoginPage checkErrorMessages(String expectedErrors) {
+        //error1,error2 --> array[0] = error1, array[1] = error2..
+        String[] expectedErrorArray = expectedErrors.split(",");
+        webDriverWait10
+                .withMessage("Number of messages should be" + expectedErrorArray.length)
+                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorArray.length));
+
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element: listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (int i = 0; i < expectedErrorArray.length; i++) {
+            softAssertions.assertThat(expectedErrorArray[i]).as("Message is not equal ").isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+        return this;
+    }
+
+
 
 }

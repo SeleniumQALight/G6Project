@@ -24,8 +24,8 @@ public class CommonActionsWithElement {
 
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
-        wait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        wait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        wait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        wait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
         PageFactory.initElements(webDriver, this);
     }
 
