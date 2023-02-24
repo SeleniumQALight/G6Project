@@ -1,13 +1,19 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.ArrayList;
 
@@ -103,31 +109,31 @@ public class LoginPage extends ParentPage {
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
-
     public void enterNameIntoNameRegisterField(String name) {
         enterTextIntoElement(usernameRegisterField, name);
     }
-
-    public void enterTextIntoRegistrationFormFieldsUsingKeys(String name, String email, String password) {
-        Actions action = new Actions(webDriver);
-        action.sendKeys(Keys.TAB, Keys.TAB, Keys.TAB, Keys.TAB, Keys.TAB, name, Keys.TAB, email, Keys.TAB, password, Keys.ENTER).build().perform();
-    }
-
     public void enterEmailIntoEmailRegisterField(String email) {
         enterTextIntoElement(emailRegisterField, email);
     }
-
     public void enterPasswordIntoPasswordRegisterField(String password) {
         enterTextIntoElement(passwordRegisterField, password);
     }
-
     public boolean isFieldValidationErrorDisplayed(String error) {
         return isElementDisplayed(locatorForFieldValidationError, error);
     }
-//    public boolean isEmailFieldValidationErrorDisplayed() {
-//        return isElementDisplayed(registrationFormEmailFieldAlert);
-//    }
-//    public boolean isPasswordFieldValidationErrorDisplayed() {
-//        return isElementDisplayed(registrationFormPasswordFieldAlert);
-//    }
+
+    public void checkErrorsMessages(String expectedErrors) {
+//        error1,error2,error3 -> array[0]=error1,array[1]=error2,array[2]=error3
+        String[] expectedErrorsArray = expectedErrors.split(",");
+        webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element : listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals ").isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+    }
 }
