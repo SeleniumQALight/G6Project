@@ -2,12 +2,15 @@ package pages;
 
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -31,6 +34,8 @@ public class LoginPage extends ParentPage {
     private WebElement passwordRegistrationField;
 
     String errorMessage = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
+
+    String listOfErrorsLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> notificationsWithErrors;
@@ -96,16 +101,19 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public void enterUserNameIntoRegistrationField(String userName) {
+    public LoginPage enterUserNameIntoRegistrationField(String userName) {
         enterTextInToElement(userNameRegistrationField, userName);
+        return this;
     }
 
-    public void enterEmailIntoEmailField(String email) {
+    public LoginPage enterEmailIntoEmailField(String email) {
         enterTextInToElement(emailField, email);
+        return this;
     }
 
-    public void enterPasswordIntoPasswordRegistrationField(String password) {
+    public LoginPage enterPasswordIntoPasswordRegistrationField(String password) {
         enterTextInToElement(passwordRegistrationField, password);
+        return this;
     }
 
     public boolean isFieldValidationErrorIsDisplayed(String error) {
@@ -116,6 +124,27 @@ public class LoginPage extends ParentPage {
         webDriverWait10.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='Password must be at least 12 characters.']"))));
         Assert.assertEquals("The number of errors is not as expected",
                 quantityErrors, notificationsWithErrors.size());
+        return this;
+    }
+
+    public LoginPage checkErrorsMessage(String expectedErrors) {
+        //error1, error2 -> array[0] = error1, array[1] = error2
+        String[] expectedErrorsArray = expectedErrors.split(",");
+        webDriverWait10
+                .withMessage("Number of message should be " + expectedErrorsArray.length)
+                .until(ExpectedConditions
+                        .numberOfElementsToBe(By.xpath(listOfErrorsLocator)
+                                , expectedErrorsArray.length));
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element:notificationsWithErrors){
+            actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals ")
+                    .isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
         return this;
     }
 }
