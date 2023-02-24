@@ -10,9 +10,9 @@ public class FormRegistrationTest extends BaseTest {
     @Test
     public void checkInvalidLogin(){
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoInputRegisteredForm(USER_NAME);
-        loginPage.enterEmailIntoInputRegistered(EMAIL);
-        loginPage.enterPasswordIntoInputRegisteredForm(PASSWORD);
+        loginPage.enterUserNameIntoInputRegistrationForm(USER_NAME);
+        loginPage.enterEmailIntoInputRegistrationForm(EMAIL);
+        loginPage.enterPasswordIntoInputRegistrationForm(PASSWORD);
         loginPage.checkAlertMessageWithText(3)
                 .checkErrorMessageWithText("Username must be at least 3 characters.")
                 .checkErrorMessageWithText("You must provide a valid email address.")
