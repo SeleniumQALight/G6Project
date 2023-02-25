@@ -37,12 +37,11 @@ public class RegistrationErrorsTest extends BaseTest {
     @TestCaseName("registrationErrors : login = {0}, email = {1}, password = {2}")
     public void checkErrors(String userName, String email, String password, String expectedErrors){
         loginPage
-                .openLoginPage();
-        loginPage
+                .openLoginPage()
                 .enterUserNameIntoInputRegistrationUserName(userName)
                 .enterEmailIntoInputRegistrationEmail(email)
                 .enterPasswordIntoInputRegistrationPassword(password)
-                .checkErrorsMessages(expectedErrors);
+                .checkRegistrationErrorsMessages(expectedErrors);
     }
 
 

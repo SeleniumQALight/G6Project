@@ -20,6 +20,8 @@ public class LoginPage extends ParentPage {
     private WebElement inputPassword;
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
+    @FindBy(xpath = ".//*[@class = 'alert alert-danger text-center']")
+    private WebElement errorMessageLoginPassword;
 
     @FindBy(id = "username-register")
     private WebElement inputRegistrationUserName;
@@ -132,7 +134,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkErrorsMessages(String expectedErrors) {
+    public LoginPage checkRegistrationErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(",");
         webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(registrationValidationMessages), expectedErrorsArray.length));
 
@@ -147,6 +149,12 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
 
+        return this;
+    }
+
+    public LoginPage checkLoggingInErrorMessage(String expectedError) {
+        Assert.assertTrue("Error Login/Password message is not displayed", isElementDisplayed(errorMessageLoginPassword));
+        Assert.assertEquals("Wrong message is displayed", expectedError, errorMessageLoginPassword.getText());
         return this;
     }
 }
