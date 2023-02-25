@@ -20,7 +20,7 @@ public class RegistrationErrorsTest extends BaseTest {
     final static String ERROR_ALREADY_EXIST = "That username is already taken.";
     final static String USERNAME_TO_SHORT = "vt";
     final static String USERNAME_TO_LONG = "31CharactersUserNameQwertyuiopa";
-    final static String USERNAME_INVALID_CHARACTER = "КирилицаЛогин";
+    final static String USERNAME_INVALID_CHARACTER = "КириллицаЛогин";
     final static String USERNAME_HAS_SYMBOL = "UserName!@#$%^&";
     final static String EMAIL_INVALID = "www";
     final static String PASSWORD_TO_SHORT = "asd";
