@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,14 +24,14 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
     @FindBy(xpath = ".//input[@name='username' and @id='username-register']")
-    private WebElement inputUserNameRegistered;
+    private WebElement inputLoginRegistration;
     @FindBy(xpath = ".//input[@name='email']")
-    private WebElement inputEmail;
+    private WebElement inputEmailRegistration;
     @FindBy(xpath = ".//input[@name='password' and @id = 'password-register']")
-    private WebElement inputPasswordRegistered;
-    public static final String alertDanger = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
-    private String alertDangerText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = '%s']";
-    @FindBy(xpath = alertDanger)
+    private WebElement inputPasswordRegistration;
+    public static final String listOfErrorsLocators = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    final static private String alertDangerText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = '%s']";
+    @FindBy(xpath = listOfErrorsLocators)
     private List<WebElement> alertText;
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -90,23 +92,79 @@ public class LoginPage extends ParentPage {
         clickButtonLogin();
         return new HomePage(webDriver);
     }
-    public void enterUserNameIntoInputRegisteredForm(String userNameRegistered){
-        enterTextInToElement(inputUserNameRegistered, userNameRegistered);
+    public LoginPage enterUserNameIntoInputRegistrationForm(String userName){
+        enterTextInToElement(inputLoginRegistration, userName);
+        return this;
     }
-    public void enterEmailIntoInputRegistered(String email){
-        enterTextInToElement(inputEmail, email);
+    public LoginPage enterEmailIntoInputRegistrationForm(String email){
+        enterTextInToElement(inputEmailRegistration, email);
+        return this;
     }
-    public void enterPasswordIntoInputRegisteredForm(String passwordRegistered){
-        enterTextInToElement(inputPasswordRegistered,passwordRegistered);
+    public LoginPage enterPasswordIntoInputRegistrationForm(String password){
+        enterTextInToElement(inputPasswordRegistration, password);
+        return this;
     }
-
-    public LoginPage checkAlertMessageWithText(){
-        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(alertDanger),3));
-        Assert.assertEquals("The message is not displayed",3, alertText.size());
+    public LoginPage checkErrorMessages (String expectedErrors){
+        //error1, error2 ->array[0] = error1, array[1] = error2
+        //підходить для перевірки блока чи таблиці як що треба перевірити данні
+        String[] expectedErrorArray = expectedErrors.split(",");
+        webDriverWait10
+                .withMessage("Number of messages should be" + expectedErrorArray.length)
+                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocators),expectedErrorArray.length));
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element: alertText){
+            actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorArray.length; i++) {
+            softAssertions.assertThat(expectedErrorArray[i])
+                    .as("Message is not equals")
+                    .isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+        return this;
+}
+    public LoginPage checkAlertMessageWithText(int numberOfErrors){
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocators),numberOfErrors));
+        Assert.assertEquals("The message is not displayed",numberOfErrors, alertText.size());
+        return this;
+    }
+    public LoginPage checkSingInButtonIsDisplayed(){
+        webDriverWait10.until(ExpectedConditions.visibilityOf(buttonLogin));
+        Assert.assertTrue(buttonLogin + "Button is not displayed", isElementDisplayed(buttonLogin));
         return this;
     }
     public LoginPage checkErrorMessageWithText(String alertMessage){
         Assert.assertTrue(alertMessage + "The message is not equal", isElementDisplayed(String.format(alertDangerText,alertMessage)));
+        return this;
+    }
+
+    public LoginPage userNameTabKey(String userName){
+        usersPressesKeyTabTime(2);
+        userEnterText(userName);
+        return this;
+    }
+    public LoginPage passwordTabKey(String passwordEnter){
+        usersPressesKeyTabTime(1);
+        userEnterText(passwordEnter);
+        usersPressesKeyTabTime(1);
+        usersPressesKeyEnterTime(1);
+        return this;
+    }
+
+    public LoginPage registrationUserNameTabKey(String userName){
+        usersPressesKeyTabTime(5);
+        userEnterText(userName);
+        return this;
+    }
+    public LoginPage registrationEmailTabKey(String email){
+        usersPressesKeyTabTime(1);
+        userEnterText(email);
+        return this;
+    }
+    public LoginPage registrationPasswordTabKey(String password){
+        usersPressesKeyTabTime(1);
+        userEnterText(password);
         return this;
     }
 }

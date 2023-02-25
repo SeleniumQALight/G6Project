@@ -1,9 +1,15 @@
 package libs;
 
-public class TestData {
+import org.aeonbits.owner.ConfigFactory;
 
-    public final static String VALID_LOGIN = "qaauto";
-    public final static String VALID_PASSWORD = "123456qwerty";
+public class TestData {
+public static ConfigHiddenProperties configHiddenProperties = ConfigFactory.create(ConfigHiddenProperties.class);
+    public final static String VALID_LOGIN =
+            System.getProperty("login",configHiddenProperties.login());
+    public final static String VALID_PASSWORD =
+            System.getProperty("password",configHiddenProperties.password());
+
+
 
 
 

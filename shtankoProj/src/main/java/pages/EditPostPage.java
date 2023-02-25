@@ -22,7 +22,7 @@ public class EditPostPage extends ParentPage{
 
     @Override
     String getRelativeURL() {
-        return "https://qa-complexapp.onrender.com/post/.*/edit";
+        return "post/.*/edit";
     }
 
     public EditPostPage enterEditTextInInputTitle(String postTitle){

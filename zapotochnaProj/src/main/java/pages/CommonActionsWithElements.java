@@ -20,21 +20,27 @@ public class CommonActionsWithElements {
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
 
+    //@FindBy(xpath = ".//*[contains(text(),'Групове повідомлення')]")
+    // WebElement findTextFromDD;
+    String findTextFromDD = ".//*[contains(text(),'Приватне повідомлення')]";
     public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізація елементів з FindBy.  це патерн почитати додатково
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
 
     protected void enterTextInToElement(WebElement webElement, String text) {
 
         try {
+
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement)); //дочекатись поки інпут буде показаний, а вже потім щось з ним робити
+
             webElement.clear();
             webElement.sendKeys(text);
+
             logger.info(text + " Was inputted in to element" + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
@@ -50,7 +56,7 @@ public class CommonActionsWithElements {
             if (state) {
                 message = getElementName(webElement) + " Element is Displayed";
             } else {
-                message = getElementName(webElement) + " Element is not Displayed" ;
+                message = getElementName(webElement) + " Element is not Displayed";
             }
             logger.info(message);
             return state;
@@ -63,7 +69,7 @@ public class CommonActionsWithElements {
     protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
-           String name = getElementName(webElement);
+            String name = getElementName(webElement);
             webElement.click();
             logger.info(name + " Element was clicked");
         } catch (Exception e) {
@@ -112,6 +118,23 @@ public class CommonActionsWithElements {
     }
 
     //дз зробити byUi
+    protected void selectValueByUiInDropDown(WebElement webElement, String textByUi) {
+        try {
+
+            clickOnElement(webElement);
+            clickOnElement(webDriver.findElement(By.xpath(String.valueOf(findTextFromDD))));
+            logger.info("this is what you selected: " + textByUi);
+
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //TODO
+    protected boolean isElementDisaplayed(String stringvalue) {
+        //isElementDisaplayed( );
+        return false;
+    }
 
 
     private String getElementName(WebElement webElement) {

@@ -23,8 +23,8 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //PageFactory ініціалізує елементи що описані через анотацію findBy
-        webDriverWait10 = new WebDriverWait (webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait (webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait (webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait (webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
 
     protected void enterTextInToElement(WebElement webElement, String text){
