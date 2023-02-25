@@ -31,6 +31,9 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement logInErrorMessage;
+
     @FindBy(xpath = listOfErrorsLocator)
     private List<WebElement> listOfErrors;
 
@@ -45,7 +48,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
-    public void openLoginPage() {
+    public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage was opened");
@@ -54,6 +57,7 @@ public class LoginPage extends ParentPage {
             logger.error("Can't open Login Page " + e);
             Assert.fail("Can't open Login Page " + e);
         }
+        return new LoginPage(webDriver);
     }
 
     public void enterUserNameintoInputLogin(String userName) {
@@ -75,12 +79,12 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public HomePage fillingLoginFormWithInvalidCred() {
+    public LoginPage fillingLoginFormWithInvalidCred(String userName, String password) {
         openLoginPage();
-        enterUserNameintoInputLogin(TestData.INVALID_LOGIN);
-        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        enterUserNameintoInputLogin(userName);
+        enterPasswordIntoInputPassword(password);
         clickOnButtonLogin();
-        return new HomePage(webDriver);
+        return this;
     }
 
     public boolean isButtonSignInDisplayed() {
@@ -120,8 +124,11 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
 
-
-
         return this;
+    }
+
+    public void checkLogInErrorMessage(String expectedError) {
+        Assert.assertEquals("Text in success message element: ", expectedError, logInErrorMessage.getText());
+        Assert.assertFalse("Sign out button is displayed",  getHeaderElement().isButtonSignOutDisplayed());
     }
 }
