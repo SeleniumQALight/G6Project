@@ -3,9 +3,11 @@ package pages;
 
 import libs.TestData;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -126,6 +128,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checknumberOfMessages (int numberOfElements) {
+        webDriverWait15.until(ExpectedConditions.numberOfElementsToBe(By.xpath(messageAlert),numberOfElements));
             Assert.assertEquals("Number of elements does not match.", numberOfElements, errorMessages.size());
             logger.info("Number of Elements matches.");
             return this;

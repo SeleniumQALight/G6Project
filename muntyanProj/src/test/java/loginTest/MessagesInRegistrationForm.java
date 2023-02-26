@@ -19,7 +19,9 @@ public class MessagesInRegistrationForm extends BaseTest {
                 .enterUserNameIntoInpuPick_a_username(USER_NAME)
                 .enterEmailIntoInputEmail(EMAIL)
                 .enterPasswordIntoInputCreate_a_password(PASSWORD)
-                .clickOnSign_up_for_OurApp();
+                //  .clickOnSign_up_for_OurApp()
+        ;
+        ;
         loginPage.checknumberOfMessages(3)
                 .checkAlertMessagesContent(TestData.MESSAGE_1)
                 .checkAlertMessagesContent(TestData.MESSAGE_2)
