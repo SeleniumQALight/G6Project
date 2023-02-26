@@ -1,10 +1,18 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import junitparams.naming.TestCaseName;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+
+@RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
+    final static String ERROR_LOGIN_PASSWORD_INCORRECT = "Invalid username pasword";
+
     @Test
     public void validLogin() {
         loginPage.openLoginPage();
@@ -29,5 +37,25 @@ public class LoginTestWithPageObject extends BaseTest {
         Assert.assertTrue("Button \"Sign in\" is not displayed",
                 loginPage.isButtonSignInDisplayed());
 
+    }
+
+    @Test
+    @Parameters(method = "provideParameters")
+    @TestCaseName("registrationErrors : login = {0}, password = {1}")
+    public void invalidLoginWithParams(String login, String password, String expectedError) {
+        loginPage.openLoginPage();
+        loginPage.enterUserNameIntoInputLogin(login);
+        loginPage.enterPasswordIntoInputPassword(password);
+        loginPage.clickOnButtonLogin();
+        loginPage.checkErrorMessageForLogin(expectedError);
+
+    }
+
+    public static Object[][] provideParameters() {
+        return new Object[][]{
+                new Object[]{"", "123456qwerty", ERROR_LOGIN_PASSWORD_INCORRECT},
+                new Object[]{"qaauto", "", ERROR_LOGIN_PASSWORD_INCORRECT},
+                new Object[]{"qaauto3", "123456qwert", ERROR_LOGIN_PASSWORD_INCORRECT}
+        };
     }
 }
