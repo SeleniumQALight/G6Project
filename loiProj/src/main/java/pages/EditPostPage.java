@@ -15,6 +15,11 @@ public class EditPostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/[a-zA-Z0-9]*/edit";
+    }
+
     public EditPostPage enterTextInInputTitle(String titleText) {
         enterTextIntoElement(inputPostTitle, titleText);
         return this;

@@ -29,8 +29,8 @@ public class CommonActionsWithElement {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
 
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
     protected void enterTextInToElement(WebElement webElement, String text){
         try {

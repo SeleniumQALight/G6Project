@@ -26,8 +26,8 @@ public class CommonActionWithElements {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
 
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));     // додаємо в конструкор драйвери для використання методів очікування
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));     // додаємо в конструкор драйвери для використання методів очікування
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));    // + підтягуємо дані з config.Properties
     }
 
     protected void enterTextIntoElement(WebElement webElement, String text) {
