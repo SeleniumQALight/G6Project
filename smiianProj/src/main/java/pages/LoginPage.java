@@ -35,8 +35,14 @@ public class LoginPage extends ParentPage {
 
     private String alertMessageText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and contains(text(), '%s')]";
 
-    @FindBy (xpath = ".//div[@class='alert alert-danger text-center' and contains(text(), 'Invalid username ')]")
-    private WebElement signInErrorMessage;
+
+//-----------------
+    private String signInErrorMessageText = ".//div[@class='alert alert-danger text-center' and contains(text(), '%s')]";
+
+
+    @FindBy (xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement signInErrorMessageWithOutText;
+//-----------------
 
     @FindBy (xpath = signUpAlertMessages)
     private List<WebElement> listOfErrors;
@@ -130,6 +136,7 @@ public class LoginPage extends ParentPage {
 
 
 
+
     public LoginPage checkAlertMessageContainText(String expectedMessage){
         Assert.assertTrue("Element is not displayed", isElementDisplayed(getAlertMessage(expectedMessage)));
         return this;
@@ -197,19 +204,20 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkSignInErrorMessageIsVisible() {   // String expectedError
-        Assert.assertTrue("ErrorMessage is not visible", isElementDisplayed(signInErrorMessage));
+    public LoginPage checkSignInErrorMessageIsVisible() {
+        Assert.assertTrue("Error element is not visible", isElementDisplayed(signInErrorMessageWithOutText));
         return this;
     }
 
 
-//    public LoginPage checkSignInErrorMessageContainText(String expectedMessage){
-//        Assert.assertTrue("Element is not displayed", isElementDisplayed(getAlertMessage(expectedMessage)));
-//        return this;
-//    }
-//    public WebElement getSignInErrorMessage(String errorText){
-//        return webDriver.findElement(By.xpath(String.format(alertMessageText, errorText)));
-//    }
+    public LoginPage checkSignInErrorMessageContainText(String expectedMessage){
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(getSignInErrorMessage(expectedMessage)));
+        return this;
+    }
+
+    public WebElement getSignInErrorMessage(String SignInErrorMessageText){
+        return webDriver.findElement(By.xpath(String.format(signInErrorMessageText, SignInErrorMessageText)));
+    }
 
 
 
