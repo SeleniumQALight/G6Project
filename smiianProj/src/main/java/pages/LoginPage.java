@@ -35,12 +35,15 @@ public class LoginPage extends ParentPage {
 
     private String alertMessageText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and contains(text(), '%s')]";
 
+    @FindBy (xpath = ".//div[@class='alert alert-danger text-center' and contains(text(), 'Invalid username ')]")
+    private WebElement signInErrorMessage;
+
     @FindBy (xpath = signUpAlertMessages)
     private List<WebElement> listOfErrors;
 
-
-
     private static final String signUpAlertMessages = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+
 
 
 
@@ -81,7 +84,7 @@ public class LoginPage extends ParentPage {
 
 //-------------------------------------------------------------------------------------------------------------
 
-    public void enterPasswordIntoInputpassword(String password) {
+    public void enterPasswordIntoInputPassword(String password) {
 
         enterTextIntoElement(inputPassword, password);
 
@@ -92,11 +95,11 @@ public class LoginPage extends ParentPage {
     }
 
 
-//-------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------
     public LoginPage enterDataIntoEmailField(String password) {
-    enterTextIntoElement(signupEmail, password);
-    return this;
-}
+        enterTextIntoElement(signupEmail, password);
+        return this;
+    }
 
 
     public void clickOnButtonLogin() {
@@ -114,7 +117,7 @@ public class LoginPage extends ParentPage {
     public HomePage fillingLoginFormWithValidCred() {
 //        openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LIGIN);
-        enterPasswordIntoInputpassword(TestData.VALID_PASSWORD);
+        enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
 
         return new HomePage(webDriver);
@@ -133,7 +136,7 @@ public class LoginPage extends ParentPage {
     }
 
     public WebElement getAlertMessage(String alertText1){
-      return webDriver.findElement(By.xpath(String.format(alertMessageText, alertText1)));
+        return webDriver.findElement(By.xpath(String.format(alertMessageText, alertText1)));
     }
 
 
@@ -185,6 +188,28 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+
+
+    public LoginPage enterUsernameAndPassword (String userName, String password) {
+        enterUserNameIntoInputLogin(userName);
+        enterPasswordIntoInputPassword(password);
+        clickOnButtonLogin();
+        return this;
+    }
+
+    public LoginPage checkSignInErrorMessageIsVisible() {   // String expectedError
+        Assert.assertTrue("ErrorMessage is not visible", isElementDisplayed(signInErrorMessage));
+        return this;
+    }
+
+
+//    public LoginPage checkSignInErrorMessageContainText(String expectedMessage){
+//        Assert.assertTrue("Element is not displayed", isElementDisplayed(getAlertMessage(expectedMessage)));
+//        return this;
+//    }
+//    public WebElement getSignInErrorMessage(String errorText){
+//        return webDriver.findElement(By.xpath(String.format(alertMessageText, errorText)));
+//    }
 
 
 
