@@ -10,7 +10,7 @@ public class AlertRegistrationTabKeyTest extends BaseTest {
     @Test
     public void invalidAlertRegistrationTabKey(){
         loginPage.openLoginPage();
-        loginPage.registrationUserNameTabKey(USER_NAME);
+        loginPage.registrationUserNameTabKey(5,USER_NAME);
         loginPage.registrationEmailTabKey(EMAIL);
         loginPage.registrationPasswordTabKey(PASSWORD);
         loginPage.checkAlertMessageWithText(3)

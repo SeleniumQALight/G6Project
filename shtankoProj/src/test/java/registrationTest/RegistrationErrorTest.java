@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)//вказує що данний тест класс треба зупскати декілька разів з різними пареметрами
 public class RegistrationErrorTest extends BaseTest {
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
+    final static String ERROR_USERNAME_LETTERS = "Username can only contain letters and numbers.";
+    final static String ERRORS_USERNAME_CHARACTERS = "Username cannot exceed 30 characters.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
     final static String ERROR_ALREADY_EXIST = "That username is already taken.";
@@ -32,6 +34,8 @@ public class RegistrationErrorTest extends BaseTest {
         return new Object[][] {
                 new Object[] {"tr","ttt","u",ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA +ERROR_PASSWORD},
                 new Object[] {"tr","tt@t","u",ERROR_USERNAME + COMMA +ERROR_PASSWORD},
+                new Object[] {"тест","tt@w","u",ERROR_USERNAME_LETTERS},
+                new Object[] {"uiewuluisdfjkgbjskdblfjsudtedwietiugsdfglksjdbjfbsjchlgsuetliwuhlsjbdj","tt@w","u",ERRORS_USERNAME_CHARACTERS}
         };
     }
 }
