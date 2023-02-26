@@ -2,16 +2,11 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
 
-    @FindBy(xpath =".//button[text()='Sign Out']")
-    private WebElement signOutButton;
-    @FindBy(xpath = ".//*[@href='/create-post']")
-    private WebElement buttonCreatePost;
+
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
     public HomePage(WebDriver webDriver) {
@@ -27,19 +22,10 @@ public class HomePage extends ParentPage{
         return headerElement;
     }
 
-    public boolean isButtonSignOutDisplayed(){
-        return isElementDisplayed(signOutButton);
-//        try {
-//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-//        }catch (Exception e){
-//            return false;
-//        }
-    }
-
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
-        if(!isButtonSignOutDisplayed()) {
+        if(!headerElement.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
         checkIsRedirectToHomePage();
@@ -47,14 +33,12 @@ public class HomePage extends ParentPage{
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        Assert.assertTrue("HomePage is not loaded", getHeaderElement().isButtonSignOutDisplayed());
         checkURL();
         waitChatToBeHide();
-        Assert.assertTrue("HomePage is not loaded", isButtonSignOutDisplayed());
+        Assert.assertTrue("HomePage is not loaded", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }
 
-    public CreatePostPage clickOnCreatePostButton() {
-clickOnElement(buttonCreatePost);
-    return new CreatePostPage(webDriver);
-    }
+
 }

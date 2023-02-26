@@ -71,4 +71,9 @@ public class PostPage extends ParentPage {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPostPage(webDriver);
+    }
 }

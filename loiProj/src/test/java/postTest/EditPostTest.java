@@ -1,17 +1,18 @@
-package PostTest;
+package postTest;
 
 import baseTest.BaseTest;
-import libs.TestData;
 import libs.Util;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_Loi_" + Util.getDateAndTimeFormatted();
+public class EditPostTest extends BaseTest {
+    final String POST_TITLE = "TC2_Loi_" + Util.getDateAndTimeFormatted();
+    final String EDIT_POST_TITLE = "TC2_Loi_Changed_" + Util.getDateAndTimeFormatted();
     final String POST_BODY_CONTENT = "text";
 
-    @Test
-    public void TC1_createNewPost() {
+    @Before
+    public void createPostForEdit() {
         homePage
                 .openHomePage()
                 .getHeaderElement().clickOnCreatePostButton()
@@ -19,17 +20,25 @@ public class CreatePostTest extends BaseTest {
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInTextareaBodyContent(POST_BODY_CONTENT)
                 .selectTextInDropDownOptions("Приватне повідомлення")
-//              .selectValueInDropDownOptions("One Person")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
-                .checkTextInSuccessMessage("New post successfully created.")
-                .checkIsTitleMatches(POST_TITLE)
-                .checkIsNotePresent()
-                .checkIsAccessRightMatches("One Person")
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .checkIsUserNameMatches(TestData.VALID_LOGIN)
-                .checkPostWasCreated(POST_TITLE)
+                .checkPostWasCreated(POST_TITLE);
+    }
+
+    @Test
+    public void editPostTest() {
+        myProfilePage
+                .clickOnPostItem(POST_TITLE)
+                .checkIsRedirectToPostPage()
+                .clickOnEditButton()
+                .enterTextInInputTitle(EDIT_POST_TITLE)
+                .clickOnSaveUpdatesButton()
+                .checkTextInSuccessMessage("Post successfully updated.")
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkPostWasCreated(EDIT_POST_TITLE)
         ;
     }
 
@@ -39,6 +48,7 @@ public class CreatePostTest extends BaseTest {
                 .openHomePage()
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(EDIT_POST_TITLE)
                 .deletePostsWithTitleTillPresent(POST_TITLE)
         ;
     }

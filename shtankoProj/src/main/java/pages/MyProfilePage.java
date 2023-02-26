@@ -43,6 +43,10 @@ public class MyProfilePage extends ParentPage{
         Assert.assertEquals("Number of posts with title", 1,getPostListWithTitle(postTitle).size());
         return this;
     }
+    public PostPage clickOnTitlePost(String postTitle){
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
+    }
 
     public MyProfilePage deletePostWithTitleTillPresent(String postTitle) {
         List<WebElement>listOfPosts = getPostListWithTitle(postTitle); //отримуємо список всіх постів з тайтлом який ми створити при тестуванні
