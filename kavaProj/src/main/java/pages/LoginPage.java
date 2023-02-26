@@ -119,8 +119,11 @@ public class LoginPage extends ParentPage {
 
     public boolean checkErrorMessageWithText(String enterTextError) {
         Assert.assertTrue("Element is not displayed", isElementDisplayed(errorMessageLocator, enterTextError));
+
         return true;
     }
+
+
 
     public LoginPage checkErrorMessages(String expectedErrors) {
         //error1,error2, -> array[0] = error1, array[1] = error2
@@ -141,11 +144,7 @@ public class LoginPage extends ParentPage {
 
 
         }
-
-
         softAssertions.assertAll();
-
-
         return this;
     }
 
