@@ -54,6 +54,16 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+
+    protected boolean isElementDisplayed(String locator) {
+        try {
+            return isElementDisplayed(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
     protected boolean isElementDisplayed(WebElement element) {
         try {
             boolean state = element.isDisplayed();

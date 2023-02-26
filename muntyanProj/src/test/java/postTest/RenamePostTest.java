@@ -43,15 +43,15 @@ public class RenamePostTest extends BaseTest {
         ;
     }
 
-//    @After
-//    public void deletePost(){
-//        homePage.openHomePage()
-//                .getHeaderElement().clickOnMyProfileButton()
-//                .checkIsRedirectToMyProfilePage()
-//                .deletePostsWithTitleTillPresent(POST_TITLE_NEW)
-//
-//        ;
-//
-//    }
+ @After
+    public void deletePost(){homePage
+         .openHomePage()
+         .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(POST_TITLE_NEW)
+
+        ;
+
+    }
 }
 

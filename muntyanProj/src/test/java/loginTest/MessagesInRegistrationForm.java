@@ -2,6 +2,7 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import libs.TestData;
 import org.junit.Test;
 
 public class MessagesInRegistrationForm extends BaseTest {
@@ -19,9 +20,10 @@ public class MessagesInRegistrationForm extends BaseTest {
                 .enterEmailIntoInputEmail(EMAIL)
                 .enterPasswordIntoInputCreate_a_password(PASSWORD)
                 .clickOnSign_up_for_OurApp();
-        loginPage.checkIsUsernameMessageDisaplyed()
-                .checkIsEmailMessageDisaplyed()
-                .checkIsPasswordMessageDisaplyed()
+        loginPage.checknumberOfMessages(3)
+                .checkAlertMessagesContent(TestData.MESSAGE_1)
+                .checkAlertMessagesContent(TestData.MESSAGE_2)
+                .checkAlertMessagesContent(TestData.MESSAGE_3)
         ;
     }
 }

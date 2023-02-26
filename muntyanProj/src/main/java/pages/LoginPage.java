@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
@@ -38,6 +40,10 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[text() = 'Password must be at least 12 characters.']")
     private WebElement passwordMessage;
 
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> errorMessages;
+
+    private String messageAlert = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -99,18 +105,30 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSign_up_for_OurApp);
     }
 
-    public LoginPage checkIsUsernameMessageDisaplyed() {
-        isElementDisplayed(usernameMessage);
+//    public LoginPage checkIsUsernameMessageDisaplyed() {
+//        isElementDisplayed(usernameMessage);
+//        return this;
+//    }
+//
+//    public LoginPage checkIsEmailMessageDisaplyed() {
+//        isElementDisplayed(emailMessage);
+//        return this;
+//    }
+//
+//    public LoginPage checkIsPasswordMessageDisaplyed() {
+//        isElementDisplayed(passwordMessage);
+//        return this;
+//    }
+
+    public LoginPage checkAlertMessagesContent(String expectedMessage) {
+        Assert.assertTrue("Element with text '"+expectedMessage+"' is not found.", isElementDisplayed(String.format(messageAlert, expectedMessage)));
         return this;
     }
 
-    public LoginPage checkIsEmailMessageDisaplyed() {
-        isElementDisplayed(emailMessage);
-        return this;
-    }
+    public LoginPage checknumberOfMessages (int numberOfElements) {
+            Assert.assertEquals("Number of elements does not match.", numberOfElements, errorMessages.size());
+            logger.info("Number of Elements matches.");
+            return this;
 
-    public LoginPage checkIsPasswordMessageDisaplyed() {
-        isElementDisplayed(passwordMessage);
-        return this;
     }
 }
