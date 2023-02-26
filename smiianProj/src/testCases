@@ -1,64 +1,79 @@
 #1
-     Summary: Verify that user can create private unique post
-Precondition: - User account is created
-              - User is logged in
-       Steps: 1. Click on the 'Create Post' button
-              2. Fill 'Title' filed
-              3. Fill 'Body Content' text filed
-              4. Select 'Private' value in the drop-down
-              5. Check 'Is this post unique?' checkbox
-              6. Click on the 'Save New Post' button
-  Exp.Result: - Message "New post successfully created." appeared
-              - The note "This post was written for One Person" appeared
-              - Note: "Is this post unique?" has a "yes" state
-              - Number of posts in 'Posts' tab increased on +1
+
+Summary: Verify that user can not use not allowed mail for registration new account.
+
+Steps: - Open login page (https://toloka.to/login.php)
+       - Enter loginName (testQa)                         .//input[@name='username']
+       - Enter not valid e-mail (toloka@qa.team)          .//input[@name='email']
+       - Enter valid password (Ukr123456)                 .//input[@name='new_password']
+       - Enter valid confirm password                     .//input[@name='password_confirm']
+       - Check check box "I am not a robot"               .//div[@class='recaptcha-checkbox-border']
+       - Click on the "Registration" button               .//input[@name='submit']
+
+Expected: Got message "Ми приймаємо тільки такі поштові сервіси: gmail.com, outlook.com, hotmail.com, yahoo.com, ukr.net, i.ua"
+
+       .//span[@class='gen' and contains(text(), 'Ми приймаємо тільки такі поштові сервіси: gmail.com, outlook.com, hotmail.com, yahoo.com, ukr.net, i.ua')]
 
 
 #2
-     Summary: Verify that user can delete a post
-Precondition: - User account is created
-              - User is logged in
-              - User has already created post
-       Steps: 1. Open created post
-              2. Click on 'Delete' button
-  Exp.Result: - Message "Post successfully deleted" appeared
-              - Number of posts in 'Posts' tab decreased on 1
+
+Summary: Verify that user can edit profile
+
+Precondition: - User has already created account
+              - User is loged into account
+
+Steps: - Open profile page
+       - Click on the "Edit Profile" buton                         .//input[@type='submit' and @style]
+       - Enter some data into "Occupation"(рід занять) field       .//input[@type='text' and @name='email']
+       - Click on the "Send" (Відіслати) button                    .//input[@type='submit' and @name='submit']
+
+Expected: - Got message "Ваш профіль оновлено  Повернутись на початок форуму"              .//a[@href='https://toloka.to/' and contains(text(), 'Повернутись на початок форуму')]
+          - After 3-5 sec. message disappeared ???
+          - On the profile page, in the "Occupation" text field, appeared entered data     .//span[@class='gen' and contains(text(), 'якийсь текст')]
 
 
 #3
-     Summary: Verify that user can be followed by another user
-Precondition: - User 1 account is created
-              - User 1 is logged in
-              - User 2 account is created
-              - User 2 is logged in
-       Steps: 1. As a User 2 open page of User 1
-              2. Click on the 'Follow' button
-              3. Open as a User 1 it's own account page
-              4. Click on the 'Followers' tab
-  Exp.Result: - Number of followers in 'Followers' tab increased on 1
+
+Summary: Verify that user "Next" button on the "Search" page work properly
+
+Precondition: - User has already created account
+              - User is loged into account
+              - There are more then one Search list page
+
+Steps: - Open "Search" page (https://toloka.to/featured)
+       - Scroll down to the botom of the page
+       - Click on the "Next"(Наступна) button              .//a[@href and contains(text(), 'наступна')]
+
+Expected: - Second search list page is opened              .//b[text()='2'] -- перевірка на відсутність атрибута в тесті в Джаві
+          - "Previous"(попередня) button uppeared          .//a[@href and contains(text(), 'попередня')]
 
 
 #4
-     Summary: Verify that user can follow another user
-Precondition: - User 1 account is created
-              - User 1 is logged in
-              - User 2 account is created
-              - User 2 is logged in
-       Steps: 1. As a User 1 open page of User 2
-              2. Click on the 'Follow' button
-  Exp.Result: - Message "Successfully followed User 2" appeared
-              - Button 'Stop following' appeared
+
+Summary: Verify that user add some comment or see comment preview (https://toloka.to/t658904)
+
+Precondition: - User has already created account
+              - User is loged into account
+              - There is some topick for commenting
+
+Steps: - Open any topick on the "Search and order" (Пошук та замовлення) page  (https://toloka.to/f13)
+       - Add some text to the "Quick Reply" (Швидка відповідь) text field (bottom)                         .//textarea[@id='post_body']
+       - Enter some text into the field
+       - Click on the "Preview" (відіслати) button                                                            .//span[@class='postbody' and contains(text(), '<someText>')]
+
+Expected: - "Preview" page is opened
+          - Відображена відповідна дата і час
+          - Відображено відповідний текст повідомлення
+
 
 
 #5
-     Summary: Verify that user can sign out from account
-Precondition: - User account is created
-              - User is logged in
-       Steps: 1. Open main page
-              2. Click on the 'Sign Out' button
-  Exp.Result: - User is signed out
-              - 'Sign Out' button is no longer on the page
-              - 'Sign In' button is on the page
 
+Summary: Verify that user can not open commenting page without been logged in.
 
+Precondition: - User is not logged into account
 
+Steps: - Open page for making a comment (https://toloka.to/posting.php)
+
+Expected: - Message "Не задано необхідних параметрів!" uppeared          .//span[@class='gen' and contains(text(), 'Не задано необхідних параметрів')]
+          - User got link "Перейти до головної сторінки"                 .//a[contains(text(), 'Перейти до головної сторінки') and @href='index.php']
