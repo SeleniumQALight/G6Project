@@ -1,12 +1,19 @@
 package pages;
 
+
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LoginPage extends ParentPage{
+import java.util.ArrayList;
+import java.util.List;
+
+public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
@@ -17,6 +24,22 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+    @FindBy(xpath = "//input[@id='username-register']")
+    private WebElement userNameRegistrationField;
+
+    @FindBy(xpath = "//input[@id='email-register']")
+    private WebElement emailField;
+
+    @FindBy(xpath = "//input[@id='password-register']")
+    private WebElement passwordRegistrationField;
+
+    String errorMessage = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
+
+    String listOfErrorsLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> notificationsWithErrors;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -26,12 +49,12 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
-    public void openLoginPage(){
-        try{
+    public void openLoginPage() {
+        try {
             webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage was opened");
             logger.info(base_url);
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not open Login Page" + e);
             Assert.fail("Can not open Login Page" + e);
         }
@@ -77,7 +100,59 @@ public class LoginPage extends ParentPage{
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
+
+    public LoginPage enterUserNameIntoRegistrationField(String userName) {
+        enterTextInToElement(userNameRegistrationField, userName);
+        return this;
+    }
+
+    public LoginPage enterEmailIntoEmailField(String email) {
+        enterTextInToElement(emailField, email);
+        return this;
+    }
+
+    public LoginPage enterPasswordIntoPasswordRegistrationField(String password) {
+        enterTextInToElement(passwordRegistrationField, password);
+        return this;
+    }
+
+    public boolean isFieldValidationErrorIsDisplayed(String error) {
+        return isElementDisplayed(errorMessage, error);
+    }
+
+    public LoginPage checkErrorCountMessage(int quantityErrors) {
+        webDriverWait10
+                .withMessage("Number of message should be " + quantityErrors)
+                .until(ExpectedConditions
+                        .numberOfElementsToBe(By.xpath(listOfErrorsLocator)
+                                , quantityErrors));
+        Assert.assertEquals("The number of errors is not as expected",
+                quantityErrors, notificationsWithErrors.size());
+        return this;
+    }
+
+    public LoginPage checkErrorsMessage(String expectedErrors) {
+        //error1, error2 -> array[0] = error1, array[1] = error2
+        String[] expectedErrorsArray = expectedErrors.split(",");
+        webDriverWait10
+                .withMessage("Number of message should be " + expectedErrorsArray.length)
+                .until(ExpectedConditions
+                        .numberOfElementsToBe(By.xpath(listOfErrorsLocator)
+                                , expectedErrorsArray.length));
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element:notificationsWithErrors){
+            actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals ")
+                    .isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+        return this;
+    }
 }
+
 
 
 
