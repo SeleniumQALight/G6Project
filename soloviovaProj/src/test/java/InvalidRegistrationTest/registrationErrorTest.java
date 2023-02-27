@@ -4,6 +4,7 @@ import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
+import libraries.TestData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -35,17 +36,7 @@ public class registrationErrorTest extends BaseTest {
                 new Object[] {"tr", "dfg", "re", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
                 new Object[] {"tr", "df@ee.com", "re", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
                 new Object[] {"апци", "dfg", "re", ERROR_WRONG_LANGUAGE + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"trwef", "df@ee.com", "Uttellusnisi,tristiquevelturpissitamet," +
-                                                              "accumsanporttitorligulaPraesentsemipsum," +
-                                                              "feugiatnonrisusut,mollismolestiearcu.Quisquehoncusorcinec" +
-                                                              " felispulvinaraconsequatarcublanditSedineugiatleoauctorsodales" +
-                                                              "nibh.InsitamethendrerittellusNaminrisussitametodioeuismodporttitor." +
-                                                              " MaecenasmolestieporttitortellusutultricesnislconsecteturacNammales" +
-                                                              "uadadictumdiamvitaeconvallis.Maecenasmolestieporttitortellusutultrices" +
-                                                              "nislconsecteturacNammalesMaecenasmolestieporttitortellusutultricesnislconsec" +
-                                                              "teturacNammalesMaecenasmolestieporttitortellusutultricesnislconsecteturacNam" +
-                                                              "uracNammalesMaecenasmolestieporttitortellusutultricesnislconsectetur" +
-                                                              "acNamm", ERROR_PASSWORD_TOO_BIG},
+                new Object[] {"trwef", "df@ee.com", TestData.INVALID_PASSWORD, ERROR_PASSWORD_TOO_BIG},
         };
     }
 
