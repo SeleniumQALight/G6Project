@@ -1,7 +1,7 @@
 #LoginPage
 https://qa-complexapp.onrender.com/
 
-signIn.username = .//input[@id='username7']
+signIn.username = .//input[@name='username' and @id!='username-register']
 signIn.password = .//header//input[@type='password']
 
 signUp.username = .//input[@id='username-register']
