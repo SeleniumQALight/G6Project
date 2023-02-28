@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.MyProfilePage;
 
 import java.time.Duration;
 
@@ -17,6 +18,7 @@ public class BaseTest {
 
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected MyProfilePage myProfilePage;
 
     @Before
     public void setUp() {

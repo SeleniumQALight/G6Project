@@ -4,8 +4,10 @@ import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -29,7 +31,7 @@ public class LoginPage extends ParentPage {
     private WebElement emailRegisterField;
     @FindBy(xpath = "//input[@id='password-register']")
     private WebElement passwordRegisterField;
-    private String locatorForFieldValidationError = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
+    String locatorForFieldValidationError = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
     private static final String listOfErrorsLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listOfErrorsLocator)
     private List<WebElement> listOfErrors;
@@ -64,6 +66,23 @@ public class LoginPage extends ParentPage {
 //            printErrorAndStopTest(e);
 //        }
         enterTextIntoElement(inputUserName, userName);
+    }
+
+    public void actionsSendKeys(String text) {
+        Actions action = new Actions(webDriver);
+        action.sendKeys(text).build().perform();
+    }
+
+    public void openNewTabWithSameUrl() {
+        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(1));
+    }
+
+    public void switchToFirstTabAndRefresh() {
+        ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(0));
+        webDriver.navigate().refresh();
     }
 
     public void enterPasswordIntoInputPassword(String password) {
