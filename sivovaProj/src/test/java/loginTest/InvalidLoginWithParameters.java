@@ -19,19 +19,19 @@ public class InvalidLoginWithParameters extends BaseTest {
    @Test
    @Parameters(method = "provideParameters")
 
-    public void invalidLoginWithParameters(String login, String password) {
+    public void invalidLoginWithParameters(String login, String password, String expectedError) {
        loginPage.openLoginPage();
        loginPage.enterUserNameIntoInputLogin(login);
        loginPage.enterPasswordIntoInputPassword(password);
        loginPage.clickButtonLogin();
-       Assert.assertTrue("User is logged in with incorrect credentials", (loginPage.isErrorMessageDisplayed()) & (loginPage.isSignInButtonDisplayed()));
+       loginPage.checkErrorMessageInvalidLogin(expectedError);
     }
 
     public static Object[][] provideParameters() {
         return new Object[][] {
-                new Object[] {"qw", "111" },
-                new Object[] {"qaauto", "222"},
-                new Object[] {"as", "qwerty123456"},
+                new Object[] {"qw", "111", ERROR_LOGIN_PASSWORD },
+                new Object[] {"qaauto", "222", ERROR_LOGIN_PASSWORD},
+                new Object[] {"as", "qwerty123456", ERROR_LOGIN_PASSWORD},
         };
 
     }

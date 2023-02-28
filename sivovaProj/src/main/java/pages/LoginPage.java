@@ -161,5 +161,7 @@ public class LoginPage extends ParentPage {
     }
 
 
-
+    public void checkErrorMessageInvalidLogin(String expectedError) {
+            Assert.assertEquals("Incorrect error message is displayed", expectedError, errorMessage.getText());
+    }
 }
