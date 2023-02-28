@@ -42,7 +42,10 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[text() = 'Password must be at least 12 characters.']")
     private WebElement passwordMessage;
 
-    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private static final String errorListXpath = ".//*[@class='alert alert-danger small liveValidateMessage "
+            + "liveValidateMessage--visible']";
+
+    @FindBy(xpath = errorListXpath)
     private List<WebElement> errorMessages;
 
     private String messageAlert = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
@@ -128,7 +131,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checknumberOfMessages (int numberOfElements) {
-        webDriverWait15.until(ExpectedConditions.numberOfElementsToBe(By.xpath(messageAlert),numberOfElements));
+        webDriverWait15.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorListXpath),numberOfElements));
             Assert.assertEquals("Number of elements does not match.", numberOfElements, errorMessages.size());
             logger.info("Number of Elements matches.");
             return this;
