@@ -8,8 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.elements.HeaderElement;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,14 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = listOfErrorsLocator)
     private List<WebElement> listOfErrors;
 
+    @FindBy(xpath = ALERT_XPATH)
+    private List<WebElement> alertMessages;
+
     private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    public static final String ALERT_XPATH = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    private final String parameterizedAlert = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
@@ -123,6 +132,19 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
 
+        return this;
+    }
+
+    public LoginPage checkThreeAlertMessagesAreDisplayed() {
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(6));
+        webDriverWait.until(ExpectedConditions.numberOfElementsToBe(By.xpath(ALERT_XPATH), 3));
+        Assert.assertEquals("Validation doesn't work", 3, alertMessages.size());
+
+        return this;
+    }
+
+    public LoginPage checkErrorMessageWithText(String textMessage) {
+        Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parameterizedAlert, textMessage)));
         return this;
     }
 }

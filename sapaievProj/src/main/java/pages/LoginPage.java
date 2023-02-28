@@ -1,10 +1,19 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class LoginPage extends ParentPage {
 
@@ -18,6 +27,25 @@ public class LoginPage extends ParentPage {
     private WebElement buttonLogin;
 
 
+    //Первое задание дошнего задания №4
+    @FindBy(xpath = "//input[@id='username-register']")
+    private WebElement userNameFieldForRegister;
+
+
+    @FindBy(xpath = "//input[@id='email-register']")
+    private WebElement emailFieldForRegister;
+
+    @FindBy(xpath = "//input[@id='password-register']")
+    private WebElement passwordFieldForRegister;
+
+
+    private String textError = "//div[text()='%s']";
+
+    private String errorsForRegistr = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+
+    @FindBy(xpath = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
+    private List<WebElement> listOfErrors;
 
 
 
@@ -33,7 +61,7 @@ public class LoginPage extends ParentPage {
 
     public void openLoginPage() {
         try {
-            webDriver.get(base_URL+getRelativeURL());
+            webDriver.get(base_URL + getRelativeURL());
             logger.info("Login page was open");
             logger.info(base_URL);
         } catch (Exception e) {
@@ -45,13 +73,13 @@ public class LoginPage extends ParentPage {
 
     public void enterUserNameIntoInputLogin(String userName) {
 
-        enterTextIntiElement(inputUserName,userName);
+        enterTextIntiElement(inputUserName, userName);
     }
 
 
     public void enterPasswordIntoInputPassword(String password) {
 
-        enterTextIntiElement(inputPassword,password);
+        enterTextIntiElement(inputPassword, password);
     }
 
     public void clickOnButtonLogin() {
@@ -66,6 +94,84 @@ public class LoginPage extends ParentPage {
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
+
+
+   public List<WebElement> getErrorList(String title) {
+        return webDriver.findElements(By.xpath(title));
+    }
+
+    public LoginPage checkSizeOfErrorsList(int size) {
+        webDriverWait15.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsForRegistr),size));
+        Assert.assertTrue("The number of errors is"+size, getErrorList(errorsForRegistr).size() == size);
+        return this;
+    }
+
+
+    public LoginPage enterUserNameIntoInputUserNameForRegister(String userName) {
+        enterTextIntiElement(userNameFieldForRegister, userName);
+        return this;
+    }
+
+    public LoginPage checkUserNameError(String text) {
+        isElementDisplayed(String.format(textError, text));
+        WebElement error = webDriver.findElement(By.xpath(String.format(textError, text)));
+        WebDriverWait wait10 = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait10.until(ExpectedConditions.visibilityOf(error));
+        Assert.assertTrue("The userName error text is not displayed.", isElementDisplayed(String.format(textError, text)));
+        return this;
+    }
+
+
+    public LoginPage enterEmailIntoInputEmailForRegister(String email) {
+        enterTextIntiElement(emailFieldForRegister, email);
+        return this;
+    }
+
+    public LoginPage checkEmailError(String text) {
+        isElementDisplayed(String.format(textError, text));
+        WebElement error = webDriver.findElement(By.xpath(String.format(textError, text)));
+        WebDriverWait wait10 = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait10.until(ExpectedConditions.visibilityOf(error));
+        Assert.assertTrue("The email error text is not displayed.", isElementDisplayed(String.format(textError, text)));
+        return this;
+    }
+
+    public LoginPage enterPasswordIntoInputPasswordForRegister(String password) {
+        enterTextIntiElement(passwordFieldForRegister, password);
+        return this;
+    }
+
+    public LoginPage checkPasswordError(String text) {
+        isElementDisplayed(String.format(textError, text));
+        WebElement error = webDriver.findElement(By.xpath(String.format(textError, text)));
+        WebDriverWait wait10 = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait10.until(ExpectedConditions.visibilityOf(error));
+        Assert.assertTrue("The password error text is not displayed.", isElementDisplayed(String.format(textError, text)));
+        return this;
+    }
+
+
+    //Второй вариант проверки списка ошибок
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        String[] expectedErrorsArray=expectedErrors.split(",");
+        webDriverWait15.withMessage("Namber messages should be"+expectedErrorsArray.length)
+                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsForRegistr),expectedErrorsArray.length));
+
+        ArrayList<String> actualTextFromErrors=new ArrayList<>();
+
+        for (WebElement element:listOfErrors){
+            actualTextFromErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions=new SoftAssertions();
+        for (int i=0; i<expectedErrorsArray.length; i++){
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals").isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+        return this;
+    }
+
+
 
 
 }

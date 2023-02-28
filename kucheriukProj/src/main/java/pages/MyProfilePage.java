@@ -80,4 +80,9 @@ public class MyProfilePage extends ParentPage{
         Assert.assertTrue("Incorrect user name", userName.getText().contains(user));
         return this;
     }
+
+    public PostPage clickOnCreatedPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
+    }
 }

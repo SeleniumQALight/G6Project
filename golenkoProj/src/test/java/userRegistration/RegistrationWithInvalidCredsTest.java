@@ -7,7 +7,7 @@ import org.junit.Test;
 public class RegistrationWithInvalidCredsTest extends BaseTest {
 
     @Test
-    public void TC2_checkErrorMessages(){
+    public void TC2_checkErrorMessages() {
         loginPage
                 .openLoginPage()
                 .enterUserNameIntoInputSignUp(TestData.INVALID_USERNAME)
@@ -16,11 +16,16 @@ public class RegistrationWithInvalidCredsTest extends BaseTest {
                 .checkThreeAlertMassagesAreDisplayed()
                 .checkErrorMessageWithText("Username must be at least 3 characters.")
                 .checkErrorMessageWithText("You must provide a valid email address.")
-                .checkErrorMessageWithText("Password must be at least 12 characters.")
-        ;
+                .checkErrorMessageWithText("Password must be at least 12 characters.");
     }
 
-
-
-
+    @Test
+    public void checkErrorMessagesUsingButtons(){
+        loginPage.openLoginPage()
+                .registrationFromKeyBoard(TestData.INVALID_USERNAME, TestData.INVALID_EMAIL, TestData.INVALID_PASSWORD)
+                .checkThreeAlertMassagesAreDisplayed()
+                .checkErrorMessageWithText("Username must be at least 3 characters.")
+                .checkErrorMessageWithText("You must provide a valid email address.")
+                .checkErrorMessageWithText("Password must be at least 12 characters.");
+    }
 }
