@@ -125,10 +125,10 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkIsAssertionDisplayed(String assertName, String expectedUsernameAssertion){
+    public LoginPage checkIsAssertionDisplayed(String assertName, String expectedAssertion){
         WebElement expectedLocator = webDriver.findElement(By.xpath(String.format(assertions, assertName)));
         webDriverWait10.until(ExpectedConditions.visibilityOf(expectedLocator));
-        Assert.assertEquals("Assert username message is not displayed", expectedUsernameAssertion, expectedLocator.getText());
+        Assert.assertEquals("Assert" + expectedAssertion + " message is not displayed", expectedAssertion, expectedLocator.getText());
         return this;
     }
 
