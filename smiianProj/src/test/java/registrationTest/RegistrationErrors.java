@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 public class RegistrationErrors extends BaseTest {
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
     final static String ERROR_USERNAME_CONTAIN = "Username can only contain letters and numbers.";
+    final static String ERROR_USERNAME_CHARACTERS = "Username cannot exceed 30 characters.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
     final static String ERROR_ALREADY_EXIST = "That username is already taken.";
@@ -40,7 +41,7 @@ public class RegistrationErrors extends BaseTest {
                 new Object[] {"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
                 new Object[] {"tr", "tt@tr.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
                 new Object[] {"іва", "tt@tr.com", "ttt", ERROR_USERNAME_CONTAIN + COMMA + ERROR_PASSWORD},  // not valid char's in username field
-                new Object[] {"tr", "tt@tr.com", "123456789012", ERROR_USERNAME}   // 12 char's in password field
+                new Object[] {"1234567890123456789012345678901", "tt@tr.com", "123456789012", ERROR_USERNAME_CHARACTERS}   // 30+ char's in username field
         };
     }
 
