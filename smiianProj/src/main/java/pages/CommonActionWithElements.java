@@ -1,6 +1,8 @@
 package pages;
 
 import io.opentelemetry.sdk.trace.internal.data.ExceptionEventData;
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -18,13 +20,14 @@ public class CommonActionWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;             // оголошуємо драйвери для використання методів очікування
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);  // працює з файлами config.properties з пекеджів libs та resources
 
     public CommonActionWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
 
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));     // додаємо в конструкор драйвери для використання методів очікування
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));     // додаємо в конструкор драйвери для використання методів очікування
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));    // + підтягуємо дані з config.Properties
     }
 
     protected void enterTextIntoElement(WebElement webElement, String text) {
@@ -32,7 +35,7 @@ public class CommonActionWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement)); //виокористання очікування 15
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element");
+            logger.info(text + " was inputted into element " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -41,8 +44,9 @@ public class CommonActionWithElements {
     protected void clickOnElement(WebElement webElement){
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));   //виокористання очікування 10
+            String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(name + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -61,9 +65,9 @@ public class CommonActionWithElements {
             boolean state = webElement.isDisplayed();
             String message;
             if (state == true) {
-                message = "Element is displayed";
+                message = getElementName(webElement) + " Element is displayed";
             } else {
-                message = "Element is not displayed";
+                message = getElementName(webElement) + " Element is not displayed";
             }
                 logger.info(message);
             return state;
@@ -82,6 +86,22 @@ public class CommonActionWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+
+
+
+
+    private String getElementName (WebElement webElement) {      //дістає ім'я елемента. Потім це додаєм до повідомлень, на випадок помилок.
+        try {
+            return webElement.getAccessibleName();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+
+
+
 
     protected void selectValueInDropDown(WebElement dropDown, String value) {
         try {
@@ -104,10 +124,15 @@ public class CommonActionWithElements {
     }
 
 
+
+
     protected  void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+
+
 
     public static boolean isObjectDisplayed(WebElement webElement){
         try {

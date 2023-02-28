@@ -15,6 +15,11 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post/";
+    }
+
     @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
     WebElement buttonEdit;
 
@@ -39,8 +44,13 @@ public class PostPage extends ParentPage {
 
 
 
+
+
+
     public PostPage checkIsRedirectToPostPage() {
         //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(buttonEdit));
         return this;
     }
@@ -82,8 +92,17 @@ public class PostPage extends ParentPage {
         Assert.assertEquals("Underline text is displayed", text, textUnderline.getText());
         return this;
     }
+
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+
+
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPostPage (webDriver);
+    }
+
+
 }

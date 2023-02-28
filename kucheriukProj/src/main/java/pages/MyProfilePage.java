@@ -24,8 +24,14 @@ public class MyProfilePage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("MyProfilePage is not loaded"
                 , isElementDisplayed(avatar));
         return this;
@@ -73,5 +79,10 @@ public class MyProfilePage extends ParentPage{
     public MyProfilePage checkUser(String user) {
         Assert.assertTrue("Incorrect user name", userName.getText().contains(user));
         return this;
+    }
+
+    public PostPage clickOnCreatedPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
     }
 }

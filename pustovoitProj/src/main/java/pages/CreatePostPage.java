@@ -10,17 +10,26 @@ public class CreatePostPage extends ParentPage {
     private WebElement inputTitle;
     @FindBy(xpath = ".//textarea [@name= 'body']")
     private WebElement inputBody;
-    @FindBy (xpath = ".//button[@class='btn btn-primary']")
+    @FindBy(xpath = ".//button[@class='btn btn-primary']")
     private WebElement buttonSavePost;
-    @FindBy (tagName = "select")
+    @FindBy(tagName = "select")
     private WebElement dropDownOptions;
+    @FindBy(xpath = ".//select[@name='select1']")
+    private WebElement dropDownUI;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        Assert.assertTrue("CreatPostPage is not loaded", isElementDisplayed(inputTitle));
+        checkURL();
+        waitChatToBeHide();
+        Assert.assertTrue("CreatePostPage is not loaded", isElementDisplayed(inputTitle));
         return this;
     }
 
@@ -40,11 +49,17 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage selectTextInDropDownOptions(String textInDropDown) {
-selectTextInDropDown(dropDownOptions, textInDropDown);
+        selectTextInDropDown(dropDownOptions, textInDropDown);
         return this;
     }
-    public CreatePostPage selectValueInDropDownOptions(String valueInDD){
-        selectValueInDropDown(dropDownOptions,valueInDD);
+
+    public CreatePostPage selectValueInDropDownOptions(String valueInDD) {
+        selectValueInDropDown(dropDownOptions, valueInDD);
+        return this;
+    }
+
+    public CreatePostPage selectTextInDropDownByUI(String textInDropDown) {
+        selectTextInDropDownUI(dropDownUI, textInDropDown);
         return this;
     }
 }

@@ -29,8 +29,14 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO checkURL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("MyProfilePage is not loaded", isElementDisplayed(avatar));
         return this;
     }
@@ -77,5 +83,10 @@ public class MyProfilePage extends ParentPage {
     private MyProfilePage checkIsSuccessDeletePostMessagePresent() {
         Assert.assertTrue("Message deletePost is not displayed", isElementDisplayed(successDeletePostMessage));
         return this;
+    }
+
+    public PostPage openPostByTitle(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
     }
 }

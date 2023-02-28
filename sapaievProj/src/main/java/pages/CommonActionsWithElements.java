@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -19,12 +21,14 @@ public class CommonActionsWithElements {
     WebDriverWait webDriverWait10;
     WebDriverWait webDriverWait15;
 
+    public static ConfigProperties configProperties= ConfigFactory.create(ConfigProperties.class);
+
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
-        webDriverWait10=new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15=new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10=new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15=new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
 
 
@@ -33,11 +37,18 @@ public class CommonActionsWithElements {
             webDriverWait10.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text+"was inputted into element");
+            logger.info(text+"was inputted into element"+getElementName(webElement));
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
     }
+
+
+
+
+
+
+
 
 
     protected void printErrorAndStopTest(Exception e){
@@ -50,8 +61,9 @@ public class CommonActionsWithElements {
     protected void clickOnElement(WebElement webElement){
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String name=getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(name+" Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -107,6 +119,13 @@ public class CommonActionsWithElements {
 
 
 
+    protected boolean isElementDisplayed(String text) {
+        WebElement webElement=webDriver.findElement(By.xpath(text));
+        return isElementDisplayed(webElement);
+    }
+
+
+
 
 
     protected boolean isElementDisplayed(WebElement webElement) {
@@ -115,9 +134,9 @@ public class CommonActionsWithElements {
             String message;
 
             if(state){
-                message="Element is displayed";
+                message=getElementName(webElement)+" Element is displayed";
             }else {
-                message="Element is not displayed";
+                message=getElementName(webElement)+" Element is not displayed";
             }
 
             logger.info(message);
@@ -126,6 +145,16 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.info("element is not displayed");
             return false;
+        }
+
+    }
+
+
+    private String getElementName(WebElement webElement){
+        try {
+            return webElement.getAccessibleName();
+        }catch (Exception e){
+            return "";
         }
 
     }

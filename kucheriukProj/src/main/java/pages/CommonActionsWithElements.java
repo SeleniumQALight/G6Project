@@ -1,5 +1,8 @@
 package pages;
 
+
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -15,15 +18,17 @@ import java.util.ArrayList;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-    WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait10, webDriverWait15;
     String value = "Приватне повідомлення";
     String locatorForDropDown = "//option[contains(text(),'" + value + "')]";
+
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
 
     protected void enterTextInToElement(WebElement webElement, String text){
@@ -31,7 +36,7 @@ public class CommonActionsWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted in to element");
+            logger.info(text + " was inputted in to element " + getElementName(webElement));
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -40,8 +45,9 @@ public class CommonActionsWithElements {
     protected void clickOnElement(WebElement webElement){
         try{
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(name + " Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -60,9 +66,9 @@ public class CommonActionsWithElements {
             boolean state = webElement.isDisplayed();
             String message;
             if(state){
-                message ="Element is displayed";
+                message = getElementName(webElement) + " Element is displayed";
             }else{
-                message = "Element is not displayed";
+                message = getElementName(webElement) + " Element is not displayed";
             }
             logger.info(message);
             return state;
@@ -71,6 +77,15 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+    protected boolean isElementDisplayed(String element, String error) {
+        try {
+            return isElementDisplayed(webDriver.findElement(By.xpath(String.format(element, error))));
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
     protected void selectTextInDropDown(WebElement dropDown, String visibleText){
         try{
             Select select = new Select(dropDown);
@@ -98,6 +113,14 @@ public class CommonActionsWithElements {
             logger.info(value + " was select in DropDown");
         }catch (Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    private String getElementName(WebElement webElement){
+        try{
+            return webElement.getAccessibleName();
+        }catch (Exception e){
+            return "";
         }
     }
 

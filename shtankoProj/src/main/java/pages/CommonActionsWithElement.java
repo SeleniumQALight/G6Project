@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,20 +23,21 @@ public class CommonActionsWithElement {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
 
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
     protected void enterTextInToElement(WebElement webElement, String text){
         try {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted in to element");
+            logger.info(text + "was inputted in to element" + getElementName(webElement));
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -42,8 +45,9 @@ public class CommonActionsWithElement {
     protected void clickOnElement(WebElement webElement){
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String name = getElementName(webElement);
            webElement.click();
-           logger.info("Element was clicked");
+           logger.info(getElementName(webElement) + "Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -61,14 +65,23 @@ public class CommonActionsWithElement {
             boolean state = webElement.isDisplayed();
             String message;
             if (state) {
-                message = "Element is displayed";
+                message = getElementName(webElement) + "Element is displayed";
             }else {
-                message = "Element is not displayed";
+                message = getElementName(webElement) + "Element is not displayed";
             }
             logger.info(message);
             return state;
         }catch (Exception e){
             logger.info("Element is not displayed");
+            return false;
+        }
+    }
+    protected boolean isElementDisplayed(String alertLocator){
+        try {
+            WebElement element = webDriver.findElement(By.xpath(alertLocator));
+            return isElementDisplayed(element);
+        }catch (Exception e){
+            logger.info("Element ai not displayed");
             return false;
         }
     }
@@ -105,6 +118,13 @@ public class CommonActionsWithElement {
     private By getXpathFindElementWithTextContains(String choiseTextUI) {
         return By.xpath("//*[contains(text(),\"" + choiseTextUI + "\")]");
     }
+    private String getElementName(WebElement webElement){
+        try{
+            return webElement.getAccessibleName();//відображаємо назву елемента
+        }catch (Exception e){
+            return ""; //як що не знайде елемент поверне пустоту
+        }
+    }
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
@@ -126,6 +146,11 @@ public class CommonActionsWithElement {
 
     }
 
+    public void userEnterText(String text){
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(text).perform();
+    }
+
     public void usersPressesKeyTime(Keys keys, int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
@@ -139,6 +164,18 @@ public class CommonActionsWithElement {
         ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
+    public void switchToPreviousTabAndRefreshPage() {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        if (tabs.size() > 1) {
+            webDriver.switchTo().window(tabs.get(tabs.size() - 2));
+            webDriver.navigate().refresh();
+        } else {
+            logger.info("Switch to previous tab as there is only one tab open");
+        }
+    }
+
+
 //
 //    метод moveToElement (аналог скрола )
 //

@@ -13,6 +13,11 @@ public class HomePage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
@@ -21,6 +26,7 @@ public class HomePage extends ParentPage{
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         //як що ми не залогінени то виконуй дії далі
+        loginPage.openLoginPage();
         if (!headerElement.isButtonSingOutDisplayed())
         {
         // залогінитись
@@ -31,7 +37,13 @@ public class HomePage extends ParentPage{
         return this;
     }
     public HomePage checkIsRedirectToHomePage(){
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("HomePage is not loaded", getHeaderElement().isButtonSingOutDisplayed());
+        return this;
+    }
+    public HomePage getUrlHomepage(){
+        webDriver.get(base_url);
         return this;
     }
 }

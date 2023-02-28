@@ -25,8 +25,15 @@ public class CreatePostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
 
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("CreatePostPage is not loaded", isElementDisplayed(inputTitle));
         return this;
     }
@@ -62,5 +69,17 @@ public class CreatePostPage extends ParentPage {
 
     }
 
+//hw3:
+    public CreatePostPage selectTextInDropDownByUI(String valueByUi) {
+
+
+        selectValueByUiInDropDown(dropDownOptions, valueByUi);
+
+
+        return this;
+    }
+
+
+    
 
 }

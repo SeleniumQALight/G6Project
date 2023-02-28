@@ -1,5 +1,9 @@
 package pages;
 
+
+
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -17,13 +21,14 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
 
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
         webDriverWait15 = new WebDriverWait(webDriver,Duration.ofSeconds(15));
 
     }
@@ -33,7 +38,7 @@ public class CommonActionsWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted into element");
+            logger.info(text + " was inputted into element" + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -42,8 +47,9 @@ public class CommonActionsWithElements {
     protected void clickElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info("Element was clicked " + name);
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -62,9 +68,9 @@ public class CommonActionsWithElements {
             boolean state = webElement.isDisplayed();
             String message;
             if (state) {
-                message = "Element is displayed";
+                message = getElementName(webElement) + " Element is displayed";
             } else {
-                message = "Element is not displayed";
+                message = getElementName(webElement) + " Element is not displayed";
             }
             logger.info(message);
             return state;
@@ -110,6 +116,14 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
 
+    }
+
+    private String getElementName(WebElement webElement) {
+        try{
+            return webElement.getAccessibleName();
+        }catch (Exception e) {
+            return "";
+        }
     }
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

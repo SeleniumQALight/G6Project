@@ -1,15 +1,10 @@
 package pages;
 
-import com.beust.ah.A;
 import elements.HeaderElement;
-import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.CreatePostPage;
-
-import java.util.List;
 
 
 public class PostPage extends CreatePostPage {
@@ -44,8 +39,15 @@ public class PostPage extends CreatePostPage {
         return headerElement;
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/post";
+    }
+
     public PostPage checkIsRedirectToPostPage() {
         //TODO check URL
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not loaded",
                 isElementDisplayed(buttonEdit));
         return this;

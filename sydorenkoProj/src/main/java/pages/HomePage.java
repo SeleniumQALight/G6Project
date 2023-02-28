@@ -13,6 +13,11 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
@@ -20,13 +25,17 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
-        if (!headerElement.isButtonSignOutDisplayed())
+        loginPage.openLoginPage();
+        if (!headerElement.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
+        }
         checkIsRedirectToHomePage();
         return this;
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkURl();
+        waitChatToBeHide();
         assertTrue("HomePage isn't loaded", getHeaderElement().isButtonSignOutDisplayed());
         return this;
     }

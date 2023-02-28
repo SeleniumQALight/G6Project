@@ -22,8 +22,15 @@ public class CreatePostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/create-post";
+    }
+
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("CreatePost is not loaded"
                 , isElementDisplayed(inputTitle));
         return this;
@@ -54,6 +61,12 @@ public class CreatePostPage extends ParentPage {
     }
     public CreatePostPage selectValueInDropDownOptionsUI(String valueInDD){
         selectTextInDropDownByUI(dropDownOptions, valueInDD);
+        return this;
+    }
+
+    public CreatePostPage addChangedTitle(String newTitle) {
+        inputTitle.clear();
+        enterTextInToElement(inputTitle, newTitle);
         return this;
     }
 }

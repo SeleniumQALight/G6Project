@@ -12,17 +12,26 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost() {
         homePage
                 .openHomePage()
-                .clickOnCreatePostButton()
+                .getHeaderElement().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
-                .enterTextInInputBody(" Text testing")
-                .selectTextInDropDownOptions("Приватне повідомлення")
-                //  .selectValueInDropDownOptions("One Person")
+
+                .enterTextInInputBody("Body. Text testing")
+               // .selectTextInDropDownOptions("Приватне повідомлення")
+               // .selectValueInDropDownOptions("One Person")
+
+              .selectTextInDropDownByUI("Приватне повідомлення")
+
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+
+                .checkIfPostTitleCorrect(POST_TITLE)
+
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+
+                .checkIsProfileCorrect("qaauto")
 
                 .checkPostWasCreated(POST_TITLE)
 
@@ -38,11 +47,7 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsWithTittleTillPresent(POST_TITLE)
-
-
         ;
-
-
     }
 
 }

@@ -1,6 +1,5 @@
 package pages;
 
-import com.beust.ah.A;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,8 +17,18 @@ public class PostPage extends ParentPage {
     @FindBy(xpath =".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
+    //hw body >  div.d-flex.justify-content-between > h2
+    @FindBy (xpath=".//div[@class='d-flex justify-content-between']/h2")
+    private WebElement checkPostTitle;
+
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    String getRelativeURL() {
+        return "/post/";
     }
 
     public HeaderElement getHeaderElement() {
@@ -27,7 +36,9 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check url
+        checkURLContainsRelative();
+
+        waitChatToBeHide();
         Assert.assertTrue("PostPage is not loaded", isElementDisplayed(buttonEdit));
         return this;
     }
@@ -43,5 +54,10 @@ public class PostPage extends ParentPage {
 
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkIfPostTitleCorrect(String postTitle) {
+        Assert.assertEquals("Title is found ", postTitle, checkPostTitle.getText()  );
+        return this;
     }
 }

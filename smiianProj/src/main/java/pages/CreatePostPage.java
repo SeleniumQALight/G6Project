@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPage {
-    //  .//*[@name='title']
-    @FindBy (name = "title")
+
+    @FindBy (name = "title")     //  == .//*[@name='title']
     private WebElement inputTitle;
 
     @FindBy (id = "post-body")
@@ -16,8 +16,7 @@ public class CreatePostPage extends ParentPage {
     @FindBy (xpath = ".//button[@class='btn btn-primary']")
     private WebElement buttonSavePost;
 
-    //          .//select
-    @FindBy (tagName = "select")
+    @FindBy (tagName = "select")    //          .//select
     private WebElement dropDownOptions;
 
     @FindBy (xpath = ".//select[@name='select1']")
@@ -26,11 +25,21 @@ public class CreatePostPage extends ParentPage {
     @FindBy (xpath = ".//option[@value='One Person']")
     private WebElement createPostDropDownSecondOption;
 
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+
+    @Override
+    String getRelativeURL() {       // сторінка створення поста
+        return "/create-post";
+    }
+
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("CreatePostPage is not loaded", isElementDisplayed(inputTitle));
 
         return this;

@@ -31,6 +31,12 @@ public class PostPage extends ParentPage {
     public PostPage(WebDriver webDriver) {
         super(webDriver);
         this.headerElements = new HeaderElements(webDriver);
+
+    }
+
+    @Override
+    String getRelativeUrl() {
+        return "/post/";
     }
 
     public HeaderElements getHeaderElements() {
@@ -38,7 +44,9 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //todo checkc url
+       // checkURL();
+        checkURLContainsRelative();
+        waitChatToBeHidden();
         Assert.assertTrue("PostPage is not opened", isElementDisplayed(editButton));
         return this;
     }
@@ -71,5 +79,10 @@ public class PostPage extends ParentPage {
     public ProfilePage clickOnDeleteButton() {
         clickOnElement(deleteButton);
         return new ProfilePage(webDriver);
+    }
+
+    public EditPostPage editPost() {
+        clickOnElement(editButton);
+        return new EditPostPage(webDriver);
     }
 }

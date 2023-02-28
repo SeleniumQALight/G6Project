@@ -18,10 +18,21 @@ public class CreatePostPage extends ParentPage{
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
 
+    @FindBy(xpath = "//option[@value = 'One Person']")
+    private WebElement textInElement;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    public String getRelativeURL() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage(){
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("CreatePostPage is not loaded", isElementDisplayed(inputTitle));
         return this;
 
@@ -48,6 +59,11 @@ public class CreatePostPage extends ParentPage{
 
     public CreatePostPage selectValueInDropDownOptions(String valueInDD){
         selectValueInDropDown(dropDownOptions, valueInDD);
+        return this;
+    }
+
+    public CreatePostPage selectElementInDropdownByUI(){
+        selectTextInDropDownByUI(dropDownOptions, textInElement);
         return this;
     }
 }

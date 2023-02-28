@@ -13,6 +13,9 @@ public class MyProfilePage extends ParentPage {
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
 
+    @FindBy (xpath = ".//h2[contains(text(), 'qaauto')]")
+    private WebElement profileName;
+
     @FindBy(xpath = " .//*[@class='alert alert-success text-center']")
     private WebElement successDeletePostMessage;
 
@@ -24,8 +27,16 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/profile/";
+    }
+
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
+
+        checkURLContainsRelative();
+        waitChatToBeHide();
         Assert.assertTrue("MyProfilePage", isElementDisplayed(avatar));
         return this;
     }
@@ -73,6 +84,13 @@ public class MyProfilePage extends ParentPage {
 
         Assert.assertTrue(" Message delete Post is not displayed", isElementDisplayed(successDeletePostMessage));
 
+        return this;
+    }
+
+    public MyProfilePage checkIsProfileCorrect(String myProfileName) {
+
+        logger.info(myProfileName + "-> check test name");
+        Assert.assertTrue("Profile isn't showed", profileName.getText().contains(myProfileName));
         return this;
     }
 }

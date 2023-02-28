@@ -11,10 +11,12 @@ public class CreatePostPage extends ParentPage{
     private WebElement inputTitle;
     @FindBy(id= "post-body")
     private WebElement inputBody;
-    @FindBy(xpath = ".//form[@action='/create-post']//button")
+    @FindBy(xpath = ".//*[@class = 'btn btn-primary']")
     private WebElement buttonSavePost;
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
+    @FindBy(xpath = ".//*[@class = 'svg-inline--fa fa-edit fa-w-18']")
+    private WebElement editIcon;
 
 
 
@@ -23,7 +25,14 @@ public class CreatePostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelativeURL() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("CreatePostPage is not loaded ", isElementDisplayed(inputTitle));
         return this;
     }
@@ -55,5 +64,10 @@ public class CreatePostPage extends ParentPage{
         selectValueInDropDown(dropDownOptions, valueInDD);
         return this;
 
+    }
+    public CreatePostPage clickOnEditButton() {
+        clickOnElement(editIcon);
+
+        return new CreatePostPage(webDriver);
     }
 }
