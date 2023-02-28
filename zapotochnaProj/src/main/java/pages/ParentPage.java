@@ -48,7 +48,7 @@ abstract public class ParentPage extends CommonActionsWithElements {
         String actualURL = webDriver.getCurrentUrl();
                 Assert.assertTrue("\nActual URL " + actualURL + " \n "
                         + "Expected URL " + base_url+getRelativeURL() + " \n"
-                        , actualURL.matches(base_url + getRelativeURL() )); //замість getrelative вказати урл яке потрібне
+                        , actualURL.matches(base_url + "/profile/qaauto" )); //замість getrelative вказати урл яке потрібне
     }
 
 }

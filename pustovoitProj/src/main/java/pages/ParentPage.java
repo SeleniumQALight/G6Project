@@ -7,10 +7,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 abstract public class ParentPage extends CommonActionsWithElements{
-   protected String base_url = "https://qa-complexapp.onrender.com";
+   protected String base_url;
+
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
+        base_url = base_url = configProperties.base_url()
+                .replace("[env]", System.getProperty("env","qa"));
     }
+
 
     protected void waitChatToBeHide(){
         webDriverWait10.until(ExpectedConditions.

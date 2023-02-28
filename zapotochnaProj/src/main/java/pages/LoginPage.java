@@ -1,10 +1,16 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
@@ -16,6 +22,19 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
+    @FindBy(id = "username-register")
+    private WebElement inputLoginRegistration;
+
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegistration;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPasswordRegistration;
+
+    private String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'] ")
+    private List<WebElement> listOfErrors;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -80,12 +99,9 @@ public class LoginPage extends ParentPage {
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
+
     public boolean isButtonSignInDisplayed() {
-//        try {
-//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-//        } catch (Exception e) {
-//            return false;
-//        }
+
         return isElementDisplayed(buttonLogin);
     }
 
@@ -96,4 +112,57 @@ public class LoginPage extends ParentPage {
 
         return new HomePage(webDriver);
     }
+
+    public LoginPage enterUserNameInRegistrationForm(String userName) {
+        enterTextInToElement(inputLoginRegistration, userName);
+        return this;
+
+    }
+
+    public LoginPage enterUserEmailInRegistrationForm(String userEmail) {
+        enterTextInToElement(inputEmailRegistration, userEmail);
+        return this;
+    }
+
+    public LoginPage enterPasswordInRegistrationForm(String userPassword) {
+        enterTextInToElement(inputPasswordRegistration, userPassword);
+        return this;
+    }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        //сюди передаємо ерори у вигляді стрінги , потім розпарсимо їх
+
+        //error1, error2, error3 -> array[0] = error1, array1[1] = error2
+
+        String[] expectedErrorsArray = expectedErrors.split(",");
+        webDriverWait10
+                .withMessage("Number of Messages should be  " + expectedErrorsArray.length)  //цей меседж побачимо тоді, коли не вийде чекати Until . по аналогії як з асертом.
+                .until(ExpectedConditions
+                        .numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
+
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+
+
+        for (WebElement element: listOfErrors){
+            actualTextFromErrors.add(element.getText());
+        }
+
+        //softasserch корисний для таблиць і блоків.
+        SoftAssertions softAssertions = new SoftAssertions() ; //буде робити перевірку тільки тоді, коли assertAll(). коли його використовуємо зразу місце де перевірка.
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not matched")
+                    .isIn(actualTextFromErrors); //якщо хоч один не співпав, тест буде червоним. і виведе всі
+        }
+        softAssertions.assertAll();
+
+
+        return this;
+    }
+
+
+
+
+
+
 }

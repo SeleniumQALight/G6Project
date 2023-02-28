@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.CommonActionsWithElements;
 import pages.CreatePostPage;
+import pages.LoginPage;
 import pages.MyProfilePage;
 
 public class HeaderElement extends CommonActionsWithElements {
@@ -31,5 +32,9 @@ public class HeaderElement extends CommonActionsWithElements {
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
+    }
+    public LoginPage clickOnSignOutButton() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
     }
 }

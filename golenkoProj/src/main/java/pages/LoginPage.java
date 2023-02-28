@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +18,9 @@ public class LoginPage extends ParentPage {
     public static final String ALERT_XPATH = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     private final String parametrizedAlert = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
+
+    @FindBy(xpath = ALERT_XPATH)
+    private List<WebElement> listOfErrors;
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
@@ -123,6 +127,31 @@ public class LoginPage extends ParentPage {
         Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parametrizedAlert, textMessage)));
         return this;
     }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        // error1,error2,error3 -> array[0] = error1, array[1] = error2, array[2] = error3
+        String[] expectedErrorsArray = expectedErrors.split(",");
+        webDriverWait10
+                .withMessage("Number of messages should be" + expectedErrorsArray.length)
+                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(ALERT_XPATH), expectedErrorsArray.length));
+
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element: listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+        }
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i])
+                    .as("Message is not equals")
+                    .isIn(actualTextFromErrors);
+        }
+
+        softAssertions.assertAll();
+
+        return this;
+    }
+
+
 
     public LoginPage loginFromKeyboard(String login, String password) {
         usersPressesKeyTabTime(2);
