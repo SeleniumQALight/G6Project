@@ -13,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.MyProfilePage;
 import pages.elements.HeaderElement;
 
 import java.time.Duration;
@@ -25,6 +26,11 @@ public class BaseTest {
     protected HomePage homePage;
     protected HeaderElement headerElement;
 
+    protected MyProfilePage myProfilePage;
+
+
+
+
     @Before
     public void setUp() {
         logger.info("------  " + testName.getMethodName() + " was started  --------");
@@ -32,8 +38,11 @@ public class BaseTest {
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         loginPage = new LoginPage(webDriver);
-        homePage = new HomePage(webDriver);
+        homePage=new HomePage(webDriver);
+        myProfilePage=new MyProfilePage(webDriver);
+
     }
+
 
     @After
     public void tearDown() {

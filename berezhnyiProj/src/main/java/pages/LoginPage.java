@@ -23,6 +23,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonLogin;
 
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center']")
+    private WebElement loginAlertMessage;
+
     @FindBy(xpath = ".//input[@id='username-register']")
     private WebElement inputUserNameRegistration;
 
@@ -62,17 +65,21 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
-    public void enterUserNameIntoInputLogin(String userName) {
+    public LoginPage enterUserNameIntoInputLogin(String userName) {
 
         enterTextIntoElement(inputUserName, userName);
+        return this;
     }
 
-    public void enterPasswordIntoInputPassword(String password) {
+    public LoginPage enterPasswordIntoInputPassword(String password)
+    {
         enterTextIntoElement(inputPassword, password);
+        return this;
     }
 
-    public void clickOnButtonLogin() {
+    public LoginPage clickOnButtonLogin() {
         clickOnElement(buttonLogin);
+        return this;
     }
 
     public boolean isButtonSignInDisplayed(){
@@ -137,7 +144,14 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
-   // private List<WebElement>
+    public LoginPage checkErrorMessagesOnLogin(String expectedErrors) {
+        Assert.assertTrue("Alert message is not shown", isElementDisplayed(loginAlertMessage));
+        Assert.assertEquals(expectedErrors, loginAlertMessage.getText());
+        return this;
+    }
+
+
+    // private List<WebElement>
 
 
 //    public LoginPage enterUserNameInRegistrationForm(String userName) {

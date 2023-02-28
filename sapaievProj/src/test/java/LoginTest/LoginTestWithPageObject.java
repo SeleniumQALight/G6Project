@@ -14,7 +14,6 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterUserNameIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonLogin();
-
         Assert.assertTrue("Button is not displayed",
                 homePage.getHeaderElement().isButtonSignOutDisplayed());
     }
@@ -32,6 +31,45 @@ public class LoginTestWithPageObject extends BaseTest {
                 homePage.getHeaderElement().isButtonSignInDisplayed());
 
 
+    }
+
+
+    @Test
+    public void checkTextErrorInFieldRegister() {
+        loginPage.openLoginPage();
+        loginPage
+                .enterUserNameIntoInputUserNameForRegister("tr")
+                .enterEmailIntoInputEmailForRegister("test.com" )
+                .enterPasswordIntoInputPasswordForRegister("123")
+                .checkSizeOfErrorsList(3)
+                .checkUserNameError("Username must be at least 3 characters.")
+                .checkEmailError("You must provide a valid email address.")
+                .checkPasswordError("Password must be at least 12 characters.");
+    }
+
+
+    @Test
+    public void checkUserNameTextErrorInFieldRegister() {
+        loginPage.openLoginPage();
+        loginPage
+                .enterUserNameIntoInputUserNameForRegister("tr")
+                .checkUserNameError("Username must be at least 3 characters.");
+    }
+
+    @Test
+    public void checkEmailTextErrorInFieldRegister() {
+        loginPage.openLoginPage();
+        loginPage
+                .enterEmailIntoInputEmailForRegister("test.com")
+                .checkEmailError("You must provide a valid email address.");
+    }
+
+
+    @Test
+    public void checkPasswordTextErrorInFieldRegister() {
+        loginPage.openLoginPage();
+        loginPage.enterPasswordIntoInputPasswordForRegister("123")
+                .checkPasswordError("Password must be at least 12 characters.");
     }
 
 

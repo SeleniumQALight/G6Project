@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -30,6 +29,9 @@ public class PostPage extends ParentPage{
 
     @FindBy(xpath = "//body//u")
     private WebElement textUnderLine;
+
+    @FindBy(xpath = ".//*[text()='Post successfully updated.']")
+    private WebElement updateMessage;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -74,6 +76,16 @@ public class PostPage extends ParentPage{
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public CreatePostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new CreatePostPage(webDriver);
+    }
+
+    public PostPage checkTextInSuccessUpdateMessage(String textUpdateMessage) {
+        assertEquals("Text is absent", textUpdateMessage, updateMessage.getText());
+        return this;
     }
 }
 
