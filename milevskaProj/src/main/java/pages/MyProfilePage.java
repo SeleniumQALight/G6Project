@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,9 @@ public class MyProfilePage extends ParentPage{
 
     @FindBy(xpath = "//button[@class = 'btn btn-primary']")
     private WebElement buttonSaveUpdates;
+
+    @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
+    private WebElement loggedUser;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);

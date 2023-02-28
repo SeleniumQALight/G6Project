@@ -66,6 +66,4 @@ public class CreatePostPage extends ParentPage{
         selectTextInDropDownByUI(dropDownOptions, textInElement);
         return this;
     }
-
-
 }
