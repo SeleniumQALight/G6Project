@@ -69,8 +69,14 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+
     public PostPage checkIsUnderLineText(String text) {
         Assert.assertEquals("Wrong value", text, textUnderLine.getText());
         return this;
+    }
+
+    public EditPostPage clickOnEditPostButton() {
+        clickOnElement(buttonEdit);
+        return new EditPostPage(webDriver);
     }
 }
