@@ -10,8 +10,10 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public class RegistrationErrorsTest extends BaseTest {
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
+    final static String ERROR_USERNAME_ACCEPTABLE_SYMBOLS = "Username can only contain letters and numbers.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
+    final static String ERROR_PASSWORD_UPPER_LIMIT = "Password cannot exceed 50 characters.";
     final static String ERROR_ALREADY_EXIST = "That username is already taken.";
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
@@ -33,7 +35,10 @@ public class RegistrationErrorsTest extends BaseTest {
     public static Object[][] provideParameters() {
         return new Object[][] {
                 new Object[] {"tr", "ttt", "tyu", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"tr", "tt@t", "tyu", ERROR_USERNAME + COMMA +  ERROR_PASSWORD}
+                new Object[] {"tr", "tt@t", "tyu", ERROR_USERNAME + COMMA +  ERROR_PASSWORD},
+                new Object[] {" ", "test@t.com", "123456qwerty!?", ERROR_USERNAME_ACCEPTABLE_SYMBOLS},
+                new Object[] {"ЮзерНейм", "  ", "12345qwert12345qwert12345qwert12345qwert12345qwert12345qwert12345qwert"
+                        , ERROR_USERNAME_ACCEPTABLE_SYMBOLS + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD_UPPER_LIMIT}
         };
     }
 
