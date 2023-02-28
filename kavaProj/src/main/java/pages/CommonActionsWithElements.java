@@ -32,8 +32,8 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
 
     protected void enterTextInToElement(WebElement webElement, String text) {
@@ -79,6 +79,17 @@ public class CommonActionsWithElements {
 
 
     }
+
+    protected boolean isElementDisplayed(String locator, String errorInfo) {
+        try {
+            WebElement requiredLocator = webDriver.findElement(By.xpath(String.format(locator, errorInfo)));
+            return isElementDisplayed(requiredLocator);
+        } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
 
     protected boolean isElementDisplayed(WebElement webElement) {
         try {
