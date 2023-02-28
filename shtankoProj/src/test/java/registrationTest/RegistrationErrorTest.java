@@ -17,7 +17,7 @@ public class RegistrationErrorTest extends BaseTest {
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
 
-//    String expectedErrors = ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA +ERROR_PASSWORD;
+//    String expectedErrors = ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD;
     @Test
     @Parameters(method = "provideParameters")
     @TestCaseName("registrationErrors: login = {0}, email = {1}, password = {2}")
