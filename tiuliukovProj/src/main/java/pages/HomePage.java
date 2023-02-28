@@ -3,7 +3,6 @@ package pages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
-import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
 
@@ -34,8 +33,8 @@ public class HomePage extends ParentPage{
 
     public HomePage checkIsRedirectedToHomePage() {
         checkURL();
-        Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
         waitChatToBeHide();
+        Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
         return this;
     }
 

@@ -20,7 +20,7 @@ public class HomePage extends ParentPage{
     }
 
     @Override
-    String getRelativeURL() {
+    public String getRelativeURL() {
         return "/";
     }
 
@@ -50,14 +50,10 @@ public class HomePage extends ParentPage{
 
     public HomePage checkIsRedirectToHomePage() {
         checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("HomePage is not loaded", isButtonSignOutDisplayed());
         Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
         return this;
-
-    }
-    public CreatePostPage clickOnCreatePostButton(){
-        clickOnElement(buttonCreatePost);
-        return new CreatePostPage(webDriver);
     }
 
 }
