@@ -153,6 +153,33 @@ public class LoginPage extends ParentPage {
 
 
 
+    public LoginPage loginFromKeyboard(String login, String password) {
+        usersPressesKeyTabTime(2);
+        inputFromKeyboard(login);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(password);
+        usersPressesKeyEnterTime(1);
+        return this;
+    }
+
+    public LoginPage registrationFromKeyBoard(String username, String email, String password) {
+        usersPressesKeyTabTime(5);
+        inputFromKeyboard(username);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(email);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(password);
+        return this;
+    }
+
+    public LoginPage switchToPreviousTabAndRefresh() {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(0));
+        webDriver.navigate().refresh();
+        return this;
+    }
+
+
 //    public void checkErrorMessageWithText(String expected) {
 //        boolean found = false;
 //

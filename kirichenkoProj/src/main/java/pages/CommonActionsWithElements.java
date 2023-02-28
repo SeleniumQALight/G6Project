@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -16,6 +18,7 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -29,7 +32,7 @@ public class CommonActionsWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element");
+            logger.info(text + " was inputted into element " + getElementName(webElement));
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -38,8 +41,9 @@ public class CommonActionsWithElements {
     protected void clickOnElement(WebElement webElement){
         try{
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
+            String name = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(name +" Element was clicked");
         }catch (Exception e){
             printErrorAndStopTest(e);
         }
@@ -58,13 +62,31 @@ public class CommonActionsWithElements {
             boolean state = webElement.isDisplayed();
             String message;
             if (state){
-                    message = "Element is displayed";
+                    message = getElementName(webElement) + " Element is displayed";
             }else{
-                message = "Element is not displayed";
+                message = getElementName(webElement) + " Element is not displayed";
             }
             logger.info(message);
             return state;
         }catch (Exception e){
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    protected boolean isElementDisplayed(String xpath) {
+        try {
+            WebElement element = webDriver.findElement(By.xpath(xpath));
+            boolean state = element.isDisplayed();
+            String message;
+            if (state) {
+                message = "Element is displayed";
+            } else {
+                message = "Element is not displayed";
+            }
+            logger.info(message);
+            return state;
+        } catch (Exception e) {
             logger.info("Element is not displayed");
             return false;
         }
@@ -98,6 +120,14 @@ public class CommonActionsWithElements {
             logger.info(text + " was selected in Dropdown");
         } catch (Exception e){
             printErrorAndStopTest(e);
+        }
+    }
+
+    private String getElementName(WebElement webElement){
+        try{
+            return webElement.getAccessibleName();
+        }catch(Exception e){
+            return "";
         }
     }
 

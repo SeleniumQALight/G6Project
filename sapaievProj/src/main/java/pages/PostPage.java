@@ -44,6 +44,9 @@ public class PostPage extends ParentPage {
 
 
 
+
+
+
     public PostPage checkIsRedirectToPostPage() {
         //TODO check URL
         checkURLContainsRelative();
@@ -89,8 +92,17 @@ public class PostPage extends ParentPage {
         Assert.assertEquals("Underline text is displayed", text, textUnderline.getText());
         return this;
     }
+
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+
+
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPostPage (webDriver);
+    }
+
+
 }

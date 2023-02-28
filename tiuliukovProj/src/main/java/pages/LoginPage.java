@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ public class LoginPage extends ParentPage {
     private WebElement inputPassword;
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
+    @FindBy(xpath = ".//*[@class = 'alert alert-danger text-center']")
+    private WebElement errorMessageLoginPassword;
 
     @FindBy(id = "username-register")
     private WebElement inputRegistrationUserName;
@@ -35,8 +38,14 @@ public class LoginPage extends ParentPage {
     private String validationMessage = ".//*[@class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = '%s']";
     private static final String registrationValidationMessages = ".//*[@class = 'alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    private HeaderElement headerElement = new HeaderElement(webDriver);
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public HeaderElement getHeaderElement() {
+        return headerElement;
     }
 
     @Override
@@ -66,8 +75,9 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void clickOnButtonSignIn() {
+    public LoginPage clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+        return this;
     }
 
     public LoginPage enterUserNameIntoInputRegistrationUserName(String userName) {
@@ -113,7 +123,18 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkErrorsMessages(String expectedErrors) {
+    public HomePage checkIsUserLoggedIn(){
+        Assert.assertTrue("User is not logged in", headerElement.isButtonSignOutDisplayed());
+        return new HomePage(webDriver);
+    }
+
+    public LoginPage checkIsUserNotLoggedIn(){
+        Assert.assertFalse("Button is displayed", headerElement.isButtonSignOutDisplayed());
+        Assert.assertTrue("User is logged in", isButtonSignInDisplayed());
+        return this;
+    }
+
+    public LoginPage checkRegistrationErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(",");
         webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(registrationValidationMessages), expectedErrorsArray.length));
 
@@ -128,6 +149,12 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
 
+        return this;
+    }
+
+    public LoginPage checkLoggingInErrorMessage(String expectedError) {
+        Assert.assertTrue("Error Login/Password message is not displayed", isElementDisplayed(errorMessageLoginPassword));
+        Assert.assertEquals("Wrong message is displayed", expectedError, errorMessageLoginPassword.getText());
         return this;
     }
 }
