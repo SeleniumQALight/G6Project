@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -19,12 +21,14 @@ public class CommonActionsWithElements {
     WebDriverWait webDriverWait10;
     WebDriverWait webDriverWait15;
 
+    public static ConfigProperties configProperties= ConfigFactory.create(ConfigProperties.class);
+
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver,this);
-        webDriverWait10=new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15=new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10=new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15=new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
 
 
@@ -38,6 +42,13 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+
+
+
+
+
+
 
 
     protected void printErrorAndStopTest(Exception e){
@@ -105,6 +116,13 @@ public class CommonActionsWithElements {
         }
     }
 
+
+
+
+    protected boolean isElementDisplayed(String text) {
+        WebElement webElement=webDriver.findElement(By.xpath(text));
+        return isElementDisplayed(webElement);
+    }
 
 
 

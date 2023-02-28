@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -15,13 +17,14 @@ import java.util.ArrayList;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-    WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait10, webDriverWait15;
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //PageFactory ініціалізує елементи що описані через анотацію findBy
-        webDriverWait10 = new WebDriverWait (webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait (webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait (webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait (webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
 
     protected void enterTextInToElement(WebElement webElement, String text){
@@ -89,6 +92,19 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    protected void selectTextInDropDownByUI(WebElement dropDown, String textInDD){
+        try {
+            dropDown.click();
+            String selectedXpath = String.format(".//option[text()=\"%s\"]", textInDD);
+            webDriver.findElement(By.xpath(selectedXpath)).click();
+            logger.info(textInDD+ " was selected in DropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+
+    }
+
 
     private String getElementName(WebElement webElement){
         try{
