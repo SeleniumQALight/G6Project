@@ -33,8 +33,13 @@ public class HomePage extends ParentPage{
     }
 
     public boolean isButtonSignOutDisplayed(){
-        webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
-       return isElementDisplayed(buttonSignOut);
+        try {
+            webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
+            return isElementDisplayed(buttonSignOut);
+        }catch (Exception e){
+            return false;
+        }
+
     }
 
     public HomePage openHomePage() {
