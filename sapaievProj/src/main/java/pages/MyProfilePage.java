@@ -1,6 +1,5 @@
 package pages;
 
-import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +23,10 @@ public class MyProfilePage extends ParentPage{
 
     @FindBy(xpath = "//span[@class='text-white mr-2']")
     private WebElement nameUserInProfile;
+
+
+
+
 
 
     public MyProfilePage(WebDriver webDriver) {
@@ -56,6 +59,11 @@ public class MyProfilePage extends ParentPage{
     public List<WebElement> getPostsListWithTitle(String title){
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));
     }
+
+    public WebElement getPostWithTitle(String title){
+        return webDriver.findElement(By.xpath(String.format(titlePost, title)));
+    }
+
 
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
@@ -96,4 +104,30 @@ public class MyProfilePage extends ParentPage{
     }
 
 
+    public EditPostPage editPostsWithTitle(String post_title, String new_postTitle) {
+        WebElement post=getPostWithTitle(post_title);
+        clickOnElement(post);
+        new  PostPage((webDriver))
+                .checkIsRedirectToPostPage()
+                .clickOnEditButton()
+                .enterTextInInputTitle(new_postTitle)
+                .clickOnSaveButton();
+                //.checkEditPostTitleMessage()
+                //.getHeaderElement()
+                //.clickOnMyProfileButton();
+                //.checkSizeListOfEditedPost(new_postTitle);
+        return new EditPostPage(webDriver);
+    }
+
+
+
+
+
+
+
+    public  MyProfilePage checkSizeListOfEditedPost(String newtitlePost){
+        List<WebElement> listPosts=webDriver.findElements(By.xpath(String.format(titlePost, newtitlePost)));
+        Assert.assertTrue("Size of edited post is 1",listPosts.size()==1);
+        return this;
+    }
 }
