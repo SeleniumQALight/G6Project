@@ -3,15 +3,16 @@ package postTest;
 import baseTest.BaseTest;
 import libs.Util;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import pages.CreatePostPage;
-import pages.elements.HeaderElement;
 
-public class CreatePostTest extends BaseTest {
+public class EditPostTitleTest extends BaseTest {
     final String POST_TITLE = "TC1_milevska_1" + Util.getDateAndTimeFormatted();
     final String dropdownValue = "One Person";
-    @Test
-    public void TC1_createNewPost() {
+    final String EDITED_POST_TITLE = "Edited" + POST_TITLE;
+
+    @Before
+    public void createNewPost() {
         homePage
                 .openHomePage()
                 .headerElement.clickOnCreatePostButton()
@@ -19,10 +20,7 @@ public class CreatePostTest extends BaseTest {
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody("POST_BODY")
                 .selectTextInDropDownOptions("Приватне повідомлення")
-                //.selectValueInDropDownOptions("One Person")
-                //.selectTextInDropDownOptions("Приватне повідомлення")
                 .selectValueInDropDownOptions(dropdownValue)
-                //.selectElementInDropdownByUI()
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
@@ -35,12 +33,29 @@ public class CreatePostTest extends BaseTest {
                 .checkPostWasCreated(POST_TITLE)
         ;
     }
-
-    @After
-    public void deletePost() {
+    @Test
+    public void changePostTitle(){
         homePage.openHomePage()
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .deletePostsWithTitleTillPresent(POST_TITLE);
+                .openEditPageForPostWithTitle(POST_TITLE)
+                .checkIsRedirectToEditPostPage()
+                .editPostWithTitle(EDITED_POST_TITLE);
+    }
+
+    @After
+    public void checkIsPostEdited(){
+        homePage.openHomePage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .checkIsPostWasEdited(POST_TITLE , EDITED_POST_TITLE);
+    }
+
+    @After
+    public void deleteCreatedTest(){
+        homePage.openHomePage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deleteEditedPost(EDITED_POST_TITLE);
     }
 }
