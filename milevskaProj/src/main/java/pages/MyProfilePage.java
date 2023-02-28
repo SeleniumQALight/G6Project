@@ -97,7 +97,8 @@ public class MyProfilePage extends ParentPage{
             deletePostsWithTitleTillPresent(postTitle);
         }
         if (listOfPostsEdited.size() == 0){
-            logger.info("Edited post doesn't display on My Profile page");
+            logger.error("Edited post doesn't display on My Profile page");
+            Assert.fail("Edited post doesn't display on My Profile page");
         }else{
             logger.info("Post was edited");
         }

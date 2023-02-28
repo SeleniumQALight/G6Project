@@ -43,14 +43,6 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = listOfErrorsLocator)
     private List<WebElement> listOfErrors;
 
-    public List<WebElement> getAssertList(String assertion1, String assertion2, String assertion3, String listOfAssertion) {
-        List<WebElement> assertList = new ArrayList<>();
-        assertList.add(webDriver.findElement(By.xpath(String.format(listOfAssertion, assertion1))));
-        assertList.add(webDriver.findElement(By.xpath(String.format(listOfAssertion, assertion2))));
-        assertList.add(webDriver.findElement(By.xpath(String.format(listOfAssertion, assertion3))));
-        return assertList;
-    }
-
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -133,50 +125,15 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage fillingRegistationFormWithInvalidCred() {
-        enterUsernameInRegistrationForm(TestData.INVALID_USERNAME);
-        enterEmailInRegistrationForm(TestData.INVALID_EMAIL);
-        enterPassInRegistrationForm(TestData.INVALID_PASSWORD);
+    public LoginPage checkIsAssertionDisplayed(String assertName, String expectedUsernameAssertion){
+        WebElement expectedLocator = webDriver.findElement(By.xpath(String.format(assertions, assertName)));
+        webDriverWait10.until(ExpectedConditions.visibilityOf(expectedLocator));
+        Assert.assertEquals("Assert username message is not displayed", expectedUsernameAssertion, expectedLocator.getText());
         return this;
     }
 
-    public LoginPage checkIsUsernameAssertionsIsDisplayed(String assertions, String expectedUsernameAssertion) {
-        String assertName = "username-register";
-        WebElement expectedUsernameLocator = webDriver.findElement(By.xpath(String.format(assertions, assertName)));
-        Assert.assertEquals("Assert username message is not displayed", expectedUsernameAssertion, expectedUsernameLocator.getText());
-        return this;
-    }
-
-    public LoginPage checkIsEmailAssertionsIsDisplayed(String assertions, String expectedEmailAssertion) {
-        String assertName = "email-register";
-        WebElement expectedEmailLocator = webDriver.findElement(By.xpath(String.format(assertions, assertName)));
-        Assert.assertEquals("Assert email message is not displayed", expectedEmailAssertion, expectedEmailLocator.getText());
-        return this;
-    }
-
-    public LoginPage checkIsPasswordAssertionsIsDisplayed(String assertions, String expectedPasswordAssertion) {
-        String assertName = "password-register";
-        WebElement expectedPasswordLocator = webDriver.findElement(By.xpath(String.format(assertions, assertName)));
-        Assert.assertEquals("Assert password message is not displayed", expectedPasswordAssertion, expectedPasswordLocator.getText());
-        return this;
-    }
-
-    public LoginPage checkAssertsDisplayed() {
-
-        String assertion1 = "Username must be at least 3 characters.";
-        String assertion2 = "You must provide a valid email address.";
-        String assertion3 = "Password must be at least 12 characters.";
-        List<WebElement> listOfAssertions = getAssertList(assertion1, assertion2, assertion3, listOfAssertion);
-        int counter = listOfAssertions.size();
-        if (counter == 3) {
-            logger.info("All assertions displays");
-        } else {
-            logger.info("Not all assertions displays");
-            Assert.fail("Checking assertions failed");
-        }
-        checkIsUsernameAssertionsIsDisplayed(assertions, assertion1);
-        checkIsEmailAssertionsIsDisplayed(assertions, assertion2);
-        checkIsPasswordAssertionsIsDisplayed(assertions, assertion3);
+    public LoginPage checkIsAllAssertionDisplayed(int countOfAssertions) {
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator),countOfAssertions));
         return this;
     }
 
@@ -194,7 +151,6 @@ public class LoginPage extends ParentPage {
             softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals ").isIn(actualTextFromErrors);
         }
         softAssertions.assertAll();
-
         return this;
     }
 }
