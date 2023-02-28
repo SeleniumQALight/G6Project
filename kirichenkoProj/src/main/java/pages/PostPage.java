@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.ParentPage;
 import pages.elements.HeaderElement;
 
 public class PostPage extends ParentPage {
@@ -23,6 +22,9 @@ public class PostPage extends ParentPage {
     private HeaderElement headerElement = new HeaderElement(webDriver);
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
+
+    @FindBy (xpath = ".//a[@data-original-title=\"Edit\"]")
+    private WebElement editButton;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -64,7 +66,12 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-    public MyProfilePage clickOnDeletButton() {
+    public EditPostPage clickOnEditPostButton (){
+        clickOnElement(editButton);
+
+        return new EditPostPage(webDriver);
+    }
+    public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
