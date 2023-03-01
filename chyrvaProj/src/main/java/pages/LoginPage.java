@@ -45,13 +45,12 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
-@FindBy(xpath = listOfErrorsLocator)
-private List<WebElement> listOfErrors;
-
+    @FindBy(xpath = listOfErrorsLocator)
+    private List<WebElement> listOfErrors;
 
 
     private String errorMessage = "//*[@class = \"alert alert-danger small liveValidateMessage liveValidateMessage--visible\" and text() = '%s' ]";
-
+    private String errorMessageForLogin = "//*[@class='alert alert-danger text-center']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -154,7 +153,14 @@ private List<WebElement> listOfErrors;
 
         return this;
     }
+    public LoginPage checkErrorMessageWithTextForLogIn(String textMessage) {
 
+        Assert.assertTrue("Error Message is not displayed",
+                isElementDisplayed(String.format(errorMessageForLogin, textMessage)));
+
+
+        return this;
+    }
 
     public LoginPage checkErrorMessagesIsDisplayed(int expectedSize) {
         Assert.assertEquals("Number of messages is not three"
@@ -196,7 +202,7 @@ private List<WebElement> listOfErrors;
                         .numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
 
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
-        for (WebElement element:listOfErrors){
+        for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());
         }
         SoftAssertions softAssertions = new SoftAssertions();

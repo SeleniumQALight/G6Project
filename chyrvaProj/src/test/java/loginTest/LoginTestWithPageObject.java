@@ -30,5 +30,4 @@ public class LoginTestWithPageObject extends BaseTest {
 
     }
 
-
 }
