@@ -1,10 +1,10 @@
-package InvalidRegistrationTest;
+package invalidRegistrationTest;
 
 import baseTest.BaseTest;
 import libraries.TestData;
 import org.junit.Test;
 
-public class invalidRegistrationTest extends BaseTest {
+public class InvalidRegistrationTest extends BaseTest {
 
     @Test
     public void TC_2_invalidRegistrationTest(){
