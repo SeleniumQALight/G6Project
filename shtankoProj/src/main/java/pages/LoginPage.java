@@ -154,11 +154,9 @@ public class LoginPage extends ParentPage {
         userEnterText(userName);
         return this;
     }
-    public LoginPage passwordTabKey(int number, String passwordEnter, int i, int i1){
+    public LoginPage passwordTabKey(int number, String passwordEnter){
         usersPressesKeyTabTime(number);
         userEnterText(passwordEnter);
-        usersPressesKeyTabTime(i);
-        usersPressesKeyEnterTime(i1);
         return this;
     }
 

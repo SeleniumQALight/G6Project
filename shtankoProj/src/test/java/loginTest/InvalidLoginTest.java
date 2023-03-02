@@ -14,18 +14,18 @@ public class InvalidLoginTest extends BaseTest {
     @Test
     @Parameters(method = "dataParameters")
     @TestCaseName("Data : login = {0}, password = {1}")
-    public void InvalidLoginError(String username, String password, String expectedErrors){
+    public void InvalidLoginError(String username, String password){
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin(username);
         loginPage.enterPasswordIntoInputPassword(password);
         loginPage.clickButtonLogin();
-        loginPage.checkLoginErrorMessage(expectedErrors);
+        loginPage.checkLoginErrorMessage(ERROR_MESSAGE);
     }
     public static Object[][] dataParameters(){
         return new Object[][]{
-                new Object[]{"yuy", "qwerty123456",ERROR_MESSAGE},
-                new Object[]{"yuy","yuy",ERROR_MESSAGE},
-                new Object[]{"qaauto","yuy",ERROR_MESSAGE}
+                new Object[]{"yuy", "qwerty123456"},
+                new Object[]{"yuy","yuy"},
+                new Object[]{"qaauto","yuy"}
         };
 
     }

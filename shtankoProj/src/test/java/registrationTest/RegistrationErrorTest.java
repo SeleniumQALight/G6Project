@@ -34,8 +34,8 @@ public class RegistrationErrorTest extends BaseTest {
         return new Object[][] {
                 new Object[] {"tr","ttt","u",ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA +ERROR_PASSWORD},
                 new Object[] {"tr","tt@t","u",ERROR_USERNAME + COMMA +ERROR_PASSWORD},
-                new Object[] {"тест","tt@w","u",ERROR_USERNAME_LETTERS},
-                new Object[] {"uiewuluisdfjkgbjskdblfjsudtedwietiugsdfglksjdbjfbsjchlgsuetliwuhlsjbdj","tt@w","u",ERRORS_USERNAME_CHARACTERS}
+                new Object[] {"тест","tt@w.com","1234567rrrr",ERROR_USERNAME_LETTERS},
+                new Object[] {"uiewuluisdfjkgbjskdblfjsudtedwietiugsdfglksjdbjfbsjchlgsuetliwuhlsjbdj","tt@w.com","wqwee213123u",ERRORS_USERNAME_CHARACTERS}
         };
     }
 }
