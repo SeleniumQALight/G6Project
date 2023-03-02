@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -130,7 +131,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkErrorsMessages(String expectedErrors) {
-        //сюди передаємо ерори у вигляді стрінги , потім розпарсимо їх
+        //сюди передаємо ерори у вигляді стрінги , потім розпарсимо їх/сплітимо по комі
 
         //error1, error2, error3 -> array[0] = error1, array1[1] = error2
 
@@ -139,16 +140,19 @@ public class LoginPage extends ParentPage {
                 .withMessage("Number of Messages should be  " + expectedErrorsArray.length)  //цей меседж побачимо тоді, коли не вийде чекати Until . по аналогії як з асертом.
                 .until(ExpectedConditions
                         .numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
+        Util.waitABit(1);// почекай секунду, бо не можу використати інши й вейт. бо не знаємо що саме чекати.
+        Assert.assertEquals("number of messages ", expectedErrorsArray.length, listOfErrors.size());
+
 
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
 
 
-        for (WebElement element: listOfErrors){
+        for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());
         }
 
         //softasserch корисний для таблиць і блоків.
-        SoftAssertions softAssertions = new SoftAssertions() ; //буде робити перевірку тільки тоді, коли assertAll(). коли його використовуємо зразу місце де перевірка.
+        SoftAssertions softAssertions = new SoftAssertions(); //буде робити перевірку тільки тоді, коли assertAll(). коли його використовуємо зразу місце де перевірка.
         for (int i = 0; i < expectedErrorsArray.length; i++) {
 
             softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not matched")
@@ -159,10 +163,6 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
-
-
-
 
 
 }
