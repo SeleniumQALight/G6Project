@@ -4,10 +4,16 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 
 public class HomePage extends ParentPage {
+
+    @FindBy(xpath = ".//button[text()='Sign Out']")
+    private WebElement signOutButton;
+
     private final HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HomePage(WebDriver webDriver) {
@@ -34,6 +40,11 @@ public class HomePage extends ParentPage {
         waitChatToBeHide();
         Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
         return this;
+    }
+
+    public LoginPage clickOnSignOutButton(){
+        clickOnElement(signOutButton);
+        return new LoginPage(webDriver);
     }
 
 

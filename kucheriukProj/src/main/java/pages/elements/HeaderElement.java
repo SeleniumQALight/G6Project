@@ -29,7 +29,7 @@ public class HeaderElement extends CommonActionsWithElements {
     }
 
     public boolean isButtonSignOutDisplayed() {
-        webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
+        //webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
         return isElementDisplayed(buttonSignOut);
     }
 

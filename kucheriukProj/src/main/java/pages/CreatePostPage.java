@@ -63,4 +63,10 @@ public class CreatePostPage extends ParentPage {
         selectTextInDropDownByUI(dropDownOptions, valueInDD);
         return this;
     }
+
+    public CreatePostPage addChangedTitle(String newTitle) {
+        inputTitle.clear();
+        enterTextInToElement(inputTitle, newTitle);
+        return this;
+    }
 }

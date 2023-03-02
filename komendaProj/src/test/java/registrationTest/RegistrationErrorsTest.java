@@ -4,6 +4,7 @@ import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
+import libs.TestData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -35,8 +36,19 @@ public class RegistrationErrorsTest extends BaseTest {
         return new Object[][] {
                 new Object[] {"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
                 new Object[] {"tr", "tt@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
-
         };
-    }
 
+    }
+    @Test
+    public void TC2_checkErrorMessages(){
+        loginPage
+                 .openLoginPage();
+        loginPage.enterUserNameInRegistrationForm(TestData.INVALID_USERNAME)
+                 .enterEmailInRegistrationForm(TestData.INVALID_EMAIL)
+                 .enterPasswordInRegistrationForm(TestData.INVALID_PASSWORD)
+                 .checkThreeAlertMessagesAreDisplayed()
+                 .checkErrorMessageWithText(ERROR_USERNAME)
+                 .checkErrorMessageWithText(ERROR_EMAIL)
+                 .checkErrorMessageWithText(ERROR_PASSWORD);
+    }
 }
