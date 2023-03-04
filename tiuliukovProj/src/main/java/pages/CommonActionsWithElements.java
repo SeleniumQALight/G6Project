@@ -117,6 +117,42 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void setupCheckBoxToTrue(WebElement checkBox){
+        try {
+            if(!checkBox.isSelected()){
+                clickOnElement(checkBox);
+            }
+        } catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setupCheckBoxToFalse(WebElement checkBox){
+        try {
+            if(checkBox.isSelected()){
+                clickOnElement(checkBox);
+            }
+        } catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setupCheckBox(WebElement checkBox, String state){
+        try {
+            String checkBoxState = state.toLowerCase();
+            if (checkBoxState.equals("check")) {
+                setupCheckBoxToTrue(checkBox);
+            } else if (checkBoxState.equals("uncheck")) {
+                setupCheckBoxToFalse(checkBox);
+            } else {
+                logger.info("Wrong input in to element " + getElementName(checkBox) + " (Use 'check' or 'uncheck') " + checkBoxState);
+            }
+
+        } catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
     private String getElementName(WebElement webElement){
         try {
             return webElement.getAccessibleName();
