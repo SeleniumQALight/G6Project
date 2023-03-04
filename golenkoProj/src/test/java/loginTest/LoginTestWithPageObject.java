@@ -42,20 +42,20 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     @Parameters(method = "provideParameters")
     @TestCaseName("registrationErrors : login = {0}, password = {1}")
-    public void invalidLoginWithParams(String login, String password, String expectedError) {
+    public void invalidLoginWithParams(String login, String password) {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin(login);
         loginPage.enterPasswordIntoInputPassword(password);
         loginPage.clickOnButtonLogin();
-        loginPage.checkErrorMessageForLogin(expectedError);
+        loginPage.checkErrorMessageForLogin(ERROR_LOGIN_PASSWORD_INCORRECT);
 
     }
 
     public static Object[][] provideParameters() {
         return new Object[][]{
-                new Object[]{"", "123456qwerty", ERROR_LOGIN_PASSWORD_INCORRECT},
-                new Object[]{"qaauto", "", ERROR_LOGIN_PASSWORD_INCORRECT},
-                new Object[]{"qaauto3", "123456qwert", ERROR_LOGIN_PASSWORD_INCORRECT}
+                new Object[]{"", "123456qwerty"},
+                new Object[]{"qaauto", ""},
+                new Object[]{"qaauto3", "123456qwert"}
         };
     }
 
