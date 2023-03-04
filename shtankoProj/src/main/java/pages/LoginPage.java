@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class LoginPage extends ParentPage {
@@ -33,6 +35,8 @@ public class LoginPage extends ParentPage {
     final static private String alertDangerText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = '%s']";
     @FindBy(xpath = listOfErrorsLocators)
     private List<WebElement> alertText;
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement signInErrorText;
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -111,6 +115,8 @@ public class LoginPage extends ParentPage {
         webDriverWait10
                 .withMessage("Number of messages should be" + expectedErrorArray.length)
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocators),expectedErrorArray.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of message", expectedErrorArray.length,alertText.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: alertText){
             actualTextFromErrors.add(element.getText());
@@ -124,6 +130,13 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll();
         return this;
 }
+    public LoginPage checkLoginErrorMessage(String expectedError) {
+        Assert.assertTrue("Error Login/Password message is not displayed", isElementDisplayed(signInErrorText));
+        Assert.assertEquals("Error message does not match. Expected: " + expectedError + " but Actual: "
+                + signInErrorText.getText(), expectedError, signInErrorText.getText());
+        return this;
+    }
+
     public LoginPage checkAlertMessageWithText(int numberOfErrors){
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocators),numberOfErrors));
         Assert.assertEquals("The message is not displayed",numberOfErrors, alertText.size());
@@ -139,21 +152,19 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage userNameTabKey(String userName){
-        usersPressesKeyTabTime(2);
+    public LoginPage userNameTabKey(int number,String userName){
+        usersPressesKeyTabTime(number);
         userEnterText(userName);
         return this;
     }
-    public LoginPage passwordTabKey(String passwordEnter){
-        usersPressesKeyTabTime(1);
+    public LoginPage passwordTabKey(int number, String passwordEnter){
+        usersPressesKeyTabTime(number);
         userEnterText(passwordEnter);
-        usersPressesKeyTabTime(1);
-        usersPressesKeyEnterTime(1);
         return this;
     }
 
-    public LoginPage registrationUserNameTabKey(String userName){
-        usersPressesKeyTabTime(5);
+    public LoginPage registrationUserNameTabKey(int number,String userName){
+        usersPressesKeyTabTime(number);
         userEnterText(userName);
         return this;
     }

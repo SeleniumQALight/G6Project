@@ -5,11 +5,13 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage{
@@ -120,5 +122,54 @@ public class LoginPage extends ParentPage{
         Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parametrizedAlert, textMessage)));
         return this;
     }
+
+    public void inputFromKeyboard(String text) {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(text).build().perform();
+        logger.info(text + " was inputted from keyboard");
+    }
+
+    public LoginPage loginFromKeyboard(String login, String password) {
+        usersPressesKeyTabTime(2);
+        inputFromKeyboard(login);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(password);
+        usersPressesKeyEnterTime(1);
+        return this;
+    }
+
+    public LoginPage registrationFromKeyBoard(String username, String email, String password) {
+        openLoginPage();
+        usersPressesKeyTabTime(5);
+        inputFromKeyboard(username);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(email);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(password);
+        return this;
+    }
+
+
+    public LoginPage switchToPreviousTabAndRefresh() {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(0));
+        webDriver.navigate().refresh();
+        return this;
+    }
+
+
+//    public void checkErrorMessageWithText(String expected) {
+//        boolean found = false;
+//
+//        for (int i = 0; i < alertMessages.size(); i++) {
+//            String text = alertMessages.get(i).getText();
+//            if (text.equals(expected)) {
+//                found = true;
+//                break;
+//            }
+//        }
+//
+//        Assert.assertTrue("Text \"" + expected + "\" not found", found);
+//    }
 
 }

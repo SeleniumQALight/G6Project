@@ -37,7 +37,8 @@ public class RegistrationErrors extends BaseTest {
     public static Object[][] provideParameters() {                                      // варіанти різних наборів даних
         return new Object[][] {
                 new Object[] {"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"tr", "tt@tr.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
+                new Object[] {"tr", "tt@tr.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
+
         };
     }
 

@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -21,6 +22,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ALERT_XPATH)
     private List<WebElement> listOfErrors;
+
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
+    private WebElement signInError;
 
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
@@ -134,6 +138,8 @@ public class LoginPage extends ParentPage {
         webDriverWait10
                 .withMessage("Number of messages should be" + expectedErrorsArray.length)
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(ALERT_XPATH), expectedErrorsArray.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages", expectedErrorsArray.length, listOfErrors.size());
 
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: listOfErrors) {
@@ -151,6 +157,9 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public void checkErrorMessageForLogin(String expectedErrorLogin) {
+        Assert.assertTrue("Error message in not displayed when login failed", isElementDisplayed(signInError));
+    }
 
 
     public LoginPage loginFromKeyboard(String login, String password) {

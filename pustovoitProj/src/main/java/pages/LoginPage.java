@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -126,7 +127,8 @@ public class LoginPage extends ParentPage {
                 .withMessage("Number of messages should be " + expectedErrorsArray.length)
                 .until(ExpectedConditions
                         .numberOfElementsToBe(By.xpath(listOfErrorsLocator),expectedErrorsArray.length));
-
+        Util.waitABit(1);
+        Assert.assertEquals("Number of message", expectedErrorsArray.length, listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element:listOfErrors) {
             actualTextFromErrors.add(element.getText());
