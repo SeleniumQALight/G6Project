@@ -23,8 +23,15 @@ public class EditPostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    String getRelatedURL() {
+        return "/post/";
+    }
+
 
     public EditPostPage checkIsRedirectedToEditPostPage() {
+        checkURLWithPattern();
+        waiteChatToBeHide();
         Assert.assertTrue("EditPostPage is not loaded", isElementDisplayed(backToPostPermalink));
         return this;
     }
