@@ -23,6 +23,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ALERT_XPATH)
     private List<WebElement> listOfErrors;
 
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
+    private WebElement signInError;
+
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
 
@@ -154,6 +157,9 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public void checkErrorMessageForLogin(String expectedErrorLogin) {
+        Assert.assertTrue("Error message in not displayed when login failed", isElementDisplayed(signInError));
+    }
 
 
     public LoginPage loginFromKeyboard(String login, String password) {
