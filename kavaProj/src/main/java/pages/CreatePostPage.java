@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-
 public class CreatePostPage extends ParentPage {
     @FindBy(name = "title")
     private WebElement inputTitle;
@@ -20,6 +19,9 @@ public class CreatePostPage extends ParentPage {
 
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
+
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBox;
 
 
     public CreatePostPage(WebDriver webDriver) {
@@ -71,6 +73,34 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
+    public CreatePostPage clickOnCheckBox() {
+        clickOnElement(checkBox);
+        return this;
+
+    }
+
+    public CreatePostPage unClickCheckBox() {
+        if (checkBox.isSelected()) {
+            clickOnElement(checkBox);
+        }
+        return this;
+    }
+
+    public CreatePostPage checkBoxState(String message) {
+        if (message.equals("check")) {
+            clickOnCheckBox();
+            logger.info("Checkbox was clicked");
+        } else if (message.equals("uncheck")) {
+            unClickCheckBox();
+            logger.info("Checkbox was unclicked");
+        } else {
+            Assert.fail("Wrong state message,please try again");
+        }
+        return this;
+
+    }
 }
+
+
 
 

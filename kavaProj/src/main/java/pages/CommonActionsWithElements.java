@@ -144,6 +144,15 @@ public class CommonActionsWithElements {
         }
     }
 
+    public boolean isSelectedCheckBox(WebElement element) {
+        try {
+            return element.isSelected();
+        } catch (Exception e) {
+            return false;
+
+        }
+    }
+
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

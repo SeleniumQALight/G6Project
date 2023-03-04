@@ -19,12 +19,14 @@ public class CreatePostTest extends BaseTest {
 //                .selectTextInDropDownOptions("Приватне повідомлення")
 //                .selectValueInDropDownOptions("One Person")
                 .selectTextInDropDownUI("Загальнодоступне")
+                .checkBoxState("check")
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkTextInTitle(POST_TITLE)
                 .checkTextInLabel()
                 .checkUsersText("All Users")
+                .isCheckBoxMessageCorrect("Is this post unique? : yes")
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .checkUserVisibility("qaauto")
@@ -40,8 +42,6 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsWithTitleTillPresent(POST_TITLE)
-
-
 
 
         ;
