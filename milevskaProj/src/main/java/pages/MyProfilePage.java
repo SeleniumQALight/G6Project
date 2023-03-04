@@ -22,9 +22,6 @@ public class MyProfilePage extends ParentPage{
     @FindBy(xpath = "//button[@class = 'btn btn-primary']")
     private WebElement buttonSaveUpdates;
 
-    @FindBy(xpath = ".//div[@class='container py-md-5 container--narrow']//h2")
-    private WebElement loggedUser;
-
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
