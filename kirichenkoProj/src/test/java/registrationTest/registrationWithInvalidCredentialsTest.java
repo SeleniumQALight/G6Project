@@ -1,6 +1,7 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import libs.TestData;
 import org.junit.Test;
 
 public class registrationWithInvalidCredentialsTest extends BaseTest {
@@ -12,7 +13,16 @@ public class registrationWithInvalidCredentialsTest extends BaseTest {
                 .checkValidationMassagesDisplayed()
                 . checkErrorMessageText("Username must be at least 3 characters.")
                 .checkErrorMessageText("You must provide a valid email address.")
-                .checkTextInLoginErrorMessage("Password must be at least 12 characters.");
+                .checkErrorMessageText("Password must be at least 12 characters.");
     }
 
+    @Test
+    public void checkErrorMessagesUsingButtons(){
+        loginPage.registrationFromKeyBoard(TestData.REGISTRATION_INVALID_USERNAME, TestData.REGISTRATION_INVALID_EMAIL, TestData.REGISTRATION_INVALID_PASSWORD)
+                .checkValidationMassagesDisplayed()
+                .checkErrorMessageText("Username must be at least 3 characters.")
+                .checkErrorMessageText("You must provide a valid email address.")
+                .checkErrorMessageText("Password must be at least 12 characters.");
+                ;
+    }
 }
