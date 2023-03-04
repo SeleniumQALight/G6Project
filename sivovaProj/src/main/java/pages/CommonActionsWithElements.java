@@ -118,6 +118,42 @@ public class CommonActionsWithElements {
 
     }
 
+    protected void checkCheckbox(WebElement checkbox) {
+        if (!isCheckboxSelected(checkbox)) {
+            clickElement(checkbox);
+            logger.info("Checkbox gets selected");
+        } else {
+            logger.info("Checkbox is already selected");
+        }
+    }
+
+    protected void uncheckCheckbox(WebElement checkbox){
+        if (isCheckboxSelected(checkbox)) {
+            checkCheckbox(checkbox);
+            logger.info("Checkbox gets deselected");
+        } else {
+            logger.info("Checkbox is already deselected");
+        }
+    }
+    protected void changeCheckboxState (WebElement checkbox, String targetValue){
+        if (targetValue.equalsIgnoreCase("check")) {
+            checkCheckbox(checkbox);
+        } else {
+            if (targetValue.equalsIgnoreCase("uncheck")) {
+               uncheckCheckbox(checkbox);
+            } else {
+                logger.info("Incorrect target value: input check or uncheck ");
+            }
+        }
+    }
+
+    protected boolean isCheckboxSelected (WebElement checkbox) {
+        if ((checkbox.getCssValue("value")) == "yes") {
+            return true;
+        }
+        return false;
+    }
+
     private String getElementName(WebElement webElement) {
         try{
             return webElement.getAccessibleName();
@@ -129,6 +165,8 @@ public class CommonActionsWithElements {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+
 
     public void usersPressesKeyEnterTime(int numberOfTimes) {
 
