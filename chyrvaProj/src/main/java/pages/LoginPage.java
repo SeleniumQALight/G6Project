@@ -34,6 +34,8 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder= 'Create a password']")
     private WebElement createPassword;
 
+    final static String ERROR_MESSAGE_LOGIN = "Invalid username pasword";
+
     private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     @FindBy(id = "username-register")
@@ -153,10 +155,10 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-    public LoginPage checkErrorMessageWithTextForLogIn(String textMessage) {
+    public LoginPage checkErrorMessageWithTextForLogIn() {
 
         Assert.assertTrue("Error Message is not displayed",
-                isElementDisplayed(String.format(errorMessageForLogin, textMessage)));
+                isElementDisplayed(String.format(errorMessageForLogin, ERROR_MESSAGE_LOGIN)));
 
 
         return this;

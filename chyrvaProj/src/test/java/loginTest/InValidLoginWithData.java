@@ -22,7 +22,7 @@ public class InValidLoginWithData extends BaseTest {
         loginPage.enterUserNameIntoInputLogin(username);
         loginPage.enterPasswordIntoInputPassword(password);
         loginPage.clickOnButtonLogin();
-        loginPage.checkErrorMessageWithTextForLogIn(ERROR_MESSAGE_LOGIN);
+        loginPage.checkErrorMessageWithTextForLogIn();
 
 
         Assert.assertFalse("Button Sign  Out is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
