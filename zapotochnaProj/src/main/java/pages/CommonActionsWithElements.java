@@ -78,7 +78,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void clickOnElement(String xpath) {  // сюди передаємо локатор у вигляді стрігни. щоб працювати з вебелементом.
+    protected void clickOnElement(String xpath, String postTitle) {  // сюди передаємо локатор у вигляді стрігни. щоб працювати з вебелементом.
 
         try {
             clickOnElement(webDriver.findElement(By.xpath(xpath)));

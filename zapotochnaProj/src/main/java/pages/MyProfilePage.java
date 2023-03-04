@@ -13,7 +13,7 @@ public class MyProfilePage extends ParentPage {
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
 
-    @FindBy (xpath = ".//h2[contains(text(), 'qaauto')]")
+    @FindBy(xpath = ".//h2[contains(text(), 'qaauto')]")
     private WebElement profileName;
 
     @FindBy(xpath = " .//*[@class='alert alert-success text-center']")
@@ -57,7 +57,7 @@ public class MyProfilePage extends ParentPage {
         int counter = listOfPosts.size();
 
         while (!listOfPosts.isEmpty() && counter > 0) {
-            clickOnElement(String.format(titlePost, postTitle));
+            clickOnElement(String.format(titlePost, postTitle), postTitle);
 
             new PostPage(webDriver)  //це повертає сторінку поста зі всiма методами
                     .checkIsRedirectToPostPage()
@@ -92,5 +92,14 @@ public class MyProfilePage extends ParentPage {
         logger.info(myProfileName + "-> check test name");
         Assert.assertTrue("Profile isn't showed", profileName.getText().contains(myProfileName));
         return this;
+    }
+
+
+
+
+    public PostPage findMyPostToEdit(String postTitle) {
+
+        clickOnElement(postTitle, titlePost);
+        return new PostPage(webDriver);
     }
 }

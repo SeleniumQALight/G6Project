@@ -15,6 +15,7 @@ public class HeaderElement extends CommonActionsWithElements {
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+
     public HeaderElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -34,4 +35,7 @@ public class HeaderElement extends CommonActionsWithElements {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
     }
+
+
+
 }

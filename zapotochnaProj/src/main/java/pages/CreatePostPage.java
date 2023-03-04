@@ -80,6 +80,6 @@ public class CreatePostPage extends ParentPage {
     }
 
 
-    
+
 
 }
