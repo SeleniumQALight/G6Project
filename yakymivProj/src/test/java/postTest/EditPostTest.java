@@ -35,6 +35,7 @@ public class EditPostTest extends BaseTest {
                 .checkIsRedirectToMyProfilePage()
                 .clickOnPostWithTitle(POST_TITLE)
                 .clickOnEditButton()
+                .checkIsRedirectToEditPage()
                 .editTitleOfCreatedPost(POST_TITLE_EDITED)
                 .clickSaveUpdatesButton()
                 .checkTextInSuccessMessage("Post successfully updated.")
