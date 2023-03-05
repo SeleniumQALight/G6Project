@@ -1,6 +1,7 @@
 package postTest;
 
 import baseTest.BaseTest;
+import libs.TestData;
 import libs.Util;
 import org.junit.After;
 import org.junit.Test;
@@ -24,6 +25,7 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElements()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
+                .checkIsCorrectLoginDisplayed(TestData.VALID_LOGIN)
                 .checkPostWasCreated(POST_TITLE)
 
         ;
