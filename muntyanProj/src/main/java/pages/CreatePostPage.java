@@ -4,8 +4,9 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
-public class CreatePostPage extends ParentPage{
+public class CreatePostPage extends ParentPage {
     @FindBy(name = "title") // it's the same as locator .//*[@name = 'title']
     private WebElement inputTitle;
 
@@ -22,7 +23,14 @@ public class CreatePostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    String getRelatedURL() {
+        return "/create-post";
+    }
+
     public CreatePostPage checkIsRedirectToCreatePostPage() {
+        checkURL_ContainsRelative();
+        waiteChatToBeHide();
         Assert.assertTrue("CreatePostPage is not loaded", isElementDisplayed(inputTitle));
         return this;
     }
@@ -40,7 +48,6 @@ public class CreatePostPage extends ParentPage{
     }
 
     public PostPage clickOnSavePostButton() {
-
         clickOnElement(buttonSavePost);
         return new PostPage(webDriver);
     }

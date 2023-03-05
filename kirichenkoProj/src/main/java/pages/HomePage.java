@@ -8,17 +8,26 @@ import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
 public class HomePage extends ParentPage{
+    @FindBy(xpath = ".//button[text()='Sign Out']")
+    private WebElement signOutButton;
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    String getRelativeURL() {
+        return "/";
+    }
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
         if (!headerElement.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
@@ -27,8 +36,14 @@ public class HomePage extends ParentPage{
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkURL();
+        waitChatToBeHide();
         Assert.assertTrue("Home page is not loaded", headerElement.isButtonSignOutDisplayed());
         return this;
+    }
+    public LoginPage clickOnSignOutButton(){
+        clickOnElement(signOutButton);
+        return new LoginPage(webDriver);
     }
 
 }

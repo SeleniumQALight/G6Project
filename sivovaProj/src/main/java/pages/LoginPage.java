@@ -2,6 +2,7 @@ package pages;
 
 
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -145,6 +146,8 @@ public class LoginPage extends ParentPage {
         webDriverWait10
                 .withMessage("Number of messages should be" + expectedErrorArray.length)
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorArray.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages", expectedErrorArray.length, listOfErrors.size());
 
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: listOfErrors) {
@@ -161,5 +164,7 @@ public class LoginPage extends ParentPage {
     }
 
 
-
+    public void checkErrorMessageInvalidLogin(String expectedError) {
+            Assert.assertEquals("Incorrect error message is displayed", expectedError, errorMessage.getText());
+    }
 }

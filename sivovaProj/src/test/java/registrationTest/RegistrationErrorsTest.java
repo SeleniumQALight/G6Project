@@ -20,6 +20,8 @@ public class RegistrationErrorsTest extends BaseTest {
 
         final static String ERROR_ALREADY_EXIST = "That username is already taken.";
 
+        final static String ERROR_USERNAME_NOT_VALID = "Username can only contain letters and numbers.";
+
         final static String SEMICOLON = ";";
 
         final static String COMMA = ",";
@@ -50,7 +52,9 @@ public class RegistrationErrorsTest extends BaseTest {
     public static Object[][] provideParameters() {
         return new Object[][] {
                 new Object[] {"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"tr", "t@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
+                new Object[] {"tr", "t@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
+                new Object[] {"test", "t", "123", ERROR_EMAIL + COMMA + ERROR_PASSWORD},
+                new Object[] {"тест", "tt", "asdfgh123456", ERROR_USERNAME_NOT_VALID + COMMA + ERROR_EMAIL}
 
         };
 

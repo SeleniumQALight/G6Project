@@ -1,8 +1,15 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import pages.CommonActionsWithElements;
+
+import java.io.IOException;
+import java.util.Map;
+
+import static pages.CommonActionsWithElements.configProperties;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -17,6 +24,22 @@ public class LoginTestWithPageObject extends BaseTest {
 
 
     }
+
+    @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin =
+                ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
+        loginPage.openLoginPage();
+        loginPage.enterUserNameIntoInputLogin(dataForValidLogin.get("login"));
+        loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass"));
+        loginPage.clickOnButtonLogin();
+
+        Assert.assertTrue("Button is not displayed",
+                headerElement.isSignOutButtonDisplayed());
+
+
+    }
+
 
     @Test
     public void negativeLoginTest() {
