@@ -11,6 +11,7 @@ public class CreatePostTest extends BaseTest {
     public void TC1_createNewPost(){
         homePage
                 .openHomePage()
+                .getHeaderElements()
                 .clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
@@ -20,7 +21,8 @@ public class CreatePostTest extends BaseTest {
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
-                .getHeaderElements().clickOnMyProfileButton()
+                .getHeaderElements()
+                .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkPostWasCreated(POST_TITLE)
 
