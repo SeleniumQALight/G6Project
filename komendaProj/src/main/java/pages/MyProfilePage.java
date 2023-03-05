@@ -18,7 +18,7 @@ public class MyProfilePage extends ParentPage {
     @FindBy(xpath = ".//span[@class='text-white mr-2']")
     private WebElement login;
 
-    private String titlePost = ".//*[text()='%s']";
+    private final String titlePost = ".//*[text()='%s']";
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -76,6 +76,17 @@ public class MyProfilePage extends ParentPage {
 
     public MyProfilePage checkIsCorrectLoginDisplayed(String expectedLogin) {
         Assert.assertEquals("Incorect login", expectedLogin, login.getText());
+        return this;
+    }
+
+    public PostPage clickOnCreatedPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
+    }
+
+    public MyProfilePage checkIsPostPresentAndUnique(String postTitle) {
+        List<WebElement> listOfPost = getPostsListWithTitle(postTitle);
+        Assert.assertEquals("Post in on present or not unique", 1, listOfPost.size());
         return this;
     }
 }

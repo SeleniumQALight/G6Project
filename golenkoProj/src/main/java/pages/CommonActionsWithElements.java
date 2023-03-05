@@ -152,6 +152,12 @@ public class CommonActionsWithElements {
         }
     }
 
+    public void inputFromKeyboard(String text) {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(text).build().perform();
+        logger.info(text + " was inputted from keyboard");
+    }
+
     public void usersPressesKeyTabTime(int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
@@ -173,6 +179,35 @@ public class CommonActionsWithElements {
         ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
+    public void checkCheckbox(WebElement checkbox){
+        if(!checkbox.isSelected()){
+            clickOnElement(checkbox);
+            logger.info("Checkbox was checked");
+        } else {
+            logger.info("Checkbox is already checked");
+        }
+    }
+
+    public void uncheckCheckbox(WebElement checkbox){
+        if(checkbox.isSelected()){
+            clickOnElement(checkbox);
+            logger.info("Checkbox was unchecked");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    public void setCheckboxState(WebElement checkbox, String state) {
+        if (state.equalsIgnoreCase("check")) {
+            checkCheckbox(checkbox);
+        } else if (state.equalsIgnoreCase("uncheck")) {
+            uncheckCheckbox(checkbox);
+        } else {
+            logger.error("Incorrect state of checkbox");
+        }
+    }
+
 //
 //    метод moveToElement (аналог скрола )
 //
