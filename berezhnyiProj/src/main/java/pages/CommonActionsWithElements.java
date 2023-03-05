@@ -82,6 +82,16 @@ public class CommonActionsWithElements {
 
     }
 
+    protected void selectTextInDropDownByUI(WebElement dropDown, String textValue){
+        try {
+            clickOnElement(dropDown);
+            clickOnElement(dropDown.findElement(By.xpath(String.format(".//option[text()='%s']", textValue))));
+            logger.info(textValue + " was selected in dropDown");
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
     protected boolean isElementDisplayed(WebElement webElement){
         try {
 
