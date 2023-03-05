@@ -9,7 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,13 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = listOfErrorsLocator)
     private List<WebElement> listOfErrors;
+
+    @FindBy(xpath = xpathOfAlerts)
+    private List<WebElement> alertMessages;
+
+    public static final String xpathOfAlerts = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+    private final String parameterizedAlert = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     private static final  String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
@@ -125,6 +134,18 @@ public class LoginPage extends ParentPage {
 
 
 
+        return this;
+    }
+
+    public LoginPage checkCounterOfAllerts() {
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(7));
+        webDriverWait.until(ExpectedConditions.numberOfElementsToBe(By.xpath(xpathOfAlerts), 3));
+        Assert.assertEquals("Some alert is not shown ", 3, alertMessages.size());
+        return this;
+    }
+
+    public LoginPage checkErrorMessageWithText(String textMessage) {
+        Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parameterizedAlert, textMessage)));
         return this;
     }
 }
