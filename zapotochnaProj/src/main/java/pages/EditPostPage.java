@@ -1,8 +1,10 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
 
 public class EditPostPage extends ParentPage{
 @FindBy(name = "title")
@@ -28,6 +30,7 @@ private WebElement saveUpdatesButton;
 
 @FindBy (xpath =  ".//*[text()='Post successfully updated.']")
 private WebElement successUpdateMessage;
+    private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public EditPostPage(WebDriver webDriver) {
 
@@ -39,25 +42,27 @@ private WebElement successUpdateMessage;
         return "/post/[a-zA-Z0-9]*/edit";
     }
 
-
-    public EditPostPage checkIsRedirectToEditPostPage() {
-
-    checkURLWithPattern();
-    waitChatToBeHide();
-    return this;
+    public HeaderElement getHeaderElement() {
+        return headerElement;
     }
 
+
+    public EditPostPage checkIsRedirectToEditPostPage(){
+        checkURLWithPattern();
+
+        waitChatToBeHide();
+    //   Assert.assertTrue("Edit Post Page is not loaded", isElementDisplayed(buttonBackToPost));
+        return this;
+    }
+
+
     public EditPostPage editTitle(String postTitleEdited) {
+
+        inputTitle.clear();
         enterTextInToElement(inputTitle,postTitleEdited);
         return this;
     }
 
-    public EditPostPage clickOnSaveUpdateButton() {
 
-            clickOnElement(buttonEditPost);
-
-
-        return this;
-    }
 }
 

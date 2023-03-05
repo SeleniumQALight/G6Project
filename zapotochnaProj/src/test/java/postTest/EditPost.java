@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class EditPost extends BaseTest {
 
-    final String POST_TITLE = "TC1_zapotochna_";
+    final String POST_TITLE = "TC1_zapotochna_" + Util.getDateAndTimeFormatted();
     final String POST_TITLE_EDITED = "TC_2 Edited ! Zapotochna";
 
     @Before
@@ -41,13 +41,25 @@ public class EditPost extends BaseTest {
                 .getHeaderElement().clickOnMyProfileButton()
 
                 .findMyPostToEdit(POST_TITLE)
-
                 .clickOnEditPostButton()
-             //   .checkIsRedirectToEditPostPage()
-                .editTitle(POST_TITLE_EDITED)
+                //  .checkIsRedirectToEditPostPage()
+                .enterTextInInputTitle(POST_TITLE_EDITED)
                 .clickOnSaveUpdateButton()
+
+                .getHeaderElement().clickOnMyProfileButton()
                 .checkPostWasCreated(POST_TITLE_EDITED)
 
+        ;
+    }
+
+    @After
+    public void deletePost() {
+        homePage
+                .openHomePage()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTittleTillPresent(POST_TITLE)
+                .deletePostsWithTittleTillPresent(POST_TITLE_EDITED)
         ;
     }
 

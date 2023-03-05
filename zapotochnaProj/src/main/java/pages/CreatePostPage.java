@@ -19,7 +19,8 @@ public class CreatePostPage extends ParentPage {
     @FindBy(tagName = "select" )
     private WebElement dropDownOptions;
 
-
+    @FindBy (xpath = ".//button[@class='btn btn-primary']")
+    private WebElement saveUpdatesButton;
     public CreatePostPage(WebDriver webDriver) {
 
         super(webDriver);
@@ -80,6 +81,11 @@ public class CreatePostPage extends ParentPage {
     }
 
 
+    public PostPage clickOnSaveUpdateButton() {
+
+        clickOnElement(saveUpdatesButton);
 
 
+        return new PostPage(webDriver);
+    }
 }

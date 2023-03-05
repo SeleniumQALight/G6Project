@@ -20,7 +20,7 @@ public class MyProfilePage extends ParentPage {
     private WebElement successDeletePostMessage;
 
 
-    private String titlePost = ".//*[text() = '%s']"; //щоб знайти свій текст по тайтлу, описали локатор окремою змінною.
+    private String titlePostXpath = ".//*[text() = '%s']"; //щоб знайти свій текст по тайтлу, описали локатор окремою змінною.
 
 
     public MyProfilePage(WebDriver webDriver) {
@@ -43,7 +43,7 @@ public class MyProfilePage extends ParentPage {
 
     public List<WebElement> getPostsListWithTittle(String title) {
         return webDriver.findElements(
-                By.xpath(String.format(titlePost, title)));
+                By.xpath(String.format(titlePostXpath, title)));
     }
 
     public MyProfilePage checkPostWasCreated(String postTitle) {
@@ -57,7 +57,7 @@ public class MyProfilePage extends ParentPage {
         int counter = listOfPosts.size();
 
         while (!listOfPosts.isEmpty() && counter > 0) {
-            clickOnElement(String.format(titlePost, postTitle), postTitle);
+            clickOnElement(String.format(titlePostXpath, postTitle));
 
             new PostPage(webDriver)  //це повертає сторінку поста зі всiма методами
                     .checkIsRedirectToPostPage()
@@ -95,11 +95,9 @@ public class MyProfilePage extends ParentPage {
     }
 
 
-
-
     public PostPage findMyPostToEdit(String postTitle) {
 
-        clickOnElement(postTitle, titlePost);
+        clickOnElement(String.format(titlePostXpath,postTitle));
         return new PostPage(webDriver);
     }
 }
