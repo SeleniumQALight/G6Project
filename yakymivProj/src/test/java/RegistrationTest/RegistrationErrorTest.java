@@ -41,6 +41,7 @@ public class RegistrationErrorTest extends BaseTest{
                 new Object[] {"tr","tt@tt.com","ttt", ERROR_USERNAME_SMALL + COMMA + ERROR_PASSWORD_SMALL},
                 new Object[] {"31symbols_sfsdfsdfsdfsdfsdfdfs1","yakymiv.ivan@gmail.com","normal_password", ERROR_USERNAME_BIG + COMMA + ERROR_ALREADY_EXIST},
                 new Object[] {"!\"\"№\"","tt@tt.com","51symbols_sfsdfsdfsdfsdfsdfdfsdsfsdfsdfsdfsdfsdfdfs", ERROR_USERNAME_SYMBOLS + COMMA + ERROR_PASSWORD_BIG}
+                //homework pt1
         };
     }
 }

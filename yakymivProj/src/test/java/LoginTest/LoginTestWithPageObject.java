@@ -4,9 +4,15 @@ import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
+import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.io.IOException;
+import java.util.Map;
+
+import static pages.CommonActionsWithElements.configProperties;
 
 @RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
@@ -37,6 +43,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 new Object[] {"ivan19","invalid_pass", ERROR_MESSAGE },
                 new Object[] {"invalid_userName","valid_pass", ERROR_MESSAGE},
                 new Object[] {"invalid_userName","invalid_pass", ERROR_MESSAGE}
+                //homework pt2
         };
     }
 
@@ -47,7 +54,6 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterUserNameintoInputLogin(dataForValidLogin.get("login"));
         loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass"));
         loginPage.clickOnButtonLogin();
-
         Assert.assertTrue("Button is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
     }
 }
