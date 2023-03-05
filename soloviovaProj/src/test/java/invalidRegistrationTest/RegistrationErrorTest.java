@@ -1,4 +1,4 @@
-package InvalidRegistrationTest;
+package invalidRegistrationTest;
 
 import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
-public class registrationErrorTest extends BaseTest {
+public class RegistrationErrorTest extends BaseTest {
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
