@@ -39,4 +39,15 @@ public class LoginTestWithPageObject extends BaseTest {
                 new Object[] {"invalid_userName","invalid_pass", ERROR_MESSAGE}
         };
     }
+
+    @Test
+    public void validLoginWithExcel() throws IOException {
+        Map<String, String> dataForValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(),"validLogOn");
+        loginPage.openLoginPage();
+        loginPage.enterUserNameintoInputLogin(dataForValidLogin.get("login"));
+        loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass"));
+        loginPage.clickOnButtonLogin();
+
+        Assert.assertTrue("Button is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
+    }
 }

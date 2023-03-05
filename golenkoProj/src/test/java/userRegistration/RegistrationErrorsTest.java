@@ -14,6 +14,8 @@ public class RegistrationErrorsTest extends BaseTest {
     final static String ERROR_EMAIL = "You must provide a valid email address.";
     final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
     final static String ERROR_ALREADY_EXIST = "That username is already taken.";
+    final static String ERROR_USERNAME_FORMAT = "Username can only contain letters and numbers.";
+    final static String ERROR_TOO_LONG_PASSWORD = "Password cannot exceed 50 characters.";
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
@@ -30,11 +32,13 @@ public class RegistrationErrorsTest extends BaseTest {
                 .enterPasswordIntoInputSignUp(password)
                 .checkErrorsMessages(expectedErrors);
     }
-
     public static Object[][] provideParameters() {
-        return new Object[][] {
-                new Object[] {"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"tr", "tt@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
+        return new Object[][]{
+                new Object[]{"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
+                new Object[]{"tr", "tt@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
+                new Object[]{"@@@", "ttt", "ttt", ERROR_USERNAME_FORMAT + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
+                new Object[]{"autp", "ttt", "1234567890qwertyuiop1234567890qwertyuiop12345678901", ERROR_EMAIL + COMMA + ERROR_TOO_LONG_PASSWORD}
         };
     }
+
 }

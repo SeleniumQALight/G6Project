@@ -2,6 +2,7 @@ package pages;
 
 
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -28,6 +29,8 @@ public class LoginPage extends ParentPage {
     private WebElement passwordReg;
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrors;
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement signInError;
 
 
     private String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
@@ -55,11 +58,12 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void typeUserName(String userName) {
+    public LoginPage typeUserName(String userName) {
         typeTextToElement(inputUserName, userName);
+        return this;
     }
 
-    public void typeUserPassword(String password) {
+    public LoginPage typeUserPassword(String password) {
    /*     try {
            // WebElement passwordInput = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
             passwordInput.clear();
@@ -69,6 +73,7 @@ public class LoginPage extends ParentPage {
             printErroAboutElementAndStopTest(e);
         }*/
         typeTextToElement(passwordInput, password);
+        return this;
     }
 
     public HomePage clickSignIn() {
@@ -116,10 +121,20 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage signInAndCheckSignInErrorAlert(String text) {
+        clickOnElement(signInBtn);
+
+        Assert.assertTrue("Error notification is not visible",   isElementDisplayed(signInError));
+        Assert.assertEquals(text, getText(signInError));
+        return this;
+    }
+
     public LoginPage checkErrorMessageUniversal(String message) {
         String[] expectedErrorsArr = message.split(",");
         wait10.withMessage("Number of messages should be " + expectedErrorsArr.length)
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArr.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages",expectedErrorsArr.length,listOfErrors.size());
         List<String> actualFromErrors = new ArrayList();
         for (WebElement e : listOfErrors) {
             actualFromErrors.add(e.getText());

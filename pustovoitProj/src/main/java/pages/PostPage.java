@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
-import static org.junit.Assert.assertEquals;
 
 public class PostPage extends ParentPage {
     @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
@@ -70,5 +69,10 @@ public class PostPage extends ParentPage {
     public PostPage checkTextUnderLineChooseDropDown(String textUnderLine) {
         Assert.assertEquals("Text with under line was absent on page",textUnderLine ,TextUnderLineFromDD.getText());
         return this;
+    }
+
+    public EditPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPage(webDriver);
     }
 }
