@@ -11,6 +11,7 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//div[@class='alert alert-success text-center']") private WebElement successMessage;
     @FindBy(tagName = "h2") private WebElement createdPostTile;
     @FindBy(xpath = ".//div[@class ='body-content'][1]") private WebElement createdPostNote;
+    @FindBy(xpath = ".//p[contains(text(), 'Is this post unique?')]") private WebElement uniqueMessage;
 
 
 
@@ -63,6 +64,10 @@ public class PostPage extends ParentPage{
         return new EditPostPage(webDriver);
     }
 
+    public PostPage checkUniqueMessageDisplayed(String expectedMessage) {
+        Assert.assertEquals("The post is not unique", expectedMessage, uniqueMessage.getText());
+        return this;
+    }
 
 
 }

@@ -78,4 +78,15 @@ public class MyProfilePage extends ParentPage {
         Assert.assertTrue("User name is not valid", userNameLocator.getText().contains(userName));
         return this;
     }
+
+    public PostPage clickOnPostTitle(String postTitle){
+        clickOnElement(String.format(titlePost,postTitle));
+        return new PostPage(webDriver);
+    }
+
+    public MyProfilePage checkPostWithNewTitleWasCreated(String newPostTitle) {
+        Assert.assertEquals("Post is not one", 1, getPostsListWithTitle(newPostTitle).size());
+        logger.info("Post was created");
+        return this;
+    }
 }

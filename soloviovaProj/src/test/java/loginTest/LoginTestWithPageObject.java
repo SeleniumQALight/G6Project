@@ -4,10 +4,16 @@ import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
+import libraries.ExcelDriver;
 import libraries.TestData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.io.IOException;
+import java.util.Map;
+
+import static pages.CommonActionWithElements.configProperties;
 
 @RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
@@ -49,6 +55,17 @@ public class LoginTestWithPageObject extends BaseTest {
                 new Object[] {"qaauto", "dfg", ERROR_MESSAGE_LOGIN},
                 new Object[] {"tr", "123456qwerty",  ERROR_MESSAGE_LOGIN},
         };
+    }
+
+    @Test
+    public void validLoginWithExel() throws IOException {
+        Map<String , String > dataForValidLogIn = ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
+        loginPage.openLoginPage();
+        loginPage.enterUserNameIntoInputLogin(dataForValidLogIn.get("login"));
+        loginPage.enterPasswordIntoInputPassword(dataForValidLogIn.get("pass"));
+        loginPage.clickOnButtonLogIn();
+
+        Assert.assertTrue("Button is not displayed", headerElements.isButtonSignOutDisplayed());
     }
 
 }

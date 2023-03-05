@@ -5,19 +5,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreatePostPage extends ParentPage{
+public class CreatePostPage extends ParentPage {
     @FindBy(name = "title")
     private WebElement inputTitle;
 
     @FindBy(id = "post-body")
     private WebElement inputBody;
 
-    @FindBy (xpath = ".//button[@class = \"btn btn-primary\"]")
+    @FindBy(xpath = ".//button[@class = \"btn btn-primary\"]")
     private WebElement buttonSavePost;
 
     // './/select'
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
+
+    @FindBy(xpath = ".//input[@name='uniquePost']")
+    private WebElement checkbox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -55,13 +58,18 @@ public class CreatePostPage extends ParentPage{
         return this;
     }
 
-    public CreatePostPage selectValueInDropDownOptions(String valueInDD){
+    public CreatePostPage selectValueInDropDownOptions(String valueInDD) {
         selectValueInDropDown(dropDownOptions, valueInDD);
         return this;
     }
 
-    public CreatePostPage selectTextInDropDownByUIOptions(String textInDD){
+    public CreatePostPage selectTextInDropDownByUIOptions(String textInDD) {
         selectTextInDropDownByUI(dropDownOptions, textInDD);
+        return this;
+    }
+
+    public CreatePostPage setCheckboxSelected(String neededState) {
+        setCheckboxState(checkbox, neededState);
         return this;
     }
 
