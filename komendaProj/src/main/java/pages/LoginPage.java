@@ -41,6 +41,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ALERT_XPATH)
     private List<WebElement> alertMessages;
 
+    @FindBy(xpath = ".//*[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
+    private WebElement signInError;
+
     private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public static final String ALERT_XPATH = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
@@ -148,6 +151,13 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkErrorMessageWithText(String textMessage) {
         Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parameterizedAlert, textMessage)));
+        return this;
+    }
+
+    public LoginPage checkLoginInErrorMessage(String expectedErrorLogin) {
+        Assert.assertTrue("Message error login and password is not displayed", isElementDisplayed(signInError));
+        Util.waitABit(1);
+        Assert.assertEquals("Wrong message is displayed", expectedErrorLogin, signInError.getText());
         return this;
     }
 }
