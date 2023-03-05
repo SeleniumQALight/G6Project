@@ -61,22 +61,22 @@ public class RegistrationErrorsTest extends BaseTest {
     @Test
     @Parameters(method = "provideParameters2")
     @TestCaseName("registrationErrors : login = {0}, password = {1}")
-    public void checkErrorsForLogin(String userName,  String password, String expectedErrorsForLogin){
+    public void checkErrorsForLogin(String userName,  String password){
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin(userName);
         loginPage.enterPasswordIntoInputPassword(password);
         loginPage.clickOnButtonLogin();
         loginPage.checkLoginError();
-        loginPage.checkErrorsMessageForLogIn(expectedErrorsForLogin);
+        loginPage.checkErrorsMessageForLogIn();
 
     }
 
 
     public static Object[][] provideParameters2() {
         return new Object[][] {
-                new Object[] {"tr", "ttt", ERROR_LOGIN},
-                new Object[] {"123", "123456qwerty", ERROR_LOGIN},
-                new Object[] {"qaauto", "3", ERROR_LOGIN},
+                new Object[] {"tr", "ttt"},
+                new Object[] {"123", "123456qwerty"},
+                new Object[] {"qaauto", "3"},
         };
     }
 

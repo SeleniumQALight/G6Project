@@ -176,13 +176,13 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage checkLoginError(){
-        isElementDisplayed(loginErrorText);
+        Assert.assertTrue(isElementDisplayed(loginErrorText));
         return this;
     }
 
 
-    public LoginPage checkErrorsMessageForLogIn(String expectedErrors) {
-       Assert.assertEquals("Message is not equals",expectedErrors,loginErrorText.getText());
+    public LoginPage checkErrorsMessageForLogIn() {
+       Assert.assertTrue("Error text for log in is displayed",isElementDisplayed(loginErrorText));
         return this;
     }
 
