@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElements;
 
+
 public class PostPage extends ParentPage {
     @FindBy(xpath = ".//a[@data-original-title='Edit']")
     private WebElement buttnEdit;
@@ -21,6 +22,8 @@ public class PostPage extends ParentPage {
     private WebElement buttonDelete;
     @FindBy(xpath = ".//a[@class='text-primary mr-2']")
     private WebElement editButton;
+    @FindBy(xpath = ".//p[contains(text(), 'unique')]")
+    private WebElement postUniqueness ;
 
     private HeaderElements headerElements = new HeaderElements(webDriver);
 
@@ -63,6 +66,16 @@ public class PostPage extends ParentPage {
         forTextComparing(expectedLabelValue, labelValue);
         return this;
     }
+
+    public PostPage checkIfPostUnique(){
+        if(postUniqueness.getText().contains("yes")){
+            logger.info("The post is unique");
+        }else if(postUniqueness.getText().contains("no")){
+            logger.info("The post is not unique");
+        }
+        return this;
+    }
+
 
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
