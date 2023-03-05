@@ -34,7 +34,7 @@ public class HomePage extends ParentPage{
 
     public boolean isButtonSignOutDisplayed(){
         try {
-            webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
+            //webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
             return isElementDisplayed(buttonSignOut);
         }catch (Exception e){
             return false;
