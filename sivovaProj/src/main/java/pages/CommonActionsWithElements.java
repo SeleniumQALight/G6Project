@@ -143,15 +143,13 @@ public class CommonActionsWithElements {
                uncheckCheckbox(checkbox);
             } else {
                 logger.info("Incorrect target value: input check or uncheck ");
+                Assert.fail("Incorrect target value: input check or uncheck ");
             }
         }
     }
 
     protected boolean isCheckboxSelected (WebElement checkbox) {
-        if ((checkbox.getCssValue("value")) == "yes") {
-            return true;
-        }
-        return false;
+        return checkbox.isSelected();
     }
 
     private String getElementName(WebElement webElement) {
