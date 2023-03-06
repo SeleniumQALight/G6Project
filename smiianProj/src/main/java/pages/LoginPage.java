@@ -1,6 +1,7 @@
 package pages;
 
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -35,12 +36,21 @@ public class LoginPage extends ParentPage {
 
     private String alertMessageText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and contains(text(), '%s')]";
 
+
+//-----------------
+    private String signInErrorMessageText = ".//div[@class='alert alert-danger text-center' and contains(text(), '%s')]";
+
+
+    @FindBy (xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement signInErrorMessageWithOutText;
+//-----------------
+
     @FindBy (xpath = signUpAlertMessages)
     private List<WebElement> listOfErrors;
 
-
-
     private static final String signUpAlertMessages = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
+
 
 
 
@@ -81,7 +91,7 @@ public class LoginPage extends ParentPage {
 
 //-------------------------------------------------------------------------------------------------------------
 
-    public void enterPasswordIntoInputpassword(String password) {
+    public void enterPasswordIntoInputPassword(String password) {
 
         enterTextIntoElement(inputPassword, password);
 
@@ -92,11 +102,11 @@ public class LoginPage extends ParentPage {
     }
 
 
-//-------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------
     public LoginPage enterDataIntoEmailField(String password) {
-    enterTextIntoElement(signupEmail, password);
-    return this;
-}
+        enterTextIntoElement(signupEmail, password);
+        return this;
+    }
 
 
     public void clickOnButtonLogin() {
@@ -114,7 +124,7 @@ public class LoginPage extends ParentPage {
     public HomePage fillingLoginFormWithValidCred() {
 //        openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LIGIN);
-        enterPasswordIntoInputpassword(TestData.VALID_PASSWORD);
+        enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
 
         return new HomePage(webDriver);
@@ -127,13 +137,14 @@ public class LoginPage extends ParentPage {
 
 
 
+
     public LoginPage checkAlertMessageContainText(String expectedMessage){
         Assert.assertTrue("Element is not displayed", isElementDisplayed(getAlertMessage(expectedMessage)));
         return this;
     }
 
     public WebElement getAlertMessage(String alertText1){
-      return webDriver.findElement(By.xpath(String.format(alertMessageText, alertText1)));
+        return webDriver.findElement(By.xpath(String.format(alertMessageText, alertText1)));
     }
 
 
@@ -170,6 +181,9 @@ public class LoginPage extends ParentPage {
                 .until(ExpectedConditions
                         .numberOfElementsToBe(By.xpath(signUpAlertMessages), expectedErrorsArray.length));
 
+        Util.waitABit(1);  //  додаємо очікування 1 сек
+        Assert.assertEquals("Number of messages", expectedErrorsArray.length, listOfErrors.size());  // робимо перевірку після очікування в 1 сек
+
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: listOfErrors) {
             actualTextFromErrors.add(element.getText());
@@ -185,6 +199,29 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+
+
+    public LoginPage enterUsernameAndPassword (String userName, String password) {
+        enterUserNameIntoInputLogin(userName);
+        enterPasswordIntoInputPassword(password);
+        clickOnButtonLogin();
+        return this;
+    }
+
+    public LoginPage checkSignInErrorMessageIsVisible() {
+        Assert.assertTrue("Error element is not visible", isElementDisplayed(signInErrorMessageWithOutText));
+        return this;
+    }
+
+
+    public LoginPage checkSignInErrorMessageContainText(String expectedMessage){
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(getSignInErrorMessage(expectedMessage)));
+        return this;
+    }
+
+    public WebElement getSignInErrorMessage(String SignInErrorMessageText){
+        return webDriver.findElement(By.xpath(String.format(signInErrorMessageText, SignInErrorMessageText)));
+    }
 
 
 
