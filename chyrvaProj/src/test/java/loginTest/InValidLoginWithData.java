@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
 public class InValidLoginWithData extends BaseTest {
-    final static String ERROR_MESSAGE_LOGIN = "Invalid username pasword";
+
 
 
     //        2. Написати тест на невалідний логін з декількама наборами данних
@@ -33,8 +33,8 @@ public class InValidLoginWithData extends BaseTest {
 
     public static Object[][] provideParameters() {
         return new Object[][]{
-                new Object[]{"qaauto", "123456qwert", ERROR_MESSAGE_LOGIN},
-                new Object[]{"qaautoo","123456qwerty", ERROR_MESSAGE_LOGIN},
+                new Object[]{"qaauto", "123456qwert"},
+                new Object[]{"qaautoo","123456qwerty"},
 
         };
     }

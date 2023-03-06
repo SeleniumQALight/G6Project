@@ -13,7 +13,7 @@ import static pages.CommonActionsWithElements.configProperties;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
-    public void validLogin(){
+    public void validLogin() {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
@@ -25,7 +25,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void inValidLogin(){
+    public void inValidLogin() {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("Not valid");
@@ -36,10 +36,11 @@ public class LoginTestWithPageObject extends BaseTest {
 
 
     }
+
     @Test
     public void validLoginWithExcel() throws IOException {
-        Map<String,String > dataForValidLogin =
-                ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn") ;
+        Map<String, String> dataForValidLogin =
+                ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin(dataForValidLogin.get("login"));
         loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass"));
@@ -47,4 +48,5 @@ public class LoginTestWithPageObject extends BaseTest {
 
         Assert.assertTrue("Button is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
 
+    }
 }
