@@ -14,21 +14,21 @@ import static pages.CommonActionWithElements.configProperties;
 
 public class LoginTestWithPageObject extends BaseTest {
  @Test
-    public void validLogin() {
-     loginPage.openLoginPage();
-     loginPage.enterUserNameIntoInputLogin("qaauto");
-     loginPage.enterPasswordIntoInputpassword("123456qwerty");
-     loginPage.clickOnButtonLogin();
+ public void validLogin() {
+  loginPage.openLoginPage();
+  loginPage.enterUserNameIntoInputLogin("qaauto");
+  loginPage.enterPasswordIntoInputPassword("123456qwerty");
+  loginPage.clickOnButtonLogin();
 
-     Assert.assertTrue("SignOut button is not displayed",
-             headerElement.isButtonSignOutDisplayed());
+  Assert.assertTrue("SignOut button is not displayed",
+          headerElement.isButtonSignOutDisplayed());
  }
 
  @Test
  public void notValidLogin() {
   loginPage.openLoginPage();
   loginPage.enterUserNameIntoInputLogin("AAA");
-  loginPage.enterPasswordIntoInputpassword("123456qwerty");
+  loginPage.enterPasswordIntoInputPassword("123456qwerty");
   loginPage.clickOnButtonLogin();
 
   Assert.assertTrue("SignIn button is displayed",
