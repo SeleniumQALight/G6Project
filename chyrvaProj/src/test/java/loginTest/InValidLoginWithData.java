@@ -17,7 +17,7 @@ public class InValidLoginWithData extends BaseTest {
     @Test
     @Parameters(method = "provideParameters")
     @TestCaseName("inValidLogIn : username = {0}, password = {1}")
-    public void inValidLogin(String username, String password, String expectedErrorMsg) {
+    public void inValidLogin(String username, String password) {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin(username);
         loginPage.enterPasswordIntoInputPassword(password);
