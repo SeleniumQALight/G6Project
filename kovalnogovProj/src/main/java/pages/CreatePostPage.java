@@ -6,16 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPage {
-    @FindBy(name = "title")
-    private WebElement inputTitle;
-    @FindBy(id = "post-body")
+    @FindBy(name="title")
+private WebElement inputTitle;
+    @FindBy(id="post-body")
     private WebElement inputPostBody;
     @FindBy(xpath = ".//button[@class='btn btn-primary']")
     private WebElement savePostButton;
     @FindBy(tagName = "select")
     private WebElement dropDown;
-    @FindBy(xpath = ".//input[@type='checkbox']")
-    private WebElement checkBox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -27,7 +25,7 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-        // checkURL();
+       // checkURL();
         checkURLContainsRelative();
         waitChatToBeHidden();
         Assert.assertTrue("CreatePostPage is not displayed", isElementDisplayed(inputTitle));
@@ -35,50 +33,32 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage typePostTitle(String testTitle) {
-        typeTextToElement(inputTitle, testTitle);
+        typeTextToElement(inputTitle ,testTitle);
         return this;
     }
 
 
-    public CreatePostPage typePostBody(String text) {
-        typeTextToElement(inputPostBody, text);
+    public CreatePostPage typePostBody(String text){
+        typeTextToElement(inputPostBody,text);
         return this;
     }
 
-    public CreatePostPage selectItemInDropDown(String textinDD) {
-        selectTextInDropDown(dropDown, textinDD);
+    public CreatePostPage selectItemInDropDown(String textinDD){
+        selectTextInDropDown(dropDown,textinDD);
         return this;
     }
 
-    public CreatePostPage selectItemInDropDownByUI(String textinDD) {
-        selectTextInDropDownByUi(dropDown, textinDD);
+    public CreatePostPage selectItemInDropDownByUI(String textinDD){
+        selectTextInDropDownByUi(dropDown,textinDD);
         return this;
     }
 
-    public CreatePostPage selectValueInDropDown(String value) {
+    public CreatePostPage selectValueInDropDown(String value){
         selectValueInDropDown(dropDown, value);
         return this;
     }
-
-    public CreatePostPage selectCheckBox() {
-        if (!isCheckBoxSelected(checkBox))
-            selectCheckBox(checkBox);
-        return this;
-    }
-
-    public CreatePostPage deselectCheckbox() {
-        selectCheckBox(checkBox);
-        return this;
-    }
-
-    public CreatePostPage selectCheckBox(CheckBoxState state) {
-        selectCheckBox(checkBox, state);
-        return this;
-    }
-
-
-    public PostPage clickSavePostButton() {
+    public PostPage clickSavePostButton(){
         clickOnElement(savePostButton);
-        return new PostPage(webDriver);
+        return new PostPage( webDriver);
     }
 }

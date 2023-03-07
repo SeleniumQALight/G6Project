@@ -5,6 +5,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -15,16 +16,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class CommonActionsWithElement {
-    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
     protected Logger logger = Logger.getLogger(getClass());
     protected WebDriver webDriver;
-    protected WebDriverWait wait10;
-    protected WebDriverWait wait15;
-
-    public enum CheckBoxState {
-        CHECKED,
-        UNCHECKED;
-    }
+    protected   WebDriverWait wait10;
+    protected  WebDriverWait wait15;
+    public static ConfigProperties configProperties= ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElement(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -34,19 +30,19 @@ public class CommonActionsWithElement {
     }
 
 
-    protected WebElement getWebElement(String xpath) {
+    protected  WebElement getWebElement(String xpath){
         WebElement element = null;
-        try {
+        try{
             By elementBy = By.xpath(xpath);
             wait15.until(ExpectedConditions.visibilityOfElementLocated(elementBy));
-            element = webDriver.findElement(elementBy);
-        } catch (Exception e) {
-            printErroAboutElementAndStopTest(e);
+            element= webDriver.findElement(elementBy);
+        }
+        catch (Exception e){
+            printErroAboutElementAndStopTest( e );
         }
 
         return element;
     }
-
     protected void typeTextToElement(WebElement element, String text) {
         wait15.until(ExpectedConditions.visibilityOf(element));
         try {
@@ -148,43 +144,6 @@ public class CommonActionsWithElement {
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }
-    }
-
-    protected void selectCheckBox(WebElement element) {
-        try {
-            element.click();
-            logger.info("Click on checkBox");
-        } catch (Exception e) {
-            printErroAboutElementAndStopTest(e);
-        }
-
-    }
-
-    protected void selectCheckBox(WebElement element, CheckBoxState state) {
-        try {
-            logger.info("Current checkbox state "+ isCheckBoxSelected(element));
-            if (state == CheckBoxState.CHECKED &&isCheckBoxSelected(element)==false) {
-                element.click();
-                logger.info("Select checkbox");
-            }
-            else if(state == CheckBoxState.UNCHECKED &&isCheckBoxSelected(element)==true){
-                element.click();
-                logger.info("Deselect checkbox");
-            }
-        } catch (Exception e) {
-            printErroAboutElementAndStopTest(e);
-        }
-    }
-
-    protected boolean isCheckBoxSelected(WebElement element) {
-        boolean isSelected = false;
-        try {
-            isSelected = element.isSelected();
-            logger.info("CheckBox state: " + isSelected);
-        } catch (Exception e) {
-            printErroAboutElementAndStopTest(e);
-        }
-        return isSelected;
     }
 
     protected void printErroAboutElementAndStopTest(Exception e) {
