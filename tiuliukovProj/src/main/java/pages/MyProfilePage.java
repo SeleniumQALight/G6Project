@@ -42,7 +42,7 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage checkIsDefaultNameDisplayed(String expectedLoginName) {
-        Assert.assertEquals("Wrong user name is displayed", expectedLoginName, actualLoginName.getText());
+        Assert.assertEquals("Wrong user name is displayed", expectedLoginName.toLowerCase(), actualLoginName.getText());
         return this;
     }
 

@@ -48,7 +48,7 @@ public class CommonActionsWithElement {
         try {
             element.clear();
             element.sendKeys(text);
-            logger.info("Text " + text + "was typed to " + getElementName(element));
+            logger.info("Text " + text + " was typed to " + getElementName(element));
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }
