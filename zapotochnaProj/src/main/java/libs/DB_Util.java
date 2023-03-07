@@ -3,7 +3,7 @@ package libs;
 import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
-public class DB_Util {
+public class DB_Util { //ідея такого класу: це клас обгортки, в якому зібрані методи в яких виконуються запити
     private Database mySQL_DataBase;
     Logger logger = Logger.getLogger(getClass());
 
@@ -15,6 +15,8 @@ public class DB_Util {
                 String.format("select passWord from seleniumTable where login = '%s'", login)
                                                 );
         mySQL_DataBase.quit();
+
+
         logger.info("--- Disconnected from DB -------");
         return pass;
     }

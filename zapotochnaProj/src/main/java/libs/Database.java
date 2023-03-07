@@ -216,9 +216,9 @@ public class Database {
      * @return
      * @throws SQLException
      */
-    public int changeTable(String query, String... params) throws SQLException {
+    public int changeTable(String query, String... params) throws SQLException { //string...params , означає що ми можемо передати кверю, а а далі кілька стрінгів.
         Statement statement = connection.createStatement();
-        int effectedRows = statement.executeUpdate(String.format(query, params));
+        int effectedRows = statement.executeUpdate(String.format(query, params)); //string.format для того щоб вклеювали параметри
         printQuery(query);
         statement.close();
         return effectedRows;
@@ -233,7 +233,7 @@ public class Database {
 
     private void printQuery(String query) {
         String queryForOutput = query.length() < MAX_LENGTH_OF_QUERY_FOR_OUTPUT ? query :
-                (query.substring(0, MAX_LENGTH_OF_QUERY_FOR_OUTPUT) + "...");
+                (query.substring(0, MAX_LENGTH_OF_QUERY_FOR_OUTPUT) + "..."); //if-else скороченний запис
         log.info("Query for execute: \"" + queryForOutput +"\"\n");
     }
 
