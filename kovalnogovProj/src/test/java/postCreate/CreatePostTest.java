@@ -4,7 +4,6 @@ import baseTest.BaseTest;
 import libs.TestData;
 import org.junit.After;
 import org.junit.Test;
-import pages.CommonActionsWithElement;
 
 public class CreatePostTest extends BaseTest {
 
@@ -20,7 +19,6 @@ homePage.openHomePage()
         .typePostBody("Test post body")
       //  .selectItemInDropDown("Приватне повідомлення")
         //.selectValueInDropDown("One Person")
-        .selectCheckBox(CommonActionsWithElement.CheckBoxState.CHECKED)
         .selectItemInDropDownByUI("Приватне повідомлення")
         .clickSavePostButton()
         .checkIsRedirectToPostPage()
@@ -28,7 +26,6 @@ homePage.openHomePage()
         .checkIsPostTitlePresent()
         .checkIsNoteContainsUnderlineText()
         .checkIsCreatedPostTitleTextEqualWithExpected(POST_TITLE)
-        .checkThatPostUnique()
         .checkIsNoteTextEqualWithExpected("Note: This post was written for One Person")
         .getHeaderElements()
         .clickOnProfileButton()

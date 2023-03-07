@@ -22,9 +22,6 @@ public class PostPage extends ParentPage {
 
     @FindBy(xpath = ".//i/u")
     private WebElement dropdownValue;
-    @FindBy(xpath = "(.//p)[3]")
-    private WebElement uniqueValue;
-
 
     private HeaderElements headerElements;
 
@@ -70,11 +67,6 @@ public class PostPage extends ParentPage {
     }
     public PostPage checkIsNoteTextEqualWithExpected(String title) {
         Assert.assertEquals("Title name does not match with expected",title,getText(note));
-        return this;
-    }
-
-    public PostPage checkThatPostUnique( ) {
-        Assert.assertTrue("Post is not unique or check box is not selected ",uniqueValue.getText().contains("yes"));
         return this;
     }
 
