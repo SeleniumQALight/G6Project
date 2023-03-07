@@ -1,4 +1,4 @@
-package BaseTest;
+package baseTest;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
