@@ -25,6 +25,10 @@ public class CreatePostPage extends ParentPage {
     @FindBy (xpath = ".//option[@value='One Person']")
     private WebElement createPostDropDownSecondOption;
 
+    @FindBy (xpath = ".//input[@type='checkbox']")
+    private WebElement checkBoxIsPostUnique;
+
+
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -76,6 +80,18 @@ public class CreatePostPage extends ParentPage {
         selectTextInDropDownByUi(createPostDropDown, createPostDropDownSecondOption);
         return this;
     }
+
+    public CreatePostPage getChBoxAttributeAND() {              //----------------------------HW6
+        getCheckBoxAttribute(checkBoxIsPostUnique);
+        logger.info(checkBoxIsPostUnique.isSelected());
+        return this;
+    }
+
+    public CreatePostPage checkboxPostUniqueClick() {        //----------------------------HW6
+        checkBoxIsPostUnique.click();
+        return this;
+    }
+
 
 
 

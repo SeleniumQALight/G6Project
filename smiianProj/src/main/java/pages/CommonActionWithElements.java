@@ -124,6 +124,15 @@ public class CommonActionWithElements {
     }
 
 
+    public String getCheckBoxAttribute (WebElement webElement) {       //   --------------- HW 6
+        String attribute = webElement.getAttribute("value");
+        logger.info (attribute);
+        return attribute;
+    }
+
+
+
+
 
 
     protected  void printErrorAndStopTest(Exception e) {
