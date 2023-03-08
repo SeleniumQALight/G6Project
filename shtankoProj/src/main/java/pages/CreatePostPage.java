@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +19,8 @@ public class CreatePostPage extends ParentPage{
     //скорочений запис цього локатора './/select'
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
+    @FindBy(xpath = ".//input[@name='uniquePost']")
+    private WebElement checkboxUnique;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -63,5 +66,13 @@ public class CreatePostPage extends ParentPage{
         selectTextInUIDropDown(dropDownOptions, valueInUIDD);
         return this;
     }
-
+    public CreatePostPage clickOnCheckbox (boolean isChecked){
+        WebElement checkbox = webDriver.findElement(By.xpath(".//input[@name='uniquePost']"));
+        if (isChecked != checkbox.isSelected()) {
+            checkbox.click();
+        }
+        String checkboxState = checkbox.isSelected() ? "Checked" : "Unchecked";
+        logger.info("Checkbox is currently: " + checkboxState);
+        return this;
+    }
 }
