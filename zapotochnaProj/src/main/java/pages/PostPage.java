@@ -56,8 +56,16 @@ public class PostPage extends ParentPage {
         return new MyProfilePage(webDriver);
     }
 
+
     public PostPage checkIfPostTitleCorrect(String postTitle) {
         Assert.assertEquals("Title is found ", postTitle, checkPostTitle.getText()  );
         return this;
+    }
+
+    public CreatePostPage clickOnEditPostButton() {
+
+        clickOnElement(buttonEdit);
+        return new CreatePostPage(webDriver);
+
     }
 }
