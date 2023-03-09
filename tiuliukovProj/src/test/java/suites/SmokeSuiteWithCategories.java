@@ -17,5 +17,6 @@ import registrationTest.RegistrationErrorsTest;
         RegistrationErrorsTest.class,
         CreatePostTest.class
 })
+
 public class SmokeSuiteWithCategories {
 }
