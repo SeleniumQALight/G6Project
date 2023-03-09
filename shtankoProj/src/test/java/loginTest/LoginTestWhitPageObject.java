@@ -31,7 +31,7 @@ public class LoginTestWhitPageObject extends BaseTest {
         Map<String, String> dataForValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin(dataForValidLogin.get("login"));
-        loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass1"));
+        loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass"));
         loginPage.clickButtonLogin();
 
         Assert.assertTrue("Button is not displayed",
