@@ -1,9 +1,12 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import categoties.SmokeTestFilter;
+
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import pages.CommonActionsWithElement;
 import pages.HomePage;
 
@@ -15,6 +18,7 @@ import static pages.CommonActionsWithElement.configProperties;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void testValidLogin() {
 
         loginPage.openLoginPage();
