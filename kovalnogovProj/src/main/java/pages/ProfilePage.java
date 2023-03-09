@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,7 @@ public class ProfilePage extends ParentPage {
 
         return webDriver.findElements(By.xpath(String.format(titlePost, title)));
     }
-
+    @Step
     public ProfilePage checkIsRedirectProfilePage() {
        // checkURL();
         checkURLContainsRelative();
@@ -40,17 +41,17 @@ public class ProfilePage extends ParentPage {
         Assert.assertTrue("My ProfilePage is not loaded", isElementDisplayed(avatar));
         return new ProfilePage(webDriver);
     }
-
+    @Step
     public ProfilePage checkPostWasCreatred(String postTitle) {
         Assert.assertEquals("Incorrect count of posts", 1, getPostsListWithTitle(postTitle).size());
         return this;
     }
-
+    @Step
     public ProfilePage checkIsUserNameVisibleOnProfilePage(String userName) {
         Assert.assertEquals("Wrong user name on profile Page", userName, getText(user));
         return this;
     }
-
+    @Step
     public ProfilePage deletePostsWithTitleIfPresent(String postTitle) {
         List<WebElement> listOfPosts = getPostsListWithTitle(postTitle);
         int count = listOfPosts.size();
@@ -72,12 +73,12 @@ public class ProfilePage extends ParentPage {
         }
         return this;
     }
-
+    @Step
     public ProfilePage checkPostWasDeletedAlert() {
         Assert.assertTrue("Alert that post is deleted not present ", isElementDisplayed(deletePostSuccesfull));
         return this;
     }
-
+    @Step
     public PostPage openPost(String postTitle) {
         clickOnElement(String.format(titlePost, postTitle));
         return new PostPage(webDriver);
