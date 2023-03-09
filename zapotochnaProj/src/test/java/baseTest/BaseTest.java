@@ -8,6 +8,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.HomePage;
@@ -53,6 +54,14 @@ public class BaseTest { //батьківський клас для всіх кл
 
         String browser = System.getProperty("browser"); // передаємо цю зміну при запуску тесту  , якщо не передаємо по-дефолту буде null
         if ((browser == null) || "chrome".equalsIgnoreCase(browser)) {
+
+
+            //якщо перестане працювати Хром післі апдейту, розкоментувати ці рядочки
+//            ChromeOptions ops = new ChromeOptions();
+//            ops.addArguments("--remote-allow-origins=*");
+//            WebDriverManager.chromedriver().setup();
+//            webDriver = new ChromeDriver(ops);
+
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
         } else if ("firefox".equalsIgnoreCase(browser)) {
