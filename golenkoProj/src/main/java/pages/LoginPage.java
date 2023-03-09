@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -57,6 +58,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -70,6 +72,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
 //        try {
 ////            WebElement inputUserName =
@@ -85,19 +88,23 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
 
         enterTextIntoElement(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
 
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonLogin);
     }
 
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
@@ -105,21 +112,25 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterUserNameIntoInputSignUp(String userName) {
         enterTextIntoElement(inputUserNameSignUp, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailIntoInputSignUp(String email) {
         enterTextIntoElement(inputEmailSignUp, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordIntoInputSignUp(String password) {
         enterTextIntoElement(inputPasswordSignUp, password);
         return this;
     }
 
+    @Step
     public LoginPage checkThreeAlertMassagesAreDisplayed() {
         WebDriverWait wdw = new WebDriverWait(webDriver, Duration.ofSeconds(5));
         wdw.until(ExpectedConditions.numberOfElementsToBe(By.xpath(ALERT_XPATH), 3));
@@ -127,11 +138,13 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage checkErrorMessageWithText(String textMessage) {
         Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parametrizedAlert, textMessage)));
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         // error1,error2,error3 -> array[0] = error1, array[1] = error2, array[2] = error3
         String[] expectedErrorsArray = expectedErrors.split(",");
@@ -142,7 +155,7 @@ public class LoginPage extends ParentPage {
         Assert.assertEquals("Number of messages", expectedErrorsArray.length, listOfErrors.size());
 
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
-        for (WebElement element: listOfErrors) {
+        for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());
         }
         SoftAssertions softAssertions = new SoftAssertions();
@@ -157,11 +170,12 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public void checkErrorMessageForLogin(String expectedErrorLogin) {
         Assert.assertTrue("Error message in not displayed when login failed", isElementDisplayed(signInError));
     }
 
-
+    @Step
     public LoginPage loginFromKeyboard(String login, String password) {
         usersPressesKeyTabTime(2);
         inputFromKeyboard(login);
@@ -171,6 +185,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage registrationFromKeyBoard(String username, String email, String password) {
         usersPressesKeyTabTime(5);
         inputFromKeyboard(username);
@@ -181,6 +196,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage switchToPreviousTabAndRefresh() {
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(0));
