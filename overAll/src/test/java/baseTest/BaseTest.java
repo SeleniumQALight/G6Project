@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -50,8 +51,10 @@ public class BaseTest {
     private WebDriver initDriver(){
         String browser = System.getProperty("browser");
         if ((browser==null) || "chrome".equalsIgnoreCase(browser)){
+            ChromeOptions ops = new ChromeOptions();
+            ops.addArguments("--remote-allow-origins=*");
             WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver();
+            webDriver = new ChromeDriver(ops);
         } else if ("firefox".equalsIgnoreCase(browser)) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
@@ -67,6 +70,7 @@ public class BaseTest {
             WebDriverManager.iedriver().arch32().setup();
             return new InternetExplorerDriver();
         }
+//        WebDriverManager.chromedriver().driverVersion("111.0.5563.19").setup();
         return webDriver;
     }
 
