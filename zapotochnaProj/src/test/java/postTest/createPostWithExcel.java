@@ -14,7 +14,7 @@ import static pages.CommonActionsWithElements.configProperties;
 
 
 public class createPostWithExcel extends BaseTest {
-    final String myUniqueTitle = ExcelDriver.getMultipleData(configProperties.DATA_FILE(), "createPost", 1) + Util.getDateAndTimeFormatted();
+    final String myUniqueTitle = ExcelDriver.getData(configProperties.DATA_FILE(), "createPost") + Util.getDateAndTimeFormatted();
 
     public createPostWithExcel() throws IOException {
     }
