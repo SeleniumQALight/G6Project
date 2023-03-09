@@ -1,6 +1,6 @@
 package registrationTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;  // додали бібліотеку
 // + не забути дані з Pom-файлу <dependency> <groupId>pl.pragmatists</groupId>
 // <artifactId>JUnitParams</artifactId> <version>1.0.5</version> <scope>test</scope> </dependency>
