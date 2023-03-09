@@ -8,6 +8,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -49,8 +50,12 @@ public class BaseTest {
     private WebDriver initDriver() {
         String browser = System.getProperty("browser");
         if ((browser == null) || ("chrome".equals(browser))) {
+            ChromeOptions ops = new ChromeOptions();
+            ops.addArguments("--remote-allow-origins=*");
             WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver();
+            webDriver = new ChromeDriver(ops);
+         //   WebDriverManager.chromedriver().setup();
+         //   webDriver = new ChromeDriver();
         } else if ("firefox".equals(browser)) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
