@@ -26,7 +26,7 @@ public class CreatePostTest extends BaseTest {
                 .checkTextInTitle(POST_TITLE)
                 .checkTextInLabel()
                 .checkUsersText("All Users")
-                .isCheckBoxMessageCorrect("Is this post unique? : yes")
+                .isCheckBoxMessageCorrect("Is this post unique? : no")
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .checkUserVisibility("qaauto")
