@@ -35,6 +35,8 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder= 'Create a password']")
     private WebElement createPassword;
 
+    final static String ERROR_MESSAGE_LOGIN = "Invalid username pasword";
+
     private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     @FindBy(id = "username-register")
@@ -46,13 +48,12 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
-@FindBy(xpath = listOfErrorsLocator)
-private List<WebElement> listOfErrors;
-
+    @FindBy(xpath = listOfErrorsLocator)
+    private List<WebElement> listOfErrors;
 
 
     private String errorMessage = "//*[@class = \"alert alert-danger small liveValidateMessage liveValidateMessage--visible\" and text() = '%s' ]";
-
+    private String errorMessageForLogin = "//*[@class='alert alert-danger text-center']";
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -155,7 +156,14 @@ private List<WebElement> listOfErrors;
 
         return this;
     }
+    public LoginPage checkErrorMessageWithTextForLogIn() {
 
+        Assert.assertTrue("Error Message is not displayed",
+                isElementDisplayed(String.format(errorMessageForLogin, ERROR_MESSAGE_LOGIN)));
+
+
+        return this;
+    }
 
     public LoginPage checkErrorMessagesIsDisplayed(int expectedSize) {
         Assert.assertEquals("Number of messages is not three"
@@ -198,7 +206,7 @@ private List<WebElement> listOfErrors;
         Util.waitABit(1);
         Assert.assertEquals("Number of messages", expectedErrorsArray.length,listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
-        for (WebElement element:listOfErrors){
+        for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());
         }
         SoftAssertions softAssertions = new SoftAssertions();
