@@ -49,6 +49,10 @@ public class LoginPage extends ParentPage {
     private List<WebElement> listOfErrors;
 
 
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
+    private WebElement loginErrorText;
+
+
 
     public LoginPage(WebDriver webDriver) {
 
@@ -174,6 +178,17 @@ public class LoginPage extends ParentPage {
             softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals").isIn(actualTextFromErrors);
         }
         softAssertions.assertAll();
+        return this;
+    }
+
+    public LoginPage checkLoginError(){
+        Assert.assertTrue(isElementDisplayed(loginErrorText));
+        return this;
+    }
+
+
+    public LoginPage checkErrorsMessageForLogIn() {
+       Assert.assertTrue("Error text for log in is displayed",isElementDisplayed(loginErrorText));
         return this;
     }
 
