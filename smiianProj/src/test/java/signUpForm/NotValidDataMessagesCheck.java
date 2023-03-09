@@ -1,6 +1,6 @@
 package signUpForm;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import org.junit.Test;
 
 public class NotValidDataMessagesCheck extends BaseTest{

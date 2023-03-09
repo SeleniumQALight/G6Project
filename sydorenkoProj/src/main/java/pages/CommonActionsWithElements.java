@@ -156,6 +156,34 @@ public class CommonActionsWithElements {
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
+    public void checkCheckbox(WebElement checkbox) {
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is checked");
+        } else {
+            logger.info("Checkbox is already checked");
+        }
+    }
+
+    public void uncheckCheckbox(WebElement checkbox) {
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox was unchecked");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    public void setCheckboxState(WebElement checkbox, String checkBoxState) {
+        if (checkBoxState.equalsIgnoreCase("Check")) {
+            checkCheckbox(checkbox);
+        } else if (checkBoxState.equalsIgnoreCase("Uncheck")) {
+            uncheckCheckbox(checkbox);
+        } else {
+            logger.error("Incorrect state of checkbox");
+        }
+    }
 //
 //    метод moveToElement (аналог скрола )
 //

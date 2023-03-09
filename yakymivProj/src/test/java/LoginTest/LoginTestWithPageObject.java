@@ -1,15 +1,23 @@
 package LoginTest;
 
 import baseTest.BaseTest;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import junitparams.naming.TestCaseName;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import java.io.IOException;
 import java.util.Map;
 
 import static pages.CommonActionsWithElements.configProperties;
 
+@RunWith(JUnitParamsRunner.class)
 public class LoginTestWithPageObject extends BaseTest {
+        final static String ERROR_MESSAGE = "Invalid username pasword";
+
     @Test
     public void validLogin(){
         loginPage.openLoginPage();
@@ -21,12 +29,22 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void invalidLogin(){
-        loginPage.openLoginPage();
-        loginPage.fillingLoginFormWithInvalidCred();
+    @Parameters(method = "provideParameters")
+    @TestCaseName("invalidLogin : login = {0}, password = {1}")
+    public void invalidLogin(String userName,String password,String expectedError){
+        loginPage
+                .openLoginPage()
+                .fillingLoginFormWithInvalidCred(userName,password)
+                .checkLogInErrorMessage(expectedError);
+    }
 
-        Assert.assertFalse("Sign out button is displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
-        Assert.assertTrue("Sign in button is not displayed", loginPage.isButtonSignInDisplayed());
+    public static Object[][] provideParameters() {
+        return new Object[][] {
+                new Object[] {"ivan19","invalid_pass", ERROR_MESSAGE },
+                new Object[] {"invalid_userName","valid_pass", ERROR_MESSAGE},
+                new Object[] {"invalid_userName","invalid_pass", ERROR_MESSAGE}
+                //homework pt2
+        };
     }
 
     @Test
@@ -36,7 +54,6 @@ public class LoginTestWithPageObject extends BaseTest {
         loginPage.enterUserNameintoInputLogin(dataForValidLogin.get("login"));
         loginPage.enterPasswordIntoInputPassword(dataForValidLogin.get("pass"));
         loginPage.clickOnButtonLogin();
-
         Assert.assertTrue("Button is not displayed", homePage.getHeaderElement().isButtonSignOutDisplayed());
     }
 }
