@@ -2,6 +2,7 @@ package pages;
 
 import elements.HeaderElement;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,8 +28,10 @@ public class PostPage extends CreatePostPage {
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
-    @FindBy(xpath = "//p[normalize-space()='Is this post unique? : yes']")
-    private WebElement postUniqueElement;
+    private String postUniqueMessage = ".//*[text()='%s']";
+
+//
+
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
@@ -84,7 +87,8 @@ public class PostPage extends CreatePostPage {
     }
 
     public PostPage isCheckBoxMessageCorrect(String expectedMessage) {
-        Assert.assertEquals("Invalid post unique message", expectedMessage, postUniqueElement.getText());
+        Assert.assertTrue("Invalid post unique message",
+                isElementDisplayed(String.format(postUniqueMessage, expectedMessage)));
         return this;
     }
 

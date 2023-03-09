@@ -19,7 +19,7 @@ public class CreatePostTest extends BaseTest {
 //                .selectTextInDropDownOptions("Приватне повідомлення")
 //                .selectValueInDropDownOptions("One Person")
                 .selectTextInDropDownUI("Загальнодоступне")
-                .checkBoxState("check")
+                .checkBoxState("uncheck")
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")

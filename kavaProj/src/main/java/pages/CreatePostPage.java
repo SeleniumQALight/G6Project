@@ -73,8 +73,14 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
+
     public CreatePostPage clickOnCheckBox() {
-        clickOnElement(checkBox);
+        if (!checkBox.isSelected()) {
+            clickOnElement(checkBox);
+            logger.info("Checkbox was clicked");
+        } else {
+            logger.info("Checkbox is selected already");
+        }
         return this;
 
     }
@@ -82,15 +88,18 @@ public class CreatePostPage extends ParentPage {
     public CreatePostPage unClickCheckBox() {
         if (checkBox.isSelected()) {
             clickOnElement(checkBox);
+            logger.info("Checkbox was unclicked");
+
         }
         return this;
     }
 
     public CreatePostPage checkBoxState(String message) {
-        if (message.equals("check")) {
+        if (message.equalsIgnoreCase("check")) {
+            checkBox.isSelected();
             clickOnCheckBox();
             logger.info("Checkbox was clicked");
-        } else if (message.equals("uncheck")) {
+        } else if (message.equalsIgnoreCase("uncheck")) {
             unClickCheckBox();
             logger.info("Checkbox was unclicked");
         } else {
