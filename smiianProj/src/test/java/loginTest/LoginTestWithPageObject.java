@@ -3,6 +3,7 @@ package loginTest;
 
 import baseTest.BaseTest;
 import categories.SmokeTestFilter;
+import io.qameta.allure.*;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +14,22 @@ import java.util.Map;
 
 import static pages.CommonActionWithElements.configProperties;
 
+
+
+@Epic("Allure examples")      // для додавання метафайлів в авто репорт на рівні репорта?
+@Feature("Junit 4 support")   // для додавання метафайлів в авто репорт
+
+
 public class LoginTestWithPageObject extends BaseTest {
+
+ @Description("Some detailed test description")  // для додавання метафайлів в авто репорт на рівні кейса
+ @Link("https://example.org")                    //
+ @Link(name = "allure", type = "mylink")         //
+ @Issue("123")                                   //
+ @Issue("432")                                   //
+ @Severity(SeverityLevel.CRITICAL)               //
+ @Story("Base support for bdd annotations")      // для додавання метафайлів в авто репорт на рівні кейса
+
  @Test
  @Category(SmokeTestFilter.class)        //  додано для роботи з ТестСьютом
  public void validLogin() {
