@@ -40,10 +40,11 @@ public class EditPostPage extends CreatePostPage {
         return this;
     }
 
+
+
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
-
 
 
 }

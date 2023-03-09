@@ -50,7 +50,7 @@ public class EditPostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .checkUserVisibility("qaauto")
-                .checkPostWasUpdated(NEW_POST_TITLE);
+                .checkPostWasCreated(NEW_POST_TITLE);
 
 
     }
@@ -61,6 +61,7 @@ public class EditPostTest extends BaseTest {
                 .openHomePage()
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
+                .deletePostsWithTitleTillPresent(POST_TITLE)
                 .deletePostsWithTitleTillPresent(NEW_POST_TITLE);
 
     }
