@@ -1,13 +1,11 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import pages.elements.HeaderElement;
-
+import org.junit.experimental.categories.Category;
 import java.io.IOException;
 import java.util.Map;
 
@@ -16,6 +14,7 @@ import static pages.CommonActionsWithElements.configProperties;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void validLogin() {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin("qaauto");
