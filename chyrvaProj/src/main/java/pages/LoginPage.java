@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -63,7 +64,7 @@ public class LoginPage extends ParentPage {
     String getRelativeURL() {
         return "/";
     }
-
+@Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -76,7 +77,7 @@ public class LoginPage extends ParentPage {
         }
         return this;
     }
-
+    @Step
     public void enterUserNameIntoInputLogin(String username) {
         // try {
         //  WebElement inputUserName =
@@ -91,7 +92,7 @@ public class LoginPage extends ParentPage {
         // }
         enterTextInToElement(inputUserName, username);
     }
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         // try {
         //  WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
@@ -103,7 +104,7 @@ public class LoginPage extends ParentPage {
 //        }
         enterTextInToElement(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonLogin() {
 //        try {
 //            //  WebElement buttonLogin = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
@@ -114,7 +115,7 @@ public class LoginPage extends ParentPage {
 //        }
         clickOnElement(buttonLogin);
     }
-
+    @Step
     public boolean isButtonLogInDisplayed() {
 //        try {
 //            return webDriver.findElement(By.xpath(".//button[text()='Sign In']")).isDisplayed();
@@ -124,7 +125,7 @@ public class LoginPage extends ParentPage {
 //        }
         return isElementDisplayed(buttonLogin);
     }
-
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
@@ -132,22 +133,22 @@ public class LoginPage extends ParentPage {
 
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage enterTextInPickAUsername(String username) {
         enterTextInToElement(pickAUsername, username);
         return this;
     }
-
+    @Step
     public LoginPage enterTextInYourEmailExpample(String email) {
         enterTextInToElement(yourExampleEmail, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextInCreatePass(String password) {
         enterTextInToElement(createPassword, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorMessageWithText(String textMessage) {
 
         Assert.assertTrue("Error Message is not displayed",
@@ -156,6 +157,7 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+    @Step
     public LoginPage checkErrorMessageWithTextForLogIn() {
 
         Assert.assertTrue("Error Message is not displayed",
@@ -164,14 +166,14 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
+    @Step
     public LoginPage checkErrorMessagesIsDisplayed(int expectedSize) {
         Assert.assertEquals("Number of messages is not three"
                 , expectedSize, getMessagesList().size());
 
         return this;
     }
-
+    @Step
     public List<WebElement> getMessagesList() {
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorMessagesSignUpForm), 3));
 
@@ -180,22 +182,22 @@ public class LoginPage extends ParentPage {
 
 
     }
-
+    @Step
     public LoginPage enterUserNameInRegistrationForm(String userName) {
         enterTextInToElement(inputLoginRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterEmailInRegistrationForm(String email) {
         enterTextInToElement(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterPasswordInRegistrationForm(String password) {
         enterTextInToElement(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorMessages(String expectedErrors) {
         //error1,error2 -> array[0] = error1 , array[1] = error2
         String[] expectedErrorsArray = expectedErrors.split(",");
