@@ -31,7 +31,9 @@ public class Registration extends BaseTest {
     public static Object[][] provideParameters() {
         return new Object[][] {
                 new Object[] {"tr", "ttt", "rrr", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"tr", "t@tt.com", "rrr", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
+                new Object[] {"tr", "t@tt.com", "rrr", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
+                new Object[] {"тест", "тест.сщь", "тестовийпароль", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
+                new Object[] {"testuser.com", "@.com", "1111111111111111111", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD}
         };
     }
 
