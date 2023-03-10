@@ -1,6 +1,7 @@
 package pages.elements;
 
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,23 +32,30 @@ public class HeaderElement extends CommonActionsWithElement {
 
     //метод який буде клікати на цю кнопку
     //Як що в методі є return то треба указати шо ми повертаємо сторінку або щось інше...
+
+    @Step
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
 
+    @Step
     public boolean isButtonSingOutDisplayed() {
         return isElementDisplayed(buttonSingOut);
     }
 
+    @Step
     public LoginPage clickButtonSingOut() {
         clickOnElement(buttonSingOut);
         return new LoginPage(webDriver);
     }
+
+    @Step
     public void checkButtonSingOutIsDisplayed(){
         Assert.assertTrue(buttonSingOut + "Button is not displayed",isElementDisplayed(buttonSingOut));
     }
 
+    @Step
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
         return new CreatePostPage(webDriver);
