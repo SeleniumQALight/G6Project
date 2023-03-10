@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ public class HomePage extends ParentPage {
 
     private HeaderElement headerElement=new HeaderElement(webDriver);
 
+    @Step
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
