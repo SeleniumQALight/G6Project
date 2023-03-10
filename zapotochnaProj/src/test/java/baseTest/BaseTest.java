@@ -13,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.HomePage;
 import pages.LoginPage;
 
+import java.sql.SQLException;
 import java.time.Duration;
 
 public class BaseTest { //батьківський клас для всіх класів, все що відноситься до тестів
@@ -38,7 +39,7 @@ public class BaseTest { //батьківський клас для всіх кл
 
 
     @After
-    public void tearDown() {
+    public void tearDown() throws SQLException {
         webDriver.quit();
         logger.info("browser closed");
 

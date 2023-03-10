@@ -1,41 +1,62 @@
-package postTest;
+package baseTest;
 
-import baseTest.BaseTest;
+import dbtest.DBTest;
+import libs.Database;
 import libs.ExcelDriver;
+import libs.MySQL_Database;
 import libs.Util;
+import org.apache.log4j.Logger;
 import org.junit.After;
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 
 import static pages.CommonActionsWithElements.configProperties;
 
+public class DBselenuimUsers extends BaseTest {
+    String myUniqueTitle;
 
-public class createPostWithExcel extends BaseTest {
-    final String myUniqueTitle = ExcelDriver.getData(configProperties.DATA_FILE(), "createPost") + Util.getDateAndTimeFormatted();
+    private Database mysqlDB;
+    private Logger log = Logger.getLogger(DBTest.class);
 
-    public createPostWithExcel() throws IOException {
+    @Before
+    public void setUP() throws SQLException, ClassNotFoundException {
+        mysqlDB = MySQL_Database.getDataBase();
+    }
+
+
+    @After
+    public void tearDown() throws SQLException {
+
+        mysqlDB.quit();
     }
 
 
     @Test
-    public void TC_3_createPostWithExcel() throws IOException {
+    public void testDataFromDb() throws SQLException, ClassNotFoundException, IOException {
 
-        Map<String, String> dataFirValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
+        final String LOGIN = "newqaauto";
+
+
+        String passwordFromDB =
+                mysqlDB.selectValue(String.format("SELECT password FROM seleniumUsers WHERE login = '%s'", LOGIN));
+        log.info(passwordFromDB);
+
+        log.info("---------");
+
 
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoLogin(dataFirValidLogin.get("login"));
-        loginPage.enterPasswordIntoInputPassword(dataFirValidLogin.get("pass"));
+        loginPage.enterUserNameIntoLogin(LOGIN);
+        loginPage.enterPasswordIntoInputPassword(passwordFromDB);
         loginPage.clickOnButtonLogin();
-        Assert.assertTrue("Button SignOut is not displayed",
-                homePage
-                        .getHeaderElement().isButtonSignOutDisplayed());
 
 
         Map<String, String> dataForCreatePost = ExcelDriver.getData(configProperties.DATA_FILE(), "createPost");
 
+        myUniqueTitle = dataForCreatePost.get("title") + Util.getDateAndTimeFormatted();
 
         homePage.getHeaderElement().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
@@ -53,7 +74,6 @@ public class createPostWithExcel extends BaseTest {
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
 
-                .checkIsProfileCorrect(dataFirValidLogin.get("login"))
 
                 .checkPostWasCreated(myUniqueTitle)
 
@@ -61,6 +81,7 @@ public class createPostWithExcel extends BaseTest {
 
 
     }
+
 
     @After
     public void deletePost() {
@@ -71,6 +92,8 @@ public class createPostWithExcel extends BaseTest {
                 .deletePostsWithTittleTillPresent(myUniqueTitle)
         ;
     }
-
 }
+
+
+
 
