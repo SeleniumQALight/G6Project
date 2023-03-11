@@ -22,11 +22,11 @@ public class EditPostPage extends ParentPage{
 
     @Override
     String getRelativeURL() {
-        return "/";
+        return "/post/[a-zA-Z0-9]*/edit";
     }
 
     public EditPostPage checkIsRedirectToEditPage() {
-        checkURLContainsRelative();
+        checkURLWithPattern();
         waitChatToBeHide();
         Assert.assertTrue("EditPage is not loaded", isElementDisplayed(permalinkOnEditPage));
         return this;
@@ -34,7 +34,6 @@ public class EditPostPage extends ParentPage{
 
 
     public EditPostPage editTitleOfCreatedPost(String title_edited) {
-        inputTitle.clear();
         enterTextToElement(inputTitle, title_edited);
         return this;
     }

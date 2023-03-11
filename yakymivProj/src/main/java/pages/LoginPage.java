@@ -153,10 +153,10 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkCounterOfAllerts() {
+    public LoginPage checkCounterOfAlerts(int counterOfAlerts) {
         WebDriverWait webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(7));
         webDriverWait.until(ExpectedConditions.numberOfElementsToBe(By.xpath(xpathOfAlerts), 3));
-        Assert.assertEquals("Some alert is not shown ", 3, alertMessages.size());
+        Assert.assertEquals("Some alert is not shown ", counterOfAlerts, alertMessages.size());
         return this;
     }
 
