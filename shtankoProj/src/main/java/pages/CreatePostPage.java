@@ -66,13 +66,10 @@ public class CreatePostPage extends ParentPage{
         selectTextInUIDropDown(dropDownOptions, valueInUIDD);
         return this;
     }
-    public CreatePostPage clickOnCheckbox (boolean isChecked){
-        WebElement checkbox = webDriver.findElement(By.xpath(".//input[@name='uniquePost']"));
-        if (isChecked != checkbox.isSelected()) {
-            checkbox.click();
-        }
-        String checkboxState = checkbox.isSelected() ? "Checked" : "Unchecked";
-        logger.info("Checkbox is currently: " + checkboxState);
+    public CreatePostPage clickOnCheckbox(String targetValue) {
+        statusCheckbox(checkboxUnique, targetValue);
         return this;
     }
+
+
 }

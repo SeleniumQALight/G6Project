@@ -28,7 +28,7 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
-    @FindBy(xpath = ".//p[.='Is this post unique? : no']")
+    @FindBy(xpath = ".//p[.='Is this post unique? : yes']")
     private WebElement postUnique;
 
     public PostPage(WebDriver webDriver) {
@@ -70,8 +70,8 @@ public class PostPage extends ParentPage{
         Assert.assertEquals("Text in success status element",expectedStatus,statusPost.getText());
         return this;
     }
-    public PostPage verifyCheckboxState(String expectedMessage) {
-        Assert.assertEquals("Invalid post unique message", expectedMessage, postUnique.getText());
+    public PostPage verifyCheckboxState() {
+        Assert.assertEquals("Post is not unique", "Is this post unique? : yes",  postUnique.getText());
         return this;
     }
 
