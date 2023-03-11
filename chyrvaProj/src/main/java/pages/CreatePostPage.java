@@ -17,8 +17,8 @@ public class CreatePostPage extends ParentPage{
     private WebElement dropDownOptions;
     @FindBy(xpath = ".//*[@class = 'svg-inline--fa fa-edit fa-w-18']")
     private WebElement editIcon;
-
-
+    @FindBy(xpath = ".//input[@type=\"checkbox\"]")
+    private WebElement checkBox;
 
 
     public CreatePostPage(WebDriver webDriver) {
@@ -69,5 +69,10 @@ public class CreatePostPage extends ParentPage{
         clickOnElement(editIcon);
 
         return new CreatePostPage(webDriver);
+    }
+
+    public CreatePostPage selectDesiredCheckBoxStatus(String checkBoxValue) {
+        changeCheckBoxStatus(checkBox,checkBoxValue);
+        return this;
     }
 }
