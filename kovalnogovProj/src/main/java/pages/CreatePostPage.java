@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,7 +24,7 @@ private WebElement inputTitle;
     String getRelativeUrl() {
         return "/create-post";
     }
-
+    @Step
     public CreatePostPage checkIsRedirectToCreatePostPage() {
        // checkURL();
         checkURLContainsRelative();
@@ -31,32 +32,33 @@ private WebElement inputTitle;
         Assert.assertTrue("CreatePostPage is not displayed", isElementDisplayed(inputTitle));
         return this;
     }
-
+    @Step
     public CreatePostPage typePostTitle(String testTitle) {
         typeTextToElement(inputTitle ,testTitle);
         return this;
     }
 
-
+    @Step
     public CreatePostPage typePostBody(String text){
         typeTextToElement(inputPostBody,text);
         return this;
     }
-
+    @Step
     public CreatePostPage selectItemInDropDown(String textinDD){
         selectTextInDropDown(dropDown,textinDD);
         return this;
     }
-
+    @Step
     public CreatePostPage selectItemInDropDownByUI(String textinDD){
         selectTextInDropDownByUi(dropDown,textinDD);
         return this;
     }
-
+    @Step
     public CreatePostPage selectValueInDropDown(String value){
         selectValueInDropDown(dropDown, value);
         return this;
     }
+    @Step
     public PostPage clickSavePostButton(){
         clickOnElement(savePostButton);
         return new PostPage( webDriver);

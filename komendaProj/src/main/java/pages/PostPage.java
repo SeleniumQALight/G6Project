@@ -26,6 +26,9 @@ public class PostPage extends ParentPage {
     
     @FindBy(xpath = "//div[@class='body-content']/p/i/u")
     private WebElement textUnderLine;
+
+    @FindBy(xpath = ".//p[contains(text(), 'Is this post unique?')]")
+    private WebElement uniqueMessage;
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -78,5 +81,10 @@ public class PostPage extends ParentPage {
     public EditPostPage clickOnEditPostButton() {
         clickOnElement(buttonEdit);
         return new EditPostPage(webDriver);
+    }
+
+    public PostPage checkIsPostUnique() {
+        Assert.assertEquals("Post is not unique", "Is this post unique? : yes",  uniqueMessage.getText());
+        return this;
     }
 }

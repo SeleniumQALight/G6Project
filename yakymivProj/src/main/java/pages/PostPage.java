@@ -25,11 +25,7 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
-    private HeaderElements headerElements = new HeaderElements(webDriver);
 
-    public HeaderElements getHeaderElement() {
-        return headerElements;
-    }
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);

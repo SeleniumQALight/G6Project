@@ -42,6 +42,7 @@ public class PostPage extends ParentPage {
     WebElement buttonDelete;
 
 
+    private String checkIsSelectingCheckBox="//p[text()=\"Is this post unique? : %s\"]";
 
 
 
@@ -102,6 +103,12 @@ public class PostPage extends ParentPage {
     public EditPostPage clickOnEditButton() {
         clickOnElement(buttonEdit);
         return new EditPostPage (webDriver);
+    }
+
+
+    public PostPage checkIsSelectingOfCheckoxInCreatingPost(String statusOfPost){
+      Assert.assertTrue("Checkbox selection has status "+statusOfPost, isElementDisplayed(String.format(checkIsSelectingCheckBox,statusOfPost)));
+        return this;
     }
 
 
