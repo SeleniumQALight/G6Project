@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -49,6 +50,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -61,18 +63,22 @@ public class LoginPage extends ParentPage {
         return new LoginPage(webDriver);
     }
 
+    @Step
     public void enterUserNameintoInputLogin(String userName) {
         enterTextToElement(inputUserName, userName);
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextToElement(inputPass, password);
     }
 
+    @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameintoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
@@ -80,6 +86,7 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage fillingLoginFormWithInvalidCred(String userName, String password) {
         openLoginPage();
         enterUserNameintoInputLogin(userName);
@@ -88,25 +95,30 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isButtonDisplayed(buttonSignIn);
     }
 
+    @Step
     public LoginPage enterUserNameintoRegistrationForm(String userName) {
         enterTextToElement(inputLoginRegistration, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailInRegistrationForm(String email){
         enterTextToElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordInRegistrationForm(String pass){
         enterTextToElement(inputPasswordRegistration, pass);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorMessage(String expectedErrors) {
         String[]expectedErrorArray = expectedErrors.split(",");
         webDriverWait10
@@ -130,6 +142,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public void checkLogInErrorMessage(String expectedError) {
         Assert.assertEquals("Text in success message element: ", expectedError, logInErrorMessage.getText());
         Assert.assertFalse("Sign out button is displayed",  getHeaderElement().isButtonSignOutDisplayed());

@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,12 +25,12 @@ public class HeaderElement extends CommonActionWithElements {
     public HeaderElement(WebDriver webDriver) {            //constructor
         super(webDriver);
     }
-
+    @Step
     public MyProfilePage clickOnMyProfileButton(){
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
-
+    @Step
     public boolean isButtonSignOutDisplayed(){
 
         return isObjectDisplayed(buttonLogOut);
@@ -40,7 +41,7 @@ public class HeaderElement extends CommonActionWithElements {
 //
 //        return this;
 //    }
-
+    @Step
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
 

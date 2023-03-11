@@ -1,8 +1,10 @@
 package regisration;
 
 import baseTest.BaseTest;
+import categoties.SmokeTestFilter;
 import libs.SpreadsheetData;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.CommonActionsWithElement;
@@ -15,6 +17,7 @@ import java.util.Collection;
 import static pages.CommonActionsWithElement.*;
 
 @RunWith(Parameterized.class)
+@Category(SmokeTestFilter.class)
 public class RegistrationErrorTestWithExel extends BaseTest {
     private String userName, userEmail, password, expectedErrors;
 
