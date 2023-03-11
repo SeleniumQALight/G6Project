@@ -57,8 +57,8 @@ public class RegistrationErrorTest extends BaseTest{
                 .enterEmailInRegistrationForm(TestData.INVALID_EMAIL)
                 .enterPasswordInRegistrationForm(TestData.INVALID_PASSWORD)
                 .checkCounterOfAllerts()
-                .checkErrorMessageWithText(ERROR_USERNAME)
+                .checkErrorMessageWithText(ERROR_USERNAME_SMALL)
                 .checkErrorMessageWithText(ERROR_EMAIL)
-                .checkErrorMessageWithText(ERROR_PASSWORD);
+                .checkErrorMessageWithText(ERROR_PASSWORD_SMALL);
     }
 }
