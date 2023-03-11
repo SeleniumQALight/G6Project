@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CreatePostPage extends ParentPage{
 
@@ -17,8 +18,12 @@ public class CreatePostPage extends ParentPage{
     @FindBy(xpath=".//button[@class='btn btn-primary']")
     private WebElement createButton;
 
-    @FindBy(tagName="select")
+    @FindBy(xpath="//div[@class='form-group']/select")
     private WebElement dropDownOptions;
+
+
+    @FindBy(xpath="//input[@name='uniquePost']")
+    private WebElement checkBox;
 
 
 
@@ -75,6 +80,18 @@ public class CreatePostPage extends ParentPage{
 
     public CreatePostPage selectTextInDropDownByUIOptions(String textInDropdown){
         selectTextInDropDownByUI(dropDownOptions,textInDropdown);
+        return this;
+    }
+
+
+    public CreatePostPage operationWithCheckBox(String statusOfCheckbox){
+        if (statusOfCheckbox.equalsIgnoreCase("check")){
+            clickOnCheckBoxEnable(checkBox);
+        }else if (statusOfCheckbox.equalsIgnoreCase("uncheck")) {
+            clickOnCheckBoxDisable(checkBox);
+        } else {
+            logger.info("Please, select 'check' or 'uncheck'");
+        }
         return this;
     }
 

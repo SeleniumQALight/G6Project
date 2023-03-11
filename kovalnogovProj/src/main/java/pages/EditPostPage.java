@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,24 +27,27 @@ public class EditPostPage extends ParentPage{
     String getRelativeUrl() {
         return "Need to fix relative URL via regex";
     }
-
+    @Step
     public EditPostPage typePostTitle(String testTitle) {
         typeTextToElement(inputTitle ,testTitle);
         return this;
     }
-
+    @Step
     public EditPostPage typePostBody(String text){
         typeTextToElement(inputPostBody,text);
         return this;
     }
+    @Step
     public EditPostPage checkValueInSuccessMessage(String expectedMessage) {
         Assert.assertEquals("Message does not match with expected", expectedMessage, getText(successMessage));
         return this;
     }
+    @Step
     public EditPostPage clickSaveUpdates(){
      clickOnElement(savePostButton);
         return this;
     }
+    @Step
     public PostPage redirectToCurrentPostPage(){
         clickOnElement(backToPostButton);
         return new PostPage(webDriver);

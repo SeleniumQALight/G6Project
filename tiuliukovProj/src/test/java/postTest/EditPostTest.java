@@ -1,10 +1,12 @@
 package postTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.Util;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class EditPostTest extends BaseTest {
     final String POST_TITLE = "TC2_Tiuliukov_" + Util.getDateAndTimeFormatted();
