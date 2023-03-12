@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.ConfigProperties;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
@@ -30,7 +31,7 @@ public class CommonActionsWithElements {
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
         webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(configProperties.TIME_FOR_EXPLICIT_WAIT_HIGH()));
     }
-
+    @Step
     protected void enterTextIntoElement(WebElement webElement, String text) {
         try {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
@@ -41,7 +42,7 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
+    @Step
     protected void clickOnElement(WebElement webElement) {
         try {
             webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -52,7 +53,7 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
+    @Step
     protected void clickOnElement(String xpath) {
         try {
             clickOnElement(webDriver.findElement(By.xpath(xpath)));
@@ -60,7 +61,7 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
+    @Step
     protected String getElementName(WebElement webElement) {
         try {
             return webElement.getAccessibleName();
@@ -68,12 +69,12 @@ public class CommonActionsWithElements {
             return "";
         }
     }
-
+    @Step
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
-
+    @Step
     protected boolean isElementDisplayed(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
@@ -88,7 +89,7 @@ public class CommonActionsWithElements {
             return false;
         }
     }
-
+    @Step
     protected boolean isElementDisplayed(String locator, String error) {
         try {
             return isElementDisplayed(webDriver.findElement(By.xpath(String.format(locator, error))));
@@ -97,7 +98,7 @@ public class CommonActionsWithElements {
             return false;
         }
     }
-
+    @Step
     protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
         try {
             Select select = new Select(dropDown);
@@ -107,7 +108,7 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
+    @Step
     protected void selectValueInDropDown(WebElement dropDown, String value) {
         try {
             Select select = new Select(dropDown);
@@ -117,7 +118,7 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
+    @Step
     protected void selectTextInDropDownByUI(WebElement dropDown, String value) {
         try {
             clickOnElement(dropDown);
@@ -127,14 +128,14 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
+    @Step
     public void usersPressesKeyEnterTime(int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
             actions.sendKeys(Keys.ENTER).build().perform();
         }
     }
-
+    @Step
     public void usersPressesKeyTabTime(int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
@@ -142,7 +143,7 @@ public class CommonActionsWithElements {
         }
 
     }
-
+    @Step
     public void usersPressesKeyTime(Keys keys, int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
@@ -150,11 +151,39 @@ public class CommonActionsWithElements {
         }
 
     }
-
+    @Step
     public void userOpensNewTab() {
         ((JavascriptExecutor) webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
+    }
+    @Step
+    public void checkCheckbox(WebElement checkbox) {
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is checked");
+        } else {
+            logger.info("Checkbox is already checked");
+        }
+    }
+    @Step
+    public void uncheckCheckbox(WebElement checkbox) {
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox was unchecked");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+    @Step
+    public void setCheckboxState(WebElement checkbox, String checkBoxState) {
+        if (checkBoxState.equalsIgnoreCase("Check")) {
+            checkCheckbox(checkbox);
+        } else if (checkBoxState.equalsIgnoreCase("Uncheck")) {
+            uncheckCheckbox(checkbox);
+        } else {
+            logger.error("Incorrect state of checkbox");
+        }
     }
 //
 //    метод moveToElement (аналог скрола )

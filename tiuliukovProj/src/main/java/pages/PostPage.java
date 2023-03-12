@@ -21,6 +21,8 @@ public class PostPage extends ParentPage{
     private WebElement actualBodyContent;
     @FindBy(xpath = ".//button[@data-original-title='Delete']")
     private WebElement buttonDelete;
+    @FindBy(xpath = ".//*[@class = 'container py-md-5 container--narrow']//*[contains(text(), 'Is this post unique?')]")
+    private WebElement actualPostUniqueState;
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
@@ -78,5 +80,10 @@ public class PostPage extends ParentPage{
     public EditPostPage clickOnEditButton() {
         clickOnElement(buttonEdit);
         return new EditPostPage(webDriver);
+    }
+
+    public PostPage checkIsPostUnique() {
+        Assert.assertEquals("Wrong unique post page", "Is this post unique? : yes", actualPostUniqueState.getText());
+        return this;
     }
 }

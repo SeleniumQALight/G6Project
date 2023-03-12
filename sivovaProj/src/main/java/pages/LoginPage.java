@@ -1,7 +1,9 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -56,6 +58,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openLoginPage(){
         try{
             webDriver.get(base_url + getRelativeURL());
@@ -70,10 +73,12 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
             enterTextIntoElement(inputUserName, userName);
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
             enterTextIntoElement(inputPassword, password);
     }
@@ -95,6 +100,8 @@ public class LoginPage extends ParentPage {
     public void clickSignUpButton(){
         clickElement(buttonSignUp);
     }
+
+    @Step
     public void clickButtonLogin() {
        clickElement(buttonLogin);
     }
@@ -145,6 +152,8 @@ public class LoginPage extends ParentPage {
         webDriverWait10
                 .withMessage("Number of messages should be" + expectedErrorArray.length)
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorArray.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages", expectedErrorArray.length, listOfErrors.size());
 
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element: listOfErrors) {

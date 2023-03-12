@@ -10,14 +10,8 @@ import pages.elements.HeaderElements;
 
 public class HomePage extends ParentPage{
 
-    @FindBy(xpath = ".//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
-
     //now on Home page we have header with buttons
     private HeaderElements headerElements = new HeaderElements(webDriver);
-
-    @FindBy(xpath = ".//*[@href='/create-post']")
-    private WebElement buttonCreatePost;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -32,20 +26,10 @@ public class HomePage extends ParentPage{
         return headerElements;
     }
 
-    public boolean isButtonSignOutDisplayed(){
-        try {
-            webDriverWait15.until(ExpectedConditions.visibilityOf(buttonSignOut));
-            return isElementDisplayed(buttonSignOut);
-        }catch (Exception e){
-            return false;
-        }
-
-    }
-
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
-        if (!isButtonSignOutDisplayed()) {
+        if (!headerElements.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
         checkIsRedirectToHomePage();
@@ -56,22 +40,9 @@ public class HomePage extends ParentPage{
     public HomePage checkIsRedirectToHomePage() {
         checkURL();
         waitChatToHide();
-        Assert.assertTrue("HomePage is not loaded", isButtonSignOutDisplayed());
+        Assert.assertTrue("HomePage is not loaded", headerElements.isButtonSignOutDisplayed());
 
         return this;
     }
-
-    public CreatePostPage clickOnCreatePostButton() {
-        clickOnElement(buttonCreatePost);
-        return new CreatePostPage(webDriver);
-    }
-
-//    public boolean isButtonSignOutDisplayed(){
-//        try {
-//            return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
-//        }catch (Exception e){
-//            return false;
-//        }
-//    }
 
 }

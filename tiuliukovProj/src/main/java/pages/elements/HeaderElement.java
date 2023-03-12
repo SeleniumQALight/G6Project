@@ -1,5 +1,6 @@
 package pages.elements;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -23,21 +24,25 @@ public class HeaderElement extends CommonActionsWithElements {
         super(webDriver);
     }
 
+    @Step
     public boolean isButtonSignOutDisplayed(){
         return isElementDisplayed(buttonSignOut);
     }
 
+    @Step
     public MyProfilePage clickOnMyProfileButton(){
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
 
+    @Step
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);
 
         return new CreatePostPage(webDriver);
     }
 
+    @Step
     public void checkIsDefaultLoginNameDisplayed(String expectedLoginName) {
         Assert.assertEquals("Wrong user name is displayed", expectedLoginName, actualLogin.getText());
     }

@@ -1,6 +1,8 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -11,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class LoginPage extends ParentPage {
@@ -33,6 +36,8 @@ public class LoginPage extends ParentPage {
     final static private String alertDangerText = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text() = '%s']";
     @FindBy(xpath = listOfErrorsLocators)
     private List<WebElement> alertText;
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement signInErrorText;
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -44,6 +49,7 @@ public class LoginPage extends ParentPage {
 
     private TestData testData = new TestData();
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -55,6 +61,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
       // try {
       //      WebElement inputUserName = webDriver.findElement(
@@ -69,6 +76,7 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
       //  try {
            // WebElement inputPassword =
@@ -82,37 +90,49 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputPassword,password);
     }
 
+    @Step
     public void clickButtonLogin() {
        clickOnElement(buttonLogin);
         }
 
+    @Step
     public HomePage fillingLoginFormWhitValidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickButtonLogin();
         return new HomePage(webDriver);
     }
+
+    @Step
     public LoginPage enterUserNameIntoInputRegistrationForm(String userName){
         enterTextInToElement(inputLoginRegistration, userName);
         return this;
     }
+
+    @Step
     public LoginPage enterEmailIntoInputRegistrationForm(String email){
         enterTextInToElement(inputEmailRegistration, email);
         return this;
     }
+
+    @Step
     public LoginPage enterPasswordIntoInputRegistrationForm(String password){
         enterTextInToElement(inputPasswordRegistration, password);
         return this;
     }
-    public LoginPage checkErrorMessages (String expectedErrors){
+
+    @Step
+    public LoginPage checkErrorMessages (String expectedErrors) {
         //error1, error2 ->array[0] = error1, array[1] = error2
         //підходить для перевірки блока чи таблиці як що треба перевірити данні
         String[] expectedErrorArray = expectedErrors.split(",");
         webDriverWait10
                 .withMessage("Number of messages should be" + expectedErrorArray.length)
-                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocators),expectedErrorArray.length));
+                .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocators), expectedErrorArray.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of message", expectedErrorArray.length, alertText.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
-        for (WebElement element: alertText){
+        for (WebElement element : alertText) {
             actualTextFromErrors.add(element.getText());
         }
         SoftAssertions softAssertions = new SoftAssertions();
@@ -123,45 +143,64 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
         return this;
-}
+    }
+
+    @Step
+    public LoginPage checkLoginErrorMessage(String expectedError) {
+        Assert.assertTrue("Error Login/Password message is not displayed", isElementDisplayed(signInErrorText));
+        Assert.assertEquals("Error message does not match. Expected: " + expectedError + " but Actual: "
+                + signInErrorText.getText(), expectedError, signInErrorText.getText());
+        return this;
+    }
+
+    @Step
     public LoginPage checkAlertMessageWithText(int numberOfErrors){
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocators),numberOfErrors));
         Assert.assertEquals("The message is not displayed",numberOfErrors, alertText.size());
         return this;
     }
+
+    @Step
     public LoginPage checkSingInButtonIsDisplayed(){
         webDriverWait10.until(ExpectedConditions.visibilityOf(buttonLogin));
         Assert.assertTrue(buttonLogin + "Button is not displayed", isElementDisplayed(buttonLogin));
         return this;
     }
+
+    @Step
     public LoginPage checkErrorMessageWithText(String alertMessage){
         Assert.assertTrue(alertMessage + "The message is not equal", isElementDisplayed(String.format(alertDangerText,alertMessage)));
         return this;
     }
 
-    public LoginPage userNameTabKey(String userName){
-        usersPressesKeyTabTime(2);
+    @Step
+    public LoginPage userNameTabKey(int number,String userName){
+        usersPressesKeyTabTime(number);
         userEnterText(userName);
         return this;
     }
-    public LoginPage passwordTabKey(String passwordEnter){
-        usersPressesKeyTabTime(1);
+    @Step
+    public LoginPage passwordTabKey(int number, String passwordEnter){
+        usersPressesKeyTabTime(number);
         userEnterText(passwordEnter);
-        usersPressesKeyTabTime(1);
-        usersPressesKeyEnterTime(1);
         return this;
     }
 
-    public LoginPage registrationUserNameTabKey(String userName){
-        usersPressesKeyTabTime(5);
+    @Step
+    public LoginPage registrationUserNameTabKey(int number,String userName){
+        usersPressesKeyTabTime(number);
         userEnterText(userName);
         return this;
     }
+
+    @Step
     public LoginPage registrationEmailTabKey(String email){
         usersPressesKeyTabTime(1);
         userEnterText(email);
         return this;
     }
+
+    @Step
     public LoginPage registrationPasswordTabKey(String password){
         usersPressesKeyTabTime(1);
         userEnterText(password);
