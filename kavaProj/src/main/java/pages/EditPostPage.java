@@ -41,7 +41,6 @@ public class EditPostPage extends CreatePostPage {
     }
 
 
-
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
