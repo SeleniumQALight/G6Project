@@ -7,14 +7,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatePostPage extends ParentPage {
-    @FindBy(name="title")
-private WebElement inputTitle;
-    @FindBy(id="post-body")
+    @FindBy(name = "title")
+    private WebElement inputTitle;
+    @FindBy(id = "post-body")
     private WebElement inputPostBody;
     @FindBy(xpath = ".//button[@class='btn btn-primary']")
     private WebElement savePostButton;
     @FindBy(tagName = "select")
     private WebElement dropDown;
+    @FindBy(name = "uniquePost")
+    private WebElement checkBox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -24,43 +26,61 @@ private WebElement inputTitle;
     String getRelativeUrl() {
         return "/create-post";
     }
+
     @Step
     public CreatePostPage checkIsRedirectToCreatePostPage() {
-       // checkURL();
+        // checkURL();
         checkURLContainsRelative();
         waitChatToBeHidden();
         Assert.assertTrue("CreatePostPage is not displayed", isElementDisplayed(inputTitle));
         return this;
     }
+
     @Step
     public CreatePostPage typePostTitle(String testTitle) {
-        typeTextToElement(inputTitle ,testTitle);
+        typeTextToElement(inputTitle, testTitle);
         return this;
     }
 
     @Step
-    public CreatePostPage typePostBody(String text){
-        typeTextToElement(inputPostBody,text);
+    public CreatePostPage typePostBody(String text) {
+        typeTextToElement(inputPostBody, text);
         return this;
     }
+
     @Step
-    public CreatePostPage selectItemInDropDown(String textinDD){
-        selectTextInDropDown(dropDown,textinDD);
+    public CreatePostPage selectItemInDropDown(String textinDD) {
+        selectTextInDropDown(dropDown, textinDD);
         return this;
     }
+
     @Step
-    public CreatePostPage selectItemInDropDownByUI(String textinDD){
-        selectTextInDropDownByUi(dropDown,textinDD);
+    public CreatePostPage selectItemInDropDownByUI(String textinDD) {
+        selectTextInDropDownByUi(dropDown, textinDD);
         return this;
     }
+
     @Step
-    public CreatePostPage selectValueInDropDown(String value){
+    public CreatePostPage selectValueInDropDown(String value) {
         selectValueInDropDown(dropDown, value);
         return this;
     }
+
     @Step
-    public PostPage clickSavePostButton(){
+    public CreatePostPage selectCheckBox() {
+        selectCheckBox(checkBox);
+        return this;
+    }
+
+    @Step
+    public CreatePostPage selectCheckBox(CommonActionsWithElement.CheckBoxState state) {
+        selectCheckBox(checkBox, state);
+        return this;
+    }
+
+    @Step
+    public PostPage clickSavePostButton() {
         clickOnElement(savePostButton);
-        return new PostPage( webDriver);
+        return new PostPage(webDriver);
     }
 }

@@ -18,6 +18,10 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//div[@class='d-flex justify-content-between']//h2")
     private WebElement createdPostTitle;
 
+    @FindBy(xpath = "(.//div//p)[3]")
+    private WebElement uniquePostValue;
+
+
     @FindBy(xpath = ".//i")
     private WebElement note;
 
@@ -66,6 +70,10 @@ public class PostPage extends ParentPage {
         Assert.assertEquals("Title name does not match with expected",title,getText(createdPostTitle));
         return this;
     }
+     public PostPage checkThatPostUnique(){
+        Assert.assertTrue("",getText(uniquePostValue).contains("yes"));
+        return this;
+     }
     @Step
     public PostPage checkIsNoteTextEqualWithExpected(String title) {
         Assert.assertEquals("Title name does not match with expected",title,getText(note));
