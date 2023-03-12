@@ -11,6 +11,7 @@ public class TestData {
             = System.getProperty("password", configHiddenProperties.password());
 
 
-    public final static String INVALID_LOGIN = "qaauto123";
-    public final static String INVALID_PASSWORD = "12345qwerty";
+    public final static String INVALID_LOGIN = "qa";
+    public final static String INVALID_PASSWORD = "123";
+    public final static String INVALID_EMAIL = "qa.com";
 }

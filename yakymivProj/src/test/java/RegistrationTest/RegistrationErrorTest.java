@@ -5,6 +5,7 @@ import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
+import libs.TestData;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -22,6 +23,7 @@ public class RegistrationErrorTest extends BaseTest{
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
+    final static Integer COUNTER_OF_ERRORS = 2;
 
 //    String expectedErrors = ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD;
 
@@ -46,5 +48,18 @@ public class RegistrationErrorTest extends BaseTest{
                 new Object[] {"!\"\"№\"","tt@tt.com","51symbols_sfsdfsdfsdfsdfsdfdfsdsfsdfsdfsdfsdfsdfdfs", ERROR_USERNAME_SYMBOLS + COMMA + ERROR_PASSWORD_BIG}
                 //homework pt1
         };
+    }
+    
+    @Test
+    public void myCheckErrors(){
+        loginPage
+                .openLoginPage();
+        loginPage.enterUserNameintoRegistrationForm(TestData.VALID_LOGIN)
+                .enterEmailInRegistrationForm(TestData.INVALID_EMAIL)
+                .enterPasswordInRegistrationForm(TestData.INVALID_PASSWORD)
+                .checkCounterOfAlerts(COUNTER_OF_ERRORS)
+//                .checkErrorMessageWithText(ERROR_USERNAME_SMALL)
+                .checkErrorMessageWithText(ERROR_EMAIL)
+                .checkErrorMessageWithText(ERROR_PASSWORD_SMALL);
     }
 }

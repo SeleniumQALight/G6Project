@@ -74,6 +74,11 @@ public class PostPage extends ParentPage {
         return new MyProfilePage(webDriver);
     }
 
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPostPage(webDriver);
+    }
+
     public PostPage checkIsPostUnique(String state) {
         if (state == "check") {
             Assert.assertEquals("Post is not unique", "Is this post unique? : yes", stateOfPost.getText());

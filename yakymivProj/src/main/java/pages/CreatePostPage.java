@@ -15,6 +15,7 @@ public class CreatePostPage extends ParentPage {
     @FindBy(xpath = ".//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
 
@@ -72,8 +73,6 @@ public class CreatePostPage extends ParentPage {
             setUpCheckBox(checkboxOfPost,state);
         return this;
     }
-
-
 
 
 }
