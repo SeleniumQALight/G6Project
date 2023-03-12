@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElements;
@@ -22,6 +23,7 @@ public class HomePage extends ParentPage {
         return "/";
     }
 
+    @Step
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
@@ -32,6 +34,7 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+    @Step
     private HomePage checkIsRedirectHomePage() {
         checkUrl();
         waitChatToBeHide();

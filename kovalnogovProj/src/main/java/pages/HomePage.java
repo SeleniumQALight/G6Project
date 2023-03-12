@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +28,7 @@ private WebElement buttonCreatePost;
     public HeaderElements getHeaderElements() {
         return headerElements;
     }
-
+    @Step
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
@@ -37,14 +38,14 @@ private WebElement buttonCreatePost;
         checkIsRedirectToHomePage();
         return this;
     }
-
+    @Step
     public HomePage checkIsRedirectToHomePage() {
         checkURL();
         waitChatToBeHidden();
         Assert.assertTrue("Home page is not opened",headerElements.isButtonSignOutDisplayed());
         return this;
     }
-
+    @Step
     public CreatePostPage clickOnCreatePostButton(){
         clickOnElement(buttonCreatePost);
         return  new CreatePostPage(webDriver);

@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Test;
 
 public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_Kava_" + Util.getDateAndTimeFormatted();
+    final String POST_TITLE = "TC1_Kava_EditPost" + Util.getDateAndTimeFormatted();
 
     @Test
     public void TC1_createNewPost() {
@@ -19,12 +19,14 @@ public class CreatePostTest extends BaseTest {
 //                .selectTextInDropDownOptions("Приватне повідомлення")
 //                .selectValueInDropDownOptions("One Person")
                 .selectTextInDropDownUI("Загальнодоступне")
+                .checkBoxState("uncheck")
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkTextInTitle(POST_TITLE)
                 .checkTextInLabel()
                 .checkUsersText("All Users")
+                .isCheckBoxMessageCorrect("Is this post unique? : no")
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .checkUserVisibility("qaauto")
@@ -40,8 +42,6 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsWithTitleTillPresent(POST_TITLE)
-
-
 
 
         ;

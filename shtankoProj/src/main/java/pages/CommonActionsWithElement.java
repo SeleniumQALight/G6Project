@@ -145,6 +145,40 @@ public class CommonActionsWithElement {
         }
 
     }
+    protected void checkboxIsChecked(WebElement checkbox){
+        try {
+            if(!checkbox.isSelected()){
+                clickOnElement(checkbox);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void checkboxIsUnchecked(WebElement checkbox){
+        try {
+            if (checkbox.isSelected()){
+                clickOnElement(checkbox);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+    protected void statusCheckbox(WebElement checkbox, String value){
+        try {
+            String checkboxStatus = value.toLowerCase();
+            if (checkboxStatus.equals("checked")){
+                checkboxIsChecked(checkbox);
+            } else if (checkboxStatus.equals("unchecked")) {
+                checkboxIsUnchecked(checkbox);
+            }else {
+                logger.info("Can not work with value " + value);
+                Assert.fail("Can not work with value " + value);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
 
     public void userEnterText(String text){
         Actions actions = new Actions(webDriver);

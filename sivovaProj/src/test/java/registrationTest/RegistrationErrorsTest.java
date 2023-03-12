@@ -1,15 +1,17 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 
 @RunWith(JUnitParamsRunner.class)
-@Parameters(method = "provideParameters")
+@Category(SmokeTestFilter.class)
 
 public class RegistrationErrorsTest extends BaseTest {
         final static String ERROR_USERNAME = "Username must be at least 3 characters.";
@@ -19,6 +21,8 @@ public class RegistrationErrorsTest extends BaseTest {
         final static String ERROR_PASSWORD = "Password must be at least 12 characters.";
 
         final static String ERROR_ALREADY_EXIST = "That username is already taken.";
+
+        final static String ERROR_USERNAME_NOT_VALID = "Username can only contain letters and numbers.";
 
         final static String SEMICOLON = ";";
 
@@ -50,7 +54,9 @@ public class RegistrationErrorsTest extends BaseTest {
     public static Object[][] provideParameters() {
         return new Object[][] {
                 new Object[] {"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"tr", "t@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
+                new Object[] {"tr", "t@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
+                new Object[] {"test", "t", "123", ERROR_EMAIL + COMMA + ERROR_PASSWORD},
+                new Object[] {"тест", "tt", "asdfgh123456", ERROR_USERNAME_NOT_VALID + COMMA + ERROR_EMAIL}
 
         };
 

@@ -22,11 +22,13 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(post_Title)
                 .enterTextInIputBody("Test text")
+                .operationWithCheckBox("check")
                 //.selectTextInDropdownOptions("Приватне повідомлення")
                 //.selectValueInDropdownOptions("One Person")
-                .selectTextInDropDownByUIOptions("Групове повідомлення") //первое задание
+                .selectTextInDropDownByUIOptions("Групове повідомлення")
                 .clickButtonCreatePost()
                 .checkIsRedirectToPostPage()
+                .checkIsSelectingOfCheckoxInCreatingPost("yes")
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkTitle(post_Title) //3 задание проверка тайтла
                 .checkNoteDisplay()//3 задание проверка наличия лейба Note: This post was written for

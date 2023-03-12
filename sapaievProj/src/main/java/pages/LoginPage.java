@@ -1,6 +1,8 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -48,6 +50,10 @@ public class LoginPage extends ParentPage {
     private List<WebElement> listOfErrors;
 
 
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
+    private WebElement loginErrorText;
+
+
 
     public LoginPage(WebDriver webDriver) {
 
@@ -59,6 +65,8 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(base_URL + getRelativeURL());
@@ -70,18 +78,19 @@ public class LoginPage extends ParentPage {
         }
     }
 
-
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
 
         enterTextIntiElement(inputUserName, userName);
     }
 
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
 
         enterTextIntiElement(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonLogin() {
 
         clickOnElement(buttonLogin);
@@ -157,6 +166,11 @@ public class LoginPage extends ParentPage {
         webDriverWait15.withMessage("Namber messages should be"+expectedErrorsArray.length)
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsForRegistr),expectedErrorsArray.length));
 
+        Util.waitABit(1);
+
+        Assert.assertEquals("Number or messages", expectedErrorsArray.length, listOfErrors.size());
+
+
         ArrayList<String> actualTextFromErrors=new ArrayList<>();
 
         for (WebElement element:listOfErrors){
@@ -168,6 +182,17 @@ public class LoginPage extends ParentPage {
             softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals").isIn(actualTextFromErrors);
         }
         softAssertions.assertAll();
+        return this;
+    }
+
+    public LoginPage checkLoginError(){
+        Assert.assertTrue(isElementDisplayed(loginErrorText));
+        return this;
+    }
+
+
+    public LoginPage checkErrorsMessageForLogIn() {
+       Assert.assertTrue("Error text for log in is displayed",isElementDisplayed(loginErrorText));
         return this;
     }
 

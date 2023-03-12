@@ -17,6 +17,12 @@ public class HomePage extends ParentPage {
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    @Override
+    String getRelatedURL() {
+        return "/";
+    }
+
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HeaderElement getHeaderElement() {
@@ -32,6 +38,7 @@ public class HomePage extends ParentPage {
 
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
         if(!headerElement.isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred();
         }
@@ -40,6 +47,8 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsRedirectToHomePage() {
+        checkURL();
+        waiteChatToBeHide();
         Assert.assertTrue("Home Page is not loaded", headerElement.isButtonSignOutDisplayed());
 
         return this;

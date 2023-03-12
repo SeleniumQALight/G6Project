@@ -1,6 +1,7 @@
 package pages;
 
 import libraries.TestData;
+import libraries.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -29,6 +30,8 @@ public class LoginPage extends ParentPage {
     private WebElement signUpButton;
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> errorMessages;
+    @FindBy(xpath = ".//*[@class = 'alert alert-danger text-center']")
+    private WebElement errorMessageForLogIn;
 
     private String messageAlert = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
     private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
@@ -56,16 +59,19 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void enterUserNameIntoInputLogin(String userName) {
+    public LoginPage enterUserNameIntoInputLogin(String userName) {
         enterTextToElement(inputUserName, userName);
+        return this;
     }
 
-    public void enterPasswordIntoInputPassword(String password) {
+    public LoginPage enterPasswordIntoInputPassword(String password) {
         enterTextToElement(inputPassword, password);
+        return this;
     }
 
-    public void clickOnButtonLogIn() {
+    public LoginPage clickOnButtonLogIn() {
         clickOnElement(buttonLogin);
+        return this;
     }
 
     public boolean isSignInButtonDisplayed() {
@@ -114,6 +120,10 @@ public class LoginPage extends ParentPage {
     public LoginPage checkRegistrationErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(",");
         webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages ", expectedErrorsArray.length, listOfErrors.size());
+
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());
@@ -127,4 +137,9 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkErrorMessageForLogIn(String errorMessage){
+        Assert.assertTrue("Element is not dispalyed", isElementDisplayed(errorMessageForLogIn));
+        Assert.assertEquals("Message is not found its match", errorMessage, errorMessageForLogIn.getText());
+        return this;
+    }
 }

@@ -1,7 +1,9 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -28,6 +30,8 @@ public class LoginPage extends ParentPage {
     private WebElement passwordReg;
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']")
     private List<WebElement> listOfErrors;
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center']")
+    private WebElement signInError;
 
 
     private String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
@@ -43,6 +47,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(baseURL + "/");
@@ -54,12 +59,13 @@ public class LoginPage extends ParentPage {
         }
         return this;
     }
-
-    public void typeUserName(String userName) {
+    @Step
+    public LoginPage typeUserName(String userName) {
         typeTextToElement(inputUserName, userName);
+        return this;
     }
-
-    public void typeUserPassword(String password) {
+    @Step
+    public LoginPage typeUserPassword(String password) {
    /*     try {
            // WebElement passwordInput = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
             passwordInput.clear();
@@ -69,8 +75,9 @@ public class LoginPage extends ParentPage {
             printErroAboutElementAndStopTest(e);
         }*/
         typeTextToElement(passwordInput, password);
+        return this;
     }
-
+    @Step
     public HomePage clickSignIn() {
      /*   try {
           //  WebElement signInBtn = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
@@ -82,22 +89,22 @@ public class LoginPage extends ParentPage {
         clickOnElement(signInBtn);
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage typeUserNameForRegistration(String userName) {
         typeTextToElement(userNameReg, userName);
         return this;
     }
-
+    @Step
     public LoginPage typeEmailForRegistration(String email) {
         typeTextToElement(emailReg, email);
         return this;
     }
-
+    @Step
     public LoginPage typePasswordForRegistration(String password) {
         typeTextToElement(passwordReg, password);
         return this;
     }
-
+    @Step
     public HomePage fillValidCreds() {
         //  openLoginPage();
         typeUserName(TestData.VALID_LOGIN);
@@ -105,14 +112,22 @@ public class LoginPage extends ParentPage {
         clickSignIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public boolean isButtonSingInDisplayed() {
         return signInBtn.isDisplayed();
     }
-
+    @Step
     public LoginPage checkErrorMessageWithText(String message) {
         String errorMessageText = getText(getWebElement(String.format(errorMessage, message)));
         Assert.assertEquals("Error message for field is wrong", message, errorMessageText);
+        return this;
+    }
+    @Step
+    public LoginPage signInAndCheckSignInErrorAlert(String text) {
+        clickOnElement(signInBtn);
+
+        Assert.assertTrue("Error notification is not visible",   isElementDisplayed(signInError));
+        Assert.assertEquals(text, getText(signInError));
         return this;
     }
 
@@ -120,6 +135,8 @@ public class LoginPage extends ParentPage {
         String[] expectedErrorsArr = message.split(",");
         wait10.withMessage("Number of messages should be " + expectedErrorsArr.length)
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArr.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages",expectedErrorsArr.length,listOfErrors.size());
         List<String> actualFromErrors = new ArrayList();
         for (WebElement e : listOfErrors) {
             actualFromErrors.add(e.getText());

@@ -1,6 +1,8 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -13,6 +15,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class LoginPage extends ParentPage {
@@ -44,7 +48,7 @@ public class LoginPage extends ParentPage {
     String getRelativeURL() {
         return "/";
     }
-
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -67,32 +71,32 @@ public class LoginPage extends ParentPage {
 //        }
         enterTextIntoElement(inputUserName, userName);
     }
-
+    @Step
     public void actionsSendKeys(String text) {
         Actions action = new Actions(webDriver);
         action.sendKeys(text).build().perform();
     }
-
+    @Step
     public void openNewTabWithSameUrl() {
         ((JavascriptExecutor) webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
-
+    @Step
     public void switchToFirstTabAndRefresh() {
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(0));
         webDriver.navigate().refresh();
     }
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextIntoElement(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
-
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonLogin);
     }
@@ -124,6 +128,8 @@ public class LoginPage extends ParentPage {
 //        error1,error2,error3 -> array[0]=error1,array[1]=error2,array[2]=error3
         String[] expectedErrorsArray = expectedErrors.split(",");
         webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
+        Util.waitABit(1);
+        assertEquals("Number of messages ",expectedErrorsArray.length, listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());

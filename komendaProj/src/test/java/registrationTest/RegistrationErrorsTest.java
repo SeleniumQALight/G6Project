@@ -1,14 +1,17 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import libs.TestData;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class RegistrationErrorsTest extends BaseTest {
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
@@ -17,6 +20,14 @@ public class RegistrationErrorsTest extends BaseTest {
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
+
+    final static String USERNAME_CYRILLIC = "тест";
+    final static String PASSWORD_MAX = "60characterCharacter60characterCharacter60characterCharacter";
+    final static String EMAIL_INVALID = "test";
+    final static String ERROR_USERNAME_INVALID_CYRILLIC = "Username can only contain letters and numbers.";
+    final static String ERROR_PASSWORD_MAX = "Password cannot exceed 50 characters.";
+    final static String ERROR_EMAIL_INVALID = "You must provide a valid email address.";
+
 
 //    String expectedErrors = ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD;
 
@@ -35,7 +46,8 @@ public class RegistrationErrorsTest extends BaseTest {
     public static Object[][] provideParameters() {
         return new Object[][] {
                 new Object[] {"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"tr", "tt@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
+                new Object[] {"tr", "tt@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
+                new Object[]{USERNAME_CYRILLIC, EMAIL_INVALID, PASSWORD_MAX, ERROR_USERNAME_INVALID_CYRILLIC + COMMA + ERROR_EMAIL_INVALID + COMMA + ERROR_PASSWORD_MAX}
         };
 
     }
