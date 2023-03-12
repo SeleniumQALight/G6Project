@@ -78,4 +78,9 @@ public class MyProfilePage extends ParentPage{
         Assert.assertEquals("UserName does not correspond", validLogin , profileLogin.getText());
         return this;
     }
+
+    public PostPage clickOnCreatedPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
+    }
 }

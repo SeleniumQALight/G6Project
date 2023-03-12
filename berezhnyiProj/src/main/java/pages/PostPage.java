@@ -74,4 +74,9 @@ public class PostPage extends ParentPage{
         Assert.assertEquals("Underlined privacy option is not present", privacyValue, privacyUnderlined.getText());
         return this;
     }
+
+    public EditPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPage(webDriver);
+    }
 }
