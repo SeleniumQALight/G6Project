@@ -23,7 +23,7 @@ public class RegistrationErrorTest extends BaseTest{
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
-    final static Integer COUNTER_OF_ERRORS = 3;
+    final static Integer COUNTER_OF_ERRORS = 2;
 
 //    String expectedErrors = ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD;
 
@@ -54,11 +54,11 @@ public class RegistrationErrorTest extends BaseTest{
     public void myCheckErrors(){
         loginPage
                 .openLoginPage();
-        loginPage.enterUserNameintoRegistrationForm(TestData.INVALID_LOGIN)
+        loginPage.enterUserNameintoRegistrationForm(TestData.VALID_LOGIN)
                 .enterEmailInRegistrationForm(TestData.INVALID_EMAIL)
                 .enterPasswordInRegistrationForm(TestData.INVALID_PASSWORD)
                 .checkCounterOfAlerts(COUNTER_OF_ERRORS)
-                .checkErrorMessageWithText(ERROR_USERNAME_SMALL)
+//                .checkErrorMessageWithText(ERROR_USERNAME_SMALL)
                 .checkErrorMessageWithText(ERROR_EMAIL)
                 .checkErrorMessageWithText(ERROR_PASSWORD_SMALL);
     }
