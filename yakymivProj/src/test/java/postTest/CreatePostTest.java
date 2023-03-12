@@ -11,6 +11,8 @@ public class CreatePostTest extends BaseTest {
     final String POST_LABEL = "One Person";
     final String NOTE = "Note: This post was written for";
     final String NAME = "qaauto";
+    final String CHECKED = "check";
+    final String UNCHECKED = "uncheck";
 
     @Test
     public void TC1_createNewPost() {
@@ -23,9 +25,11 @@ public class CreatePostTest extends BaseTest {
 //                .selectTextDropDownOptions("Приватне повідомлення")
 //                .selectValueDropDownOptions(POST_LABEL)
                 .selectTextInDropDownByUI("Приватне повідомлення")
+                .setUpCheckBoxCreatePage(UNCHECKED)
                 .clickSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsPostUnique(UNCHECKED)
                 .checkPostTitle(POST_TITLE)
                 .checkPostNote(NOTE)
                 .checkPostLabel(POST_LABEL)

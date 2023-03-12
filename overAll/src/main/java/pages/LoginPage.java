@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import java.util.ArrayList;
 import java.util.List;
 import libs.Util;
@@ -46,6 +47,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public void openLoginPage(){
         try{
             webDriver.get(base_url + getRelativeURL());
@@ -57,7 +59,7 @@ public class LoginPage extends ParentPage{
         }
     }
 
-
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
 //        try{
 //            inputUserName.clear();
@@ -68,16 +70,18 @@ public class LoginPage extends ParentPage{
 //        }
         enterTextInToElement(inputUserName, userName);
     }
-
+    @Step
     public LoginPage enterPasswordIntoInputPassword(String password) {
         enterTextInToElement(inputPassword, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
 
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
@@ -85,22 +89,25 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterUserNameInRegistrationForm(String userName) {
         enterTextInToElement(inputLoginRegistration, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailInRegistrationForm(String email){
         enterTextInToElement(inputEmailRegistration,email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordInRegistrationForm(String password){
         enterTextInToElement(inputPasswordRegistration, password);
         return this;
     }
 
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         // error1,error2 -> array[0] = error1 , array[1] = error2
         String[] expectedErrorsArray = expectedErrors.split(",");
