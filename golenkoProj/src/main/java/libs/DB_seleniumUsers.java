@@ -12,11 +12,11 @@ public class DB_seleniumUsers {
         mySQL_DataBase = MySQL_Database.getDataBase();
         logger.info("--- Connected to DB -------");
 
-        String pass = mySQL_DataBase.selectValue(
-                String.format("select password from seleniumUsers where login = '%s'", login)
+        String passwordDB = mySQL_DataBase.selectValue(
+                String.format("SELECT password FROM seleniumUsers where login = '%s'", login)
         );
         mySQL_DataBase.quit();
         logger.info("--- Disconnected from DB -------");
-        return pass;
+        return passwordDB;
     }
 }
