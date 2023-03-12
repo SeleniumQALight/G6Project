@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -61,6 +62,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -71,7 +73,7 @@ public class LoginPage extends ParentPage {
             Assert.fail("Can not open Login Page" + e);
         }
     }
-
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
 //        try {
 //            WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
@@ -83,41 +85,41 @@ public class LoginPage extends ParentPage {
 //        }
             enterTextInToElement(inputUserName, userName);
     }
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextInToElement(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonLogin() {
        clickOnElement(buttonLogin);
     }
-
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
-
+    @Step
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
-
+    @Step
     public LoginPage enterUserNameInRegistrationForm(String userName) {
         enterTextInToElement(inputLoginRegistration, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterEmailInRegistrationForm(String email){
         enterTextInToElement(inputEmailRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterPasswordInRegistrationForm(String password){
         enterTextInToElement(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         // error1, error2 -> array[0] = error1, array[1] = error2
         String[] expectedErrorsArray = expectedErrors.split(",");
@@ -140,7 +142,7 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
+    @Step
     public LoginPage checkThreeAlertMessagesAreDisplayed() {
         WebDriverWait webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(6));
         webDriverWait.until(ExpectedConditions.numberOfElementsToBe(By.xpath(ALERT_XPATH), 3));
@@ -148,12 +150,12 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
+    @Step
     public LoginPage checkErrorMessageWithText(String textMessage) {
         Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parameterizedAlert, textMessage)));
         return this;
     }
-
+    @Step
     public LoginPage checkLoginInErrorMessage(String expectedErrorLogin) {
         Assert.assertTrue("Message error login and password is not displayed", isElementDisplayed(signInError));
         Util.waitABit(1);
