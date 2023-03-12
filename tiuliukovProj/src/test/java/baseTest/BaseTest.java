@@ -43,7 +43,7 @@ public class BaseTest {
 
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
-        headerElement = new HeaderElement(webDriver);
+//        headerElement = new HeaderElement(webDriver);
     }
 
 
