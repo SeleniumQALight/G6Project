@@ -3,36 +3,56 @@ package postTest;
 import baseTest.BaseTest;
 import libs.Util;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
-public class CreatePostTest extends BaseTest {
-    final String POST_TITLE = "TC1_Kava_EditPost" + Util.getDateAndTimeFormatted();
+public class EditPostTest extends BaseTest {
 
-    @Test
-    public void TC1_createNewPost() {
+    final String POST_TITLE = "Kava_Edit" + Util.getDateAndTimeFormatted();
+    final String NEW_POST_TITLE = "New_Kava_Edit" + Util.getDateAndTimeFormatted();
+
+    @Before
+    public void createPost() {
         homePage
                 .openHomePage()
                 .clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
-                .enterTextIntoPostBody("This is text for test2 purposes")
+                .enterTextIntoPostBody("This is edit post test")
 //                .selectTextInDropDownOptions("Приватне повідомлення")
 //                .selectValueInDropDownOptions("One Person")
                 .selectTextInDropDownUI("Загальнодоступне")
-                .checkBoxState("uncheck")
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkTextInTitle(POST_TITLE)
                 .checkTextInLabel()
                 .checkUsersText("All Users")
-                .isCheckBoxMessageCorrect("Is this post unique? : no")
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .checkUserVisibility("qaauto")
-                .checkPostWasCreated(POST_TITLE)
+                .checkPostWasCreated(POST_TITLE);
 
-        ;
+    }
+
+    @Test
+    public void editPost() {
+        homePage.openHomePage()
+                .getHeaderElement().clickOnMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .clickOnPost(POST_TITLE)
+                .checkIsRedirectToPostPage()
+                .checkTextInTitle(POST_TITLE)
+                .clickOnEditButton()
+                .enterTextInInputTitle(NEW_POST_TITLE)
+                .clickOnSaveUpdatesButton()
+                .checkIfPostWasUpdated("Post successfully updated.")
+                .getHeaderElement().clickOnMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .checkUserVisibility("qaauto")
+                .checkPostWasCreated(NEW_POST_TITLE);
+
+
     }
 
     @After
@@ -42,9 +62,8 @@ public class CreatePostTest extends BaseTest {
                 .getHeaderElement().clickOnMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsWithTitleTillPresent(POST_TITLE)
+                .deletePostsWithTitleTillPresent(NEW_POST_TITLE);
 
-
-        ;
     }
-}
 
+}
