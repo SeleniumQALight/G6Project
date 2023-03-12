@@ -95,8 +95,4 @@ public class MyProfilePage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    public MyProfilePage checkPostWasUpdated(String postTitle) {
-        Assert.assertEquals("Number of posts updated: ", 1, getPostsListWithTitle(postTitle).size());
-        return this;
-    }
 }
