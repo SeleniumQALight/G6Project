@@ -88,6 +88,12 @@ public class CommonActionsWithElements {
             logger.info("Element is not displayed");
             return false;
         }
+
+    }
+
+    protected boolean isElementDisplayed(String text) {
+        WebElement webElement = webDriver.findElement(By.xpath(text));
+        return isElementDisplayed(webElement);
     }
 
 
@@ -143,7 +149,6 @@ public class CommonActionsWithElements {
             return "";
         }
     }
-
 
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
