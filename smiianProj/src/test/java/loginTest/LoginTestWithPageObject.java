@@ -43,7 +43,7 @@ public class LoginTestWithPageObject extends BaseTest {
   Map<String, String> dataForValidLogin = ExcelDriver.getData(configProperties.DATA_FILE(), "validLogOn");
   loginPage.openLoginPage();
   loginPage.enterUserNameIntoInputLogin(dataForValidLogin.get("login"));   // до довання Excel файлів в дужках було "qaauto"
-  //loginPage.enterPasswordIntoInputpassword(dataForValidLogin.get("pass"));  // до довання Excel файлів в дужках було "123456qwerty"
+  loginPage.enterPasswordIntoInputpassword(dataForValidLogin.get("pass"));  // до довання Excel файлів в дужках було "123456qwerty"
   loginPage.clickOnButtonLogin();
 
   Assert.assertTrue("SignOut button is not displayed",

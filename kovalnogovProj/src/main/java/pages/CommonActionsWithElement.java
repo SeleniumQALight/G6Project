@@ -152,7 +152,9 @@ public class CommonActionsWithElement {
 
     protected void selectCheckBox(WebElement element) {
         try {
-            element.click();
+            if (!element.isSelected()) {
+                element.click();
+            }
             logger.info("Click on checkBox");
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
@@ -162,29 +164,17 @@ public class CommonActionsWithElement {
 
     protected void selectCheckBox(WebElement element, CheckBoxState state) {
         try {
-            logger.info("Current checkbox state "+ isCheckBoxSelected(element));
-            if (state == CheckBoxState.CHECKED &&isCheckBoxSelected(element)==false) {
-                element.click();
+            logger.info("Current checkbox state: " + element.isSelected());
+            if (state == CheckBoxState.CHECKED && element.isSelected() == false) {
+                selectCheckBox(element);
                 logger.info("Select checkbox");
-            }
-            else if(state == CheckBoxState.UNCHECKED &&isCheckBoxSelected(element)==true){
-                element.click();
+            } else if (state == CheckBoxState.UNCHECKED && element.isSelected() == true) {
+                selectCheckBox(element);
                 logger.info("Deselect checkbox");
             }
         } catch (Exception e) {
             printErroAboutElementAndStopTest(e);
         }
-    }
-
-    protected boolean isCheckBoxSelected(WebElement element) {
-        boolean isSelected = false;
-        try {
-            isSelected = element.isSelected();
-            logger.info("CheckBox state: " + isSelected);
-        } catch (Exception e) {
-            printErroAboutElementAndStopTest(e);
-        }
-        return isSelected;
     }
 
     protected void printErroAboutElementAndStopTest(Exception e) {

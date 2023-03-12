@@ -61,15 +61,10 @@ public class CreatePostPage extends ParentPage {
     }
 
     public CreatePostPage selectCheckBox() {
-        if (!isCheckBoxSelected(checkBox))
             selectCheckBox(checkBox);
         return this;
     }
 
-    public CreatePostPage deselectCheckbox() {
-        selectCheckBox(checkBox);
-        return this;
-    }
 
     public CreatePostPage selectCheckBox(CheckBoxState state) {
         selectCheckBox(checkBox, state);
