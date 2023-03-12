@@ -1,15 +1,18 @@
 package registrationTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;  // додали бібліотеку
 // + не забути дані з Pom-файлу <dependency> <groupId>pl.pragmatists</groupId>
 // <artifactId>JUnitParams</artifactId> <version>1.0.5</version> <scope>test</scope> </dependency>
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)   // дозволяє використовувати список з різними списками даних
+@Category(SmokeTestFilter.class)          //  додано для роботи з ТестСьютом
 
 public class RegistrationErrors extends BaseTest {
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";

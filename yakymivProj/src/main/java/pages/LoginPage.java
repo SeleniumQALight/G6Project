@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -32,6 +33,9 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement logInErrorMessage;
+
     @FindBy(xpath = listOfErrorsLocator)
     private List<WebElement> listOfErrors;
 
@@ -46,7 +50,8 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
-    public void openLoginPage() {
+    @Step
+    public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
             logger.info("LoginPage was opened");
@@ -55,20 +60,25 @@ public class LoginPage extends ParentPage {
             logger.error("Can't open Login Page " + e);
             Assert.fail("Can't open Login Page " + e);
         }
+        return new LoginPage(webDriver);
     }
 
+    @Step
     public void enterUserNameintoInputLogin(String userName) {
         enterTextToElement(inputUserName, userName);
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextToElement(inputPass, password);
     }
 
+    @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameintoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
@@ -76,33 +86,39 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
-    public HomePage fillingLoginFormWithInvalidCred() {
+    @Step
+    public LoginPage fillingLoginFormWithInvalidCred(String userName, String password) {
         openLoginPage();
-        enterUserNameintoInputLogin(TestData.INVALID_LOGIN);
-        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        enterUserNameintoInputLogin(userName);
+        enterPasswordIntoInputPassword(password);
         clickOnButtonLogin();
-        return new HomePage(webDriver);
+        return this;
     }
 
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isButtonDisplayed(buttonSignIn);
     }
 
+    @Step
     public LoginPage enterUserNameintoRegistrationForm(String userName) {
         enterTextToElement(inputLoginRegistration, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailInRegistrationForm(String email){
         enterTextToElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordInRegistrationForm(String pass){
         enterTextToElement(inputPasswordRegistration, pass);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorMessage(String expectedErrors) {
         String[]expectedErrorArray = expectedErrors.split(",");
         webDriverWait10
@@ -123,8 +139,12 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
 
-
-
         return this;
+    }
+
+    @Step
+    public void checkLogInErrorMessage(String expectedError) {
+        Assert.assertEquals("Text in success message element: ", expectedError, logInErrorMessage.getText());
+        Assert.assertFalse("Sign out button is displayed",  getHeaderElement().isButtonSignOutDisplayed());
     }
 }

@@ -1,12 +1,15 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
+import io.qameta.allure.*;
 import libs.ExcelDriver;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import java.io.IOException;
 import java.util.Map;
@@ -15,10 +18,20 @@ import static pages.CommonActionsWithElements.configProperties;
 
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
     final static String ERROR_LOGIN_PASSWORD_INCORRECT = "Invalid username pasword";
 
     @Test
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
     public void validLogin() {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin("qaauto");

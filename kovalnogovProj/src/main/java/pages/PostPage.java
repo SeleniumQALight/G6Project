@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,9 +23,6 @@ public class PostPage extends ParentPage {
 
     @FindBy(xpath = ".//i/u")
     private WebElement dropdownValue;
-    @FindBy(xpath = "(.//p)[3]")
-    private WebElement uniqueValue;
-
 
     private HeaderElements headerElements;
 
@@ -45,7 +43,7 @@ public class PostPage extends ParentPage {
     public HeaderElements getHeaderElements() {
         return headerElements;
     }
-
+    @Step
     public PostPage checkIsRedirectToPostPage() {
        // checkURL();
         checkURLContainsRelative();
@@ -53,42 +51,38 @@ public class PostPage extends ParentPage {
         Assert.assertTrue("PostPage is not opened", isElementDisplayed(editButton));
         return this;
     }
-
+    @Step
     public PostPage checkValueInSuccessMessage(String expectedMessage) {
         Assert.assertEquals("Message does not match with expected", expectedMessage, getText(successMessage));
         return this;
     }
-
+    @Step
     public PostPage checkIsPostTitlePresent() {
         Assert.assertTrue("Title is not visible", isElementDisplayed(createdPostTitle));
         return this;
     }
-
+    @Step
     public PostPage checkIsCreatedPostTitleTextEqualWithExpected(String title) {
         Assert.assertEquals("Title name does not match with expected",title,getText(createdPostTitle));
         return this;
     }
+    @Step
     public PostPage checkIsNoteTextEqualWithExpected(String title) {
         Assert.assertEquals("Title name does not match with expected",title,getText(note));
         return this;
     }
-
-    public PostPage checkThatPostUnique( ) {
-        Assert.assertTrue("Post is not unique or check box is not selected ",uniqueValue.getText().contains("yes"));
-        return this;
-    }
-
+    @Step
     public PostPage checkIsNoteContainsUnderlineText() {
         Assert.assertTrue("Text property text decoration does not equal "+ UNDERLINE,
                 getTextDecorationCssProperty(dropdownValue).contains(UNDERLINE));
         return this;
     }
-
+    @Step
     public ProfilePage clickOnDeleteButton() {
         clickOnElement(deleteButton);
         return new ProfilePage(webDriver);
     }
-
+    @Step
     public EditPostPage editPost() {
         clickOnElement(editButton);
         return new EditPostPage(webDriver);
