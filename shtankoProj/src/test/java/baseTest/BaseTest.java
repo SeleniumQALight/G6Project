@@ -22,6 +22,7 @@ import pages.HomePage;
 import pages.LoginPage;
 
 import java.io.ByteArrayInputStream;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class BaseTest {
     protected ArrayList<ScreenShot> listOfScreenShots = new ArrayList<>();
 
     @Before
-    public void setUp(){
+    public void setUp() throws SQLException, ClassNotFoundException {
         logger.info("------ " + testName.getMethodName() + " was started------");
         webDriver = initDriver();
         webDriver.manage().window().maximize();
