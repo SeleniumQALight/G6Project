@@ -7,11 +7,13 @@ import org.junit.After;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 
 import static pages.CommonActionsWithElements.configProperties;
 
 public class CreatePostTestWithExcel extends BaseTest {
+    String login = "";
     String postTitle =  "";
     String postBody = "";
     String postIsUniqueState = "";
@@ -23,8 +25,9 @@ public class CreatePostTestWithExcel extends BaseTest {
     }
 
     @Test
-    public void TC_createNewPostWithExcel() throws IOException {
+    public void TC_createNewPostWithExcelAndDB() throws IOException, SQLException, ClassNotFoundException {
         Map<String, String> dataForPost = ExcelDriver.getData(configProperties.DATA_FILE(), "CreatePost");
+        login = dataForPost.get("Login");
         postTitle = dataForPost.get("Title") + Util.getDateAndTimeFormatted();
         postBody = dataForPost.get("Body");
         postIsUniqueState = dataForPost.get("StateOfPostUnique");
@@ -32,7 +35,7 @@ public class CreatePostTestWithExcel extends BaseTest {
         successMessage = dataForPost.get("SuccessMessage");
         postExpectedLabel = dataForPost.get("ExpectedLabel");
         homePage
-                .openHomePage()
+                .openHomePageDBLogin(login)
                 .getHeaderElement().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(postTitle)
@@ -53,9 +56,9 @@ public class CreatePostTestWithExcel extends BaseTest {
     }
 
     @After
-    public void deletePost(){
+    public void deletePost() throws SQLException, ClassNotFoundException {
         homePage
-                .openHomePage()
+                .openHomePageDBLogin(login)
                 .getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .deletePostsWithTitleTillPresent(postTitle)
