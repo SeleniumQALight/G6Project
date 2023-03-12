@@ -19,6 +19,9 @@ public class CreatePostPage extends ParentPage {
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
 
+    @FindBy(xpath = ".//input[@name = 'uniquePost']")
+    private WebElement checkboxOfPost;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -64,6 +67,11 @@ public class CreatePostPage extends ParentPage {
     public PostPage clickSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
+    }
+
+    public CreatePostPage setUpCheckBoxCreatePage (String state){
+            setUpCheckBox(checkboxOfPost,state);
+        return this;
     }
 
 

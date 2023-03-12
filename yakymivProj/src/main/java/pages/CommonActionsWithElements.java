@@ -200,4 +200,42 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    protected void setCheckBoxChecked (WebElement checkBox){
+        try {
+            if(!checkBox.isSelected()){
+                clickOnElement(checkBox);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckBoxUnchecked (WebElement checkBox){
+        try {
+            if(checkBox.isSelected()){
+                clickOnElement(checkBox);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setUpCheckBox(WebElement checkBox, String state){
+        try {
+            if (state.equalsIgnoreCase("check")){
+                setCheckBoxChecked(checkBox);
+                logger.info("Checkbox is checked");
+            } else if (state.equalsIgnoreCase("uncheck")){
+                setCheckBoxUnchecked(checkBox);
+                logger.info("Checkbox is unchecked");
+            }else {
+                logger.info("Wrong input in to element use 'check' or 'uncheck' ");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
 }
