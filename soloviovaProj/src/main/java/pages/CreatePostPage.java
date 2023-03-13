@@ -19,6 +19,8 @@ public class CreatePostPage extends ParentPage {
     private WebElement dropDownOptions;
     @FindBy(xpath = ".//option[@value='One Person']")
     private WebElement option;
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -57,14 +59,43 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
-    public CreatePostPage selectValueInDropDownOptions(String valueInDD){
+    public CreatePostPage selectValueInDropDownOptions(String valueInDD) {
         selectValueFromDropDown(dropDownOptions, valueInDD);
         return this;
     }
 
-    public CreatePostPage selectTextInDropDownWithUI(){
+    public CreatePostPage selectTextInDropDownWithUI() {
         clickOnElement(dropDownOptions);
         clickOnElement(option);
+        return this;
+    }
+
+    public CreatePostPage selectCheckbox() {
+        if(!checkBox.isSelected()){
+            clickOnElement(checkBox);
+            logger.info("Checkbox is selected");
+        }else{
+            logger.info("Checkbox is already selected");
+        }
+        return this;
+    }
+
+    public CreatePostPage unSelectCheckbox(){
+        if(checkBox.isSelected()){
+            clickOnElement(checkBox);
+            logger.info("Checkbox is unchecked");
+        }else{
+            logger.info("Checkbox is already unchecked");
+        }
+        return this;
+    }
+
+    public CreatePostPage checkboxState(String state){
+        if(state.equalsIgnoreCase("check")){
+            selectCheckbox();
+        }else if(state.equalsIgnoreCase("uncheck")){
+            unSelectCheckbox();
+        }
         return this;
     }
 }
