@@ -2,13 +2,12 @@ package postTest;
 
 import baseTest.BaseTest;
 import dbtest.DBTest;
+import libs.DBselenuimUsersFromTable;
 import libs.Database;
 import libs.ExcelDriver;
-import libs.MySQL_Database;
 import libs.Util;
 import org.apache.log4j.Logger;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -21,40 +20,18 @@ public class CreatePostWithDBAndExcelTest extends BaseTest {
 
     String myUniqueTitle;
 
-    private Database mysqlDB;
-    private Logger log = Logger.getLogger(DBTest.class);
-
-    @Before
-    public void setUP() throws SQLException, ClassNotFoundException {
-        mysqlDB = MySQL_Database.getDataBase();
-    }
-
-
-    @After
-    public void tearDown() throws SQLException {
-
-        mysqlDB.quit();
-    }
-
-
     @Test
     public void testDataFromDb() throws SQLException, ClassNotFoundException, IOException {
 
         final String LOGIN = "newqaauto";
-
-
-        String passwordFromDB =
-                mysqlDB.selectValue(String.format("SELECT password FROM seleniumUsers WHERE login = '%s'", LOGIN));
-        log.info(passwordFromDB);
-
-        log.info("---------");
+        DBselenuimUsersFromTable dBselenuimUsersFromTable = new DBselenuimUsersFromTable();
 
 
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoLogin(LOGIN);
-        loginPage.enterPasswordIntoInputPassword(passwordFromDB);
-        loginPage.clickOnButtonLogin();
 
+        loginPage.enterPasswordIntoInputPassword(dBselenuimUsersFromTable.getPassFromDBForLogin(LOGIN));
+        loginPage.clickOnButtonLogin();
 
         Map<String, String> dataForCreatePost = ExcelDriver.getData(configProperties.DATA_FILE(), "createPost");
 
