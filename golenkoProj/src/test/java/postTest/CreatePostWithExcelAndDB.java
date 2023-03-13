@@ -28,17 +28,6 @@ public class CreatePostWithExcelAndDB extends BaseTest {
     public CreatePostWithExcelAndDB() throws IOException {
     }
 
-    @Before
-    public void SetUp() throws SQLException, ClassNotFoundException {
-        mysqlDB = MySQL_Database.getDataBase();
-
-    }
-
-    @After
-    public void tearDown() throws SQLException {
-        mysqlDB.quit();
-    }
-
     @Test
     public void TC_createNewPostWithExcel() throws SQLException, ClassNotFoundException {
         DB_seleniumUsers db_seleniumUsers = new DB_seleniumUsers();
