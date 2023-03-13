@@ -32,7 +32,7 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin(){
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoInputLogin("qaaauto");
+        loginPage.enterUserNameIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonLogin();
 
