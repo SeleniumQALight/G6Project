@@ -9,7 +9,7 @@ import pages.elements.HeaderElement;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class PostPage extends ParentPage{
+public class PostPage extends ParentPage {
     @FindBy(xpath = ".//a[@data-original-title=\"Edit\"]")
     private WebElement buttonEdit;
 
@@ -33,6 +33,9 @@ public class PostPage extends ParentPage{
     @FindBy(xpath = ".//*[text()='Post successfully updated.']")
     private WebElement updateMessage;
 
+    @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
+    private WebElement postUnique;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -42,7 +45,7 @@ public class PostPage extends ParentPage{
         return "/post/";
     }
 
-    public HeaderElement getHeaderElement(){
+    public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
@@ -53,12 +56,12 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage checkTextInSuccessMessage(String expectMessage){
+    public PostPage checkTextInSuccessMessage(String expectMessage) {
         assertEquals("Text in success message element", expectMessage, successMessage.getText());
         return this;
     }
 
-    public PostPage checkTitleInCreatedPost(String title){
+    public PostPage checkTitleInCreatedPost(String title) {
         assertEquals("Text in title", title, createPost.getText());
         return this;
     }
@@ -85,6 +88,11 @@ public class PostPage extends ParentPage{
 
     public PostPage checkTextInSuccessUpdateMessage(String textUpdateMessage) {
         assertEquals("Text is absent", textUpdateMessage, updateMessage.getText());
+        return this;
+    }
+
+    public PostPage checkPostUnique() {
+        assertTrue("Post is not unique", isElementDisplayed(postUnique));
         return this;
     }
 }
