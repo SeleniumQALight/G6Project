@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import pages.HomePage;
@@ -48,8 +49,10 @@ public class BaseTest {
     private WebDriver initDriver(){
         String browser = System.getProperty("browser");
         if((browser==null) || "chrome".equals(browser)){
+            ChromeOptions ops = new ChromeOptions();
+            ops.addArguments("--remote-allow-origins=*");
             WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver();
+            webDriver = new ChromeDriver(ops);
         }else if ("firefox".equalsIgnoreCase(browser)){
             WebDriverManager.firefoxdriver().setup();//exe для firefox называется гекодрайвер
             webDriver = new FirefoxDriver();

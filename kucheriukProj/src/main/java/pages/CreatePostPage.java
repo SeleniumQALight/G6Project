@@ -18,6 +18,9 @@ public class CreatePostPage extends ParentPage {
     @FindBy(tagName = "select")
     private WebElement dropDownOptions;
 
+    @FindBy(xpath = "//input[@name='uniquePost']")
+    private WebElement checkBox;
+
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -68,5 +71,35 @@ public class CreatePostPage extends ParentPage {
         inputTitle.clear();
         enterTextInToElement(inputTitle, newTitle);
         return this;
+    }
+
+    public CreatePostPage selectCheckboxStateSelected(String state) {
+        setCheckboxState(checkBox, state);
+        return this;
+    }
+    public void checkCheckbox(WebElement checkbox) {
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is checked");
+        } else {
+            logger.info("Checkbox is already checked");
+        }
+    }
+    public void uncheckCheckbox(WebElement checkbox) {
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox was unchecked");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+    public void setCheckboxState(WebElement checkbox, String checkBoxState) {
+        if (checkBoxState.equalsIgnoreCase("Check")) {
+            checkCheckbox(checkbox);
+        } else if (checkBoxState.equalsIgnoreCase("Uncheck")) {
+            uncheckCheckbox(checkbox);
+        } else {
+            logger.error("Incorrect state of checkbox");
+        }
     }
 }
