@@ -24,6 +24,7 @@ import pages.MyProfilePage;
 import pages.PostPage;
 
 import java.io.ByteArrayInputStream;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class BaseTest {
 
 
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException, ClassNotFoundException {
         logger.info(" ------- " + testName.getMethodName() + " Was started-------");
         webDriver = initDriver();
         webDriver.manage().window().maximize();
