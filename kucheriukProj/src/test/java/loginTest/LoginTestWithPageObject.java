@@ -1,12 +1,14 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import libs.ExcelDriver;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.Map;
 import static pages.CommonActionsWithElements.configProperties;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void validLogin(){
