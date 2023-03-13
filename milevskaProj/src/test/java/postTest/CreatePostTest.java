@@ -10,6 +10,8 @@ import pages.elements.HeaderElement;
 public class CreatePostTest extends BaseTest {
     final String POST_TITLE = "TC1_milevska_1" + Util.getDateAndTimeFormatted();
     final String dropdownValue = "One Person";
+    final String CHECK = "check";
+    final String UNCHECK = "uncheck";
     @Test
     public void TC1_createNewPost() {
         homePage
@@ -22,6 +24,7 @@ public class CreatePostTest extends BaseTest {
                 //.selectValueInDropDownOptions("One Person")
                 //.selectTextInDropDownOptions("Приватне повідомлення")
                 .selectValueInDropDownOptions(dropdownValue)
+                .checkboxState(CHECK)
                 //.selectElementInDropdownByUI()
                 .clickOnSavePostButton()
                 .checkIsRedirectToPostPage()

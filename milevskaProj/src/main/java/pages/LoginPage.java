@@ -37,6 +37,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//button[@type='submit']")
     private WebElement buttonSignUp;
 
+    @FindBy(xpath = "//div[@class = 'alert alert-danger text-center']")
+    private WebElement invalidLoginAssertion;
+
     private String assertions = "//label[@for = '%s']/../div";
     private String listOfAssertion = ".//*[text()='%s']";
 
@@ -128,6 +131,11 @@ public class LoginPage extends ParentPage {
         return this;
     }
     @Step
+
+    public LoginPage checkIsInvalidLoginAssertionDisplays(){
+        Assert.assertTrue("Invalid username password assert displays", isElementDisplayed(invalidLoginAssertion));
+        return this;
+    }
 
     public LoginPage checkIsAssertionDisplayed(String assertName, String expectedAssertion){
         WebElement expectedLocator = webDriver.findElement(By.xpath(String.format(assertions, assertName)));

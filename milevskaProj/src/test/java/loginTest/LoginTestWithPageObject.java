@@ -1,18 +1,18 @@
 package loginTest;
 
 import baseTest.BaseTest;
-import categories.SmokeTestFilter;
-import io.qameta.allure.*;
 import libs.ExcelDriver;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import pages.elements.HeaderElement;
+
 import java.io.IOException;
 import java.util.Map;
 
 import static pages.CommonActionsWithElements.configProperties;
-@Epic("Allure examples")
-@Feature("Junit 4 support")
+
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
