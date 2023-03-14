@@ -10,7 +10,7 @@ import pages.HomePage;
 import pages.MyProfilePage;
 
 public class HeaderElements extends CommonActionsWithElements {
-    @FindBy(xpath = ".//a[@href='/profile/qaauto' and @class='mr-2']")
+    @FindBy(xpath = ".//a[@href='/profile/newqaauto' and @class='mr-2']")
     private WebElement buttonMyProfile;
 
     @FindBy (xpath = ".//a[@href='/create-post']")

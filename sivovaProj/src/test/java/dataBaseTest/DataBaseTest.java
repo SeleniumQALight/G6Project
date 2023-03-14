@@ -29,7 +29,7 @@ public class DataBaseTest {
 
     @Test
     public void testDataFromDB() throws SQLException, ClassNotFoundException {
-        final String LOGIN = "G6_sivova";
+        final String LOGIN = "G6_Sivova";
 
 
         ArrayList<Map<String, String >> dataFromSeleniumTable =
@@ -39,21 +39,21 @@ public class DataBaseTest {
      //   log.info(dataFromSeleniumTable.get(1).get("login"));
         log.info("Number of rows = " + dataFromSeleniumTable.size());
 
-        int numberOfRows = mysqlDB.changeTable("INSERT INTO seleniumTable VALUES(234, '%s', 'qwerty')", LOGIN);
-        log.info("Number of insertd rows = " + numberOfRows);
+        int numberOfRows = mysqlDB.changeTable("INSERT INTO seleniumTable VALUES(234, '%s', 'qwerty123456')", LOGIN);
+        log.info("Number of inserted rows = " + numberOfRows);
 
         dataFromSeleniumTable =
                 mysqlDB.selectTableAsMap(
                         String.format("SELECT * FROM seleniumTable WHERE login = '%s'", LOGIN));
         log.info(dataFromSeleniumTable);
 
-        int deletedRows = mysqlDB.changeTable("DELETE from seleniumTable WHERE login= '%s'", LOGIN);
-        log.info("Number of deleted rows = " + deletedRows);
+       // int deletedRows = mysqlDB.changeTable("DELETE from seleniumTable WHERE login= '%s'", LOGIN);
+       // log.info("Number of deleted rows = " + deletedRows);
 
         log.info("-------------------");
 
         DB_Util db_util = new DB_Util();
-        log.info(db_util.getPassForLogin("G5_taras"));
+        log.info(db_util.getPassForLogin("G5_Taras"));
 
     }
 
