@@ -18,6 +18,7 @@ public class CreatePostTest extends BaseTest {
              .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInBodyContent(POST_BODY)
+                .setUniquePostCheckboxCheckState()
 //                .selectTextInDropDownOption("Приватне повідомлення")
 //                .selectValueInDropDownOption("One Person")
                 .selectSecondTextInDropDownByUi()
@@ -34,21 +35,6 @@ public class CreatePostTest extends BaseTest {
         ;
     }
 
-
-    @Test
-    public void blaBlaBla() {           // ------------------HW 6
-        homePage
-                .openHomePage()
-                .getHeaderElement().clickOnCreatePostButton()
-                .checkIsRedirectToCreatePostPage()
-                .enterTextInInputTitle(POST_TITLE)
-                .enterTextInBodyContent(POST_BODY)
-                .getChBoxAttributeAND()
-                .checkboxPostUniqueClick()
-                .getChBoxAttributeAND()
-
-                ;
-    }
 
 
     @After

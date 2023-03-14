@@ -26,7 +26,7 @@ public class CreatePostPage extends ParentPage {
     private WebElement createPostDropDownSecondOption;
 
     @FindBy (xpath = ".//input[@type='checkbox']")
-    private WebElement checkBoxIsPostUnique;
+    private WebElement checkboxUniquePost;
 
 
 
@@ -81,16 +81,16 @@ public class CreatePostPage extends ParentPage {
         return this;
     }
 
-    public CreatePostPage getChBoxAttributeAND() {              //----------------------------HW6
-        getCheckBoxAttribute(checkBoxIsPostUnique);
-        logger.info(checkBoxIsPostUnique.isSelected());
+    public CreatePostPage setUniquePostCheckboxCheckState() {
+        setCheckboxState(checkboxUniquePost, "check");
         return this;
     }
 
-    public CreatePostPage checkboxPostUniqueClick() {        //----------------------------HW6
-        checkBoxIsPostUnique.click();
+    public CreatePostPage setUniquePostCheckboxUncheckState() {
+        setCheckboxState(checkboxUniquePost, "uncheck");
         return this;
     }
+
 
 
 
