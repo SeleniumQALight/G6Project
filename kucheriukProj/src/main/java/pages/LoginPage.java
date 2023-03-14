@@ -1,6 +1,7 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -50,6 +51,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -61,11 +63,13 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
 //
         enterTextInToElement(inputUserName, userName);
     }
 
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
 //        try {
 //            //WebElement inputPassword = webDriver.findElement(By.xpath(".//input[@placeholder='Password']"));
@@ -78,6 +82,7 @@ public class LoginPage extends ParentPage {
         enterTextInToElement(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonLogin() {
 //        try{
 //            //WebElement buttonLogin = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
@@ -90,10 +95,12 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonLogin);
     }
 
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonLogin);
     }
 
+    @Step
     public HomePage fillingLoginForWithValidCred() {
         //openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
@@ -102,25 +109,30 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterUserNameIntoRegistrationField(String userName) {
         enterTextInToElement(userNameRegistrationField, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailIntoEmailField(String email) {
         enterTextInToElement(emailField, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordIntoPasswordRegistrationField(String password) {
         enterTextInToElement(passwordRegistrationField, password);
         return this;
     }
 
+    @Step
     public boolean isFieldValidationErrorIsDisplayed(String error) {
         return isElementDisplayed(errorMessage, error);
     }
 
+    @Step
     public LoginPage checkErrorCountMessage(int quantityErrors) {
         webDriverWait10
                 .withMessage("Number of message should be " + quantityErrors)
@@ -132,6 +144,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessage(String expectedErrors) {
         //error1, error2 -> array[0] = error1, array[1] = error2
         String[] expectedErrorsArray = expectedErrors.split(",");
