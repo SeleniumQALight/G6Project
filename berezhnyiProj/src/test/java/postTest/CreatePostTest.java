@@ -25,6 +25,7 @@ public class CreatePostTest extends BaseTest {
                 .checkPostTitleIsDisplayed(POST_TITLE)
                 .checkCorrectNoteIsDisplayed("Note: This post was written for")
                 .checkPrivacyUnderlinedTextIs("One Person")
+                .checkPostIsUnique("Is this post unique? : yes")
                 .getHeaderElements()
                 .clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
