@@ -39,7 +39,7 @@ public class DataBaseTest {
      //   log.info(dataFromSeleniumTable.get(1).get("login"));
         log.info("Number of rows = " + dataFromSeleniumTable.size());
 
-        int numberOfRows = mysqlDB.changeTable("INSERT INTO seleniumTable VALUES(234, '%s', 'qwerty123456')", LOGIN);
+        int numberOfRows = mysqlDB.changeTable("INSERT INTO seleniumTable VALUES(234, '%s', 'qwerty')", LOGIN);
         log.info("Number of inserted rows = " + numberOfRows);
 
         dataFromSeleniumTable =
@@ -47,8 +47,8 @@ public class DataBaseTest {
                         String.format("SELECT * FROM seleniumTable WHERE login = '%s'", LOGIN));
         log.info(dataFromSeleniumTable);
 
-       // int deletedRows = mysqlDB.changeTable("DELETE from seleniumTable WHERE login= '%s'", LOGIN);
-       // log.info("Number of deleted rows = " + deletedRows);
+        int deletedRows = mysqlDB.changeTable("DELETE from seleniumTable WHERE login= '%s'", LOGIN);
+        log.info("Number of deleted rows = " + deletedRows);
 
         log.info("-------------------");
 
