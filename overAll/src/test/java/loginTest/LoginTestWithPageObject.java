@@ -36,7 +36,7 @@ public class LoginTestWithPageObject extends BaseTest {
 //    @Ignore
     @Category(SmokeTestFilter.class)
     public void validLogin(){
-        loginPage.openLoginPage();
+        loginPage.openLoginPage()
         loginPage.enterUserNameIntoInputLogin("qaaut");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonLogin();
