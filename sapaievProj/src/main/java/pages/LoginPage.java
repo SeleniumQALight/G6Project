@@ -1,6 +1,8 @@
 package pages;
 
 import io.qameta.allure.Step;
+import libs.DB_Util;
+import libs.DB_Util_HomeWork;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -12,6 +14,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +103,15 @@ public class LoginPage extends ParentPage {
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonLogin();
+        return new HomePage(webDriver);
+    }
+
+
+    public HomePage fillingLoginFormWithValidCredWithDataBase() throws SQLException, ClassNotFoundException {
+        enterUserNameIntoInputLogin("newqaauto");
+        DB_Util_HomeWork db_util_homeWork=new DB_Util_HomeWork();
+        enterPasswordIntoInputPassword(db_util_homeWork.getPassForLogin("newqaauto"));
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
