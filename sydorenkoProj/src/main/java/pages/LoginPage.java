@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -47,7 +48,7 @@ public class LoginPage extends ParentPage {
     String getRelativeURL() {
         return "/";
     }
-
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -70,32 +71,32 @@ public class LoginPage extends ParentPage {
 //        }
         enterTextIntoElement(inputUserName, userName);
     }
-
+    @Step
     public void actionsSendKeys(String text) {
         Actions action = new Actions(webDriver);
         action.sendKeys(text).build().perform();
     }
-
+    @Step
     public void openNewTabWithSameUrl() {
         ((JavascriptExecutor) webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
-
+    @Step
     public void switchToFirstTabAndRefresh() {
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(0));
         webDriver.navigate().refresh();
     }
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextIntoElement(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
-
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonLogin);
     }

@@ -1,6 +1,6 @@
 package postTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import libs.TestData;
 import libs.Util;
 import org.junit.After;

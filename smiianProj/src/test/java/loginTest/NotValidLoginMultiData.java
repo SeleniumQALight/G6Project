@@ -1,6 +1,6 @@
 package loginTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;

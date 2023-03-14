@@ -5,9 +5,16 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.elements.HeaderElements;
 
 abstract public class ParentPage extends CommonActionsWithElements {
     protected String base_url = "https://[env]-complexapp.onrender.com";
+
+    private HeaderElements headerElements = new HeaderElements(webDriver);
+
+    public HeaderElements getHeaderElement() {
+        return headerElements;
+    }
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -54,6 +55,7 @@ public class LoginPage extends ParentPage{
         return "/";
     }
 
+    @Step
     public LoginPage openLoginPage(){
         try {
             webDriver.get(baseURL + getRelativeURL());
@@ -66,18 +68,21 @@ public class LoginPage extends ParentPage{
         return this;
     }
 
+    @Step
     public LoginPage enterUserNameIntoInputLogin(String userName) {
 
         enterTextIntoElement(inputUserName, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordIntoInputPassword(String password)
     {
         enterTextIntoElement(inputPassword, password);
         return this;
     }
 
+    @Step
     public LoginPage clickOnButtonLogin() {
         clickOnElement(buttonLogin);
         return this;
@@ -95,16 +100,19 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterUserNameIntoRegistrationInput(String userName) {
         enterTextIntoElement(inputUserNameRegistration, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterEmailIntoRegistrationInput(String email) {
         enterTextIntoElement(inputEmailRegistration, email);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordIntoRegistrationInput(String password) {
         enterTextIntoElement(inputPasswordRegistration, password);
         return this;
