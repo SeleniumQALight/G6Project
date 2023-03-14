@@ -29,7 +29,7 @@ public class DataBaseTest {
 
     @Test
     public void testDataFromDB() throws SQLException, ClassNotFoundException {
-        final String LOGIN = "G6_sivova";
+        final String LOGIN = "G6_Sivova";
 
 
         ArrayList<Map<String, String >> dataFromSeleniumTable =
@@ -40,7 +40,7 @@ public class DataBaseTest {
         log.info("Number of rows = " + dataFromSeleniumTable.size());
 
         int numberOfRows = mysqlDB.changeTable("INSERT INTO seleniumTable VALUES(234, '%s', 'qwerty')", LOGIN);
-        log.info("Number of insertd rows = " + numberOfRows);
+        log.info("Number of inserted rows = " + numberOfRows);
 
         dataFromSeleniumTable =
                 mysqlDB.selectTableAsMap(
@@ -53,7 +53,7 @@ public class DataBaseTest {
         log.info("-------------------");
 
         DB_Util db_util = new DB_Util();
-        log.info(db_util.getPassForLogin("G5_taras"));
+        log.info(db_util.getPassForLogin("G5_Taras"));
 
     }
 
