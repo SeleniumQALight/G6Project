@@ -18,6 +18,7 @@ public class CreatePostTest extends BaseTest {
              .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInBodyContent(POST_BODY)
+                .setUniquePostCheckboxCheckState()
 //                .selectTextInDropDownOption("Приватне повідомлення")
 //                .selectValueInDropDownOption("One Person")
                 .selectSecondTextInDropDownByUi()
@@ -33,6 +34,8 @@ public class CreatePostTest extends BaseTest {
              .checkIsLoggedUserNameOnPage(TestData.VALID_LIGIN)
         ;
     }
+
+
 
     @After
     public void deletePost() {

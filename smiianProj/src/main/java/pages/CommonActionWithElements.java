@@ -124,6 +124,15 @@ public class CommonActionWithElements {
     }
 
 
+    public String getCheckBoxAttribute (WebElement webElement) {       //   --------------- HW 6
+        String attribute = webElement.getAttribute("value");
+        logger.info (attribute);
+        return attribute;
+    }
+
+
+
+
 
 
     protected  void printErrorAndStopTest(Exception e) {
@@ -139,6 +148,35 @@ public class CommonActionWithElements {
             return webElement.isDisplayed();
         }catch (Exception e){
             return false;
+        }
+    }
+
+    public void setCheckboxState (WebElement webElement ,String checkOrUncheck) {
+        checkOrUncheck = checkOrUncheck.trim().toLowerCase();
+        if (checkOrUncheck == "check") {
+            checkCheckbox(webElement);
+        } else if (checkOrUncheck == "uncheck") {
+            uncheckCheckbox(webElement);
+        } else {
+            logger.info("There is mistake in checkbox state, that you trying to set");
+        }
+    }
+
+    public void checkCheckbox (WebElement webElement) {
+        if (webElement.isSelected() == false) {
+            webElement.click();
+            logger.info("Checkbox was checked");
+        } else if (webElement.isSelected() == true) {
+            logger.info("Checkbox is already checked");
+        }
+    }
+
+    public void uncheckCheckbox (WebElement webElement) {
+        if (webElement.isSelected() == true) {
+            webElement.click();
+            logger.info("Checkbox was unchecked");
+        } else if (webElement.isSelected() == false) {
+            logger.info("Checkbox is already unchecked");
         }
     }
 //----------------------------------------------------------------------------------------------------------------------
