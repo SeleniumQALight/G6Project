@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -47,6 +48,8 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
+
     public void openLoginPage() {
 
         try {
@@ -63,6 +66,7 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
 
     public void enterUserNameIntoLogin(String username) {
 
@@ -81,6 +85,7 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
 
     public void enterPasswordIntoInputPassword(String password) {
 //        try {
@@ -97,14 +102,20 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
+
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
+
+    @Step
 
     public boolean isButtonSignInDisplayed() {
 
         return isElementDisplayed(buttonLogin);
     }
+
+    @Step
 
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoLogin(TestData.VALID_LOGIN);
@@ -114,21 +125,28 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
+
     public LoginPage enterUserNameInRegistrationForm(String userName) {
         enterTextInToElement(inputLoginRegistration, userName);
         return this;
 
     }
 
+    @Step
+
     public LoginPage enterUserEmailInRegistrationForm(String userEmail) {
         enterTextInToElement(inputEmailRegistration, userEmail);
         return this;
     }
 
+    @Step
     public LoginPage enterPasswordInRegistrationForm(String userPassword) {
         enterTextInToElement(inputPasswordRegistration, userPassword);
         return this;
     }
+
+    @Step
 
     public LoginPage checkErrorsMessages(String expectedErrors) {
         //сюди передаємо ерори у вигляді стрінги , потім розпарсимо їх/сплітимо по комі
