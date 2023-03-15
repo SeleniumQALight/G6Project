@@ -228,22 +228,22 @@ public class LoginPage extends ParentPage {
 
     public HomePage fillingLoginFormWithValidCredBD() throws SQLException, ClassNotFoundException {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN_DB);
-        enterPasswordIntoInputPasswordFromDB();
+        enterPasswordIntoInputPasswordFromDB(TestData.VALID_LOGIN_DB);
         clickOnButtonLogin();
 
         return new HomePage(webDriver);
     }
-    SeleniumUsers seleniumUsers ;
-    private LoginPage enterPasswordIntoInputPasswordFromDB() throws SQLException, ClassNotFoundException {
-        getPassFromDB("");
-            enterTextInToElement(inputPassword, "");
+
+    private LoginPage enterPasswordIntoInputPasswordFromDB(String logIN) throws SQLException, ClassNotFoundException {
+            enterTextInToElement(inputPassword, getPassFromDB(logIN));
             return this;
         }
 
 
 
-    private String getPassFromDB( String pass) throws SQLException, ClassNotFoundException {
-        pass = seleniumUsers.getPassForLogin("newqaauto");
+    private String getPassFromDB( String loginDB) throws SQLException, ClassNotFoundException {
+        SeleniumUsers seleniumUsers = new SeleniumUsers();
+        String pass = seleniumUsers.getPassForLogin(loginDB);
                 return pass;
     }
 }

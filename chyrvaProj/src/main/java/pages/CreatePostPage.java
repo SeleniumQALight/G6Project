@@ -75,4 +75,10 @@ public class CreatePostPage extends ParentPage{
         changeCheckBoxStatus(checkBox,checkBoxValue);
         return this;
     }
+
+    public CreatePostPage enterTextInInputTitleDB(String bodyText) {
+
+        enterTextInToElement(inputTitle,bodyText);
+        return this;
+    }
 }

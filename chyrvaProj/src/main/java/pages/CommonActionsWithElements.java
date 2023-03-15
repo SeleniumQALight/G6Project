@@ -89,10 +89,10 @@ public class CommonActionsWithElements {
     }
 
 protected void changeCheckBoxStatus(WebElement checkbox, String desiredStatus){
-        if (desiredStatus == ("check")){
+        if (desiredStatus.equalsIgnoreCase ("check")){
             checkCheckBox(checkbox);
         } else {
-            if (desiredStatus == ("uncheck")) {
+            if (desiredStatus.equalsIgnoreCase ("uncheck")) {
                 uncheckCheckBox(checkbox);
             }else
                 logger.info("Unknown status, select check or uncheck");
