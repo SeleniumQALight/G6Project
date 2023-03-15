@@ -1,13 +1,16 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class RegistrationErrorsTest extends BaseTest {
 final static String ERROR_USERNAME_OTHER_SYMBOLS = "Username can only contain letters and numbers.";
     final static String ERROR_PASSWORD_OVER_NUMBER_CHAR = "Password cannot exceed 50 characters.";
@@ -39,7 +42,7 @@ final static String ERROR_USERNAME_OTHER_SYMBOLS = "Username can only contain le
                 new Object[]{"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
                 new Object[]{"tr", "tt@tt.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
                 new Object[]{"воот","tt@tt.com","qwertyuioplkjhgfddsazxcvbnm,./lkjhgfdsaqwertyuioplkj", ERROR_USERNAME_OTHER_SYMBOLS + COMMA + ERROR_PASSWORD_OVER_NUMBER_CHAR},
-               new Object[]{"воот", "tt@tt.com", "werrtgt", ERROR_USERNAME_OTHER_SYMBOLS }
+               new Object[]{"воот", "tt@tt.com", "werrtgttrfjfghjgj", ERROR_USERNAME_OTHER_SYMBOLS }
 
         };
     }

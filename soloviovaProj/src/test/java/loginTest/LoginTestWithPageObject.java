@@ -1,12 +1,14 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import io.qameta.allure.*;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import libraries.ExcelDriver;
 import libraries.TestData;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -16,9 +18,19 @@ import java.util.Map;
 import static pages.CommonActionWithElements.configProperties;
 
 @RunWith(JUnitParamsRunner.class)
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
     final static String ERROR_MESSAGE_LOGIN = "Invalid username pasword";
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Base support for bdd annotations")
     @Test
+   // @Ignore
     public void validLogin() {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
@@ -31,7 +43,7 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void invalidLogin(){
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoInputLogin("qaaut");
+        loginPage.enterUserNameIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonLogIn();
 

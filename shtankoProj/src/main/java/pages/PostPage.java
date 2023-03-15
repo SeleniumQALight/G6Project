@@ -1,9 +1,12 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.elements.HeaderElement;
 
 public class PostPage extends ParentPage{
@@ -24,6 +27,9 @@ public class PostPage extends ParentPage{
     private HeaderElement headerElement = new HeaderElement(webDriver);
     @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
+
+    @FindBy(xpath = ".//p[.='Is this post unique? : yes']")
+    private WebElement postUnique;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -62,6 +68,10 @@ public class PostPage extends ParentPage{
 
     public PostPage checkStatusPost(String expectedStatus){
         Assert.assertEquals("Text in success status element",expectedStatus,statusPost.getText());
+        return this;
+    }
+    public PostPage verifyCheckboxState() {
+        Assert.assertEquals("Post is not unique", "Is this post unique? : yes",  postUnique.getText());
         return this;
     }
 
