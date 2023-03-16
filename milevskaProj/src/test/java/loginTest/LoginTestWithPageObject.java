@@ -16,14 +16,7 @@ import static pages.CommonActionsWithElements.configProperties;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
-    @Description("Some detailed test description")
-    @Link("https://example.org")
-    @Link(name = "allure", type = "mylink")
-    @Issue("123")
-    @Issue("432")
-    @Severity(SeverityLevel.CRITICAL)
-    @Story("Base support for bdd annotations")
-    @Category(SmokeTestFilter.class)
+
     public void validLogin() {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin("qaauto");
