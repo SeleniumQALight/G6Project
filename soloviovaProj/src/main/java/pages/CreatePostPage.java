@@ -95,6 +95,9 @@ public class CreatePostPage extends ParentPage {
             selectCheckbox();
         }else if(state.equalsIgnoreCase("uncheck")){
             unSelectCheckbox();
+        }else{
+            logger.error(state + " is unknown command.");
+            Assert.fail(state + " is unknown command.");
         }
         return this;
     }

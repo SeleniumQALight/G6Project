@@ -28,7 +28,7 @@ public class CreatePostTest extends BaseTest {
                 .checkTextInTitleElement(POST_TITLE)
                 .checkIsLabelPresent()
                 .checkLabelValue("One Person")
-                .checkIfPostUnique()
+                .checkIfPostUnique(uncheck)
                 .getHeaderElements().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkUserName("qaauto")

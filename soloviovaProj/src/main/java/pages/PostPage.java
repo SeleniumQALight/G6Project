@@ -23,7 +23,7 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//a[@class='text-primary mr-2']")
     private WebElement editButton;
     @FindBy(xpath = ".//p[contains(text(), 'unique')]")
-    private WebElement postUniqueness ;
+    private WebElement postUniqueness;
 
     private HeaderElements headerElements = new HeaderElements(webDriver);
 
@@ -67,11 +67,13 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-    public PostPage checkIfPostUnique(){
-        if(postUniqueness.getText().contains("yes")){
-            logger.info("The post is unique");
-        }else if(postUniqueness.getText().contains("no")){
-            logger.info("The post is not unique");
+    public PostPage checkIfPostUnique(String status) {
+        if (status.equals("check")) {
+            logger.info("Post is unique");
+            Assert.assertEquals(status + " checkbox has not been checked", "Is this post unique? : yes", postUniqueness.getText());
+        } else if (status.equals("uncheck")) {
+            logger.info("Post is not unique");
+            Assert.assertEquals(status + " checkbox has been checked", "Is this post unique? : no", postUniqueness.getText());
         }
         return this;
     }
@@ -82,7 +84,7 @@ public class PostPage extends ParentPage {
         return new MyProfilePage(webDriver);
     }
 
-    public EditPage clickOnEditButton(){
+    public EditPage clickOnEditButton() {
         clickOnElement(editButton);
         return new EditPage(webDriver);
     }
