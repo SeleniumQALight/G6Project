@@ -108,14 +108,14 @@ public class BaseTest { //батьківський клас для всіх кл
         if ((browser == null) || "chrome".equalsIgnoreCase(browser)) {
 
 
-            //якщо перестане працювати Хром післі апдейту, розкоментувати ці рядочки
-//            ChromeOptions ops = new ChromeOptions();
-//            ops.addArguments("--remote-allow-origins=*");
-//            WebDriverManager.chromedriver().setup();
-//            webDriver = new ChromeDriver(ops);
-
+            //якщо перестане працювати Хром після апдейту, розкоментувати ці рядочки
+            ChromeOptions ops = new ChromeOptions();
+            ops.addArguments("--remote-allow-origins=*");
             WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver();
+            webDriver = new ChromeDriver(ops);
+
+//            WebDriverManager.chromedriver().setup();
+//            webDriver = new ChromeDriver();
         } else if ("firefox".equalsIgnoreCase(browser)) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
