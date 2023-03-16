@@ -30,6 +30,7 @@ public class PostPage extends CreatePostPage {
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
+    private String postUniqueMessage = ".//*[text()='%s']";
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -84,6 +85,12 @@ public class PostPage extends CreatePostPage {
     public EditPostPage clickOnEditButton() {
         clickOnElement(buttonEdit);
         return new EditPostPage(webDriver);
+    }
+
+    public PostPage isCheckBoxMessageCorrect(String expectedMessage) {
+        Assert.assertTrue("Invalid post unique message",
+                isElementDisplayed(String.format(postUniqueMessage, expectedMessage)));
+        return this;
     }
 }
 
