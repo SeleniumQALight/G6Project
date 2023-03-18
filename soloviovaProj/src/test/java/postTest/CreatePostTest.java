@@ -8,6 +8,8 @@ import org.junit.Test;
 public class CreatePostTest extends BaseTest {
     final String POST_TITLE = "TC1_soloviova_" + Util.getDateAndTimeFormatted();
     final String BODY_TITLE = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis faucibus malesuada. Pellentesque pretium eget felis sit amet pretium. Maecenas sollicitudin aliquet dignissim. Sed aliquam lorem non elementum tincidunt. Curabitur varius risus eu nibh porta pellentesque. Phasellus mollis sed dui sed facilisis.";
+    final String check = "check";
+    final String uncheck = "uncheck";
     @Test
     public void TC1_createNewPost() {
         homePage
@@ -16,6 +18,7 @@ public class CreatePostTest extends BaseTest {
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody(BODY_TITLE)
+                .checkboxState(uncheck)
              //   .selectTextInDropDownOptions("Приватне повідомлення")
               //  .selectValueInDropDownOptions("One Person")
                 .selectTextInDropDownWithUI()
@@ -25,6 +28,7 @@ public class CreatePostTest extends BaseTest {
                 .checkTextInTitleElement(POST_TITLE)
                 .checkIsLabelPresent()
                 .checkLabelValue("One Person")
+                .checkIfPostUnique(uncheck)
                 .getHeaderElements().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
                 .checkUserName("qaauto")
