@@ -18,12 +18,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.MyProfilePage;
-import pages.PostPage;
+import pages.*;
 
 import java.io.ByteArrayInputStream;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -35,16 +33,17 @@ public class BaseTest {
     protected PostPage postPage;
     protected MyProfilePage myProfilePage;
     protected ArrayList<ScreenShot> listOfScreenShots = new ArrayList<>();
-
+protected CreatePostPage createPostPage;
 
     @Before
-    public void setUp() {
+    public void setUp() throws SQLException, ClassNotFoundException {
         logger.info(" ------- " + testName.getMethodName() + " Was started-------");
         webDriver = initDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
+        createPostPage = new CreatePostPage(webDriver);
 
 
     }

@@ -77,6 +77,11 @@ public class PostPage extends ParentPage{
         return this;
     }
 
+    public EditPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPage(webDriver);
+    }
+
 
     public PostPage checkPostIsUnique(String messageExpected) {
         Assert.assertEquals("Post is not unique", messageExpected, uniqueStatus.getText());
