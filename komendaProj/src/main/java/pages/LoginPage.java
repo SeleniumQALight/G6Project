@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import libs.DB_getPassword;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.elements.HeaderElement;
 
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -161,6 +163,15 @@ public class LoginPage extends ParentPage {
         Util.waitABit(1);
         Assert.assertEquals("Wrong message is displayed", expectedErrorLogin, signInError.getText());
         return this;
+    }
+
+    @Step
+    public HomePage fillingLoginFromDB(String login) throws SQLException, ClassNotFoundException {
+        DB_getPassword db_getPassword = new DB_getPassword();
+        enterUserNameIntoInputLogin(login);
+        enterPasswordIntoInputPassword(db_getPassword.getPassForLogin(login));
+        clickOnButtonLogin();
+        return new HomePage(webDriver);
     }
 }
 

@@ -19,7 +19,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.HomePage;
 import pages.LoginPage;
-
+import java.sql.SQLException;
 import java.io.ByteArrayInputStream;
 import java.time.Duration;
 import java.util.ArrayList;

@@ -77,4 +77,9 @@ public class MyProfilePage extends ParentPage {
         Assert.assertTrue("Delete message is not displayed", isElementDisplayed(deleteMessage));
         return this;
     }
+
+    public PostPage clickOnPostWithTitle(String post_title) {
+        clickOnElement(String.format(titlePost, post_title));
+        return new PostPage(webDriver);
+    }
 }

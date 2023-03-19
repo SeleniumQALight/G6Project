@@ -29,7 +29,7 @@ public class CreatePostTest extends BaseTest {
                 .checkCreatedPostTitle(POST_TITLE)
                 .checkCreatedPostNote("Note: This post was written for One Person")
                 .checkUniqueMessageDisplayed("Is this post unique? : yes")
-                .getHeaderElement().clickMyProfileButton()
+                .getHeaderElement().clickMyProfileButton("qaauto")
                 .checkIsRedirectToMyProfilePage()
                 .checkUserNameDisplayed(TestData.VALID_LOGIN)
                 .checkPostWasCreated(POST_TITLE)
@@ -41,7 +41,7 @@ public class CreatePostTest extends BaseTest {
     public void deletePost (){
         homePage
                 .openHomePage()
-                .getHeaderElement().clickMyProfileButton()
+                .getHeaderElement().clickMyProfileButton("qaauto")
                 .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleTillPresent(POST_TITLE)
 
