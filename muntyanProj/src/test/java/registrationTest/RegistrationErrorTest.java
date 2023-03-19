@@ -1,13 +1,12 @@
 package registrationTest;
 
 import baseTest.BaseTest;
-//import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import libs.TestData;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
+
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
@@ -27,15 +26,14 @@ public class RegistrationErrorTest extends BaseTest {
                 .enterEmailIntoInputEmail(email)
                 .enterPasswordIntoInputCreate_a_password(password)
                 .clickOnSign_up_for_OurApp();
-                loginPage.checkRegistrationErrorsMessages(expectedErrors)
+        loginPage.checkRegistrationErrorsMessages(expectedErrors)
         ;
     }
     public static Object[][] provideParameters() {
         return new Object[][] {
                 new Object[] {"tr", "dfg", "re", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
                 new Object[] {"tr", "df@ee.com", "re", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
-//                new Object[] {"апци", "dfg", "re", ERROR_WRONG_LANGUAGE + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-//                new Object[] {"trwef", "df@ee.com", TestData.INVALID_PASSWORD, ERROR_PASSWORD_TOO_BIG},
+
         };
     }
 
