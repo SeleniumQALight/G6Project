@@ -35,6 +35,9 @@
     <module>golenkoProj</module>
       <module>kovalnogovProj</module>
     <module>milevskaProj</module>
+      <module>popadynetsProj</module>
+    <module>zavertailoProj</module>
+    <module>semenovaProj</module>
   </modules>
 
   <name>G6_TAF</name>

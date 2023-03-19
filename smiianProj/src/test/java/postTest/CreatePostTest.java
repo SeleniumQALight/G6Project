@@ -18,14 +18,14 @@ public class CreatePostTest extends BaseTest {
              .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInBodyContent(POST_BODY)
-//                .selectTextInDropDownOption("Приватне повідомлення")
-//                .selectValueInDropDownOption("One Person")
+                .setUniquePostCheckboxCheckState()
                 .selectSecondTextInDropDownByUi()
                 .clickOnSavePostButton()
              .checkInSuccessMessage("New post successfully created.")
              .checkTitleIsVisible()
              .checkNoteIsVisibleByText(POST_BODY)
              .checkNoteIsVisible()
+             .checkWasCheckBoxChecked()
              .checkNoteSecondOptionIsVisible()
                 .getHeaderElement().clickOnMyProfileButton()
              .checkIsRedirectToMyProfilePage()
@@ -33,6 +33,8 @@ public class CreatePostTest extends BaseTest {
              .checkIsLoggedUserNameOnPage(TestData.VALID_LIGIN)
         ;
     }
+
+
 
     @After
     public void deletePost() {
