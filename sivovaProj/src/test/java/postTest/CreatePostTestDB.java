@@ -57,7 +57,7 @@ public class CreatePostTestDB extends BaseTest {
                 .checkCreatedPostTitle(POST_TITLE)
                 .checkCreatedPostNote("Note: This post was written for One Person")
                 .checkUniqueMessageDisplayed("Is this post unique? : yes")
-                .getHeaderElement().clickMyProfileButton()
+                .getHeaderElement().clickMyProfileButton("newqaauto")
                 .checkIsRedirectToMyProfilePage()
                 .checkUserNameDisplayed(LOGIN)
                 .checkPostWasCreated(POST_TITLE)
@@ -70,7 +70,7 @@ public class CreatePostTestDB extends BaseTest {
 
         homePage
                 .openHomePage()
-                .getHeaderElement().clickMyProfileButton()
+                .getHeaderElement().clickMyProfileButton("newqaauto")
                 .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleTillPresent(POST_TITLE)
         ;

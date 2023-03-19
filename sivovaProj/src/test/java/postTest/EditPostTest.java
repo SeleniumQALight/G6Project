@@ -36,14 +36,14 @@ public class EditPostTest extends BaseTest {
     public void editPost() {
                 homePage
                         .openHomePage()
-                        .getHeaderElement().clickMyProfileButton()
+                        .getHeaderElement().clickMyProfileButton("qaauto")
                         .checkIsRedirectToMyProfilePage()
                         .openPostWithTitle(postTitle)
                         .checkIsRedirectToPostPage()
                         .clickOnEditButton()
                         .modifyPostTitle (newTitle)
                         .checkTextInSuccessMessage("Post successfully updated.")
-                        .getHeaderElement().clickMyProfileButton()
+                        .getHeaderElement().clickMyProfileButton("qaauto")
                         .checkIsRedirectToMyProfilePage()
                         .checkPostWasCreated(newTitle)
 
@@ -56,7 +56,7 @@ public class EditPostTest extends BaseTest {
 
         homePage
                 .openHomePage()
-                .getHeaderElement().clickMyProfileButton()
+                .getHeaderElement().clickMyProfileButton("qaauto")
                 .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleTillPresent(newTitle)
                 .deletePostWithTitleTillPresent(postTitle)

@@ -1,6 +1,7 @@
 package pages.elements;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,8 +11,7 @@ import pages.HomePage;
 import pages.MyProfilePage;
 
 public class HeaderElements extends CommonActionsWithElements {
-    @FindBy(xpath = ".//a[@href='/profile/newqaauto' and @class='mr-2']")
-    private WebElement buttonMyProfile;
+    private String  buttonMyProfile = ".//a[@href='/profile/%s' and @class='mr-2']";
 
     @FindBy (xpath = ".//a[@href='/create-post']")
     private WebElement buttonCreatePost;
@@ -23,8 +23,8 @@ public class HeaderElements extends CommonActionsWithElements {
     }
 
     @Step
-    public MyProfilePage clickMyProfileButton() {
-        clickElement(buttonMyProfile);
+    public MyProfilePage clickMyProfileButton(String profile) {
+        clickElement(String.format(buttonMyProfile, profile));
         return new MyProfilePage(webDriver);
     }
 
