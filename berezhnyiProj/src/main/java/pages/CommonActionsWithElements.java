@@ -132,6 +132,38 @@ public class CommonActionsWithElements {
         Assert.fail("Can not work with element " + e);
     }
 
+    private void selectCheckBox(WebElement checkBox) {
+        if (!checkBox.isSelected()){
+            clickOnElement(checkBox);
+        } else {
+            logger.info("Checkbox is selected");
+        }
+    }
+
+    private void deselectCheckBox(WebElement checkBox) {
+        if (checkBox.isSelected()){
+            clickOnElement(checkBox);
+        } else {
+            logger.info("Checkbox ix deselected");
+        }
+    }
+
+    protected void setCheckBoxToState(WebElement checkBox, String state){
+        try {
+            if (state.equalsIgnoreCase("check")){
+                selectCheckBox(checkBox);
+            } else if (state.equalsIgnoreCase("uncheck")) {
+                deselectCheckBox(checkBox);
+            }
+
+        }catch (Exception e){
+            logger.info("Checkbox could not be selected");
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+
     public void usersPressesKeyEnterTime(int numberOfTimes) {
         Actions actions = new Actions(webDriver);
         for (int i = 0; i < numberOfTimes; i++) {
@@ -160,6 +192,8 @@ public class CommonActionsWithElements {
         ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
+
 //
 //    метод moveToElement (аналог скрола )
 //

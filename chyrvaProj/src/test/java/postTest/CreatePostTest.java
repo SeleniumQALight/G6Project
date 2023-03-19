@@ -9,6 +9,7 @@ public class CreatePostTest extends BaseTest {
     final String POST_TITLE = "TC1_chyrva_" + Util.getDateAndTimeFormatted();
 final String UserName = "qaauto";
 
+
     @Test
     public void TC1_createNewPost(){
         homePage.openHomePage()
@@ -16,6 +17,7 @@ final String UserName = "qaauto";
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInInputBody("Body text")
+                .selectDesiredCheckBoxStatus("check")
                 .selectTextInDropDownOptions("Приватне повідомлення")
                 .selectValueInDropDownOptions("One Person")
                 .clickOnSavePostButton()

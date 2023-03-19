@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
+import java.sql.SQLException;
+
 public class HomePage extends ParentPage {
 
 
@@ -43,6 +45,17 @@ public class HomePage extends ParentPage {
         waitChatToBeHide();
         Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
         return this;
+    }
+
+
+    public HomePage openHomePageDB() throws SQLException, ClassNotFoundException {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!headerElement.isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCredBD();
+        }
+        checkIsRedirectToHomePage();
+        return new HomePage(webDriver);
     }
 
 
