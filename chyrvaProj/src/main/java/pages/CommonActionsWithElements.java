@@ -69,6 +69,38 @@ public class CommonActionsWithElements {
         }
 
     }
+  protected boolean checkBoxIsSelected(WebElement checkbox){
+        return checkbox.isSelected();
+    }
+
+    protected void checkCheckBox(WebElement checkbox) {
+        if (!checkBoxIsSelected(checkbox)) {
+            clickOnElement(checkbox);
+            logger.info("CheckBox is selected");
+        } else
+            logger.info("CheckBox was selected already");
+    }
+    protected void uncheckCheckBox(WebElement checkbox){
+        if(checkBoxIsSelected(checkbox)){
+            clickOnElement(checkbox);
+            logger.info("CheckBox is not selected");
+        }else
+            logger.info("CheckBox was deselected already");
+    }
+
+protected void changeCheckBoxStatus(WebElement checkbox, String desiredStatus){
+        if (desiredStatus.equalsIgnoreCase ("check")){
+            checkCheckBox(checkbox);
+        } else {
+            if (desiredStatus.equalsIgnoreCase ("uncheck")) {
+                uncheckCheckBox(checkbox);
+            }else
+                logger.info("Unknown status, select check or uncheck");
+            Assert.fail();
+        }
+}
+
+
 
     protected void selectTextInDropDown(WebElement dropDown, String visibleText) {
         try {

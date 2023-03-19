@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
 
+import java.sql.SQLException;
+
 public class HomePage extends ParentPage {
 
 //    @FindBy(xpath = ".//button[text()='Sign Out']")
@@ -14,7 +16,7 @@ public class HomePage extends ParentPage {
 //    @FindBy(xpath = ".//*[@href='/create-post']")
 //    private WebElement buttonCreatePost;
 
-      private HeaderElement headerElement = new HeaderElement(webDriver);
+    private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -24,10 +26,12 @@ public class HomePage extends ParentPage {
     String getRelativeURL() {
         return "/";
     }
+
     @Step
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
+
     @Step
     public boolean isButtonSignOutDisplayed() {
         try {
@@ -36,16 +40,28 @@ public class HomePage extends ParentPage {
             return false;
         }
     }
+
     @Step
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver); // залогінитися
         loginPage.openLoginPage();
-        if(!isButtonSignOutDisplayed()){
+        if (!isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred(); // перевірити що ми на HomePage
         }
         checkIsRedirectToHomePage();
         return this;
     }
+
+    public HomePage openHomePageLoginDB(String login) throws SQLException, ClassNotFoundException {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFromDB(login);
+        }
+        checkIsRedirectToHomePage();
+        return this;
+    }
+
     @Step
     public HomePage checkIsRedirectToHomePage() {
         checkUrl();
@@ -53,6 +69,7 @@ public class HomePage extends ParentPage {
         Assert.assertTrue("HomePage is not loaded", headerElement.isButtonSignOutDisplayed());
         return this;
     }
+
     @Step
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(headerElement.getButtonCreatePost());

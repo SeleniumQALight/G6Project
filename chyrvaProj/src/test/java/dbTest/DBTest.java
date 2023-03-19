@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class DBTest {
-    private Database mysqlDB;
+   private Database mysqlDB;
     private Logger log = Logger.getLogger(DBTest.class);
 
     @Before
