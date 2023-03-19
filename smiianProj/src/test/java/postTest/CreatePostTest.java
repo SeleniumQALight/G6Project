@@ -19,8 +19,6 @@ public class CreatePostTest extends BaseTest {
                 .enterTextInInputTitle(POST_TITLE)
                 .enterTextInBodyContent(POST_BODY)
                 .setUniquePostCheckboxCheckState()
-//                .selectTextInDropDownOption("Приватне повідомлення")
-//                .selectValueInDropDownOption("One Person")
                 .selectSecondTextInDropDownByUi()
                 .clickOnSavePostButton()
              .checkInSuccessMessage("New post successfully created.")
