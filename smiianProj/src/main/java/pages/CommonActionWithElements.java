@@ -153,9 +153,9 @@ public class CommonActionWithElements {
 
     public void setCheckboxState (WebElement webElement ,String checkOrUncheck) {
         checkOrUncheck = checkOrUncheck.trim().toLowerCase();
-        if (checkOrUncheck == "check") {
+          if (checkOrUncheck.equals("check")) {
             checkCheckbox(webElement);
-        } else if (checkOrUncheck == "uncheck") {
+        } else if (checkOrUncheck.equals("uncheck")) {
             uncheckCheckbox(webElement);
         } else {
             logger.info("There is mistake in checkbox state, that you trying to set");
@@ -179,6 +179,8 @@ public class CommonActionWithElements {
             logger.info("Checkbox is already unchecked");
         }
     }
+
+
 //----------------------------------------------------------------------------------------------------------------------
 public void usersPressesKeyEnterTime(int numberOfTimes) {
     Actions actions = new Actions(webDriver);

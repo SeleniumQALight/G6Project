@@ -27,6 +27,7 @@ public class CreatePostTest extends BaseTest {
              .checkTitleIsVisible()
              .checkNoteIsVisibleByText(POST_BODY)
              .checkNoteIsVisible()
+             .checkWasCheckBoxChecked()
              .checkNoteSecondOptionIsVisible()
                 .getHeaderElement().clickOnMyProfileButton()
              .checkIsRedirectToMyProfilePage()
