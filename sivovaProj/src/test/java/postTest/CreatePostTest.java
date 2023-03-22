@@ -22,12 +22,14 @@ public class CreatePostTest extends BaseTest {
                 .selectPostTypeInDropdownByUI("Приватне повідомлення")
                //.selectPostTypeInDropdown("Приватне повідомлення")
                // .selectValueInDropdownOptions("One Person")
+                .selectCheckBoxState("check")
                 .clickSavePostButton()
                 .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkCreatedPostTitle(POST_TITLE)
                 .checkCreatedPostNote("Note: This post was written for One Person")
-                .getHeaderElement().clickMyProfileButton()
+                .checkUniqueMessageDisplayed("Is this post unique? : yes")
+                .getHeaderElement().clickMyProfileButton("qaauto")
                 .checkIsRedirectToMyProfilePage()
                 .checkUserNameDisplayed(TestData.VALID_LOGIN)
                 .checkPostWasCreated(POST_TITLE)
@@ -39,7 +41,7 @@ public class CreatePostTest extends BaseTest {
     public void deletePost (){
         homePage
                 .openHomePage()
-                .getHeaderElement().clickMyProfileButton()
+                .getHeaderElement().clickMyProfileButton("qaauto")
                 .checkIsRedirectToMyProfilePage()
                 .deletePostWithTitleTillPresent(POST_TITLE)
 

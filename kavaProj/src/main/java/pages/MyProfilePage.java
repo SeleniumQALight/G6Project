@@ -10,6 +10,7 @@ import java.util.List;
 
 public class MyProfilePage extends ParentPage {
 
+
     @FindBy(xpath = ".//img[@class='avatar-small']")
     private WebElement avatar;
 
@@ -88,4 +89,10 @@ public class MyProfilePage extends ParentPage {
                 isElementDisplayed(successDeletePostMessage));
         return this;
     }
+
+    public PostPage clickOnPost(String postTitle) {
+        clickOnElement(String.format(titlePost, postTitle));
+        return new PostPage(webDriver);
+    }
+
 }

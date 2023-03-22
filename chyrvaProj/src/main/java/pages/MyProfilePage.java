@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -38,7 +39,7 @@ public class MyProfilePage extends ParentPage {
     String getRelativeURL() {
         return "/profile/";
     }
-
+    @Step
     public MyProfilePage checkIsRedirectToMyProfilePage() {
         checkURLContainsRelative();
         waitChatToBeHide();

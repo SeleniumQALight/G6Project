@@ -1,6 +1,10 @@
 package pages;
 
+import io.qameta.allure.Step;
+import libs.DB_Util;
+import libs.DB_Util_HomeWork;
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -10,6 +14,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +53,10 @@ public class LoginPage extends ParentPage {
     private List<WebElement> listOfErrors;
 
 
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
+    private WebElement loginErrorText;
+
+
 
     public LoginPage(WebDriver webDriver) {
 
@@ -59,6 +68,8 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(base_URL + getRelativeURL());
@@ -70,18 +81,19 @@ public class LoginPage extends ParentPage {
         }
     }
 
-
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
 
         enterTextIntiElement(inputUserName, userName);
     }
 
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
 
         enterTextIntiElement(inputPassword, password);
     }
 
+    @Step
     public void clickOnButtonLogin() {
 
         clickOnElement(buttonLogin);
@@ -91,6 +103,15 @@ public class LoginPage extends ParentPage {
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonLogin();
+        return new HomePage(webDriver);
+    }
+
+
+    public HomePage fillingLoginFormWithValidCredWithDataBase() throws SQLException, ClassNotFoundException {
+        enterUserNameIntoInputLogin("newqaauto");
+        DB_Util_HomeWork db_util_homeWork=new DB_Util_HomeWork();
+        enterPasswordIntoInputPassword(db_util_homeWork.getPassForLogin("newqaauto"));
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
@@ -157,6 +178,11 @@ public class LoginPage extends ParentPage {
         webDriverWait15.withMessage("Namber messages should be"+expectedErrorsArray.length)
                 .until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorsForRegistr),expectedErrorsArray.length));
 
+        Util.waitABit(1);
+
+        Assert.assertEquals("Number or messages", expectedErrorsArray.length, listOfErrors.size());
+
+
         ArrayList<String> actualTextFromErrors=new ArrayList<>();
 
         for (WebElement element:listOfErrors){
@@ -168,6 +194,17 @@ public class LoginPage extends ParentPage {
             softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals").isIn(actualTextFromErrors);
         }
         softAssertions.assertAll();
+        return this;
+    }
+
+    public LoginPage checkLoginError(){
+        Assert.assertTrue(isElementDisplayed(loginErrorText));
+        return this;
+    }
+
+
+    public LoginPage checkErrorsMessageForLogIn() {
+       Assert.assertTrue("Error text for log in is displayed",isElementDisplayed(loginErrorText));
         return this;
     }
 

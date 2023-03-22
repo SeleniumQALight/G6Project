@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -173,6 +174,42 @@ public class CommonActionsWithElements {
         ArrayList<String> tabs = new ArrayList<> (webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
+    protected void selectCheckBoxTrue(WebElement checkBox){
+        try {
+            if(!checkBox.isSelected()){
+                clickOnElement(checkBox);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectCheckBoxFalse(WebElement checkBox){
+        try {
+            if (checkBox.isSelected()){
+                clickOnElement(checkBox);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+    protected void selectCheckBox (WebElement checkBox, String targetValue){
+        try {
+            String checkBoxState = targetValue.toLowerCase();
+            if (checkBoxState.equals("check")){
+                selectCheckBoxTrue(checkBox);
+            } else if (checkBoxState.equals("uncheck")) {
+                selectCheckBoxFalse(checkBox);
+            }else {
+                logger.info("Incorrect target value input check or uncheck ");
+                Assert.fail("Incorrect target value input check or uncheck");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
 //
 //    метод moveToElement (аналог скрола )
 //

@@ -27,6 +27,9 @@ public class PostPage extends ParentPage {
     @FindBy (xpath = ".//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
+    @FindBy (xpath = ".//p[contains(text(), 'Is this post unique? : yes')]")
+    private WebElement indicatorOfUniquePost;
+
 
 
     private HeaderElement headerElement = new HeaderElement(webDriver); //  оголошує елемент headerElement
@@ -76,6 +79,11 @@ public class PostPage extends ParentPage {
     }
     public PostPage  checkNoteSecondOptionIsVisible() {
         Assert.assertTrue("SecondOption is not visible", isElementDisplayed(postNoteSecondOption));
+        return this;
+    }
+
+    public PostPage checkWasCheckBoxChecked() {
+        Assert.assertTrue("Checkbox was not checked", isElementDisplayed(indicatorOfUniquePost));
         return this;
     }
 

@@ -1,5 +1,7 @@
 package pages;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +22,9 @@ public class CreatePostPage extends ParentPage{
 
     @FindBy(xpath = "//option[@value = 'One Person']")
     private WebElement textInElement;
+
+    @FindBy(xpath = ".//input[@type='checkbox']")
+    private WebElement checkBox;
 
     public CreatePostPage(WebDriver webDriver) {
         super(webDriver);
@@ -66,4 +71,35 @@ public class CreatePostPage extends ParentPage{
         selectTextInDropDownByUI(dropDownOptions, textInElement);
         return this;
     }
+    public CreatePostPage selectCheckbox() {
+        if(!checkBox.isSelected()){
+            clickOnElement(checkBox);
+            logger.info("Checkbox was selected");
+        }else{
+            logger.info("Checkbox is already selected");
+        }
+        return this;
+    }
+
+    public CreatePostPage unSelectCheckbox(){
+        if(checkBox.isSelected()){
+            clickOnElement(checkBox);
+            logger.info("Checkbox was unchecked");
+        }else{
+            logger.info("Checkbox is already unchecked");
+        }
+        return this;
+    }
+
+    public CreatePostPage checkboxState(String checkboxState){
+        if(checkboxState.equalsIgnoreCase("check")){
+            selectCheckbox();
+        }else if(checkboxState.equalsIgnoreCase("uncheck")) {
+            unSelectCheckbox();
+        }else{
+            Assert.fail("Checkbox state check failed");
+        }
+        return this;
+     }
 }
+

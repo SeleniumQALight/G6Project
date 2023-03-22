@@ -25,11 +25,10 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDelete;
 
-    private HeaderElements headerElements = new HeaderElements(webDriver);
+    @FindBy(xpath = ".//*[@class = 'container py-md-5 container--narrow']//*[contains(text(), 'Is this post unique?')]")
+    private WebElement stateOfPost;
 
-    public HeaderElements getHeaderElement() {
-        return headerElements;
-    }
+
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -73,5 +72,19 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
+    }
+
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(buttonEdit);
+        return new EditPostPage(webDriver);
+    }
+
+    public PostPage checkIsPostUnique(String state) {
+        if (state == "check") {
+            Assert.assertEquals("Post is not unique", "Is this post unique? : yes", stateOfPost.getText());
+        } else if (state == "uncheck") {
+            Assert.assertEquals("Post is unique", "Is this post unique? : no", stateOfPost.getText());
+        }
+        return this;
     }
 }

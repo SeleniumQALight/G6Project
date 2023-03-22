@@ -1,6 +1,8 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import libs.Util;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -31,10 +33,14 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "password-register")
     private WebElement inputPasswordRegistration;
 
-   private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     @FindBy(xpath = listOfErrorsLocator)
     private List<WebElement> listOfErrors;
+
+    @FindBy(xpath = ".//*[@class = 'alert alert-danger text-center']")
+    private WebElement errorMessageForInvalidLogIn;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -44,6 +50,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public void openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -55,6 +62,7 @@ public class LoginPage extends ParentPage {
         }
     }
 
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
 //        try {
 ////            WebElement inputUserName =
@@ -68,6 +76,7 @@ public class LoginPage extends ParentPage {
         enterTextIntoElement(inputUserName, userName);
     }
 
+    @Step
     public LoginPage enterPaswordIntoInputPassword(String password) {
 //        try {
 ////            WebElement inputPassword =
@@ -82,6 +91,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public void clickOnButtonLogin() {
 //        try {
 ////            WebElement buttonLogin =
@@ -94,41 +104,43 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonLogin);
     }
 
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPaswordIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
-
+    @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonLogin);
     }
-
+    @Step
     public LoginPage enterUserNameInRegistrationForm(String userName) {
         enterTextIntoElement(inputLoginRegistration, userName);
         return this;
     }
-
-    public LoginPage enterEmailInRegistrationForm(String email){
+    @Step
+    public LoginPage enterEmailInRegistrationForm(String email) {
         enterTextIntoElement(inputEmailRegistration, email);
         return this;
     }
-
-    public LoginPage enterPasswordInRegistrationForm(String password){
+    @Step
+    public LoginPage enterPasswordInRegistrationForm(String password) {
         enterTextIntoElement(inputPasswordRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
-        String[] expectedErrorsArray =  expectedErrors.split(",");
+        String[] expectedErrorsArray = expectedErrors.split(",");
         webDriverWait10
                 .withMessage("Number of messages should be " + expectedErrorsArray.length)
                 .until(ExpectedConditions
-                        .numberOfElementsToBe(By.xpath(listOfErrorsLocator),expectedErrorsArray.length));
-
+                        .numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
+        Util.waitABit(1);
+        Assert.assertEquals("Number of message", expectedErrorsArray.length, listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
-        for (WebElement element:listOfErrors) {
+        for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());
         }
 
@@ -141,5 +153,10 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-
+    @Step
+    public LoginPage checkErrorMessageForInvalidLogin(String expectedMessage) {
+        Assert.assertTrue("Message is not displayed", isElementDisplayed(errorMessageForInvalidLogIn));
+        Assert.assertEquals("Message is not found with this text" + expectedMessage, expectedMessage, errorMessageForInvalidLogIn.getText());
+        return this;
+    }
 }
