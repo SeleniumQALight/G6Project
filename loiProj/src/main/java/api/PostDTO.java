@@ -20,6 +20,8 @@ public class PostDTO {
     AuthorDTO author;
     Boolean isVisitorOwner;
 
+//    https://www.jsonschema2pojo.org/
+
 //    public PostDTO(){
 //    }
 
