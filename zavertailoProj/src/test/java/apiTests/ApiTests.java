@@ -1,6 +1,7 @@
 package apiTests;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.replaceFiltersWith;
 
 import api.AuthorDTO;
 import api.EndPoints;
@@ -64,9 +65,27 @@ public class ApiTests {
                 .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar")
                 .isEqualTo(expectedResult);
 
-
-
         softAssertions.assertAll();
 
     }
+
+    @Test
+    public  void getAllPostByUserNegative(){
+        String actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(EndPoints.POST_BY_USER, "notValidUser")
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().asString();
+
+        org.junit.Assert.assertEquals("Massage in response", "\"Sorry, invalid user requested.undefined\"", actualResponse);
+        org.junit.Assert.assertEquals("Massage in response", "Sorry, invalid user requested.undefined", actualResponse
+                .replace("\"", ""));
+
+    }
+
 }
