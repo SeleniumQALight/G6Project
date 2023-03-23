@@ -37,9 +37,14 @@ public class ApiTests {
             Assert.assertEquals("", USER_NAME, responseAsDto[i].getAuthor().getUsername());
         }
         PostDTO[] expectedResults = {
-                new PostDTO("test2","test body2", "All Users", "no", new AuthorDTO("autoapi"), false) ,
-                new PostDTO("test","test body","All Users","no", new AuthorDTO("autoapi"), false)
-
+//                new PostDTO("test2","test body2", "All Users", "no", new AuthorDTO("autoapi"), false) ,
+//                new PostDTO("test","test body","All Users","no", new AuthorDTO("autoapi"), false)
+                PostDTO.builder().title("test2").body("test body2").select1("All Users")
+                        .uniquePost("no").author(AuthorDTO.builder().username("autoapi")
+                        .build()).isVisitorOwner(false).build(),
+                PostDTO.builder().title("test").body("test body").select1("All Users")
+                        .uniquePost("no").author(AuthorDTO.builder().username("autoapi")
+                                .build()).isVisitorOwner(false).build()
         };
         Assert.assertEquals("Number of posts ", expectedResults.length, responseAsDto.length);
 
