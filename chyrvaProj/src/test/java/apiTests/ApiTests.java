@@ -43,17 +43,17 @@ PostDTO[] expectedResult = {
         Assert.assertEquals("Number of posts ",expectedResult.length,responseAsDto.length);
 
         SoftAssertions softAssertions = new SoftAssertions();
-        for (int i = 0; i < expectedResult.length; i++) {
-            softAssertions.assertThat(responseAsDto[i])
-                    .isEqualToIgnoringGivenFields(expectedResult[i],"id","createdDate","author");
-            softAssertions.assertThat(responseAsDto[i].getAuthor())
-                    .isEqualToIgnoringGivenFields(expectedResult[i].getAuthor(),"avatar");
-        }
-//        softAssertions.assertThat(responseAsDto[0])
-//                .usingRecursiveComparison()
-//                .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar", "isVisitorOwner")
-//                .isEqualTo(expectedResult[0]);
-//
+//        for (int i = 0; i < expectedResult.length; i++) {
+//            softAssertions.assertThat(responseAsDto[i])
+//                    .isEqualToIgnoringGivenFields(expectedResult[i],"id","createdDate","author");
+//            softAssertions.assertThat(responseAsDto[i].getAuthor())
+//                    .isEqualToIgnoringGivenFields(expectedResult[i].getAuthor(),"avatar");
+//        }
+        softAssertions.assertThat(responseAsDto)
+                .usingRecursiveComparison()
+                .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar")
+                .isEqualTo(expectedResult);
+
         softAssertions.assertAll();
 
 
