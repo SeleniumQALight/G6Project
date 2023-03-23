@@ -68,4 +68,23 @@ public class ApiTests {
 
         softAssertions.assertAll();
     }
+
+    @Test
+    public void getAllPostsByUser() {
+        String actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()                       // щоб вивести запит в консоль
+                        .when()
+                        .get(EndPoints.POST_BY_USER, "notValidUser")   // попередні чотири - це відправлення поста
+                        .then()
+                        .statusCode(200)
+                        .log().all()                                // щоб вивести рспонс в консоль
+                        .extract().response().getBody().asString()    // дістаємо боді з респонса у вигляді стрінги
+                ;
+        Assert.assertEquals("Message in response ", "\"Sorry, invalid user requested.undefined\"", actualResponse);
+        Assert.assertEquals("Message in response ", "Sorry, invalid user requested.undefined", actualResponse.replace("\"", ""));
+    }
+
+
 }
