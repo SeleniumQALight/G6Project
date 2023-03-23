@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.junit.Assert.assertEquals;
 
 public class ApiTest {
@@ -103,5 +104,18 @@ public class ApiTest {
         }
 
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void getAllPostByUserSchema() {
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(EndPoints.POST_BY_USER, USER_NAME)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
     }
 }
