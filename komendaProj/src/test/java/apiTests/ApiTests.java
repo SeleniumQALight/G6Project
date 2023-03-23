@@ -16,22 +16,21 @@ public class ApiTests {
     private Logger logger = Logger.getLogger(getClass());
 
     @Test
-    public void getPostsByUserTest(){
-       PostDTO[] responseAsDto = given()
-               .contentType(ContentType.JSON)
-               .log().all()
-        .when()
-               .get(EndPoints.POST_BY_USER, USER_NAME)
-        .then()
-               .statusCode(200)
-               .log().all()
-               .extract()
-               .response().as(PostDTO[].class)
-       ;
+    public void getPostsByUserTest() {
+        PostDTO[] responseAsDto = given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPoints.POST_BY_USER, USER_NAME)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract()
+                .response().as(PostDTO[].class);
 
-       logger.info("Number of posts = " + responseAsDto.length);
-       logger.info("Title post1 = " + responseAsDto[0].getTitle());
-       logger.info("Username post1 = " + responseAsDto[0].getAuthor().getUsername());
+        logger.info("Number of posts = " + responseAsDto.length);
+        logger.info("Title post1 = " + responseAsDto[0].getTitle());
+        logger.info("Username post1 = " + responseAsDto[0].getAuthor().getUsername());
 
         for (int i = 0; i < responseAsDto.length; i++) {
             Assert.assertEquals("UserName is not matched in post " + i, USER_NAME, responseAsDto[i].getAuthor().getUsername());
@@ -55,12 +54,29 @@ public class ApiTests {
 //            softAssertions.assertThat(responseAsDto[i].getAuthor()).isEqualToIgnoringGivenFields(expectedResult[i].getAuthor(), "avatar");
 //        }
         softAssertions.assertThat(responseAsDto)
-             .usingRecursiveComparison()
-             .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar")
-             .isEqualTo(expectedResult);
+                .usingRecursiveComparison()
+                .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar")
+                .isEqualTo(expectedResult);
 
         softAssertions.assertAll();
 
 
     }
+    @Test
+    public void getAllPostsByUserNegative(){
+        String actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(EndPoints.POST_BY_USER, "notValidUser")
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().asString();
+
+        Assert.assertEquals("Message in response ", "\"Sorry, invalid user requested.undefined\"", actualResponse);
+        Assert.assertEquals("Message in response ", "Sorry, invalid user requested.undefined", actualResponse.replace("\"", ""));
+    }
+
 }
