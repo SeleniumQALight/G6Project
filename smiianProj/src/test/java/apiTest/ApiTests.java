@@ -4,12 +4,19 @@ import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+
 
 public class ApiTests {
     final String USER_NAME = "autoapi";
@@ -86,5 +93,51 @@ public class ApiTests {
         Assert.assertEquals("Message in response ", "Sorry, invalid user requested.undefined", actualResponse.replace("\"", ""));
     }
 
+    @Test
+    public void getAllPostsByUsersPath() {
+        Response actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(EndPoints.POST_BY_USER, USER_NAME)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response();
 
+        // робимо: пройтися по всіх постах(з респонса) і перевіряємо, що "title" використовує слово "test"
+
+        List<String> actualTitleList = actualResponse.jsonPath().getList("title", String.class);
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < actualTitleList.size(); i++) {                                               //  перша перевірка в Softassertion
+            softAssertions.assertThat(actualTitleList.get(i)).as("Item number " + i).contains("test");
+        }
+
+        List<Map> actualAutorList = actualResponse.jsonPath().getList("author", Map.class);
+        for (int i = 0; i < actualAutorList.size(); i++) {
+            softAssertions.assertThat(actualAutorList.get(i).get("username"))
+                    .as("Item number " + i).isEqualTo(USER_NAME);
+        }
+
+        softAssertions.assertAll();
+
+    }
+
+
+    @Test
+    public void getAllPostsByUsersSchema() {
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPoints.POST_BY_USER, USER_NAME)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"));  //  перевіряємо,
+                                                                                       // чи респонс відповідає схемі з папки   main / java / resources
+
+
+    }
 }
