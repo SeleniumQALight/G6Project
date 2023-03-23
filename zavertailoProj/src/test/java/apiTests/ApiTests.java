@@ -2,6 +2,7 @@ package apiTests;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.replaceFiltersWith;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import api.AuthorDTO;
 import api.EndPoints;
@@ -118,6 +119,20 @@ public class ApiTests {
         }
 
         softAssertions.assertAll(); //вивести все что не совпало при этом пройтись по всем а не упасть на первой ошибке
+
+    }
+
+    @Test
+    public void getAllPostByUserSchema(){
+        given()
+                .contentType(ContentType.JSON)  // зберегти повний запит
+                .log().all()
+                .when()
+                .get(EndPoints.POST_BY_USER, USER_NAME)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
 
     }
 
