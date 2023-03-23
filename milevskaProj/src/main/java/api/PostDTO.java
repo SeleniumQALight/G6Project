@@ -1,18 +1,23 @@
 package api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class PostDTO {  // з кейса "ApiTest" отримуємо відповідь і з неї беремо поля, які і описуємо
-
     @JsonProperty("_id")   //  JackSon бібліотека. Через символ "_" прописуємо. Щоб Java сприймала правильно
     String id;
     String title;
     String body;
     String select1;
 
-    public PostDTO(){
-
-    }
+   // public PostDTO(){
+  //  }
 
     public PostDTO(String title, String body, String select1, String uniquePost, AuthorDTO author, boolean isVisitorOwner) {   // ПКМ / Generate / Constructor
         this.title = title;
@@ -28,7 +33,7 @@ public class PostDTO {  // з кейса "ApiTest" отримуємо відпо
     AuthorDTO author;       //  описуємо далі, як окремий клас "AuthorDTO"
     boolean isVisitorOwner;
 
-
+/*
 
     public String getId() {         //   ПКМ / Generate / getter and setter   генерується окремо після додавання @JsonProperty
         return id;
@@ -107,4 +112,6 @@ public class PostDTO {  // з кейса "ApiTest" отримуємо відпо
                 ", isVisitorOwner=" + isVisitorOwner +
                 '}';
     }
+
+ */
 }
