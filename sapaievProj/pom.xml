@@ -102,6 +102,11 @@
             <version>1.18.24</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.1.1</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -161,6 +166,7 @@
                                 <version>1.18.24</version>
                                 <scope>provided</scope>
                             </dependency>
+
                         </dependencies>
                     </plugin>
                 </plugins>
