@@ -1,5 +1,6 @@
-package apiTests;
+package api;
 
+import api.AuthorDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PostDTO {
