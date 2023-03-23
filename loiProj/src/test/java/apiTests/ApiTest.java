@@ -9,6 +9,8 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.Struct;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiTest {
@@ -60,5 +62,22 @@ public class ApiTest {
                 .isEqualTo(expectedResult);
 
         softAssertions.assertAll();
+    }
+
+    @Test
+    public void getAllPostsByUserNegative(){
+        String actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(Endpoinds.POST_BY_USER, "notValidUser")
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().asString();
+
+        Assert.assertEquals("Message in response ", "\"Sorry, invalid user requested.undefined\"", actualResponse);
+        Assert.assertEquals("Message in response ", "Sorry, invalid user requested.undefined", actualResponse.replace("\"", ""));
     }
 }
