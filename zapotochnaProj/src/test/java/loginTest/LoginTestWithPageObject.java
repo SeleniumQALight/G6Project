@@ -1,4 +1,4 @@
-package suits.loginTest;
+package loginTest;
 
 import baseTest.BaseTest;
 import categories.SmokeTestFilter;

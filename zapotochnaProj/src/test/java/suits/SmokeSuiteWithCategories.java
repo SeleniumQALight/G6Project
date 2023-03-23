@@ -2,7 +2,7 @@ package suits;
 
 
 import categories.SmokeTestFilter;
-import suits.loginTest.LoginTestWithPageObject;
+import loginTest.LoginTestWithPageObject;
 import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
