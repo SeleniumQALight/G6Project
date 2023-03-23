@@ -44,21 +44,22 @@ public class apiTests {
 
     Assert.assertEquals("Number of posts ", expectedResult.length, responseAsDTO.length);
 
-        SoftAssertions softAssertions=new SoftAssertions();
 
-       for (int i=0; i<expectedResult.length; i++){
+    SoftAssertions softAssertions=new SoftAssertions();
+
+       /*for (int i=0; i<expectedResult.length; i++){
             softAssertions.assertThat(responseAsDTO[i]).isEqualToIgnoringGivenFields(expectedResult[i],"id",
                     "createdDate", "author");
             softAssertions.assertThat(responseAsDTO[i].getAuthor()).isEqualToIgnoringGivenFields(expectedResult[i].getAuthor(),"avatar");
-        }
+        }*/
 
 
-       /*
-       softAssertions.assertThat(responseAsDto[0])
+
+       softAssertions.assertThat(responseAsDTO)
                         .usingRecursiveComparison()
-                        .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar", "isVisitorOwner")
-                        .isEqualTo(expectedResult[0]);
-        */
+                        .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar")
+                        .isEqualTo(expectedResult);
+
 
 
         softAssertions.assertAll();
