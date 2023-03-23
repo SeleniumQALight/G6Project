@@ -37,8 +37,12 @@ public class ApiTest {
         }
 
         PostDTO[] expectedResult = {
-                new PostDTO("test2", "test body2", "All Users", "no", new AuthorDTO("autoapi"), false),
-                new PostDTO("test", "test body", "All Users", "no", new AuthorDTO("autoapi"), false)
+//                new PostDTO("test2", "test body2", "All Users", "no", new AuthorDTO("autoapi"), false),
+//                new PostDTO("test", "test body", "All Users", "no", new AuthorDTO("autoapi"), false)
+                PostDTO.builder().title("test2").body("test body2").select1("All Users").uniquePost("no").author(AuthorDTO.builder().username("autoapi").build()).isVisitorOwner(false)
+                        .build(),
+                PostDTO.builder().title("test").body("test body").select1("All Users").uniquePost("no").author(AuthorDTO.builder().username("autoapi").build()).isVisitorOwner(false)
+                        .build()
         };
 
         assertEquals("Number of posts", expectedResult.length, responseAsDTO.length);
@@ -54,7 +58,6 @@ public class ApiTest {
                 .usingRecursiveComparison()
                 .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar")
                 .isEqualTo(expectedResult);
-
         softAssertions.assertAll();
     }
 }
