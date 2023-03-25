@@ -1,7 +1,9 @@
 package api;
 
-
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -13,7 +15,6 @@ public class AuthorDTO {
     String avatar;
 
 //    public AuthorDTO(){
-//
 //    }
 //
 //    public AuthorDTO(String username) {
