@@ -1,14 +1,15 @@
 package api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor  // це означає конструктор для всіх перерахованих філдів
+@AllArgsConstructor
+@Builder //допоможе з конфігуруванням конструкторів. якщо нам потрібні об'єкти з різними полями, то використайте білдер
 
 public class PostDTO {
     @JsonProperty("_id")
@@ -22,18 +23,18 @@ public class PostDTO {
     AuthorDTO author; //вказали клас , в якому буде описаний вкладенний об'єкт
     Boolean isVisitorOwner;
 
-    public PostDTO() {
-    }
+//    public PostDTO() {
+//    }
 
-    public PostDTO(String title, String body, String select1, String uniquePost, AuthorDTO author, Boolean isVisitorOwner) {
-
-        this.title = title;
-        this.body = body;
-        this.select1 = select1;
-        this.uniquePost = uniquePost;
-        this.author = author;
-        this.isVisitorOwner = isVisitorOwner;
-    }
+//    public PostDTO(String title, String body, String select1, String uniquePost, AuthorDTO author, Boolean isVisitorOwner) {
+//
+//        this.title = title;
+//        this.body = body;
+//        this.select1 = select1;
+//        this.uniquePost = uniquePost;
+//        this.author = author;
+//        this.isVisitorOwner = isVisitorOwner;
+//    }
 
 //    public String getId() {
 //        return id;
