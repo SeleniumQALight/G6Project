@@ -80,4 +80,25 @@ public class ApiTests {  //тут не наслідуємся з BaseTest тут
     }
 
 
+    @Test
+    public void getAllPostsByUserNegative() {
+        String actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(EndPoints.POST_BY_USER, "notValidUser")
+                        .then()
+                        .statusCode(200) //тут ставимо те що очікуємо 200, 500...
+                        .log().all()
+                        .extract().response().getBody().asString()
+                ;
+
+        Assert.assertEquals("Message is response", "\"Sorry, invalid user requested.undefined\"", actualResponse);
+        Assert.assertEquals("Message is response", "Sorry, invalid user requested.undefined", actualResponse
+                .replace("\"", ""));
+
+    }
+
+
 }
