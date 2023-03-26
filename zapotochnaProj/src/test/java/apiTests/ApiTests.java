@@ -4,10 +4,14 @@ import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -91,14 +95,43 @@ public class ApiTests {  //тут не наслідуємся з BaseTest тут
                         .then()
                         .statusCode(200) //тут ставимо те що очікуємо 200, 500...
                         .log().all()
-                        .extract().response().getBody().asString()
-                ;
+                        .extract().response().getBody().asString();
 
         Assert.assertEquals("Message is response", "\"Sorry, invalid user requested.undefined\"", actualResponse);
         Assert.assertEquals("Message is response", "Sorry, invalid user requested.undefined", actualResponse
                 .replace("\"", ""));
 
     }
+@Test
+    public void getAllPostsByUserPsth(){
 
+    Response actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(EndPoints.POST_BY_USER, USER_NAME)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response();
+
+
+    List<String> actualTitleList = actualResponse.jsonPath().getList("title", String.class);
+    SoftAssertions softAssertions = new SoftAssertions();
+    for (int i = 0; i < actualTitleList.size(); i++) {
+        softAssertions.assertThat(actualTitleList.get(i)).as("Item number " + i).contains("test");
+    }
+
+    List<Map> actualAutorList = actualResponse.jsonPath().getList("author", Map.class);
+    for (int i = 0; i < actualAutorList.size(); i++) {
+        softAssertions.assertThat(actualAutorList.get(i).get("username"))
+                .as("Item number " + i).isEqualTo(USER_NAME);
+    }
+
+    softAssertions.assertAll();
+
+
+}
 
 }
