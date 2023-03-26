@@ -1,5 +1,6 @@
 package api;
 
+import api.AuthorDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -21,7 +22,6 @@ public class PostDTO {
     Boolean isVisitorOwner;
 
 //    public PostDTO(){
-//
 //    }
 
 //    public PostDTO(String title, String body, String select1, String uniquePost, AuthorDTO author, Boolean isVisitorOwner) {
@@ -109,5 +109,6 @@ public class PostDTO {
 //                ", author=" + author +
 //                ", isVisitorOwner=" + isVisitorOwner +
 //                '}';
+//
 //    }
 }

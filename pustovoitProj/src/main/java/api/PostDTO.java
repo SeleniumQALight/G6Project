@@ -21,7 +21,6 @@ public class PostDTO {
     Boolean isVisitorOwner;
 
 //    public PostDTO(){
-//
 //    }
 
 //    public PostDTO(String title, String body, String select1, String uniquePost, AuthorDTO author, Boolean isVisitorOwner) {
@@ -32,7 +31,7 @@ public class PostDTO {
 //        this.author = author;
 //        this.isVisitorOwner = isVisitorOwner;
 //    }
-
+//
 //    public String getId() {
 //        return id;
 //    }

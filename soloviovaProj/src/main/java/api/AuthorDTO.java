@@ -1,19 +1,11 @@
 package api;
 
-
-import lombok.*;
-
-
-
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class AuthorDTO {
     String username;
     String avatar;
-/*
-    public AuthorDTO() {
+
+    public AuthorDTO(){
+
     }
 
     public AuthorDTO(String username) {
@@ -43,7 +35,4 @@ public class AuthorDTO {
                 ", avatar='" + avatar + '\'' +
                 '}';
     }
-
-
- */
 }
