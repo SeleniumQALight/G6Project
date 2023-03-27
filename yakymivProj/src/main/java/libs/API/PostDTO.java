@@ -1,4 +1,4 @@
-package apiTests;
+package libs.API;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

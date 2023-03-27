@@ -1,4 +1,4 @@
-package API;
+package libs.API;
 
 public interface EndPoints {
     String baseUrl = "https://qa-complexapp.onrender.com";

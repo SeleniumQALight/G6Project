@@ -1,6 +1,8 @@
 package apiTests;
 
-import API.EndPoints;
+import libs.API.AuthorDTO;
+import libs.API.EndPoints;
+import libs.API.PostDTO;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;

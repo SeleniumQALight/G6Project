@@ -1,4 +1,4 @@
-package apiTests;
+package libs.API;
 
 public class AuthorDTO {
     String username;
