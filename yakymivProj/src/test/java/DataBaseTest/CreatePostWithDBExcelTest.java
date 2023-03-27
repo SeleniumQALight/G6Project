@@ -8,23 +8,25 @@ import org.junit.Test;
 import pages.CommonActionsWithElements;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 
 public class CreatePostWithDBExcelTest extends BaseTest {
 
-    String POST_TITLE, POST_BODY, POST_LABEL, STATE_OF_CHECKBOX;
+    String POST_TITLE, POST_BODY, POST_LABEL, STATE_OF_CHECKBOX, LOGIN;
 
     @Test
-    public void TC_createPostWithExcel() throws IOException {
+    public void TC_createPostWithExcel() throws IOException, SQLException, ClassNotFoundException {
         Map<String, String> dataNewPost = ExcelDriver.getData(CommonActionsWithElements.configProperties.DATA_FILE(), "CreatePostData");
         POST_TITLE = dataNewPost.get("postTitle") + Util.getDateAndTimeFormatted();
         POST_BODY = dataNewPost.get("postBody");
         POST_LABEL = dataNewPost.get("visibility");
         STATE_OF_CHECKBOX = dataNewPost.get("checkbox");
+        LOGIN = dataNewPost.get("login");
 
 
         homePage.
-                openHomePage()
+                openHomePageWithDB(LOGIN)
                 .getHeaderElement().clickOnCreatePostButton()
                 .checkIsRedirectToCreatePostPage()
                 .enterTextInInputTitle(POST_TITLE)
