@@ -38,14 +38,16 @@ public class apiTests {
         logger.info("Title post1 = " + responseAsDTO[0].getTitle());
         logger.info("Username post1 = " + responseAsDTO[0].getAuthor().getUsername());
 
+        //получаем юзернейм в каждом посте
         for (int i = 0; i < responseAsDTO.length; i++) {
             Assert.assertEquals("Username is not matched" + i, USER_NAME, responseAsDTO[i].getAuthor().getUsername());
         }
 
         PostDTO[] expectedResult = {
+                //2 урок
                 //    new PostDTO("test2","test body2", "All Users", "no", new AuthorDTO("autoapi"), false) ,
                 //    new PostDTO("test","test body","All Users","no", new AuthorDTO("autoapi"), false)
-                //Пишем новый код с помощью lombok (аналогия закомментированного кода)
+                //3 урок. Пишем новый код с помощью lombok (аналогия закомментированного кода)
                 PostDTO.builder()
                         .title("test2").body("test body2").select1("All Users").uniquePost("no")
                         .author(AuthorDTO.builder().username("autoapi").build())
@@ -65,6 +67,7 @@ public class apiTests {
 
         SoftAssertions softAssertions = new SoftAssertions();
 
+        //2 урок
        /*for (int i=0; i<expectedResult.length; i++){
             softAssertions.assertThat(responseAsDTO[i]).isEqualToIgnoringGivenFields(expectedResult[i],"id",
                     "createdDate", "author");
@@ -73,7 +76,7 @@ public class apiTests {
         }*/
 
 
-        //аналогия закомментированного кода
+        //3 урок. аналогия закомментированного кода
         softAssertions.assertThat(responseAsDTO)
                 .usingRecursiveComparison()
                 .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar")
