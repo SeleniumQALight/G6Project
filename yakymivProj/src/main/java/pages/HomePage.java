@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElements;
 
+import java.sql.SQLException;
+
 public class HomePage extends ParentPage {
 
     private HeaderElements headerElements = new HeaderElements(webDriver);
@@ -33,6 +35,18 @@ public class HomePage extends ParentPage {
         checkIsRedirectHomePage();
         return this;
     }
+
+    @Step
+    public HomePage openHomePageWithDB(String login) throws SQLException, ClassNotFoundException {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if(!getHeaderElement().isButtonSignOutDisplayed()){
+            loginPage.fillingLoginFormWithDB(login);
+        }
+        checkIsRedirectHomePage();
+        return this;
+    }
+
 
     @Step
     private HomePage checkIsRedirectHomePage() {
