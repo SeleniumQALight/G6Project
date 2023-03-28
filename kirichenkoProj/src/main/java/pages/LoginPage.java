@@ -93,10 +93,10 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
-    public LoginPage fillingLoginFormWithInvalidCred() {
+    public LoginPage fillingLoginFormWithInvalidCred(String userName, String password) {
         openLoginPage();
-        enterUserNameIntoInputLogin(TestData.INVALID_LOGIN);
-        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        enterUserNameIntoInputLogin(userName);
+        enterPasswordIntoInputPassword(password);
         clickOnButtonLogin();
         return this;
     }
