@@ -18,7 +18,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 public class ApiTests {
     final String USER_NAME = "autoapi";
-    private Logger logger = Logger.getLogger(getClass());
+    Logger logger = Logger.getLogger(getClass());
 
     @Test
     public void getPostsByUserTest() {
@@ -119,21 +119,19 @@ public class ApiTests {
 
 
     }
-@Test
-    public void getAllPostsByUserSchema(){
-    given()
-            .contentType(ContentType.JSON)
-            .log().all()
-            .when()
-            .get(EndPoints.POST_BY_USER, USER_NAME)
-            .then()
-            .statusCode(200)
-            .log().all()
-            .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
+
+    @Test
+    public void getAllPostsByUserSchema() {
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPoints.POST_BY_USER, USER_NAME)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
 
 
-
-
-}
-
+    }
 }
