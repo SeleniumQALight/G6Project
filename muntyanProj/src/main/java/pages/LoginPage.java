@@ -1,6 +1,7 @@
 
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -64,7 +65,7 @@ public class LoginPage extends ParentPage {
     String getRelatedURL() {
         return "/";
     }
-
+@Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelatedURL());
@@ -76,47 +77,48 @@ public class LoginPage extends ParentPage {
         }
         return this;
     }
-
+    @Step
     public LoginPage enterUserNameIntoInpuLogin(String userName) {
         enterTextInToElement(inputUserName, userName);
         return this;
     }
 
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextInToElement(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
 
     }
+    @Step
     public boolean isSignInButtonDisplayed(){
         return isElementDisplayed(buttonLogin);
     }
-
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInpuLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSPORT);
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage enterUserNameIntoInpuPick_a_username(String   pickUserName) {
         enterTextInToElement(pick_a_username, pickUserName);
         return this;
     }
-
+    @Step
     public LoginPage enterEmailIntoInputEmail(String email) {
         enterTextInToElement(emailElement, email);
         return this;
     }
-
+    @Step
     public LoginPage enterPasswordIntoInputCreate_a_password(String password) {
         enterTextInToElement(create_a_password, password);
         return this;
     }
-
+    @Step
     public void clickOnSign_up_for_OurApp() {
         clickOnElement(buttonSign_up_for_OurApp);
     }
@@ -135,13 +137,13 @@ public class LoginPage extends ParentPage {
 //        isElementDisplayed(passwordMessage);
 //        return this;
 //    }
-
+@Step
     public LoginPage checkAlertMessagesContent(String expectedMessage) {
         Util.waitABit(1);
         Assert.assertTrue("Element with text '"+expectedMessage+"' is not found.", isElementDisplayed(String.format(messageAlert, expectedMessage)));
         return this;
     }
-
+    @Step
     public LoginPage checknumberOfMessages (int numberOfElements) {
         webDriverWait15.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorListXpath),numberOfElements));
             Assert.assertEquals("Number of elements does not match.", numberOfElements, errorMessages.size());
@@ -149,7 +151,7 @@ public class LoginPage extends ParentPage {
             return this;
 
     }
-
+    @Step
     public LoginPage checkRegistrationErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(",");
         webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));

@@ -25,7 +25,6 @@
         <tag>@R001</tag>
 
 
-
     </properties>
 
     <dependencies>
@@ -56,17 +55,17 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.aeonbits.owner/owner -->
         <dependency>
-        <groupId>org.aeonbits.owner</groupId>
-        <artifactId>owner</artifactId>
-        <version>1.0.12 </version>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.12</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.13.2</version>
+            <version>3.24.2</version>
         </dependency>
-<!--це те що дає запускати тест з декількома параметрами-->
+        <!--це те що дає запускати тест з декількома параметрами-->
         <dependency>
             <groupId>pl.pragmatists</groupId>
             <artifactId>JUnitParams</artifactId>
@@ -111,6 +110,19 @@
             <version>2.8.6</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--бібліотека,яка робить перевірку нашого респонсу -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.1.1</version>
+        </dependency>
     </dependencies>
 
     <profiles>

@@ -4,7 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import libs.ScreenShot;
 import org.apache.log4j.Logger;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
@@ -14,12 +14,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.elements.HeaderElements;
 
 import java.io.ByteArrayInputStream;
 import java.time.Duration;
@@ -30,20 +32,32 @@ public class BaseTest {
     Logger logger = Logger.getLogger(getClass());
     protected LoginPage loginPage;
     protected HomePage homePage;
+    protected HeaderElements headerElements;
     protected ArrayList<ScreenShot> listOfScreenShots = new ArrayList<>();
-
 
     @Before
     public void setUp() {
-        logger.info("--------" + testName.getMethodName() + " was started--------");
+        logger.info("----- " + testName.getMethodName() + " was started-----");
         webDriver = initDriver();
+//      WebDriverManager.chromedriver().setup();
+//      webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         loginPage = new LoginPage(webDriver);
         homePage = new HomePage(webDriver);
 
-
     }
+
+//    @After
+//    public void tearDown() {
+//        webDriver.quit();
+//        logger.info("Browser was closed");
+//        logger.info("------ " + testName.getMethodName() + " was ended-----");
+//    }
+
+
+    @Rule
+    public TestName testName = new TestName();
 
     @Rule(order = Integer.MIN_VALUE)
     public final TestWatcher watchman = new TestWatcher() {
@@ -88,31 +102,25 @@ public class BaseTest {
         listOfScreenShots.add(new ScreenShot(testName.getMethodName() + "_after", screen));
     }
 
-//    @After
-//    public void tearDown() {
-//        webDriver.quit();
-//        logger.info("Browser is closed");
-//        logger.info("--------" + testName.getMethodName() + " was ended--------");
-//    }
-
-    @Rule
-    public TestName testName = new TestName();
-
-    private WebDriver initDriver(){
+    private WebDriver initDriver() {
         String browser = System.getProperty("browser");
-        if ((browser == null) || "chrome".equals(browser)){
-            WebDriverManager.chromedriver().setup();
-            webDriver = new ChromeDriver();
-        }else if ("firefox".equalsIgnoreCase(browser)) {
+        if ((browser == null) || "chrome".equalsIgnoreCase(browser)) {
+            ChromeOptions ops = new ChromeOptions();//110v
+            ops.addArguments("--remote-allow-origins=*");//110v
+            WebDriverManager.chromedriver().setup();//110v
+            webDriver = new ChromeDriver(ops);
+//            WebDriverManager.chromedriver().setup();
+//            webDriver = new ChromeDriver();
+        } else if ("firefox".equalsIgnoreCase(browser)) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
-        }else if ("safari".equalsIgnoreCase(browser)) {
+        } else if ("edge".equalsIgnoreCase(browser)) {
+            WebDriverManager.edgedriver().setup();
+            webDriver = new EdgeDriver();
+        } else if ("safari".equalsIgnoreCase(browser)) {
             WebDriverManager.safaridriver().setup();
             webDriver = new SafariDriver();
-        }else if ("edge".equalsIgnoreCase(browser)){
-            WebDriverManager.edgedriver().setup();
-            webDriver=new EdgeDriver();
-        }else if ("ie".equalsIgnoreCase(browser)) {
+        } else if ("ie".equalsIgnoreCase(browser)) {
             //WebDriverManager.iedriver().setup();
             // in most cases 32bit version is needed
             WebDriverManager.iedriver().arch32().setup();
