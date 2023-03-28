@@ -3,12 +3,14 @@ package api;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor//default constructor
+@NoArgsConstructor  // це означає конструктор для всіх перерахованих філдів
 @AllArgsConstructor
-@Builder
+@Builder //допоможе з конфігуруванням конструкторів. якщо нам потрібні об'єкти з різними полями, то використайте білдер
+
 public class PostDTO {
     @JsonProperty("_id")
     String id;
@@ -17,11 +19,15 @@ public class PostDTO {
     String select1;
     String uniquePost;
     String createdDate;
-    AuthorDTO author;
+
+    AuthorDTO author; //вказали клас , в якому буде описаний вкладенний об'єкт
     Boolean isVisitorOwner;
 
-//custom constructor for expected result
+//    public PostDTO() {
+//    }
+
 //    public PostDTO(String title, String body, String select1, String uniquePost, AuthorDTO author, Boolean isVisitorOwner) {
+//
 //        this.title = title;
 //        this.body = body;
 //        this.select1 = select1;
@@ -42,52 +48,54 @@ public class PostDTO {
 //        return title;
 //    }
 //
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-//
 //    public String getBody() {
 //        return body;
-//    }
-//
-//    public void setBody(String body) {
-//        this.body = body;
 //    }
 //
 //    public String getSelect1() {
 //        return select1;
 //    }
 //
-//    public void setSelect1(String select1) {
-//        this.select1 = select1;
-//    }
-//
 //    public String getUniquePost() {
 //        return uniquePost;
-//    }
-//
-//    public void setUniquePost(String uniquePost) {
-//        this.uniquePost = uniquePost;
 //    }
 //
 //    public String getCreatedDate() {
 //        return createdDate;
 //    }
 //
-//    public void setCreatedDate(String createdDate) {
-//        this.createdDate = createdDate;
-//    }
-//
 //    public AuthorDTO getAuthor() {
 //        return author;
 //    }
 //
-//    public void setAuthor(AuthorDTO author) {
-//        this.author = author;
-//    }
-//
 //    public Boolean getIsVisitorOwner() {
 //        return isVisitorOwner;
+//    }
+//
+//
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+//
+//    public void setBody(String body) {
+//        this.body = body;
+//    }
+//
+//    public void setSelect1(String select1) {
+//        this.select1 = select1;
+//    }
+//
+//    public void setUniquePost(String uniquePost) {
+//        this.uniquePost = uniquePost;
+//    }
+//
+//    public void setCreatedDate(String createdDate) {
+//        this.createdDate = createdDate;
+//    }
+//
+//    public void setAuthor(AuthorDTO author) {
+//        this.author = author;
 //    }
 //
 //    public void setIsVisitorOwner(Boolean visitorOwner) {

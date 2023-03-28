@@ -1,10 +1,16 @@
 package api;
 
+import lombok.*;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AuthorDTO {
     public String username;
     public String avatar;
 
-    public AuthorDTO() {
+/*    public AuthorDTO() {
 
     }
     public AuthorDTO(String username) {
@@ -17,5 +23,5 @@ public class AuthorDTO {
 
     public String getAvatar() {
         return avatar;
-    }
+    }*/
 }
