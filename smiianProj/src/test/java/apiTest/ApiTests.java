@@ -1,8 +1,6 @@
 package apiTest;
 
-import api.AuthorDTO;
-import api.EndPoints;
-import api.PostDTO;
+import api.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -28,14 +26,13 @@ public class ApiTests {
         PostDTO[] responseAsDTO = given()
                 .contentType(ContentType.JSON)
                 .log().all()
-             .when()
+                .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)     //це і попередні рядки відправить GET на endpoint
-             .then()
+                .then()
                 .statusCode(200)                        // очікуєм відповідь
                 .log().all()
                 .extract()
-                .response().as(PostDTO[].class)
-        ;
+                .response().as(PostDTO[].class);
 
         logger.info("Number of posts = " + responseAsDTO.length);
         logger.info("Title post1 =" + responseAsDTO[0].getTitle());
@@ -136,8 +133,46 @@ public class ApiTests {
                 .statusCode(200)
                 .log().all()
                 .assertThat().body(matchesJsonSchemaInClasspath("response.json"));  //  перевіряємо,
-                                                                                       // чи респонс відповідає схемі з папки   main / java / resources
+        // чи респонс відповідає схемі з папки   main / java / resources
 
 
+    }
+
+    @Test
+    public void homeWorkOne() {
+        PrivateHwOneDTO[] responsePrivateHwOneDTO = given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPoints.PRIVATE_API_22_03)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract()
+                .response().as(PrivateHwOneDTO[].class);
+
+        logger.info("Number of posts = " + responsePrivateHwOneDTO.length);
+//        logger.info("Title post1 =" + responsePrivateHwOneDTO[0].baseCurrency());
+//        logger.info("Username post1 = " + responsePrivateHwOneDTO[0].getAuthor().getUsername());
+
+    PrivateHwOneDTO[] expectedResultHwOne = {
+            PrivateHwOneDTO.builder().date("22.03.2022").bank("PB").baseCurrency(980).baseCurrencyLit("UAH")
+                    .exchangeRate(ExchangeRateDTO.builder().baseCurrency("UAH").currency("AUD").build())
+                    .build(),
+//            PrivateHwOneDTO.builder().date("111").bank("222").baseCurrency(333).baseCurrencyLit("444")
+//                    .exchangeRate(ExchangeRateDTO.builder().baseCurrency("555").currency("666").build())
+//                    .build(),
+    };
+
+    Assert.assertEquals("Number of posts ", expectedResultHwOne.length, responsePrivateHwOneDTO.length);
+
+    SoftAssertions softAssertionsHwOne = new SoftAssertions();
+
+        softAssertionsHwOne.assertThat(responsePrivateHwOneDTO)
+            .usingRecursiveComparison()
+            .ignoringFields("saleRateNB","purchaseRateNB")
+            .isEqualTo(expectedResultHwOne[0]);
+
+        softAssertionsHwOne.assertAll();
     }
 }
