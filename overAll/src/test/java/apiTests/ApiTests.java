@@ -3,9 +3,9 @@ package apiTests;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-import api.AuthorDTO;
+import api.dto.responseDto.AuthorDTO;
 import api.EndPoints;
-import api.PostDTO;
+import api.dto.responseDto.PostDTO;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import java.util.List;
