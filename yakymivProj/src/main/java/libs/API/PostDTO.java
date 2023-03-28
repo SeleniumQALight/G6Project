@@ -1,4 +1,4 @@
-package api;
+package libs.API;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -6,7 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor//default constructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class PostDTO {
@@ -20,7 +20,10 @@ public class PostDTO {
     AuthorDTO author;
     Boolean isVisitorOwner;
 
-//custom constructor for expected result
+//    public PostDTO() {
+//
+//    }
+
 //    public PostDTO(String title, String body, String select1, String uniquePost, AuthorDTO author, Boolean isVisitorOwner) {
 //        this.title = title;
 //        this.body = body;
@@ -108,3 +111,4 @@ public class PostDTO {
 //                '}';
 //    }
 }
+

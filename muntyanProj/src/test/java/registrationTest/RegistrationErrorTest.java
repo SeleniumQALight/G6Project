@@ -1,16 +1,18 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import libs.TestData;
 import org.junit.Test;
 
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
-
+@Category(SmokeTestFilter.class)
 public class RegistrationErrorTest extends BaseTest {
     final static String ERROR_USERNAME = TestData.MESSAGE_1;
     final static String ERROR_EMAIL = TestData.MESSAGE_2;
