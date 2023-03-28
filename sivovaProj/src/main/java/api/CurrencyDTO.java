@@ -1,10 +1,13 @@
 package api;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -12,10 +15,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class CurrencyDTO {
-    String data;
+    @JsonProperty("date")
+    String date;
+    @JsonProperty("bank")
     String bank;
+    @JsonProperty("baseCurrency")
     Integer baseCurrency;
-    String basCurrencyLit;
-    ExchangeRateDTO exchange;
+    @JsonProperty("baseCurrencyLit")
+    String baseCurrencyLit;
+    List<ExchangeRateDTO> exchangeRate;
 
 }
