@@ -1,13 +1,18 @@
 package api;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data//includes getter, setter, some builders
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthorDTO {
     String username;
     String avatar;
+
+
 
 }
