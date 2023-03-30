@@ -4,6 +4,7 @@ import api.EndPoints;
 
 import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -24,6 +25,7 @@ public class ApiTests {
     @Test
     public void getPostsByUserTest() {
         PostDTO[] responseAsDto = given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
@@ -77,6 +79,7 @@ public class ApiTests {
         String actualResponse =
                 given()
                         .contentType(ContentType.JSON)
+                        .filter(new AllureRestAssured())
                         .log().all()
                         .when()
                         .get(EndPoints.POST_BY_USER, "notValidUser")
