@@ -290,9 +290,9 @@
 
                 <configuration>
 
-                    <source>1.8</source>
+                    <source>9</source>
 
-                    <target>1.8</target>
+                    <target>9</target>
 
                 </configuration>
 
