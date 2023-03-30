@@ -23,7 +23,8 @@ public class ApiTests {
     Logger lodder = Logger.getLogger(getClass());
     @Test
     public void getPostsByUserTest(){
-       PostDTO[] responseAsDto = given()
+       PostDTO[] responseAsDto =
+               given()
                 .contentType(ContentType.JSON)
                 .log().all()
             .when()
