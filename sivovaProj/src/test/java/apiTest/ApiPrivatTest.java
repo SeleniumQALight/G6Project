@@ -90,4 +90,37 @@ public class ApiPrivatTest {
 
         softAssertions.assertAll();
     }
+
+    @Test
+    public void checkCurrencyFields() {
+        CurrencyDTO responseCurrency = given().queryParam("date", "22.03.2022")
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPointsPrivat.CURRENCY_RATE_ON_DATE)
+                .then()
+                .statusCode(200)
+                .extract().as(CurrencyDTO.class);
+
+        List<ExchangeRateDTO> exchangeRateDTO = responseCurrency.getExchangeRate();
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+       for (int i = 0; i < exchangeRateDTO.size(); i++) {
+
+           softAssertions.assertThat(exchangeRateDTO.get(i).getSaleRateNB()).isGreaterThan(0);
+           softAssertions.assertThat(exchangeRateDTO.get(i).getPurchaseRateNB()).isGreaterThan(0);
+
+           if (exchangeRateDTO.get(i).getPurchaseRate() != null) {
+               softAssertions.assertThat(exchangeRateDTO.get(i).getPurchaseRate()).isGreaterThan(0);
+           }
+
+           if (exchangeRateDTO.get(i).getSaleRate() != null) {
+               softAssertions.assertThat(exchangeRateDTO.get(i).getSaleRate()).isGreaterThan(0);
+           }
+
+       }
+        softAssertions.assertAll();
+    }
+
 }
