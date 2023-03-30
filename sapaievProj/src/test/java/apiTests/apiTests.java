@@ -1,8 +1,8 @@
 package apiTests;
 
-import api.AuthorDTO;
+import api.dto.responseDTO.AuthorDTO;
 import api.Endpoints;
-import api.PostDTO;
+import api.dto.responseDTO.PostDTO;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -10,7 +10,6 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
