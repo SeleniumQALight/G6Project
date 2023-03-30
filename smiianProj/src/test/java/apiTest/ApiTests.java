@@ -140,7 +140,8 @@ public class ApiTests {
 
     @Test
     public void homeWorkOne() {
-        PrivateHwOneDTO[] responsePrivateHwOneDTO = given()
+        PrivateHwOneDTO[] responsePrivateHwOneDTO =
+                given()
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
@@ -150,18 +151,41 @@ public class ApiTests {
                 .log().all()
                 .extract()
                 .response().as(PrivateHwOneDTO[].class);
+//        (PrivateHwOneDTO[].class);
 
         logger.info("Number of posts = " + responsePrivateHwOneDTO.length);
-//        logger.info("Title post1 =" + responsePrivateHwOneDTO[0].baseCurrency());
+        logger.info("Title post1 =" + responsePrivateHwOneDTO[0].baseCurrency());
 //        logger.info("Username post1 = " + responsePrivateHwOneDTO[0].getAuthor().getUsername());
 
     PrivateHwOneDTO[] expectedResultHwOne = {
             PrivateHwOneDTO.builder().date("22.03.2022").bank("PB").baseCurrency(980).baseCurrencyLit("UAH")
-                    .exchangeRate(ExchangeRateDTO.builder().baseCurrency("UAH").currency("AUD").build())
+                    .exchangeRate(ExchangeRateDTO.builder().baseCurrency("UAH").currency("AUD")
+                                                           .baseCurrency("UAH").currency("AUD")
+                                                           .baseCurrency("UAH").currency("BYN")
+                                                           .baseCurrency("UAH").currency("CAD")
+                                                           .baseCurrency("UAH").currency("CHF")
+                                                           .baseCurrency("UAH").currency("CNY")
+                                                           .baseCurrency("UAH").currency("CZK")
+                                                           .baseCurrency("UAH").currency("DKK")
+                                                           .baseCurrency("UAH").currency("EUR")
+                                                           .baseCurrency("UAH").currency("GBP")
+                                                           .baseCurrency("UAH").currency("GEL")
+                                                           .baseCurrency("UAH").currency("HUF")
+                                                           .baseCurrency("UAH").currency("ILS")
+                                                           .baseCurrency("UAH").currency("JPY")
+                                                           .baseCurrency("UAH").currency("KZT")
+                                                           .baseCurrency("UAH").currency("MDL")
+                                                           .baseCurrency("UAH").currency("NOK")
+                                                           .baseCurrency("UAH").currency("PLN")
+                                                           .baseCurrency("UAH").currency("SEK")
+                                                           .baseCurrency("UAH").currency("SGD")
+                                                           .baseCurrency("UAH").currency("TMT")
+                                                           .baseCurrency("UAH").currency("TRY")
+                                                           .baseCurrency("UAH").currency("UAH")
+                                                           .baseCurrency("UAH").currency("USD")
+                                                           .baseCurrency("UAH").currency("UZS")
+                    .build())
                     .build(),
-//            PrivateHwOneDTO.builder().date("111").bank("222").baseCurrency(333).baseCurrencyLit("444")
-//                    .exchangeRate(ExchangeRateDTO.builder().baseCurrency("555").currency("666").build())
-//                    .build(),
     };
 
     Assert.assertEquals("Number of posts ", expectedResultHwOne.length, responsePrivateHwOneDTO.length);
