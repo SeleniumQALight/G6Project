@@ -121,11 +121,11 @@ public class apiTests {
                         .log().all()
                         .extract().response();
 
-        List<String> actualTitleList=actualResponse.jsonPath().getList("title",String.class);
+        List<String> actualTitleList=actualResponse.jsonPath().getList("title",String.class);// title-это поле.
 
         SoftAssertions softAssertions=new SoftAssertions();
         for (int i=0; i<actualTitleList.size(); i++){
-            softAssertions.assertThat(actualTitleList.get(i)).as("Iten number "+i).contains("test");
+            softAssertions.assertThat(actualTitleList.get(i)).as("Iten number "+i).contains("test"); //  Проверка, что title содежит "test"
         }
 
 
