@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class apiTestPrivat {
 
@@ -118,6 +119,23 @@ public class apiTestPrivat {
 
 
         softAssertions.assertAll();
+
+    }
+
+
+    @Test
+    public void testByUserSchema(){
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndpointsPrivatBank.requestPrivat)
+                .then()
+                //.statusCode(200)
+                .log().all()
+               // .assertThat()
+                //.body(matchesJsonSchemaInClasspath("response1.json"))
+        ;
 
     }
 }

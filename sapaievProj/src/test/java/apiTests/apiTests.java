@@ -143,7 +143,7 @@ public class apiTests {
 
 
     @Test
-    public void getAllPostsByUserSchema(){
+    public void getAllPostsByUserSchema(){  //проверка полей и соответствие их типов данных
         given()
                 .contentType(ContentType.JSON)
                 .log().all()
@@ -151,7 +151,9 @@ public class apiTests {
                 .get(Endpoints.POST_BY_USER, USER_NAME)
                 .then()
                 .statusCode(200)
-                .log().all().body(matchesJsonSchemaInClasspath("response.json"))
+                .log().all()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("response.json"))
                 ;
 
     }
