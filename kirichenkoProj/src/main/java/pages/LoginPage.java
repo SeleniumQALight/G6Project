@@ -1,15 +1,18 @@
 package pages;
 
 import libs.TestData;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage{
@@ -40,7 +43,10 @@ public class LoginPage extends ParentPage{
 
     private final String parametrizedAlert = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
+    private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
+    @FindBy(xpath = listOfErrorsLocator)
+    private List<WebElement> listOfErrors;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -87,20 +93,20 @@ public class LoginPage extends ParentPage{
         return new HomePage(webDriver);
     }
 
-    public LoginPage fillingLoginFormWithInvalidCred() {
+    public LoginPage fillingLoginFormWithInvalidCred(String userName, String password) {
         openLoginPage();
-        enterUserNameIntoInputLogin(TestData.INVALID_LOGIN);
-        enterPasswordIntoInputPassword(TestData.INVALID_PASSWORD);
+        enterUserNameIntoInputLogin(userName);
+        enterPasswordIntoInputPassword(password);
         clickOnButtonLogin();
         return this;
     }
 
 
-    private void enterPasswordIntoSignUpForm(String password) {enterTextInToElement(registerPassword, password);}
+    public void enterPasswordIntoSignUpForm(String password) {enterTextInToElement(registerPassword, password);}
 
-    private void enterEmailIntoSignUpForm(String email) {enterTextInToElement(registerEmail, email);}
+    public void enterEmailIntoSignUpForm(String email) {enterTextInToElement(registerEmail, email);}
 
-    private void enterUserNameIntoSignUpForm(String username) {enterTextInToElement(registerUserName, username);}
+    public void enterUserNameIntoSignUpForm(String username) {enterTextInToElement(registerUserName, username);}
     public LoginPage fillingRegistrationFormFields(){
         openLoginPage();
         enterUserNameIntoSignUpForm(TestData.REGISTRATION_INVALID_USERNAME);
@@ -120,5 +126,71 @@ public class LoginPage extends ParentPage{
         Assert.assertTrue("Text \"" + textMessage + "\" not found", isElementDisplayed(String.format(parametrizedAlert, textMessage)));
         return this;
     }
+    public void inputFromKeyboard(String text) {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(text).build().perform();
+        logger.info(text + " was inputted from keyboard");
+    }
+
+    public LoginPage loginFromKeyboard(String login, String password) {
+        usersPressesKeyTabTime(2);
+        inputFromKeyboard(login);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(password);
+        usersPressesKeyEnterTime(1);
+        return this;
+    }
+
+    public LoginPage registrationFromKeyBoard(String username, String email, String password) {
+        openLoginPage();
+        usersPressesKeyTabTime(5);
+        inputFromKeyboard(username);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(email);
+        usersPressesKeyTabTime(1);
+        inputFromKeyboard(password);
+        return this;
+    }
+
+
+    public LoginPage switchToPreviousTabAndRefresh() {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(0));
+        webDriver.navigate().refresh();
+        return this;
+    }
+
+
+//    public void checkErrorMessageWithText(String expected) {
+//        boolean found = false;
+//
+//        for (int i = 0; i < alertMessages.size(); i++) {
+//            String text = alertMessages.get(i).getText();
+//            if (text.equals(expected)) {
+//                found = true;
+//                break;
+//            }
+//        }
+//
+//        Assert.assertTrue("Text \"" + expected + "\" not found", found);
+//    }
+public LoginPage checkErrorsMessages(String expectedErrors) {
+    String[] expectedErrorsArray = expectedErrors.split(",");
+    webDriverWait10
+            .withMessage("Number of messages should be " + expectedErrorsArray.length)
+            .until(ExpectedConditions
+                    .numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
+
+    ArrayList <String> actualTextFromErrors = new ArrayList<>();
+    for (WebElement element: listOfErrors){
+        actualTextFromErrors.add(element.getText());
+    }
+    SoftAssertions softAssertions = new SoftAssertions();
+    for (int i = 0; i < expectedErrorsArray.length; i++){
+        softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equal").isIn(actualTextFromErrors);
+    }
+    softAssertions.assertAll();
+    return this;
+}
 
 }
