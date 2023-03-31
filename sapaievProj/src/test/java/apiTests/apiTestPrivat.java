@@ -131,10 +131,10 @@ public class apiTestPrivat {
                 .when()
                 .get(EndpointsPrivatBank.requestPrivat)
                 .then()
-                //.statusCode(200)
+                .statusCode(200)
                 .log().all()
-               // .assertThat()
-                //.body(matchesJsonSchemaInClasspath("response1.json"))
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("response1.json"))
         ;
 
     }
