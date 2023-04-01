@@ -14,4 +14,8 @@ public class ExchangeRateDTO {
 
     String baseCurrency;
     String currency;
+    String saleRateNB;
+    String purchaseRateNB;
+    String saleRate;
+    String purchaseRate;
 }

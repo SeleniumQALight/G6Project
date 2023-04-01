@@ -16,6 +16,6 @@ public class PrivateHwOneDTO {
     String bank;
     Integer baseCurrency;
     String baseCurrencyLit;
-    ExchangeRateDTO exchangeRate;
+    ExchangeRateDTO[] exchangeRate;
 
 }
