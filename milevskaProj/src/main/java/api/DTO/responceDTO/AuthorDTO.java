@@ -1,4 +1,4 @@
-package api;
+package api.DTO.responceDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

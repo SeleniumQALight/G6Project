@@ -1,5 +1,6 @@
-package api;
+package api.DTO.responceDTO;
 
+import api.DTO.responceDTO.AuthorDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
