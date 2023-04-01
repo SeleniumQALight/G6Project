@@ -2,14 +2,10 @@ package apiTest;
 
 import api.*;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -31,9 +27,7 @@ public class PrivatApiTests {
                         .extract()
                         .response().as(PrivateHwOneDTO.class);
 
-//        logger.info("Number of posts = " + responsePrivateHwOneDTO.length);
-//        logger.info("Title post1 =" + responsePrivateHwOneDTO[0].baseCurrency());
-//        logger.info("Username post1 = " + responsePrivateHwOneDTO[0].getAuthor().getUsername());
+
 
         ExchangeRateDTO[] listExchange = {
                 ExchangeRateDTO.builder().baseCurrency("UAH").currency("AUD").build(),
@@ -73,7 +67,6 @@ public class PrivatApiTests {
         softAssertionsHwOne.assertThat(responsePrivateHwOneDTO)
                 .usingRecursiveComparison()
                 .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB", "exchangeRate.saleRate", "exchangeRate.purchaseRate")
-//                .usingRecursiveComparison()
                 .isEqualTo(expectedResultHwOne);
 
         softAssertionsHwOne.assertAll();
