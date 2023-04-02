@@ -3,6 +3,7 @@ package apiTests;
 import api.dto.responseDTO.AuthorDTO;
 import api.Endpoints;
 import api.dto.responseDTO.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -16,13 +17,14 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class apiTests {
+public class ApiTests {
     final String USER_NAME = "autoapi";
     private Logger logger = Logger.getLogger(getClass());
 
     @Test
     public void getPostsByUserTest() {
         PostDTO[] responseAsDTO = given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
@@ -88,6 +90,7 @@ public class apiTests {
     public void getAllPostsByUserNegative() {
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -108,6 +111,7 @@ public class apiTests {
     public void getAllPostsByUserPath(){
         Response actualResponse=
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -141,6 +145,7 @@ public class apiTests {
     @Test
     public void getAllPostsByUserSchema(){
         given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
