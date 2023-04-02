@@ -108,21 +108,33 @@ public class ApiTestPrivat {
                         .log().all()
                         .extract().response();
 
-        List<String> saleRateNB = actualResponse.jsonPath().getList("exchangeRate.saleRateNB", String.class);
-        List<String> purchaseRateNB = actualResponse.jsonPath().getList("exchangeRate.purchaseRateNB", String.class);
+        List<Double> saleRateNB = actualResponse.jsonPath().getList("exchangeRate.saleRateNB", Double.class);
+        List<Double> purchaseRateNB = actualResponse.jsonPath().getList("exchangeRate.purchaseRateNB", Double.class);
+        List<Double> saleRate = actualResponse.jsonPath().getList("exchangeRate.saleRate", Double.class);
+        List<Double> purchaseRate = actualResponse.jsonPath().getList("exchangeRate.purchaseRate", Double.class);
 
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < saleRateNB.size(); i++) {
-            softAssertions.assertThat(saleRateNB.get(i)).as("Item number " + i).isGreaterThan("0");
+            softAssertions.assertThat(saleRateNB.get(i)).as("Item number " + i).isGreaterThan(0);
         }
 
         for (int i = 0; i < saleRateNB.size(); i++) {
-            softAssertions.assertThat(purchaseRateNB.get(i)).as("Item number " + i).isGreaterThan("0");
+            softAssertions.assertThat(purchaseRateNB.get(i)).as("Item number " + i).isGreaterThan(0);
         }
 
+        for (int i = 0; i < purchaseRate.size(); i++) {
+            if (purchaseRate.get(i) != null) {
+                softAssertions.assertThat(purchaseRate.get(i)).as("Item number " + i).isGreaterThan(0);
+            }
+        }
+
+        for (int i = 0; i < saleRate.size(); i++) {
+            if (saleRate.get(i) != null) {
+                softAssertions.assertThat(saleRate.get(i)).as("Item number " + i).isGreaterThan(0);
+            }
+        }
 
         softAssertions.assertAll();
-
     }
 
 
