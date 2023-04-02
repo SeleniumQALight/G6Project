@@ -4,13 +4,16 @@ import api.EndPointsPrivat;
 import api.ExchangeRateDTO;
 import api.GeneralExchangeDTO;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiTestPrivat {
     private final String SELECTED_DATE = "22.03.2022";
@@ -76,5 +79,51 @@ public class ApiTestPrivat {
 
         softAssertions.assertAll();
     }
+
+    @Test
+    public void getAllCurrencySchema(){
+        given()
+                .contentType(ContentType.JSON)
+                .queryParam("date", SELECTED_DATE)
+                .log().all()
+                .when()
+                .get(EndPointsPrivat.CURRENCY_RATES)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("privatCurrency.json"));
+    }
+
+    @Test
+    public void validateCurrencyNBValue(){
+        Response actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .queryParam("date", SELECTED_DATE)
+                        .log().all()
+                        .when()
+                        .get(EndPointsPrivat.CURRENCY_RATES)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response();
+
+        List<String> saleRateNB = actualResponse.jsonPath().getList("exchangeRate.saleRateNB", String.class);
+        List<String> purchaseRateNB = actualResponse.jsonPath().getList("exchangeRate.purchaseRateNB", String.class);
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < saleRateNB.size(); i++) {
+            softAssertions.assertThat(saleRateNB.get(i)).as("Item number " + i).isGreaterThan("0");
+        }
+
+        for (int i = 0; i < saleRateNB.size(); i++) {
+            softAssertions.assertThat(purchaseRateNB.get(i)).as("Item number " + i).isGreaterThan("0");
+        }
+
+
+        softAssertions.assertAll();
+
+    }
+
 
 }

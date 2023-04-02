@@ -1,0 +1,653 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string"
+    },
+    "bank": {
+      "type": "string"
+    },
+    "baseCurrency": {
+      "type": "integer"
+    },
+    "baseCurrencyLit": {
+      "type": "string"
+    },
+    "exchangeRate": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            },
+            "saleRate": {
+              "type": "number"
+            },
+            "purchaseRate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB",
+            "saleRate",
+            "purchaseRate"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            },
+            "saleRate": {
+              "type": "number"
+            },
+            "purchaseRate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB",
+            "saleRate",
+            "purchaseRate"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            },
+            "saleRate": {
+              "type": "number"
+            },
+            "purchaseRate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB",
+            "saleRate",
+            "purchaseRate"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            },
+            "saleRate": {
+              "type": "number"
+            },
+            "purchaseRate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB",
+            "saleRate",
+            "purchaseRate"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            },
+            "saleRate": {
+              "type": "number"
+            },
+            "purchaseRate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB",
+            "saleRate",
+            "purchaseRate"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            },
+            "saleRate": {
+              "type": "number"
+            },
+            "purchaseRate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB",
+            "saleRate",
+            "purchaseRate"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "baseCurrency": {
+              "type": "string"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "saleRateNB": {
+              "type": "number"
+            },
+            "purchaseRateNB": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "baseCurrency",
+            "currency",
+            "saleRateNB",
+            "purchaseRateNB"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "date",
+    "bank",
+    "baseCurrency",
+    "baseCurrencyLit",
+    "exchangeRate"
+  ]
+}
