@@ -1,6 +1,6 @@
-package api;
+package api.dto.responseDto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import api.dto.responseDto.ExchangeRateDTO;
 import lombok.*;
 
 @Getter

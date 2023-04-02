@@ -1,6 +1,8 @@
 package apiTest;
 
 import api.*;
+import api.dto.responseDto.PrivateHwOneDTO;
+import api.dto.responseDto.ExchangeRateDTO;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -8,7 +10,6 @@ import org.junit.Test;
 
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PrivatApiTests {
     private Logger logger = Logger.getLogger(getClass());
@@ -66,7 +67,8 @@ public class PrivatApiTests {
 
         softAssertionsHwOne.assertThat(responsePrivateHwOneDTO)
                 .usingRecursiveComparison()
-                .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB", "exchangeRate.saleRate", "exchangeRate.purchaseRate")
+                .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB"
+                        , "exchangeRate.saleRate", "exchangeRate.purchaseRate")
                 .isEqualTo(expectedResultHwOne);
 
         softAssertionsHwOne.assertAll();
