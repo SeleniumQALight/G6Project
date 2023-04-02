@@ -129,6 +129,7 @@ public class ApiTests {
     public void getAllPostsByUsersSchema() {
         given()
                 .contentType(ContentType.JSON)
+
                 .log().all()
                 .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)
@@ -136,7 +137,8 @@ public class ApiTests {
                 .statusCode(200)
                 .log().all()
                 .assertThat().body(matchesJsonSchemaInClasspath("response.json"));  //  перевіряємо,
-        // чи респонс відповідає схемі з папки   main / java / resources
+        // чи респонс відповідає схемі з папки   main / java / resources (схему можна сгенерувати на відповідних сайтах
+        // типу (https://jsonformatter.org/json-to-jsonschema))
 
 
     }

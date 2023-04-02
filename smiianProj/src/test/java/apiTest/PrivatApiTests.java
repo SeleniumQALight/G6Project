@@ -10,6 +10,7 @@ import org.junit.Test;
 
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PrivatApiTests {
     private Logger logger = Logger.getLogger(getClass());
@@ -19,10 +20,11 @@ public class PrivatApiTests {
         PrivateHwOneDTO responsePrivateHwOneDTO =
                 given()
                         .contentType(ContentType.JSON)
+                        .queryParams("date","22.03.2022")
                         .log().all()
-                        .when()
-                        .get(EndPoints.PRIVATE_API_22_03)
-                        .then()
+                     .when()
+                        .get(EndPointsPrivatBank.PRIVATE_API_22_03)
+                     .then()
                         .statusCode(200)
                         .log().all()
                         .extract()
@@ -72,5 +74,19 @@ public class PrivatApiTests {
                 .isEqualTo(expectedResultHwOne);
 
         softAssertionsHwOne.assertAll();
+    }
+
+    @Test
+    public void getAllPostsByUsersSchema() {
+        given()
+                .contentType(ContentType.JSON)
+                .queryParams("date", "22.03.2022")
+                .log().all()
+                .when()
+                .get(EndPointsPrivatBank.PRIVATE_API_22_03)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("respPrivatBank.json"));
     }
 }
