@@ -2,6 +2,7 @@
 package apiTest;
 
 import api.ApiHelper;
+import api.ApiHelperBook;
 import api.EndPoints;
 import api.EndPointsDemoqa;
 import api.dto.requestDto.CreatePostDTO;
@@ -19,50 +20,18 @@ import static io.restassured.RestAssured.given;
 
 public class BookOrderTest {
 
-    ApiHelper apiHelper = new ApiHelper();
+    ApiHelperBook apiHelperBook = new ApiHelperBook();
     Logger logger = Logger.getLogger(getClass());
 
     @Test
     public void loginDemoqa() {
-        LoginReqHwTwoDemoqaDTO loginDemoqaDTO = LoginReqHwTwoDemoqaDTO.builder()
-                .userName("testA")
-                .password("qQwerty)(123456&")
-                .build();
 
-        String response =
-                given()
-                        .contentType(ContentType.JSON)
-                        .log().all()
-                        .body(loginDemoqaDTO)
-                        .when()
-                        .post(EndPointsDemoqa.LOGIN_DEMOQA)
-                        .then()
-                        .statusCode(200)
-                        .log().all()
-                        .extract().response().getBody().asString();
+        LoginRespHwTwoDTO respLoginDTO = apiHelperBook.loginByUser();
 
-        Assert.assertEquals("Message " , "\"Congrats.\"", response);
+        logger.info(respLoginDTO.getToken());
+        logger.info(respLoginDTO.getUserId());
 
 
-
-//        PostDTO[] expectedLoginRespDto = {
-//                LoginRespHwTwoDTO.builder()
-////                        .title(createPostDTO.getTitle())  // createPostDTO - це шаблон, з якого викликаємо очікувані результати
-////                        .body(createPostDTO.getBody())
-////                        .select1(createPostDTO.getSelect1())
-////                        .uniquePost(createPostDTO.getUniquePost())
-////                        .isVisitorOwner(false)
-////                        .author(AuthorDTO.builder().username(ApiHelper.USER_NAME).build())
-//
-//                        .userId()
-//                        .username()
-//                        .password()
-//                        .token()
-//                        .expires()
-//                        .created_date()
-//                        .isActive()
-//                        .build()
-//        };
 
     }
 }
