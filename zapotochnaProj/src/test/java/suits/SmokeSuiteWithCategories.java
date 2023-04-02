@@ -2,7 +2,6 @@ package suits;
 
 
 import categories.SmokeTestFilter;
-import loginTest.LoginTestWithPageObject;
 import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -13,7 +12,7 @@ import registerTest.RegistrationErrorsTest;
 @Categories.IncludeCategory(SmokeTestFilter.class)  //вказали які категорії ми хочемо включити , exclude виключити
 
 @Suite.SuiteClasses({
-        LoginTestWithPageObject.class,
+
         RegistrationErrorsTest.class,
         CreatePostTest.class
 })
