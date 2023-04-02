@@ -1,7 +1,7 @@
 package suits;
 
 
-import loginTest.LoginTestWithPageObject;
+import apiTests.ApiTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import postTest.CreatePostTest;
@@ -9,8 +9,9 @@ import postTest.CreatePostTest;
 @RunWith(Suite.class) // ми вказали щоб ранити цей набір класів
 
 @Suite.SuiteClasses({
-        LoginTestWithPageObject.class,
-        CreatePostTest.class
+        CreatePostTest.class,
+
+        ApiTests.class
 })
 
 
