@@ -4,6 +4,7 @@ import api.*;
 import api.dto.responseDto.AuthorDTO;
 import api.EndPoints;
 import api.dto.responseDto.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -27,6 +28,7 @@ public class ApiTests {
     @Test
     public void getPostByUser() {
         PostDTO[] responseAsDTO = given()
+                .filter(new AllureRestAssured())            // інтегріція RestAssured з Allure репортом !!!
                 .contentType(ContentType.JSON)
                 .log().all()
              .when()
@@ -80,6 +82,7 @@ public class ApiTests {
     public void getAllPostsByUser() {
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()                       // щоб вивести запит в консоль
                         .when()
@@ -97,6 +100,7 @@ public class ApiTests {
     public void getAllPostsByUsersPath() {
         Response actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -128,6 +132,7 @@ public class ApiTests {
     @Test
     public void getAllPostsByUsersSchema() {
         given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
 
                 .log().all()
