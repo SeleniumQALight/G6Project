@@ -13,7 +13,7 @@ public class apiTestPrivat {
 
 
     @Test
-    public void getPostsByUserTest() {
+    public void getResponseOfExchageRate() {
         PrivatBankDTO responseObjectDTO = given()
                 .contentType(ContentType.JSON).queryParam("date", "22.03.2022")
                 .log().all()
@@ -124,7 +124,7 @@ public class apiTestPrivat {
 
 
     @Test
-    public void testByUserSchema(){
+    public void testBySchema(){
         given()
                 .contentType(ContentType.JSON)
                 .log().all()
