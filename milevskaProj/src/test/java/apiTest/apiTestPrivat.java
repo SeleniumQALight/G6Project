@@ -10,14 +10,16 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class apiTestPrivat {
-
+String responseData = "22.03.2022";
     @Test
     public void getExchangeTest() {
         PrivatExchange responsePrivat =
-                given().contentType(ContentType.JSON).queryParam("startFrom", "22.03.2022")
+                given().contentType(ContentType.JSON)
+                        .queryParam("json")
+                        .queryParam("date", responseData)
                         .log().all()
                         .when()
-                        .get(EndpointPrivatBank.privat)
+                        .get(EndpointPrivatBank.exchngeRate)
                         .then()
                         .statusCode(200)
                         .log().all()
@@ -65,10 +67,12 @@ public class apiTestPrivat {
 
     @Test
     public void shemaPrivatBank(){
-        given().contentType(ContentType.JSON).queryParam("startFrom", "22.03.2022")
+        given().contentType(ContentType.JSON)
+                .queryParam("json")
+                .queryParam("date", responseData)
                 .log().all()
                 .when()
-                .get(EndpointPrivatBank.privat)
+                .get(EndpointPrivatBank.exchngeRate)
                 .then()
                 .statusCode(200)
                 .log().all()

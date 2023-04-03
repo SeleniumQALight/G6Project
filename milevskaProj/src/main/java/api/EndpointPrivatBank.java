@@ -1,5 +1,6 @@
 package api;
 
 public interface EndpointPrivatBank {
-    String privat = "https://api.privatbank.ua/p24api/exchange_rates?date=22.03.2022";
+    String baseUrl = "https://api.privatbank.ua/p24api";
+    String exchngeRate = baseUrl + "/exchange_rates";
 }
