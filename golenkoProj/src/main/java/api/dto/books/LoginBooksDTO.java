@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class LoginBooksDTO {
-    String createdDate;
+    String created_date;
     String expires;
     Boolean isActive;
     String password;

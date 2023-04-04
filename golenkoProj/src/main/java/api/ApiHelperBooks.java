@@ -25,10 +25,10 @@ public class ApiHelperBooks {
         return getToken(USERNAME, PASSWORD);
     }
 
-    public String getToken(String username, String password) {
+    public String getToken(String userName, String password) {
         JSONObject requestParams = new JSONObject();
         requestParams.put("password", password);
-        requestParams.put("userName", username);
+        requestParams.put("userName", userName);
 
         LoginBooksDTO responseBody =
                 given()
@@ -39,18 +39,20 @@ public class ApiHelperBooks {
                         .then()
                         .statusCode(200)
                         .log().all()
-                        .extract().response().getBody().as(LoginBooksDTO.class);
+                        .extract()
+                        .response()
+                        .as(LoginBooksDTO.class);
         return responseBody.getToken();
     }
 
     public String getUserID() {
-        return getToken(USERNAME, PASSWORD);
+        return getUserID(USERNAME, PASSWORD);
     }
 
-    public String getUserID(String username, String password) {
+    public String getUserID(String userName, String password) {
         JSONObject requestParams = new JSONObject();
         requestParams.put("password", password);
-        requestParams.put("userName", username);
+        requestParams.put("userName", userName);
 
         LoginBooksDTO responseBody =
                 given()
