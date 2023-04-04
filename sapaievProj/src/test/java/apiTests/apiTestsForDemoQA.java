@@ -101,16 +101,17 @@ public class apiTestsForDemoQA {
 
         */
 
-        apiHelper.getIsbnofBooksList(1);
+      //  apiHelper.getIsbnofBooksList(1);
 
-        /*
+       // logger.info("last test--------"+apiHelper.getIsbnofBooksList(1));
+  /*
         AdditionalBookDTO additionalBookDTO=
                 AdditionalBookDTO.builder()
                 .userId(apiHelper.getId())
-                .collectionOfIsbns(CollectionOfIsbnsDTO[].)
+                .collectionOfIsbns((CollectionOfIsbnsDTO[].))
                 .build();
+*/
 
-      */
 
         JSONObject jsonParams=new JSONObject();
         jsonParams.put("userId",apiHelper.getId());
@@ -123,7 +124,7 @@ public class apiTestsForDemoQA {
                 .body(jsonParams.toMap())
                 .when().post(EndpointsHomeWorkDemoQA.ADD_BOOK_TO_USER)
                 .then()
-                .statusCode(200)
+                .statusCode(201)
                 .log().all();
 
 
