@@ -42,9 +42,9 @@ public class ApiHelper {
 //                        .log().all()
                         .spec(requestSpecification)   //
                         .body(requestParams.toMap())
-                        .when()
+                     .when()
                         .post(EndPoints.LOGIN)
-                        .then()
+                     .then()
                         .statusCode(200)
                         .log().all()
                         .extract().response().getBody();
@@ -58,7 +58,7 @@ public class ApiHelper {
     private PostDTO[] getAllPostsByUser(String userName) {
         return given()
                 .spec(requestSpecification)
-                .when()
+             .when()
                 .get(EndPoints.POST_BY_USER, userName)
              .then()
                 .statusCode(200)
@@ -95,7 +95,7 @@ public class ApiHelper {
                         .body(bodyParams.toMap())
                      .when()
                         .delete(EndPoints.DELETE_POST, id)
-                        .then()
+                     .then()
                         .statusCode(200)
                         .log().all()
                         .extract().response().getBody().asString();
