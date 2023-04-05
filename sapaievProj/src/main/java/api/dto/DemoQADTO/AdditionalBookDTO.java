@@ -3,6 +3,8 @@ package api.dto.DemoQADTO;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -11,5 +13,5 @@ import lombok.*;
 @Builder
 public class AdditionalBookDTO {
     String userId;
-    CollectionOfIsbnsDTO[] collectionOfIsbns;
+    List<CollectionOfIsbnsDTO> collectionOfIsbns;
 }

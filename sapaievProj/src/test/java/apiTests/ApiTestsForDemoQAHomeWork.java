@@ -1,20 +1,21 @@
 package apiTests;
 
-import api.ApiHelper;
 import api.ApiHelperDemoQA;
 import api.EndpointsHomeWorkDemoQA;
 import api.dto.DemoQADTO.*;
+
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import libs.Util;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static io.restassured.RestAssured.given;
 
-public class apiTestsForDemoQA {
+public class ApiTestsForDemoQAHomeWork {
     private final String USER_NAME = "kamal_testtt";
     private final String PASSWORD = "E%qwrwrwetger45656445";
 
@@ -25,22 +26,6 @@ public class apiTestsForDemoQA {
     Logger logger = Logger.getLogger(getClass());
 
     ApiHelperDemoQA apiHelper = new ApiHelperDemoQA();
-
-
-    @Test
-    public void createUser() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("userName", USER_NAME);
-        jsonObject.put("password", PASSWORD);
-
-        given().contentType(ContentType.JSON)
-                .log()
-                .all()
-                .body(jsonObject.toMap())
-                .when().post(EndpointsHomeWorkDemoQA.CREATE_USER)
-                .then().statusCode(201)
-                .log().all();
-    }
 
 
     @Test
@@ -70,7 +55,7 @@ public class apiTestsForDemoQA {
     }
 
 
-    @Test
+    @Before
     public void deleteBooksStory() {
         given().contentType(ContentType.JSON)
                 .log()
@@ -84,60 +69,30 @@ public class apiTestsForDemoQA {
 
     @Test
     public void addBookToUser() {
-        /*
-        BooksDTO books =
-                given().contentType(ContentType.JSON)
-                        .log()
-                        .all()
-                        .when().get(EndpointsHomeWorkDemoQA.GET_LIST_OF_BOOKS)
-                        .then()
-                        .statusCode(200)
-                        .log().all()
-                        .extract().response().getBody().as(BooksDTO.class);
 
-        BookDTO [] listOfbook=books.getBooks();
+        List<CollectionOfIsbnsDTO> listOfISBN=new ArrayList<>();
+        listOfISBN.add(CollectionOfIsbnsDTO.builder()
+                .isbn(apiHelper.getIsbnofBooksList(1))
+                .build());
+        listOfISBN.add(CollectionOfIsbnsDTO.builder()
+                .isbn(apiHelper.getIsbnofBooksList(2))
+                .build());
 
-        String numberOfFirstBook=listOfbook[1].getIsbn();
-
-        */
-
-      //  apiHelper.getIsbnofBooksList(1);
-
-        logger.info("last test--------"+apiHelper.getIsbnofBooksList(1));
-  /*
         AdditionalBookDTO additionalBookDTO=
                 AdditionalBookDTO.builder()
                 .userId(apiHelper.getId())
-                .collectionOfIsbns((CollectionOfIsbnsDTO[].))
+                .collectionOfIsbns(listOfISBN)
                 .build();
-*/
-
-        JSONObject[] jsonParams2=new JSONObject[1];
-        jsonParams2[0]=("isbn",apiHelper.getIsbnofBooksList(1));
-
-
-
-
-        JSONObject[] jsonParams1 = new JSONObject[1];
-        jsonParams1[0] = new JSONObject();
-        jsonParams1[0].put("isbn", apiHelper.getIsbnofBooksList(1));
-
-
-        JSONObject jsonParams=new JSONObject();
-        jsonParams.put("userId",apiHelper.getId());
-        jsonParams.put("collectionOfIsbns",jsonParams1);
 
         given().contentType(ContentType.JSON)
                 .log()
                 .all()
-                //.auth().oauth2(apiHelper.getToken())
-                .body(jsonParams.toMap())
+                .auth().oauth2(apiHelper.getToken())
+                .body(additionalBookDTO)
                 .when().post(EndpointsHomeWorkDemoQA.ADD_BOOK_TO_USER)
                 .then()
                 .statusCode(201)
                 .log().all();
-
-
     }
 
 

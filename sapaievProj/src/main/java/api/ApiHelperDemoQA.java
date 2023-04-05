@@ -48,7 +48,6 @@ public class ApiHelperDemoQA {
                         .then()
                         .statusCode(200)
                         .log().all()
-                       // .extract().response().getBody().as(UserDTO.class)
                         .extract().response().getBody().jsonPath().get("token");
                 ;
 
@@ -76,7 +75,6 @@ public class ApiHelperDemoQA {
                         .then()
                         .statusCode(200)
                         .log().all()
-                        // .extract().response().getBody().as(UserDTO.class)
                         .extract().response().getBody().jsonPath().get("userId");
         ;
         return  userDTOresponse;
