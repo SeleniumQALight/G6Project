@@ -4,14 +4,13 @@ import api.dto.requestDto.AddBookReqHwTwoDemoqaDTO;
 import api.dto.requestDto.CreatePostDTO;
 import api.dto.requestDto.IsbnReqHwTwoDemoqaDTO;
 import api.dto.requestDto.LoginReqHwTwoDemoqaDTO;
-import api.dto.responseDto.AuthorDTO;
-import api.dto.responseDto.GetAllBooksRefHwTwoDTO;
-import api.dto.responseDto.LoginRespHwTwoDTO;
+import api.dto.responseDto.*;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
@@ -68,6 +67,7 @@ public class ApiHelperBook {
                         .extract().response().getBody().asString();
     }
 
+
     public GetAllBooksRefHwTwoDTO[] getAllBooks(String token) {
         GetAllBooksRefHwTwoDTO[] respGetAllBooksDTO =
                 given()
@@ -84,12 +84,12 @@ public class ApiHelperBook {
         return respGetAllBooksDTO;
     }
 
+
     public void addBooksToUser(String token, String userId, String isbn) {
 
 //        AddBookReqHwTwoDemoqaDTO addBookDTO = AddBookReqHwTwoDemoqaDTO.builder()
 //                .userId(userId)
 //                .collectionOfIsbns(IsbnReqHwTwoDemoqaDTO.builder().isbn(isbn).build());
-//                .author(AuthorDTO.builder().username(ApiHelper.USER_NAME).build());
 
         String respAddBookToUser =
                 given()
@@ -103,8 +103,30 @@ public class ApiHelperBook {
                         .statusCode(201)
                         .log().all()
                         .extract().response().getBody().asString();
+
+//        AddBookRespHwTwoDemoqaDTO expectedAddBookDto = {
+//                AddBookRespHwTwoDemoqaDTO.builder()
+//                            .books(IsbnRespHwTwoDemoqaDTO.builder().isbn(isbn).build())
+//                            .build()
+//        };
+
     }
 
 
+//    public GetAllBooksRefHwTwoDTO[] getAllBooks(String token) {
+//        GetAllBooksRefHwTwoDTO[] respGetAllBooksDTO =
+//                given()
+//                        .spec(requestSpecification)
+//                        .auth().oauth2(token)
+//                        .when()
+//                        .get(EndPointsDemoqa.GET_ALL_BOOKS)
+//                        .then()
+//                        .statusCode(200)
+//                        .log().all()
+//                        .extract().response().getBody().as(GetAllBooksRefHwTwoDTO[].class);
+//
+//        logger.info(respGetAllBooksDTO[0].getIsbn());
+//        return respGetAllBooksDTO;
+//    }
 
 }
