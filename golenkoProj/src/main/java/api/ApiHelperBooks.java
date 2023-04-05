@@ -1,69 +1,69 @@
 package api;
 
+import api.dto.books.BookDTO;
 import api.dto.books.LoginBooksDTO;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
-import io.restassured.response.ResponseBody;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
 public class ApiHelperBooks {
     public static String USERNAME = "NataliiaBooks";
     public static String PASSWORD = "Qwerty123!";
-    Logger logger = Logger.getLogger(getClass());
 
     RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
 
-    public String getToken() {
-        return getToken(USERNAME, PASSWORD);
-    }
-
-    public String getToken(String userName, String password) {
+    public LoginBooksDTO getLoginResponse(String userName, String password) {
         JSONObject requestParams = new JSONObject();
         requestParams.put("password", password);
         requestParams.put("userName", userName);
 
-        LoginBooksDTO responseBody =
-                given()
-                        .spec(requestSpecification)
-                        .body(requestParams.toMap())
-                        .when()
-                        .post(EndPointsBooks.LOGIN_BOOKS)
-                        .then()
-                        .statusCode(200)
-                        .log().all()
-                        .extract()
-                        .response()
-                        .as(LoginBooksDTO.class);
-        return responseBody.getToken();
+        return given()
+                .spec(requestSpecification)
+                .body(requestParams.toMap())
+                .when()
+                .post(EndPointsBooks.LOGIN_BOOKS)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .extract()
+                .response()
+                .getBody()
+                .as(LoginBooksDTO.class);
+
+    }
+
+    public String getToken() {
+        return getLoginResponse(USERNAME, PASSWORD).getToken();
     }
 
     public String getUserID() {
-        return getUserID(USERNAME, PASSWORD);
+        return getLoginResponse(USERNAME, PASSWORD).getUserId();
     }
 
-    public String getUserID(String userName, String password) {
-        JSONObject requestParams = new JSONObject();
-        requestParams.put("password", password);
-        requestParams.put("userName", userName);
-
-        LoginBooksDTO responseBody =
+    public List<BookDTO> getActualUserBooks(String token, String userID) {
+        Response responseGet =
                 given()
-                        .spec(requestSpecification)
-                        .body(requestParams.toMap())
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .auth().oauth2(token)
                         .when()
-                        .post(EndPointsBooks.LOGIN_BOOKS)
+                        .get(EndPointsBooks.USER_BOOKS, userID)
                         .then()
                         .statusCode(200)
                         .log().all()
-                        .extract().response().getBody().as(LoginBooksDTO.class);
-        return responseBody.getUserId();
+                        .extract().response();
+
+        return responseGet.jsonPath().getList("books", BookDTO.class);
     }
+
 }

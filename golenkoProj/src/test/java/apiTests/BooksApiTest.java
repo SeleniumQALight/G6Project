@@ -2,9 +2,7 @@ package apiTests;
 
 import api.ApiHelperBooks;
 import api.EndPointsBooks;
-import api.dto.books.AddBookDTO;
-import api.dto.books.BooksListDTO;
-import api.dto.books.IsbnDTO;
+import api.dto.books.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Assert;
@@ -16,7 +14,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class ApiTestBooks {
+public class BooksApiTest {
     ApiHelperBooks apiHelperBooks = new ApiHelperBooks();
     String token = apiHelperBooks.getToken();
     String userID = apiHelperBooks.getUserID();
@@ -26,15 +24,17 @@ public class ApiTestBooks {
 
         given()
                 .contentType(ContentType.JSON)
+                .queryParams("UserId", userID)
                 .log().all()
                 .auth().oauth2(token)
                 .when()
-                .delete(EndPointsBooks.DELETE_BOOKS, userID)
+                .delete(EndPointsBooks.DELETE_BOOKS)
                 .then()
                 .statusCode(204)
                 .log().all();
-    }
 
+        Assert.assertEquals("Books were not deleted", 0, apiHelperBooks.getActualUserBooks(token, userID).size());
+    }
 
     @Test
     public void checkBookAdding() {
@@ -59,7 +59,6 @@ public class ApiTestBooks {
                 .collectionOfIsbns(collectionIsbn)
                 .build();
 
-
         Response response =
                 given()
                         .contentType(ContentType.JSON)
@@ -79,6 +78,10 @@ public class ApiTestBooks {
         Assert.assertEquals("Incorrect isbn number", firstIsbn, addedBook.get(0).getIsbn());
 
 
-    }
+        List<BookDTO> actualUserBooks = apiHelperBooks.getActualUserBooks(token, userID);
 
+        Assert.assertEquals("There is incorrect number of books for user", 1, actualUserBooks.size());
+        Assert.assertEquals("Incorrect isbn", firstIsbn, actualUserBooks.get(0).getIsbn());
+
+    }
 }
