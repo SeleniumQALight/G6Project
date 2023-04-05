@@ -1,7 +1,6 @@
 package pages;
 
 import io.qameta.allure.Step;
-import libs.DB_Util;
 import libs.DB_Util_HomeWork;
 import libs.TestData;
 import libs.Util;
@@ -55,6 +54,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
     private WebElement loginErrorText;
+
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement allertErrorForLogin;
 
 
 
@@ -209,7 +211,10 @@ public class LoginPage extends ParentPage {
     }
 
 
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Message in center in allert", expectedText, allertErrorForLogin.getText());
 
 
+    }
 }
 
