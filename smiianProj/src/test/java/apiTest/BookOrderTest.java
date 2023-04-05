@@ -29,6 +29,11 @@ public class BookOrderTest {
         logger.info(respLoginDTO.getToken());
         logger.info(respLoginDTO.getUserId());
 
+        apiHelperBook.deleteAllBooksById(respLoginDTO.getUserId(), respLoginDTO.getToken());
+
+        logger.info(apiHelperBook.getAllBooks(respLoginDTO.getToken())[0]);
+//        String isbn = apiHelperBook.getAllBooks(respLoginDTO.getToken())[0];
+
 
 
 

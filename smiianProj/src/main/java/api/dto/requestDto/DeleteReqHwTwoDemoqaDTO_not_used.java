@@ -1,6 +1,5 @@
 package api.dto.requestDto;
 
-import api.dto.responseDto.AuthorDTO;
 import lombok.*;
 
 @Getter
@@ -10,8 +9,11 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 
-public class AddBookToUserReqHwTwoDemoqaDTO {
+public class DeleteReqHwTwoDemoqaDTO_not_used {
 
     String userId;
-    IsbnHwTwoDemoqaDTO isbn;
+    String message;
+
 }
+
+

@@ -1,4 +1,4 @@
-package api.dto.requestDto;
+package api.dto.responseDto;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 
-public class IsbnHwTwoDemoqaDTO {
+public class IsbnRespHwTwoDemoqaDTO {
 
     String isbn;
 

@@ -9,11 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 
-public class DeleteReqHwTwoDemoqaDTO {
+public class IsbnReqHwTwoDemoqaDTO {
 
-    String userId;
-    String message;
+    String isbn;
 
 }
-
-

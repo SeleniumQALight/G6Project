@@ -1,6 +1,10 @@
 package api;
 
+import api.dto.requestDto.AddBookReqHwTwoDemoqaDTO;
+import api.dto.requestDto.CreatePostDTO;
+import api.dto.requestDto.IsbnReqHwTwoDemoqaDTO;
 import api.dto.requestDto.LoginReqHwTwoDemoqaDTO;
+import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.GetAllBooksRefHwTwoDTO;
 import api.dto.responseDto.LoginRespHwTwoDTO;
 import io.restassured.builder.RequestSpecBuilder;
@@ -8,7 +12,6 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
@@ -49,7 +52,7 @@ public class ApiHelperBook {
     }
 
 
-    private void deleteAllBookById(String userId, String token) {
+    public void deleteAllBooksById(String userId, String token) {
 
         String respDeleteAllBooks =
                 given()
@@ -80,5 +83,28 @@ public class ApiHelperBook {
         logger.info(respGetAllBooksDTO[0].getIsbn());
         return respGetAllBooksDTO;
     }
+
+    public void addBooksToUser(String token, String userId, String isbn) {
+
+//        AddBookReqHwTwoDemoqaDTO addBookDTO = AddBookReqHwTwoDemoqaDTO.builder()
+//                .userId(userId)
+//                .collectionOfIsbns(IsbnReqHwTwoDemoqaDTO.builder().isbn(isbn).build());
+//                .author(AuthorDTO.builder().username(ApiHelper.USER_NAME).build());
+
+        String respAddBookToUser =
+                given()
+//                        .contentType(ContentType.JSON)
+//                        .log().all()
+                        .spec(requestSpecification)
+                        .auth().oauth2(token)
+                     .when()
+                        .post(EndPointsDemoqa.ADD_BOOK_TO_USER)
+                     .then()
+                        .statusCode(201)
+                        .log().all()
+                        .extract().response().getBody().asString();
+    }
+
+
 
 }
