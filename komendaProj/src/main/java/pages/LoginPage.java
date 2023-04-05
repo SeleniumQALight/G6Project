@@ -47,6 +47,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
     private WebElement signInError;
 
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
+
     private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     public static final String ALERT_XPATH = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
@@ -54,6 +57,7 @@ public class LoginPage extends ParentPage {
     private final String parameterizedAlert = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -172,6 +176,10 @@ public class LoginPage extends ParentPage {
         enterPasswordIntoInputPassword(db_getPassword.getPassForLogin(login));
         clickOnButtonLogin();
         return new HomePage(webDriver);
+    }
+
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Message in Alert ", expectedText, alertInCenter.getText());
     }
 }
 
