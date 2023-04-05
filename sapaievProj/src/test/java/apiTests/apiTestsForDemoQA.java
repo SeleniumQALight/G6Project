@@ -103,7 +103,7 @@ public class apiTestsForDemoQA {
 
       //  apiHelper.getIsbnofBooksList(1);
 
-       // logger.info("last test--------"+apiHelper.getIsbnofBooksList(1));
+        logger.info("last test--------"+apiHelper.getIsbnofBooksList(1));
   /*
         AdditionalBookDTO additionalBookDTO=
                 AdditionalBookDTO.builder()
@@ -112,15 +112,25 @@ public class apiTestsForDemoQA {
                 .build();
 */
 
+        JSONObject[] jsonParams2=new JSONObject[1];
+        jsonParams2[0]=("isbn",apiHelper.getIsbnofBooksList(1));
+
+
+
+
+        JSONObject[] jsonParams1 = new JSONObject[1];
+        jsonParams1[0] = new JSONObject();
+        jsonParams1[0].put("isbn", apiHelper.getIsbnofBooksList(1));
+
 
         JSONObject jsonParams=new JSONObject();
         jsonParams.put("userId",apiHelper.getId());
-        jsonParams.put("collectionOfIsbns.isbn",apiHelper.getIsbnofBooksList(1));
+        jsonParams.put("collectionOfIsbns",jsonParams1);
 
         given().contentType(ContentType.JSON)
                 .log()
                 .all()
-                .auth().oauth2(apiHelper.getToken())
+                //.auth().oauth2(apiHelper.getToken())
                 .body(jsonParams.toMap())
                 .when().post(EndpointsHomeWorkDemoQA.ADD_BOOK_TO_USER)
                 .then()
