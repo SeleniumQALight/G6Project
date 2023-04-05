@@ -9,7 +9,7 @@ import org.junit.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-public class apiTestPrivat {
+public class ApiTestPrivatHomeWork {
 
 
     @Test
@@ -134,7 +134,7 @@ public class apiTestPrivat {
                 .statusCode(200)
                 .log().all()
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("response1.json"))
+                .body(matchesJsonSchemaInClasspath("responseSchemaPrivatBank.json"))
         ;
 
     }
