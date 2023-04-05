@@ -10,6 +10,4 @@ public interface EndPoints {
     String CREATE_POST = baseUrl + "/api/create-post";
     String DELETE_POST = baseUrl + "/api/post/{0}";
 
-    interface EndPointsBooks {
-    }
 }
