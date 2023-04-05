@@ -31,50 +31,17 @@ public class BookOrderTest {
 
 
 
-//        private void deleteAllBookById(String userId, String message) {
-//            JSONObject requestParams = new JSONObject();
-//            requestParams.put("userId", userId);
-//            requestParams.put("message", message);
-//
-//            String respDeleteAllBooks =
-//                    given()
-////                            .contentType(ContentType.JSON)
-////                            .log().all()
-//                            .auth().oauth2(respLoginDTO.getToken())
-//                            .spec(requestSpecification)
-//                            .body(bodyParams.toMap())
-//                         .when()
-//                            .delete(EndPointsDemoqa.DELETE_ALL_BOOKS, userId)
-//                         .then()
-//                            .statusCode(200)
-//                            .log().all()
-//                            .extract().response().getBody().asString();
-////            Assert.assertEquals("Message " , "\"Success\"", response);
-//        }
 
 
 
-//    public GetAllBooksRefHwTwoDTO[] getAllBooks() {
-//            GetAllBooksRefHwTwoDTO[] respGetAllBooksDTO =
-//         given()
-//                    .contentType(ContentType.JSON)
-//                    .log().all()
-//                    .auth().oauth2(respLoginDTO.getToken())
-//                 .when()
-//                    .get(EndPointsDemoqa.GET_ALL_BOOKS)
-//                 .then()
-//                    .statusCode(200)
-//                    .log().all()
-//                    .extract().response().getBody().as(GetAllBooksRefHwTwoDTO[].class);
-//            return respGetAllBooksDTO[];
-//        }
 
 
-//        logger.info(respGetAllBooksDTO[0].getisbn());
-//
-//
-//
-//
+
+
+//        public AddBookToUserHw
+
+
+
 
 
 
