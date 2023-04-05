@@ -1,5 +1,6 @@
 package api;
 
+import api.dto.requestDto.AddBookDTO;
 import api.dto.responseDto.BookDTO;
 import api.dto.responseDto.PostDTO;
 import io.restassured.builder.RequestSpecBuilder;
@@ -9,6 +10,9 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
+import org.junit.Assert;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -36,9 +40,7 @@ public class APIHelperBooks {
                         .statusCode(200)
                         .log().all()
                         .extract().response();
-
-
-        String token = response.jsonPath().getString("token");
+        String token = response.jsonPath().getString("token").replace("\"","");
         return token;
     }
 
@@ -58,38 +60,61 @@ public class APIHelperBooks {
                         .log().all()
                         .extract().response();
 
-
-        String userId = response.jsonPath().getString("userId");
+        String userId = response.jsonPath().getString("userId").replace("\"","");
         return userId;
     }
-
-    private BookDTO[] getAllBooks () {
-        return given()
+    private List<BookDTO> getAllBooks() {
+       Response response = given()
                 .spec(requestSpecification)
                 .when()
                 .get(EndPointsBooks.BOOKSTORE)
                 .then()
                 .statusCode(200)
                 .log().all()
-                .extract().response().getBody().as(BookDTO[].class);
+                .extract().response();
+
+       List<BookDTO> listOfBookDTOs = response.jsonPath().getList("books", BookDTO.class);
+       return listOfBookDTOs;
+    }
+    public String getBookISBN () {
+        List<BookDTO> bookDTOS = getAllBooks();
+        return bookDTOS.get(0).getIsbn();
     }
 
+    public List<BookDTO> getAllBooksByUser (String userName, String password){
+        String userId = getUserId(userName, password);
+        String token = getToken(userName,password);
 
-    private BookDTO[] getAllBooksByUser (String userId){
-        return given()
+        Response response = given()
                 .spec(requestSpecification)
+                .auth().oauth2(token)
                 .when()
-                .get(EndPointsBooks.BOOKSTORE, userId)
+                .get(EndPointsBooks.USER_PROFILE, userId)
                 .then()
                 .statusCode(200)
                 .log().all()
-                .extract().response().getBody().as(BookDTO[].class);
+                .extract().response();
+
+        List<BookDTO> listOfBooks = response.jsonPath().getList("books", BookDTO.class);
+
+        System.out.println(listOfBooks);
+        return listOfBooks;
     }
-    public void deleteBooksTillPresent(String username, String password) {
-        String token = getToken(username, password);
-        String userId = getUserId(username, password);
-        BookDTO[] listOfBooks = getAllBooksByUser(userId);
 
+    public void deleteBooksByUser(String userName, String password) {
+        String userId = getUserId(userName, password);
+        String token = getToken(userName,password);
 
+        given()
+                .contentType(ContentType.JSON)
+                .queryParam("UserId", userId)
+                .auth().oauth2(token)
+                .when()
+                .delete(EndPointsBooks.DELETE_BOOKS_BY_USER)
+                .then()
+                .statusCode(204)
+                .log().all();
+
+        Assert.assertEquals("Books are not deleted", 0, getAllBooksByUser(userName, password).size());
     }
 }
