@@ -48,6 +48,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ALERT_XPATH)
     private List<WebElement> alertMessages;
 
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -202,6 +205,10 @@ public class LoginPage extends ParentPage {
         webDriver.switchTo().window(tabs.get(0));
         webDriver.navigate().refresh();
         return this;
+    }
+
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Message in Alert ", expectedText, alertInCenter.getText());
     }
 
 
