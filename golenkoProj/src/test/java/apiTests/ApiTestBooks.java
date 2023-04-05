@@ -7,7 +7,6 @@ import api.dto.books.BooksListDTO;
 import api.dto.books.IsbnDTO;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +18,6 @@ import static io.restassured.RestAssured.given;
 
 public class ApiTestBooks {
     ApiHelperBooks apiHelperBooks = new ApiHelperBooks();
-    Logger logger = Logger.getLogger(getClass());
     String token = apiHelperBooks.getToken();
     String userID = apiHelperBooks.getUserID();
 
@@ -79,9 +77,6 @@ public class ApiTestBooks {
 
         Assert.assertEquals("Incorrect number of books", 1, addedBook.size());
         Assert.assertEquals("Incorrect isbn number", firstIsbn, addedBook.get(0).getIsbn());
-
-
-
 
 
     }
