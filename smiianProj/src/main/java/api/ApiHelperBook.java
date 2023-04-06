@@ -87,9 +87,10 @@ public class ApiHelperBook {
 
     public void addBooksToUser(String token, String userId, String isbn) {
 
-//        AddBookReqHwTwoDemoqaDTO addBookDTO = AddBookReqHwTwoDemoqaDTO.builder()
-//                .userId(userId)
-//                .collectionOfIsbns(IsbnReqHwTwoDemoqaDTO.builder().isbn(isbn).build());
+        AddBookReqHwTwoDemoqaDTO addBookDTO = AddBookReqHwTwoDemoqaDTO.builder()
+                .userId(userId)
+                .collectionOfIsbns(IsbnReqHwTwoDemoqaDTO.builder().isbn(isbn).build())
+                .build();
 
         String respAddBookToUser =
                 given()
@@ -104,16 +105,15 @@ public class ApiHelperBook {
                         .log().all()
                         .extract().response().getBody().asString();
 
-//        AddBookRespHwTwoDemoqaDTO expectedAddBookDto = {
-//                AddBookRespHwTwoDemoqaDTO.builder()
-//                            .books(IsbnRespHwTwoDemoqaDTO.builder().isbn(isbn).build())
-//                            .build()
-//        };
+        AddBookRespHwTwoDemoqaDTO expectedAddBookDto =
+                AddBookRespHwTwoDemoqaDTO.builder()
+                            .books(IsbnRespHwTwoDemoqaDTO.builder().isbn(isbn).build())
+                            .build();
 
     }
 
 
-//    public GetAllBooksRefHwTwoDTO[] getAllBooks(String token) {
+//    public void getUserBooks(String token, String userId) {
 //        GetAllBooksRefHwTwoDTO[] respGetAllBooksDTO =
 //                given()
 //                        .spec(requestSpecification)
