@@ -2,9 +2,8 @@ package StepDefinitions;
 
 import api.ApiHelper;
 import cucumber.api.java.en.Given;
-import libs.DriverHelper;
 import libs.TestData;
-import pages.HomePage;
+
 
 public class Api_StepDefinitions {
     final String DEFAULT = "default";     // сетаємо слово ДЕФОЛТ
