@@ -21,7 +21,7 @@ import static pages.CommonActionWithElements.configProperties;
 @Epic("Allure examples")
 @Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
-    final static String ERROR_MESSAGE_LOGIN = "Invalid username pasword";
+    final static String ERROR_MESSAGE_LOGIN = "Invalid username / password.";
     @Description("Some detailed test description")
     @Link("https://example.org")
     @Link(name = "allure", type = "mylink")
