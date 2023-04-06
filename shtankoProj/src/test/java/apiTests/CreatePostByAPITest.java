@@ -5,6 +5,7 @@ import api.EndPoints;
 import api.dto.requestDto.CreatePostDTO;
 import api.dto.responseDto.AuthorDTO;
 import api.dto.responseDto.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -37,6 +38,7 @@ public class CreatePostByAPITest {
 
         String response =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .body(createPostDTO)
