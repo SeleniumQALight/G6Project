@@ -37,6 +37,8 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible'] ")
     private List<WebElement> listOfErrors;
+   @FindBy(xpath  = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -183,4 +185,10 @@ public class LoginPage extends ParentPage {
     }
 
 
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals(" Message in alert ", expectedText, alertInCenter);
+
+
+
+    }
 }
