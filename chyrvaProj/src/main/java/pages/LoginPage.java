@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
+
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonLogin);
     }
@@ -245,5 +248,9 @@ public class LoginPage extends ParentPage {
         SeleniumUsers seleniumUsers = new SeleniumUsers();
         String pass = seleniumUsers.getPassForLogin(loginDB);
                 return pass;
+    }
+
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Message in Alert",expectedText,alertInCenter.getText());
     }
 }
