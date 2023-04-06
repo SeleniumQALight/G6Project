@@ -113,19 +113,19 @@ public class ApiHelperBook {
     }
 
 
-//    public void getUserBooks(String token, String userId) {
-//        GetAllBooksRefHwTwoDTO[] respGetAllBooksDTO =
+//    public GetAllBooksReqHwTwoDTO getUserBooks(String token, String userId) {
+//        GetAllBooksReqHwTwoDTO respGetAllBooksDTO =
 //                given()
 //                        .spec(requestSpecification)
 //                        .auth().oauth2(token)
-//                        .when()
-//                        .get(EndPointsDemoqa.GET_ALL_BOOKS)
-//                        .then()
+//                     .when()
+//                        .get(EndPointsDemoqa.GET_USER_INFO, userId)
+//                     .then()
 //                        .statusCode(200)
 //                        .log().all()
-//                        .extract().response().getBody().as(GetAllBooksRefHwTwoDTO[].class);
+//                        .extract().response().getBody().as(GetAllBooksReqHwTwoDTO.class);
 //
-//        logger.info(respGetAllBooksDTO[0].getIsbn());
+//        logger.info(respGetAllBooksDTO);
 //        return respGetAllBooksDTO;
 //    }
 
