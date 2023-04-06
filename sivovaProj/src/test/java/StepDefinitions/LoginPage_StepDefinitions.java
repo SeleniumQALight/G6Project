@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
+import pages.HomePage;
 import pages.LoginPage;
 
 public class LoginPage_StepDefinitions {
@@ -35,5 +36,12 @@ public class LoginPage_StepDefinitions {
     @Then("^User sees alert message with text '(.*)'$")
     public void user_sees_alert_message_with_text_Invalid_username_pasword(String expectedError) throws Throwable {
       loginPage.checkErrorMessageInvalidLogin(expectedError);
+    }
+
+    @Then("^User sees 'Signout' button$")
+    public void user_sees_Signout_button() throws Throwable {
+        HomePage homePage = new HomePage(DriverHelper.getWebdriver());
+        homePage.checkIsRedirectToHomePage();
+        homePage.getHeaderElement().isButtonSignOutDisplayed();
     }
 }
