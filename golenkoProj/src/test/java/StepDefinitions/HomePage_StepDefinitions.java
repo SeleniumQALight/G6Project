@@ -11,7 +11,6 @@ public class HomePage_StepDefinitions {
     @Then("^User sees 'My Profile' avatar$")
     public void user_sees_My_Profile_avatar() throws Throwable {
         Assert.assertTrue("Profile avatar is not displayed", homePage.getHeaderElement().isProfileAvatarDisplayed());
-
     }
 
 }

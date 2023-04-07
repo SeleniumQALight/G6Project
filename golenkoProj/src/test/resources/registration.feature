@@ -12,6 +12,6 @@ Feature: User registration
 
     Examples:
       | username       | email        | password       | messages     |
-      | 11             | 222          | 333            | Username must be at least 3 characters. You must provide a valid email address. Password must be at least 12 characters.|
+      | 11             | 222          | 333            | Username must be at least 3 characters.,You must provide a valid email address.,Password must be at least 12 characters.|
       | newuser        | oo.pp        | 123456poiuytr  | You must provide a valid email address.    |
-      | ne             | oo@pp        | efk            | Username must be at least 3 characters. Password must be at least 12 characters. |
+      | ne             | oo@pp        | efk            | Username must be at least 3 characters.,Password must be at least 12 characters. |
