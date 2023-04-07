@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class MyProfilePage extends ParentPage {
@@ -19,6 +20,9 @@ public class MyProfilePage extends ParentPage {
     private WebElement successDeletePostMessage;
 
     private final String titlePost = ".//*[text()='%s']";
+
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -91,5 +95,9 @@ public class MyProfilePage extends ParentPage {
         List<WebElement> listOfPosts = getPostsListWithTitle(PostTitle);
         Assert.assertEquals("Post in not present or not unique", 1, listOfPosts.size());
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }
