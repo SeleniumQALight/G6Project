@@ -1,12 +1,15 @@
 package loginTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 public class LogInWithKeys extends BaseTest {
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void logInWithTabAndEnter() {
         loginPage.openLoginPage();
         loginPage.usersPressesKeyTabTime(2);

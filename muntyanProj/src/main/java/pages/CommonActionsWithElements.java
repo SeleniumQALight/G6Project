@@ -1,5 +1,7 @@
 package pages;
 
+import libs.ConfigProperties;
+import org.aeonbits.owner.ConfigFactory;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -16,6 +18,7 @@ public class CommonActionsWithElements {
    protected WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
     WebDriverWait webDriverWait10, webDriverWait15;
+    public static ConfigProperties configProperties = ConfigFactory.create(ConfigProperties.class);
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -114,17 +117,56 @@ public class CommonActionsWithElements {
 
     }
 
-    private String getElementName (WebElement webElement){
+
+
+    private String getElementName(WebElement webElement) {
         try{
             return webElement.getAccessibleName();
-        }catch (Exception e){
+        }catch (Exception e) {
             return "";
         }
     }
-
-
     protected void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
+
+    protected void checkCheckbox(WebElement checkbox) {
+        if (!isCheckboxSelected(checkbox)) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox was already selected");
+        }
+    }
+
+    protected void uncheckCheckbox(WebElement checkbox){
+        if (isCheckboxSelected(checkbox)) {
+            checkCheckbox(checkbox);
+            logger.info("Checkbox is unselected");
+        } else {
+            logger.info("Checkbox was already unselected");
+        }
+    }
+    protected void changeCheckboxStatus (WebElement checkbox, String targetValue){
+        if (targetValue.equalsIgnoreCase("check")) {
+            checkCheckbox(checkbox);
+        } else {
+            if (targetValue.equalsIgnoreCase("uncheck")) {
+                uncheckCheckbox(checkbox);
+            } else {
+                logger.info("Incorrect target value: input check or uncheck ");
+                Assert.fail("Incorrect target value: input check or uncheck ");
+            }
+        }
+    }
+
+    protected boolean isCheckboxSelected (WebElement checkbox) {
+        return checkbox.isSelected();
+    }
+
+
+
+
+
 }

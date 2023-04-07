@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libraries.TestData;
 import libraries.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -46,7 +47,7 @@ public class LoginPage extends ParentPage {
     String getRelativeURL() {
         return "/";
     }
-
+@Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -58,26 +59,26 @@ public class LoginPage extends ParentPage {
         }
         return this;
     }
-
+    @Step
     public LoginPage enterUserNameIntoInputLogin(String userName) {
         enterTextToElement(inputUserName, userName);
         return this;
     }
-
+    @Step
     public LoginPage enterPasswordIntoInputPassword(String password) {
         enterTextToElement(inputPassword, password);
         return this;
     }
-
+    @Step
     public LoginPage clickOnButtonLogIn() {
         clickOnElement(buttonLogin);
         return this;
     }
-
+    @Step
     public boolean isSignInButtonDisplayed() {
         return isElementDisplayed(buttonLogin);
     }
-
+    @Step
     public HomePage fillingLoginFormWithWalidCred() {
         enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PAsSWORD);
@@ -86,37 +87,38 @@ public class LoginPage extends ParentPage {
     }
 
     //-------------------------------------
+    @Step
     public LoginPage enterUserNameToRegister(String username) {
         enterTextToElement(userNameForRegistration, username);
         return this;
     }
-
+    @Step
     public LoginPage enterEmailToRegister(String email) {
         enterTextToElement(emailForRegistration, email);
         return this;
     }
-
+    @Step
     public LoginPage enterPasswordToRegister(String password) {
         enterTextToElement(passwordForRegistration, password);
         return this;
     }
-
+    @Step
     public LoginPage clickSignUpButton() {
         clickOnElement(signUpButton);
         return this;
     }
-
+    @Step
     public LoginPage checkIsAlertMessagesDisplayed(int numberOfElements) {
         Assert.assertEquals("Number of elements does not match.", numberOfElements, errorMessages.size());
         logger.info("Number of Elements matches.");
         return this;
     }
-
+    @Step
     public LoginPage checkAlertMessagesContent(String expectedMessage) {
         Assert.assertTrue("Element with text '" + expectedMessage + "' is not found.", isElementDisplayed(String.format(messageAlert, expectedMessage)));
         return this;
     }
-
+    @Step
     public LoginPage checkRegistrationErrorsMessages(String expectedErrors) {
         String[] expectedErrorsArray = expectedErrors.split(",");
         webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
@@ -136,7 +138,7 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll();
         return this;
     }
-
+    @Step
     public LoginPage checkErrorMessageForLogIn(String errorMessage){
         Assert.assertTrue("Element is not dispalyed", isElementDisplayed(errorMessageForLogIn));
         Assert.assertEquals("Message is not found its match", errorMessage, errorMessageForLogIn.getText());

@@ -1,7 +1,10 @@
 
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
+import libs.Util;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -53,63 +57,68 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+    private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(xpath = listOfErrorsLocator)
+    private List<WebElement> listOfErrors;
 
     @Override
     String getRelatedURL() {
         return "/";
     }
-
+@Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelatedURL());
             logger.info("LoginPage was opened");
+            logger.info(base_url);
         } catch (Exception e) {
             logger.error("Can not open Login Page " + e);
             Assert.fail("Can not open Login Page " + e);
         }
         return this;
     }
-
+    @Step
     public LoginPage enterUserNameIntoInpuLogin(String userName) {
         enterTextInToElement(inputUserName, userName);
         return this;
     }
 
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextInToElement(inputPassword, password);
     }
-
+    @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
 
     }
+    @Step
     public boolean isSignInButtonDisplayed(){
         return isElementDisplayed(buttonLogin);
     }
-
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
         enterUserNameIntoInpuLogin(TestData.VALID_LOGIN);
         enterPasswordIntoInputPassword(TestData.VALID_PASSPORT);
         clickOnButtonLogin();
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage enterUserNameIntoInpuPick_a_username(String   pickUserName) {
         enterTextInToElement(pick_a_username, pickUserName);
         return this;
     }
-
+    @Step
     public LoginPage enterEmailIntoInputEmail(String email) {
         enterTextInToElement(emailElement, email);
         return this;
     }
-
+    @Step
     public LoginPage enterPasswordIntoInputCreate_a_password(String password) {
         enterTextInToElement(create_a_password, password);
         return this;
     }
-
+    @Step
     public void clickOnSign_up_for_OurApp() {
         clickOnElement(buttonSign_up_for_OurApp);
     }
@@ -128,17 +137,38 @@ public class LoginPage extends ParentPage {
 //        isElementDisplayed(passwordMessage);
 //        return this;
 //    }
-
+@Step
     public LoginPage checkAlertMessagesContent(String expectedMessage) {
+        Util.waitABit(1);
         Assert.assertTrue("Element with text '"+expectedMessage+"' is not found.", isElementDisplayed(String.format(messageAlert, expectedMessage)));
         return this;
     }
-
+    @Step
     public LoginPage checknumberOfMessages (int numberOfElements) {
         webDriverWait15.until(ExpectedConditions.numberOfElementsToBe(By.xpath(errorListXpath),numberOfElements));
             Assert.assertEquals("Number of elements does not match.", numberOfElements, errorMessages.size());
             logger.info("Number of Elements matches.");
             return this;
 
+    }
+    @Step
+    public LoginPage checkRegistrationErrorsMessages(String expectedErrors) {
+        String[] expectedErrorsArray = expectedErrors.split(",");
+        webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
+
+        Util.waitABit(1);
+        Assert.assertEquals("Number of messages ", expectedErrorsArray.length, listOfErrors.size());
+
+        ArrayList<String> actualTextFromErrors = new ArrayList<>();
+        for (WebElement element : listOfErrors) {
+            actualTextFromErrors.add(element.getText());
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < expectedErrorsArray.length; i++) {
+            softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals ").isIn(actualTextFromErrors);
+        }
+        softAssertions.assertAll();
+        return this;
     }
 }

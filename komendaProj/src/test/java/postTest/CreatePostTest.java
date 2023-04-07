@@ -18,10 +18,13 @@ public class CreatePostTest  extends BaseTest {
                 .enterTextInInputBody("Body text")
 //               .selectTextInDropDownOptions("Приватне повідомлення")
 //                .selectValueInDropDownOptions("One Person")
+                .selectCheckBoxState("Check")
+//                .selectCheckBoxState("Uncheck")
                 .selectTextInDropDownByUIOptions("Приватне повідомлення")
                 .clickOnSavePostButton()
             .checkIsRedirectToPostPage()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsPostUnique()
                 .checkIsTitleDisplayed(POST_TITLE) //HW#3 - Перевірити що ви бачите створений Title на сторінці PostPage
                 .checkIsNoteDisplayed("Note: This post was written for") //HW#3 - Перевірити що присутня лейба Note: This post was written for
                 .checkIsUnderLineText("One Person") //HW#3 - Перевірити що присутня що в body присутній текст з "підкресленням" і той текст "One Person"

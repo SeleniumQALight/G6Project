@@ -8,6 +8,10 @@ public static ConfigHiddenProperties configHiddenProperties = ConfigFactory.crea
             System.getProperty("login",configHiddenProperties.login());
     public final static String VALID_PASSWORD =
             System.getProperty("password",configHiddenProperties.password());
+    public final static String VALID_LOGIN_DB =
+            System.getProperty("login",configHiddenProperties.loginDB());
+
+
 
 
 

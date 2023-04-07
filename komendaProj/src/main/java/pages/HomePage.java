@@ -1,9 +1,12 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.elements.HeaderElement;
+
+import java.sql.SQLException;
 
 public class HomePage extends ParentPage {
 
@@ -13,7 +16,7 @@ public class HomePage extends ParentPage {
 //    @FindBy(xpath = ".//*[@href='/create-post']")
 //    private WebElement buttonCreatePost;
 
-      private HeaderElement headerElement = new HeaderElement(webDriver);
+    private HeaderElement headerElement = new HeaderElement(webDriver);
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -24,10 +27,12 @@ public class HomePage extends ParentPage {
         return "/";
     }
 
+    @Step
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
 
+    @Step
     public boolean isButtonSignOutDisplayed() {
         try {
             return webDriver.findElement(By.xpath(".//button[text()='Sign Out']")).isDisplayed();
@@ -36,16 +41,28 @@ public class HomePage extends ParentPage {
         }
     }
 
+    @Step
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver); // залогінитися
         loginPage.openLoginPage();
-        if(!isButtonSignOutDisplayed()){
+        if (!isButtonSignOutDisplayed()) {
             loginPage.fillingLoginFormWithValidCred(); // перевірити що ми на HomePage
         }
         checkIsRedirectToHomePage();
         return this;
     }
 
+    public HomePage openHomePageLoginDB(String login) throws SQLException, ClassNotFoundException {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if (!isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFromDB(login);
+        }
+        checkIsRedirectToHomePage();
+        return this;
+    }
+
+    @Step
     public HomePage checkIsRedirectToHomePage() {
         checkUrl();
         waitChatToBeHide();
@@ -53,6 +70,7 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+    @Step
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(headerElement.getButtonCreatePost());
         return new CreatePostPage(webDriver);

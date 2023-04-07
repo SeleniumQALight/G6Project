@@ -1,16 +1,20 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.elements.HeaderElement;
 
+import java.sql.SQLException;
+
 public class HomePage extends ParentPage {
 
 
     private HeaderElement headerElement=new HeaderElement(webDriver);
 
+    @Step
     public HeaderElement getHeaderElement() {
         return headerElement;
     }
@@ -69,6 +73,17 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+
+    public HomePage openHomePageWithDataBase() throws SQLException, ClassNotFoundException {
+        LoginPage loginPage=new LoginPage(webDriver);
+        loginPage.openLoginPage();
+        if(!headerElement.isButtonSignOutDisplayed()) {
+            loginPage.fillingLoginFormWithValidCredWithDataBase();
+        }
+        checkIsRedirectToHomePage();
+
+        return this;
+    }
 
 
 

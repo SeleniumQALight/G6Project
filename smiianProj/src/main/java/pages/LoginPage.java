@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import libs.TestData;
 import libs.Util;
 import org.assertj.core.api.SoftAssertions;
@@ -50,8 +51,8 @@ public class LoginPage extends ParentPage {
 
     private static final String signUpAlertMessages = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
-
-
+    @FindBy (xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -66,6 +67,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openLoginPage() {
         try {
             webDriver.get(base_url + getRelativeURL());
@@ -79,23 +81,25 @@ public class LoginPage extends ParentPage {
     }
 //-------------------------------------------------------------------------------------------------------------
 
+    @Step
     public void enterUserNameIntoInputLogin(String userName) {
 
         enterTextIntoElement(inputUserName, userName);
     }
-
+    @Step
     public LoginPage enterDataIntoUsernameField(String userName) {
         enterTextIntoElement(signupUsername, userName);
         return  this;
     }
 
 //-------------------------------------------------------------------------------------------------------------
-
+    @Step
     public void enterPasswordIntoInputPassword(String password) {
 
         enterTextIntoElement(inputPassword, password);
 
     }
+    @Step
     public LoginPage enterDataIntoPasswordField(String password) {
         enterTextIntoElement(signupPassword, password);
         return this;
@@ -103,12 +107,13 @@ public class LoginPage extends ParentPage {
 
 
     //-------------------------------------------------------------------------------------------------------------
+    @Step
     public LoginPage enterDataIntoEmailField(String password) {
         enterTextIntoElement(signupEmail, password);
         return this;
     }
 
-
+    @Step
     public void clickOnButtonLogin() {
 //        try {
 ////            WebElement buttonLogin = webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
@@ -121,6 +126,7 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
     public HomePage fillingLoginFormWithValidCred() {
 //        openLoginPage();
         enterUserNameIntoInputLogin(TestData.VALID_LIGIN);
@@ -130,6 +136,7 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public boolean isButtonSignInDisplayed(){
 
         return isObjectDisplayed(buttonLogin);
@@ -138,11 +145,13 @@ public class LoginPage extends ParentPage {
 
 
 
+    @Step
     public LoginPage checkAlertMessageContainText(String expectedMessage){
         Assert.assertTrue("Element is not displayed", isElementDisplayed(getAlertMessage(expectedMessage)));
         return this;
     }
 
+    @Step
     public WebElement getAlertMessage(String alertText1){
         return webDriver.findElement(By.xpath(String.format(alertMessageText, alertText1)));
     }
@@ -151,10 +160,12 @@ public class LoginPage extends ParentPage {
 
 //------------------------------------------------------------------------------------------------------------------------
 
+    @Step
     public List<WebElement> getAlertMessageCheckList(String alertText1){
         return webDriver.findElements(By.xpath(String.format(alertMessageText, alertText1)));
     }
 
+    @Step
     public LoginPage checkAlertMessageIsOnlyOne(String alertText2) {
         Assert.assertEquals("Number of alerts with text", 1, getAlertMessageCheckList(alertText2).size());
         return this;
@@ -162,17 +173,17 @@ public class LoginPage extends ParentPage {
 //------------------------------------------------------------------------------------------------------------------------
 
 
-
+    @Step
     public List<WebElement> getAlertMessageList() {
         WebDriverWait waitAlertMessages = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         return waitAlertMessages.until(ExpectedConditions.numberOfElementsToBe(By.xpath(signUpAlertMessages), 3));
     }
-
+    @Step
     public LoginPage checkAlertMessageQuantity() {
         Assert.assertEquals("Number of alerts is not 3", 3, getAlertMessageList().size());
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {    // бере список текстів помилок, підрахує
         // error1, error2, -> array[0] = error1, array[1] = error2,
         String[] expectedErrorsArray = expectedErrors.split(",");
@@ -200,29 +211,31 @@ public class LoginPage extends ParentPage {
     }
 
 
-
+    @Step
     public LoginPage enterUsernameAndPassword (String userName, String password) {
         enterUserNameIntoInputLogin(userName);
         enterPasswordIntoInputPassword(password);
         clickOnButtonLogin();
         return this;
     }
-
+    @Step
     public LoginPage checkSignInErrorMessageIsVisible() {
         Assert.assertTrue("Error element is not visible", isElementDisplayed(signInErrorMessageWithOutText));
         return this;
     }
 
-
+    @Step
     public LoginPage checkSignInErrorMessageContainText(String expectedMessage){
         Assert.assertTrue("Element is not displayed", isElementDisplayed(getSignInErrorMessage(expectedMessage)));
         return this;
     }
-
+    @Step
     public WebElement getSignInErrorMessage(String SignInErrorMessageText){
         return webDriver.findElement(By.xpath(String.format(signInErrorMessageText, SignInErrorMessageText)));
     }
 
 
-
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Message in Alert ", expectedText, alertInCenter.getText());
+    }
 }

@@ -16,6 +16,7 @@ import static pages.CommonActionsWithElements.configProperties;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+
     public void validLogin() {
         loginPage.openLoginPage();
         loginPage.enterUserNameIntoInputLogin("qaauto");

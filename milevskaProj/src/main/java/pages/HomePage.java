@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +35,7 @@ public class HomePage extends ParentPage{
     public boolean isButtonSignOutDisplayed(){
         return isElementDisplayed(buttonSignOut);
     }
-
+    @Step
     public HomePage openHomePage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openLoginPage();
@@ -47,7 +48,7 @@ public class HomePage extends ParentPage{
 
         return this;
     }
-
+    @Step
     public HomePage checkIsRedirectToHomePage() {
         checkURL();
         waitChatToBeHide();

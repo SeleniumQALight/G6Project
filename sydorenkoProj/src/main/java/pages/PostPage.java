@@ -21,6 +21,8 @@ public class PostPage extends ParentPage {
     private WebElement noteOnCreatedPost;
     @FindBy(xpath = "//body//u")
     private WebElement underlinedTextInBody;
+    @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
+    private WebElement uniquePostLabel;
 
     private HeaderElement headerElement = new HeaderElement(webDriver);
 
@@ -68,8 +70,14 @@ public class PostPage extends ParentPage {
         clickOnElement(buttonDelete);
         return new MyProfilePage(webDriver);
     }
+
     public CreatePostPage clickOnEditButton() {
         clickOnElement(buttonEdit);
         return new CreatePostPage(webDriver);
+    }
+
+    public PostPage checkIsPostUnique() {
+        assertTrue("Post is not unique", isElementDisplayed(uniquePostLabel));
+        return this;
     }
 }

@@ -161,6 +161,35 @@ public class CommonActionsWithElements {
 
 
 
+    protected void clickOnCheckBoxEnable(WebElement webElement){
+        try {
+            if(!webElement.isSelected()){
+                clickOnElement(webElement);
+            }else {
+                logger.info("Checkbox "+webElement.getText()+"is already selected");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+    protected void clickOnCheckBoxDisable(WebElement webElement){
+        try {
+            if(webElement.isSelected()){
+            clickOnElement(webElement);
+            }else {
+                logger.info("Checkbox "+webElement.getText()+"is not already selected");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+
+
+
 
 
 

@@ -1,12 +1,15 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class Registration extends BaseTest {
 
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
@@ -31,7 +34,9 @@ public class Registration extends BaseTest {
     public static Object[][] provideParameters() {
         return new Object[][] {
                 new Object[] {"tr", "ttt", "rrr", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
-                new Object[] {"tr", "t@tt.com", "rrr", ERROR_USERNAME + COMMA + ERROR_PASSWORD}
+                new Object[] {"tr", "t@tt.com", "rrr", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
+                new Object[] {"тест", "тест.сщь", "тестовийпароль", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
+                new Object[] {"testuser.com", "@.com", "1111111111111111111", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD}
         };
     }
 

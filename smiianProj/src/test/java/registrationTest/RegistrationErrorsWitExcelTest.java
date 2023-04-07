@@ -1,14 +1,12 @@
 package registrationTest;
 
-import BaseTest.BaseTest;
+import baseTest.BaseTest;
 import libs.SpreadsheetData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import pages.CommonActionWithElements;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;

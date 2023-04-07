@@ -1,13 +1,16 @@
 package registrationTest;
 
 import baseTest.BaseTest;
+import categories.SmokeTestFilter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
+@Category(SmokeTestFilter.class)
 public class RegistrationErrorsTest extends BaseTest {
     final static String ERROR_USERNAME = "Username must be at least 3 characters.";
     final static String ERROR_EMAIL = "You must provide a valid email address.";
@@ -16,8 +19,10 @@ public class RegistrationErrorsTest extends BaseTest {
     final static String SEMICOLON = ";";
     final static String COMMA = ",";
     final static String SHORT_USER_NAME = "tr";
+    final static String ERROR_USERNAME_WRONG_LANGUAGE = "Username can only contain letters and numbers.";
+    final static String ERROR_PASSWORD_EXCEEDING_LIMIT = "Password cannot exceed 50 characters.";
 
-    String expectedErrors = ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD;
+   // String expectedErrors = ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD;
 
     @Test
     @Parameters(method = "provideParameters")
@@ -34,6 +39,9 @@ public class RegistrationErrorsTest extends BaseTest {
         return new Object[][]{
                 new Object[]{"tr", "ttt", "ttt", ERROR_USERNAME + COMMA + ERROR_EMAIL + COMMA + ERROR_PASSWORD},
                 new Object[]{"tr", "tt@t.com", "ttt", ERROR_USERNAME + COMMA + ERROR_PASSWORD},
+                new Object[]{"рппоыв", "tt@t.com", "be", ERROR_USERNAME_WRONG_LANGUAGE + COMMA + ERROR_PASSWORD},
+                new Object[]{"tr", "tt@tt.com", "0x9A9158492A37664a45Fb38F54d08c066c385f5D10x9A9158492A37664a45Fb",
+                        ERROR_USERNAME + COMMA + ERROR_PASSWORD_EXCEEDING_LIMIT},
         };
     }
 }

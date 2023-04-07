@@ -88,7 +88,7 @@ public class CommonActionsWithElements {
             webDriverWait15.until(ExpectedConditions.visibilityOf(webElement));
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + "was inputted in to element " + getElementName(webElement));
+            logger.info(text + " was inputted in to element " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -125,6 +125,25 @@ public class CommonActionsWithElements {
             logger.info(message);
             return state;
         } catch (Exception e) {
+            logger.info("Element is not displayed");
+            return false;
+        }
+    }
+
+    protected boolean isElementDisplayed(String elementXpath) {
+        try {
+            WebElement element = webDriver.findElement(By.xpath(elementXpath));
+            boolean state = element.isDisplayed();
+            String nameElement = getElementName(element);
+            String message;
+            if (state) {
+                message = nameElement + " Element is displayed";
+            } else {
+                message = nameElement + " Element is not displayed";
+            }
+            logger.info(message);
+            return state;
+        }catch (Exception e){
             logger.info("Element is not displayed");
             return false;
         }
@@ -181,4 +200,42 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    protected void setCheckBoxChecked (WebElement checkBox){
+        try {
+            if(!checkBox.isSelected()){
+                clickOnElement(checkBox);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckBoxUnchecked (WebElement checkBox){
+        try {
+            if(checkBox.isSelected()){
+                clickOnElement(checkBox);
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setUpCheckBox(WebElement checkBox, String state){
+        try {
+            if (state.equalsIgnoreCase("check")){
+                setCheckBoxChecked(checkBox);
+                logger.info("Checkbox is checked");
+            } else if (state.equalsIgnoreCase("uncheck")){
+                setCheckBoxUnchecked(checkBox);
+                logger.info("Checkbox is unchecked");
+            }else {
+                logger.info("Wrong input in to element use 'check' or 'uncheck' ");
+            }
+        }catch (Exception e){
+            printErrorAndStopTest(e);
+        }
+    }
+
+
 }

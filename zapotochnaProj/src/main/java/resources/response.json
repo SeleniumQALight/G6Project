@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/Welcome1Element"
+  },
+  "definitions": {
+    "Welcome1Element": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "select1": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "uniquePost": {
+          "type": "string"
+        },
+        "author": {
+          "$ref": "#/definitions/Author"
+        },
+        "isVisitorOwner": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "_id",
+        "author",
+        "body",
+        "createdDate",
+        "isVisitorOwner",
+        "select1",
+        "title",
+        "uniquePost"
+      ],
+      "title": "Welcome1Element"
+    },
+    "Author": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ]
+        }
+      },
+      "required": [
+        "avatar",
+        "username"
+      ],
+      "title": "Author"
+    }
+  }
+}
