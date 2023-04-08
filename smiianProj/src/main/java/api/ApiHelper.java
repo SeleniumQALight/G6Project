@@ -41,7 +41,7 @@ public class ApiHelper {
 //                        .contentType(ContentType.JSON)
 //                        .log().all()
                         .spec(requestSpecification)   //
-                        .body(requestParams.toMap())
+                        .body(requestParams.toMap())  //    додає  JSONObject requestParams
                         .when()
                         .post(EndPoints.LOGIN)
                         .then()
@@ -95,7 +95,7 @@ public class ApiHelper {
                         .body(bodyParams.toMap())
                      .when()
                         .delete(EndPoints.DELETE_POST, id)
-                        .then()
+                     .then()
                         .statusCode(200)
                         .log().all()
                         .extract().response().getBody().asString();
