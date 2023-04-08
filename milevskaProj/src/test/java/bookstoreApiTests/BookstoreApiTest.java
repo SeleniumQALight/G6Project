@@ -1,22 +1,22 @@
 package bookstoreApiTests;
 
-import bookstoreApi.BooksDTO;
-import bookstoreApi.BookstoreApiHelper;
-import bookstoreApi.EndpointBookstore;
-import bookstoreApi.UsersIsbnsOfBooks;
+import bookstoreApi.*;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
 public class BookstoreApiTest {
-
     BookstoreApiHelper bookstoreApiHelper = new BookstoreApiHelper();
     String token = bookstoreApiHelper.getToken();
     String userID = bookstoreApiHelper.getUserID();
+    String isbn = bookstoreApiHelper.getBookISBN();
+
 
     @Test
     public void deleteUserBooks() {
@@ -25,29 +25,35 @@ public class BookstoreApiTest {
                 .log().all()
                 .auth().oauth2(token)
                 .when()
-                .delete(EndpointBookstore.deleteBooks, bookstoreApiHelper.getUserID())
+                .delete(EndpointBookstore.deleteBooks, userID)
                 .then()
                 .statusCode(204)
                 .log().all();
     }
 
     @Test
-        public void addBook(){
-            BooksDTO listOfBooks =
-                    given()
-                            .contentType(ContentType.JSON)
-                            .log().all()
-                            .when()
-                            .get(EndpointBookstore.books)
-                            .then()
-                            .statusCode(200)
-                            .log().all()
-                            .extract().response().as(BooksDTO.class);
+    public void addBookInUserProfile() {
+        List<CollectionOfIsbnsDTO> collectionOfIsbnsDTOS = List.of(CollectionOfIsbnsDTO.builder().isbn(isbn).build());
 
-            List<UsersIsbnsOfBooks> usersIsbnsOfBooks = new ArrayList<>();
+        AddBookToUserProfileDTO addBookToUserProfileDTO = AddBookToUserProfileDTO.builder().userId(userID).collectionOfIsbns(collectionOfIsbnsDTOS).build();
 
+        Response addBook =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .auth().oauth2(token)
+                        .body(addBookToUserProfileDTO)
+                        .when()
+                        .post(EndpointBookstore.books)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response();
+
+        List<BookDTO> response = addBook.jsonPath().getList("books", BookDTO.class);
+
+        Assert.assertEquals("User add not correct count of books", 1, response.size());
+        Assert.assertEquals("User add not this book", isbn, response.get(0).getIsbn());
 
     }
-
-
 }
