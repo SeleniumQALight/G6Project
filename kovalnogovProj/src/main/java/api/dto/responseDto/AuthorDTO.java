@@ -1,4 +1,4 @@
-package api;
+package api.dto.responseDto;
 
 import lombok.*;
 
