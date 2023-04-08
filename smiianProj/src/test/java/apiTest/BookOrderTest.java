@@ -1,16 +1,10 @@
 
 package apiTest;
 
+import api.ApiHelper;
 import api.ApiHelperBook;
-import api.EndPoints;
-import api.EndPointsDemoqa;
-import api.dto.requestDto.LoginReqHwTwoDemoqaDTO;
-import api.dto.responseDto.GetAllBooksRefHwTwoDTO;
 import api.dto.responseDto.LoginRespHwTwoDTO;
-import api.dto.responseDto.PostDTO;
-import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,34 +14,33 @@ public class BookOrderTest {
 
     ApiHelperBook apiHelperBook = new ApiHelperBook();
     Logger logger = Logger.getLogger(getClass());
+//    String isbn;
 
     @Test
     public void loginDemoqa() {
 
+//2. логінетесь цим юзером через апішку POST
         LoginRespHwTwoDTO respLoginDTO = apiHelperBook.loginByUser();
-
         logger.info(respLoginDTO.getToken());
         logger.info(respLoginDTO.getUserId());
+//3. З респонса логіна зберігаєте token і userId
+        String token = respLoginDTO.getToken();
+        String userId = respLoginDTO.getUserId();
 
-        apiHelperBook.deleteAllBooksById(respLoginDTO.getUserId(), respLoginDTO.getToken());
+//4. Видаляєте всі книжки данного юзера апішкою
+        apiHelperBook.deleteAllBooksById(respLoginDTO.getUserId(), token);
 
-        logger.info(apiHelperBook.getAllBooks(respLoginDTO.getToken())[0]);
-//        String isbn = apiHelperBook.getAllBooks(respLoginDTO.getToken())[0];
+//5. Отримуете повний список книжок АПІшкою GET
+        logger.info(apiHelperBook.getAllBooks(token)[0]);
+//        String firstBookIsbn = apiHelperBook.getAllBooks(token); //[0];         //  як дістати код першої книги із запита?
 
+//6. Додаете книжку юзеру АПІшкою POST
+//        apiHelperBook.addBooksToUser(token, userId, firstBookIsbn);
 
+//7. Перевіряєте що тепер у юзера є одна книжка і її номер той, що вказували при додаванні.
+        String getIsbn = apiHelperBook.getUsersBooks(token, userId).getIsbn();   // що повертаєм, стрінгу??!
 
-
-
-
-
-
-
-
-//        public AddBookToUserHw
-
-
-
-
+//        Assert.assertEquals("Number of posts ", firstBookIsbn, getIsbn);
 
 
     }

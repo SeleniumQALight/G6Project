@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 
 
-public class GetAllBooksRefHwTwoDTO {
+public class GetUsersBooksRespHwTwoDTO {
 
     String isbn;
     String title;

@@ -1,7 +1,6 @@
 package api;
 
 import api.dto.requestDto.AddBookReqHwTwoDemoqaDTO;
-import api.dto.requestDto.CreatePostDTO;
 import api.dto.requestDto.IsbnReqHwTwoDemoqaDTO;
 import api.dto.requestDto.LoginReqHwTwoDemoqaDTO;
 import api.dto.responseDto.*;
@@ -10,7 +9,6 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
-import org.assertj.core.api.SoftAssertions;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
@@ -55,30 +53,32 @@ public class ApiHelperBook {
 
         String respDeleteAllBooks =
                 given()
-//                        .contentType(ContentType.JSON)
-//                        .log().all()
-                        .spec(requestSpecification)
+                        .contentType(ContentType.JSON)
+                        .log().all()
+//                        .spec(requestSpecification)   // що тут не так?!!!!!!!!!!!!!!!!!!!!!!!!!1
                         .auth().oauth2(token)
                      .when()
                         .delete(EndPointsDemoqa.DELETE_ALL_BOOKS, userId)
                      .then()
-                        .statusCode(200)
+                        .statusCode(204)
                         .log().all()
                         .extract().response().getBody().asString();
     }
 
 
-    public GetAllBooksRefHwTwoDTO[] getAllBooks(String token) {
-        GetAllBooksRefHwTwoDTO[] respGetAllBooksDTO =
+    public GetUsersBooksRespHwTwoDTO[] getAllBooks(String token) {
+        GetUsersBooksRespHwTwoDTO[] respGetAllBooksDTO =
                 given()
-                        .spec(requestSpecification)
+                        .contentType(ContentType.JSON)
+                        .log().all()
+//                        .spec(requestSpecification)   // що тут не так?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         .auth().oauth2(token)
                      .when()
                         .get(EndPointsDemoqa.GET_ALL_BOOKS)
                      .then()
                         .statusCode(200)
                         .log().all()
-                        .extract().response().getBody().as(GetAllBooksRefHwTwoDTO[].class);
+                        .extract().response().getBody().as(GetUsersBooksRespHwTwoDTO[].class);  // --- as ??????!!!
 
         logger.info(respGetAllBooksDTO[0].getIsbn());
         return respGetAllBooksDTO;
@@ -92,7 +92,7 @@ public class ApiHelperBook {
                 .collectionOfIsbns(IsbnReqHwTwoDemoqaDTO.builder().isbn(isbn).build())
                 .build();
 
-        String respAddBookToUser =
+//        String respAddBookToUser =
                 given()
 //                        .contentType(ContentType.JSON)
 //                        .log().all()
@@ -105,28 +105,33 @@ public class ApiHelperBook {
                         .log().all()
                         .extract().response().getBody().asString();
 
-        AddBookRespHwTwoDemoqaDTO expectedAddBookDto =
-                AddBookRespHwTwoDemoqaDTO.builder()
-                            .books(IsbnRespHwTwoDemoqaDTO.builder().isbn(isbn).build())
-                            .build();
+
+
+//        AddBookRespHwTwoDemoqaDTO expectedAddBookDto =
+//                AddBookRespHwTwoDemoqaDTO.builder()
+//                            .books(IsbnRespHwTwoDemoqaDTO.builder().isbn(isbn).build())
+//                            .build();
 
     }
 
 
-//    public GetAllBooksReqHwTwoDTO getUserBooks(String token, String userId) {
-//        GetAllBooksReqHwTwoDTO respGetAllBooksDTO =
-//                given()
-//                        .spec(requestSpecification)
-//                        .auth().oauth2(token)
-//                     .when()
-//                        .get(EndPointsDemoqa.GET_USER_INFO, userId)
-//                     .then()
-//                        .statusCode(200)
-//                        .log().all()
-//                        .extract().response().getBody().as(GetAllBooksReqHwTwoDTO.class);
-//
-//        logger.info(respGetAllBooksDTO);
-//        return respGetAllBooksDTO;
-//    }
+    public GetUsersBooksRespHwTwoDTO getUsersBooks(String token, String userId) {
+        GetUsersBooksRespHwTwoDTO respGetUsersBooksDTO =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+//                        .spec(requestSpecification)                           // що тут не так?!!!!!!!!!!!!!!!!!!!!!!!!!
+                        .auth().oauth2(token)
+                     .when()
+                        .get(EndPointsDemoqa.GET_USER_INFO, userId)
+                     .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().as(GetUsersBooksRespHwTwoDTO.class);  // --- що не так з  as ??????!!!
+//                        .extract().response().getBody().asString();
+
+        logger.info(respGetUsersBooksDTO);
+        return respGetUsersBooksDTO;
+    }
 
 }
