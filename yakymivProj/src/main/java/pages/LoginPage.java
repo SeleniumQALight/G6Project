@@ -46,11 +46,15 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = xpathOfAlerts)
     private List<WebElement> alertMessages;
 
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
+
     public static final String xpathOfAlerts = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
     private final String parameterizedAlert = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
 
     private static final  String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -180,5 +184,9 @@ public class LoginPage extends ParentPage {
     public void checkLogInErrorMessage(String expectedError) {
         Assert.assertEquals("Text in success message element: ", expectedError, logInErrorMessage.getText());
         Assert.assertFalse("Sign out button is displayed",  getHeaderElement().isButtonSignOutDisplayed());
+    }
+
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Text in alert: ", expectedText, alertInCenter.getText());
     }
 }
