@@ -104,29 +104,20 @@ public class ApiHelperBook {
                         .extract().response().getBody().asString();
 
 
-
-//        AddBookRespHwTwoDemoqaDTO expectedAddBookDto =
-//                AddBookRespHwTwoDemoqaDTO.builder()
-//                            .books(IsbnRespHwTwoDemoqaDTO.builder().isbn(isbn).build())
-//                            .build();
-
     }
 
 
     public GetAllBooksRespHwTwoDemoqaDTO getUsersBooks(String token, String userId) {
         GetAllBooksRespHwTwoDemoqaDTO respGetUsersBooksDTO =
                 given()
-//                        .contentType(ContentType.JSON)
-//                        .log().all()
-                        .spec(requestSpecification)                           // що тут не так?!!!!!!!!!!!!!!!!!!!!!!!!!
+                        .spec(requestSpecification)
                         .auth().oauth2(token)
                      .when()
                         .get(EndPointsDemoqa.GET_USER_INFO, userId)
                      .then()
                         .statusCode(200)
                         .log().all()
-                        .extract().response().getBody().as(GetAllBooksRespHwTwoDemoqaDTO.class);  // --- що не так з  as ??????!!!
-//                        .extract().response().getBody().asString();
+                        .extract().response().getBody().as(GetAllBooksRespHwTwoDemoqaDTO.class);
 
         logger.info(respGetUsersBooksDTO);
         return respGetUsersBooksDTO;

@@ -40,9 +40,10 @@ public class BookOrderTest {
 
 //7. Перевіряєте що тепер у юзера є одна книжка і її номер той, що вказували при додаванні.
         GetAllBooksRespHwTwoDemoqaDTO getUserData = apiHelperBook.getUsersBooks(token, userId);
+        String getIsbn = getUserData.getBooks().get(0).getIsbn();
 
         Assert.assertEquals("Number of books", 1, getUserData.getBooks().size());
-//        Assert.assertEquals("Number of posts ", firstBookIsbn, getIsbn);
+        Assert.assertEquals("Book isbn check", firstBookIsbn, getIsbn);
 
 
     }
