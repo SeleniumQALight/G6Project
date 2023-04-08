@@ -3,6 +3,7 @@ package apiTests;
 import api.dto.responseDto.AuthorDTO;
 import api.Endpoints;
 import api.dto.responseDto.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -22,7 +23,9 @@ public class ApiTests {
 
     @Test
     public void getPostByUserTest() {
-        PostDTO[] responseAsPostDto = given().contentType(ContentType.JSON)
+        PostDTO[] responseAsPostDto = given()
+                .filter(new AllureRestAssured())
+                .contentType(ContentType.JSON)
                 .log().all()
                 .when()
                 .get(Endpoints.POST_BY_USER, USER_NAME)
@@ -85,6 +88,7 @@ public class ApiTests {
     public void getAllPostsNegative() {
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -103,8 +107,8 @@ public class ApiTests {
     @Test
     public void getAllPostByUserPath() {
         Response response =
-                given().
-                        contentType(ContentType.JSON)
+                given().filter(new AllureRestAssured())
+                        .contentType(ContentType.JSON)
                         .log().all()
                         .when().get(Endpoints.POST_BY_USER, USER_NAME)
                         .then()
@@ -129,10 +133,9 @@ public class ApiTests {
     }
 
 
-
     @Test
     public void getAllPostsByUserSchema() {
-        given()
+        given() .filter( new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
