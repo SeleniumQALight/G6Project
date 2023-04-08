@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/Welcome4",
+  "definitions": {
+    "Welcome4": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "bank": {
+          "type": "string"
+        },
+        "baseCurrency": {
+          "type": "integer"
+        },
+        "baseCurrencyLit": {
+          "type": "string"
+        },
+        "exchangeRate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExchangeRate"
+          }
+        }
+      },
+      "required": [
+        "bank",
+        "baseCurrency",
+        "baseCurrencyLit",
+        "date",
+        "exchangeRate"
+      ],
+      "title": "Welcome4"
+    },
+    "ExchangeRate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baseCurrency": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "saleRateNB": {
+          "type": "number"
+        },
+        "purchaseRateNB": {
+          "type": "number"
+        },
+        "saleRate": {
+          "type": "number"
+        },
+        "purchaseRate": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "baseCurrency",
+        "currency",
+        "purchaseRateNB",
+        "saleRateNB"
+      ],
+      "title": "ExchangeRate"
+    }
+  }
+}
