@@ -3,6 +3,8 @@ package apiTest;
 
 import api.ApiHelper;
 import api.ApiHelperBook;
+import api.dto.responseDto.GetAllBooksRespHwTwoDemoqaDTO;
+import api.dto.responseDto.GetUsersBooksRespHwTwoDTO;
 import api.dto.responseDto.LoginRespHwTwoDTO;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -14,7 +16,6 @@ public class BookOrderTest {
 
     ApiHelperBook apiHelperBook = new ApiHelperBook();
     Logger logger = Logger.getLogger(getClass());
-//    String isbn;
 
     @Test
     public void loginDemoqa() {
@@ -31,15 +32,16 @@ public class BookOrderTest {
         apiHelperBook.deleteAllBooksById(respLoginDTO.getUserId(), token);
 
 //5. Отримуете повний список книжок АПІшкою GET
-        logger.info(apiHelperBook.getAllBooks(token)[0]);
-//        String firstBookIsbn = apiHelperBook.getAllBooks(token); //[0];         //  як дістати код першої книги із запита?
+        logger.info(apiHelperBook.getAllBooks(token).getBooks().get(0).getIsbn());
+        String firstBookIsbn = apiHelperBook.getAllBooks(token).getBooks().get(0).getIsbn();
 
 //6. Додаете книжку юзеру АПІшкою POST
-//        apiHelperBook.addBooksToUser(token, userId, firstBookIsbn);
+        apiHelperBook.addBooksToUser(token, userId, firstBookIsbn);
 
 //7. Перевіряєте що тепер у юзера є одна книжка і її номер той, що вказували при додаванні.
-        String getIsbn = apiHelperBook.getUsersBooks(token, userId).getIsbn();   // що повертаєм, стрінгу??!
+        GetAllBooksRespHwTwoDemoqaDTO getUserData = apiHelperBook.getUsersBooks(token, userId);
 
+        Assert.assertEquals("Number of books", 1, getUserData.getBooks().size());
 //        Assert.assertEquals("Number of posts ", firstBookIsbn, getIsbn);
 
 

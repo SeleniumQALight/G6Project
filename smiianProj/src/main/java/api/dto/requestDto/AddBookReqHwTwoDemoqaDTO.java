@@ -2,6 +2,8 @@ package api.dto.requestDto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -12,5 +14,5 @@ import lombok.*;
 public class AddBookReqHwTwoDemoqaDTO {
 
     String userId;
-    IsbnReqHwTwoDemoqaDTO collectionOfIsbns;
+    List<IsbnReqHwTwoDemoqaDTO> collectionOfIsbns;
 }

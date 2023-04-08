@@ -3,6 +3,8 @@ package api.dto.responseDto;
 import api.dto.requestDto.IsbnReqHwTwoDemoqaDTO;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -14,5 +16,5 @@ public class GetAllBooksRespHwTwoDemoqaDTO {
 
     String userId;
     String username;
-    BookRespHwTwoDemoqaDTO books;
+    List<BookRespHwTwoDemoqaDTO> books;
 }

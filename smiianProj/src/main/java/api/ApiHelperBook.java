@@ -10,6 +10,9 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
 
@@ -19,15 +22,13 @@ public class ApiHelperBook {
     Logger logger = Logger.getLogger(getClass());
 
 
+    RequestSpecification requestSpecification = new RequestSpecBuilder()  // для повторного використання в інших (багатоьх) запитах
+            .setContentType(ContentType.JSON)
+            .log(LogDetail.ALL)
+            .build();
+
+
     public LoginRespHwTwoDTO loginByUser() {
-
-        RequestSpecification requestSpecification = new RequestSpecBuilder()  // для повторного використання в інших (багатоьх) запитах
-                .setContentType(ContentType.JSON)
-                .log(LogDetail.ALL)
-                .build();
-
-
-
 
         LoginReqHwTwoDemoqaDTO loginDemoqaDTO =            // Створюємо боді-файл (loginDemoqaDTO) для запита POST, що буде далі
                 LoginReqHwTwoDemoqaDTO.builder()           // "LoginReqHwTwoDemoqaDTO" це тип даних. DTO з такою назвою попередньо створюється
@@ -53,9 +54,7 @@ public class ApiHelperBook {
 
         String respDeleteAllBooks =
                 given()
-                        .contentType(ContentType.JSON)
-                        .log().all()
-//                        .spec(requestSpecification)   // що тут не так?!!!!!!!!!!!!!!!!!!!!!!!!!1
+                        .spec(requestSpecification)
                         .auth().oauth2(token)
                      .when()
                         .delete(EndPointsDemoqa.DELETE_ALL_BOOKS, userId)
@@ -66,38 +65,37 @@ public class ApiHelperBook {
     }
 
 
-    public GetUsersBooksRespHwTwoDTO[] getAllBooks(String token) {
-        GetUsersBooksRespHwTwoDTO[] respGetAllBooksDTO =
+    public GetUsersBooksRespHwTwoDTO getAllBooks(String token) {
+        GetUsersBooksRespHwTwoDTO respGetAllBooksDTO =
                 given()
-                        .contentType(ContentType.JSON)
-                        .log().all()
-//                        .spec(requestSpecification)   // що тут не так?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                        .spec(requestSpecification)
                         .auth().oauth2(token)
                      .when()
                         .get(EndPointsDemoqa.GET_ALL_BOOKS)
                      .then()
                         .statusCode(200)
                         .log().all()
-                        .extract().response().getBody().as(GetUsersBooksRespHwTwoDTO[].class);  // --- as ??????!!!
+                        .extract().response().getBody().as(GetUsersBooksRespHwTwoDTO.class);
 
-        logger.info(respGetAllBooksDTO[0].getIsbn());
         return respGetAllBooksDTO;
     }
 
 
     public void addBooksToUser(String token, String userId, String isbn) {
+        List<IsbnReqHwTwoDemoqaDTO> listOfUsersBooks = new ArrayList<>();
+        listOfUsersBooks.add(IsbnReqHwTwoDemoqaDTO.builder().isbn(isbn).build());
+
 
         AddBookReqHwTwoDemoqaDTO addBookDTO = AddBookReqHwTwoDemoqaDTO.builder()
                 .userId(userId)
-                .collectionOfIsbns(IsbnReqHwTwoDemoqaDTO.builder().isbn(isbn).build())
+                .collectionOfIsbns(listOfUsersBooks)
                 .build();
 
-//        String respAddBookToUser =
                 given()
-//                        .contentType(ContentType.JSON)
-//                        .log().all()
                         .spec(requestSpecification)
                         .auth().oauth2(token)
+                        .body(addBookDTO)
                      .when()
                         .post(EndPointsDemoqa.ADD_BOOK_TO_USER)
                      .then()
@@ -115,19 +113,19 @@ public class ApiHelperBook {
     }
 
 
-    public GetUsersBooksRespHwTwoDTO getUsersBooks(String token, String userId) {
-        GetUsersBooksRespHwTwoDTO respGetUsersBooksDTO =
+    public GetAllBooksRespHwTwoDemoqaDTO getUsersBooks(String token, String userId) {
+        GetAllBooksRespHwTwoDemoqaDTO respGetUsersBooksDTO =
                 given()
-                        .contentType(ContentType.JSON)
-                        .log().all()
-//                        .spec(requestSpecification)                           // що тут не так?!!!!!!!!!!!!!!!!!!!!!!!!!
+//                        .contentType(ContentType.JSON)
+//                        .log().all()
+                        .spec(requestSpecification)                           // що тут не так?!!!!!!!!!!!!!!!!!!!!!!!!!
                         .auth().oauth2(token)
                      .when()
                         .get(EndPointsDemoqa.GET_USER_INFO, userId)
                      .then()
                         .statusCode(200)
                         .log().all()
-                        .extract().response().getBody().as(GetUsersBooksRespHwTwoDTO.class);  // --- що не так з  as ??????!!!
+                        .extract().response().getBody().as(GetAllBooksRespHwTwoDemoqaDTO.class);  // --- що не так з  as ??????!!!
 //                        .extract().response().getBody().asString();
 
         logger.info(respGetUsersBooksDTO);

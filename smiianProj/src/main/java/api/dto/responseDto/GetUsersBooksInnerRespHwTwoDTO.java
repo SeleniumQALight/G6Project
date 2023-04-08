@@ -9,7 +9,9 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 
-public class BookRespHwTwoDemoqaDTO {
+
+public class GetUsersBooksInnerRespHwTwoDTO {
+
     String isbn;
     String title;
     String subTitle;
@@ -19,4 +21,5 @@ public class BookRespHwTwoDemoqaDTO {
     Integer pages;
     String description;
     String website;
+
 }
