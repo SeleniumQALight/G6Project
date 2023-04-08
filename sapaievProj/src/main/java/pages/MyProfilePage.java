@@ -1,5 +1,6 @@
 package pages;
 
+import com.google.common.cache.AbstractCache;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,8 +26,8 @@ public class MyProfilePage extends ParentPage{
     private WebElement nameUserInProfile;
 
 
-
-
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> poststList;
 
 
     public MyProfilePage(WebDriver webDriver) {
@@ -129,5 +130,11 @@ public class MyProfilePage extends ParentPage{
         List<WebElement> listPosts=webDriver.findElements(By.xpath(String.format(titlePost, newtitlePost)));
         Assert.assertTrue("Size of edited post is 1",listPosts.size()==1);
         return this;
+    }
+
+
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts", expectedNumberOfPosts, poststList.size() );
     }
 }
