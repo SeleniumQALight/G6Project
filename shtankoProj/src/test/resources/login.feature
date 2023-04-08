@@ -1,3 +1,4 @@
+@LoginTest @FullRegression
 Feature: User login
 
   @R001
@@ -6,7 +7,7 @@ Feature: User login
     When User enters '<login>' login into 'Login' input on 'Login' page
     And User enters '<password>' passWord into 'PassWord' input on 'Login' page
     And User click on 'SingIn' button on 'Login' page
-    Then User sees alert message with text 'Invalid username / password'
+    Then User sees alert message with text 'Invalid username / password.'
 
 
     Examples:
