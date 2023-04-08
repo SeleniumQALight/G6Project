@@ -1,9 +1,11 @@
 package StepDefinitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
+import libs.TestData;
 import pages.LoginPage;
 
 public class LoginPage_StepDefinitions {
@@ -39,5 +41,12 @@ public class LoginPage_StepDefinitions {
 
 
 
+    @When("^User enters valid login into 'Login' input on 'Login' page$")
+    public void user_Enters_Valid_Login_Into_Login_Input_On_Login_Page() {
+        loginPage.enterUserNameIntoInputLogin(TestData.VALID_LIGIN);
+    }
 
+    @And("User enters valid password into '' input on {string} page")
+    public void userEntersValidPasswordIntoPasswordInputOnLoginPage() {
+    }
 }

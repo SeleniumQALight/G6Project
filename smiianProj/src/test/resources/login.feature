@@ -15,3 +15,13 @@
       | login        | password     |
       | wrong login  | 123456qwerty |
       | wrong login1 | 123456 |
+
+
+
+      @R002
+      Scenario: R002 Login with valid login 'sdsdsdsdsdsdsd'
+        Given User open 'Login' page
+        When User enters valid login into 'Login' input on 'Login' page
+        And User enters valid password into 'Password' input on 'Login' page
+        And User click on 'SingIn' button on 'Login' page
+        Then User sees users account avatar
