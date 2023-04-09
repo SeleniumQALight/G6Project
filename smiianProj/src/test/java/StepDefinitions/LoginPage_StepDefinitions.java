@@ -11,6 +11,7 @@ import pages.LoginPage;
 public class LoginPage_StepDefinitions {
     LoginPage loginPage = new LoginPage(DriverHelper.getWebDriver());
 
+
     @Given("^User open 'Login' page$")
     public void user_open_Login_page() throws Throwable {
         loginPage.openLoginPage();
@@ -46,7 +47,25 @@ public class LoginPage_StepDefinitions {
         loginPage.enterUserNameIntoInputLogin(TestData.VALID_LIGIN);
     }
 
-    @And("User enters valid password into '' input on {string} page")
-    public void userEntersValidPasswordIntoPasswordInputOnLoginPage() {
+    @And("^User enters valid password into 'Password' input on 'Login' page$")
+    public void user_Enters_Valid_Password_Into_Password_Input_On_Login_Page() {
+        loginPage.enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
+    }
+
+
+    @When("^User enters not valid '(.*)' into 'Login' input on 'Login' page$")
+    public void user_Enters_Not_Valid_Two_Characters_Login_Text_Into_Login_Input_On_Login_Page(String login) {
+        loginPage.enterDataIntoUsernameField(login);
+
+    }
+
+    @And("User enters not valid '(.*)' into 'Email' input on 'Login' page")
+    public void user_Enters_Not_Valid_Email_Into_Email_Input_On_Login_Page(String email) {
+        loginPage.enterDataIntoEmailField(email);
+    }
+
+    @And("User enters not valid {string} into {string} input on {string} page")
+    public void user_Enters_Not_Valid_Password_Into_Password_Input_On_Login_Page(String password) {
+        loginPage.enterDataIntoPasswordField(password);
     }
 }

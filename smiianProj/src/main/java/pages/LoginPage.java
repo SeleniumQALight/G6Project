@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
+
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
 
@@ -238,4 +239,5 @@ public class LoginPage extends ParentPage {
     public void checkAlertInCenter(String expectedText) {
         Assert.assertEquals("Message in Alert ", expectedText, alertInCenter.getText());
     }
+
 }

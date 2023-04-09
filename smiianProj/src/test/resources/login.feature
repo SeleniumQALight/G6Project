@@ -18,10 +18,26 @@
 
 
 
-      @R002
-      Scenario: R002 Login with valid login 'sdsdsdsdsdsdsd'
-        Given User open 'Login' page
-        When User enters valid login into 'Login' input on 'Login' page
-        And User enters valid password into 'Password' input on 'Login' page
-        And User click on 'SingIn' button on 'Login' page
-        Then User sees users account avatar
+    @R002
+    Scenario: R002 Login with valid credentials
+      Given User open 'Login' page
+      When User enters valid login into 'Login' input on 'Login' page
+      And User enters valid password into 'Password' input on 'Login' page
+      And User click on 'SingIn' button on 'Login' page
+      Then User sees users account avatar
+
+    @R003
+    Scenario Outline: R003 Check error messages in registration form
+      Given User open 'Login' page
+      When User enters not valid '<login>' into 'Login' input on 'Login' page
+      And User enters not valid '<email>' into 'Email' input on 'Login' page
+      And User enters not valid '<password>' into 'Password' input on 'Login' page
+      Then Check that error message appeared on the 'Username' input
+      Then Check that error message appeared on the 'Email' input
+      Then Check that error message do not appeared on the 'Password' input
+
+      Examples:
+      | login                            | email       | password                                            | LoginErrorText                          | EmailErrorText                          | PasswordErrorText                        |
+      | tt                               | ttt         | 1                                                   | Username must be at least 3 characters. | You must provide a valid email address. | Password must be at least 12 characters. |
+      | 1234567890123456789012345678901  | we@qa.team  | 123456789012345678901234567890123456789012345678901 | That username is already taken.         | That email is already being used.       | Password cannot exceed 50 characters.    |
+      | 12345678901234567890123456789012 | we@qa.com   | 1234567890                                          | Username cannot exceed 30 characters.   |                                         |                                          |
