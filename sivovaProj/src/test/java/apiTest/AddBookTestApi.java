@@ -34,7 +34,7 @@ public class AddBookTestApi {
     public void AddBookForUserByApi(){
         String userId = apiHelper.getUserId(USER_NAME,PASSWORD);
         String token = apiHelper.getToken(USER_NAME,PASSWORD);
-        String isbn = apiHelper.getBookISBN();
+        String isbn = apiHelper.getIsbnOfFirstBook();
 
         List<CollectionOfIsbnsDTO> collectionOfIsbnsDTOList = List.of
                 (CollectionOfIsbnsDTO.builder()

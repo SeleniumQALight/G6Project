@@ -25,7 +25,7 @@ public class APIHelperBooks {
             .build();
 
 
-    public String getToken(String userName, String password) {
+    public Response getResponse(String userName, String password) {
         JSONObject requestParams = new JSONObject();
         requestParams.put("userName", userName);
         requestParams.put("password", password);
@@ -40,29 +40,24 @@ public class APIHelperBooks {
                         .statusCode(200)
                         .log().all()
                         .extract().response();
-        String token = response.jsonPath().getString("token").replace("\"","");
-        return token;
+
+        return response;
     }
 
     public String getUserId(String userName, String password) {
-        JSONObject requestParams = new JSONObject();
-        requestParams.put("userName", userName);
-        requestParams.put("password", password);
-
-        Response response =
-                given()
-                        .spec(requestSpecification)
-                        .body(requestParams.toMap())
-                        .when()
-                        .post(EndPointsBooks.LOGIN)
-                        .then()
-                        .statusCode(200)
-                        .log().all()
-                        .extract().response();
+        Response response= getResponse(userName, password);
 
         String userId = response.jsonPath().getString("userId").replace("\"","");
         return userId;
     }
+
+    public String getToken(String userName, String password) {
+        Response response= getResponse(userName, password);
+
+        String token = response.jsonPath().getString("token").replace("\"","");
+        return token;
+    }
+
     private List<BookDTO> getAllBooks() {
        Response response = given()
                 .spec(requestSpecification)
@@ -76,7 +71,7 @@ public class APIHelperBooks {
        List<BookDTO> listOfBookDTOs = response.jsonPath().getList("books", BookDTO.class);
        return listOfBookDTOs;
     }
-    public String getBookISBN () {
+    public String getIsbnOfFirstBook () {
         List<BookDTO> bookDTOS = getAllBooks();
         return bookDTOS.get(0).getIsbn();
     }
@@ -110,7 +105,7 @@ public class APIHelperBooks {
                 .queryParam("UserId", userId)
                 .auth().oauth2(token)
                 .when()
-                .delete(EndPointsBooks.DELETE_BOOKS_BY_USER)
+                .delete(EndPointsBooks.BOOKSTORE)
                 .then()
                 .statusCode(204)
                 .log().all();
