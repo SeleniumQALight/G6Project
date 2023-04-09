@@ -1,0 +1,18 @@
+@PostTest @FullRegression
+Feature: Post Feature
+
+  Background:
+    Given User opens 'Home' page
+
+  @R004
+    @BeforeDeletingAllPostsForDefaultUser
+    @AfterDeletingAllPostsForDefaultUser
+  Scenario Outline:  R004 Check number of posts
+    Given Create <numberOfPosts> new posts via API for 'default' user and 'default' password
+    When User click on 'MyProfile' button on 'Home' page
+    Then User was redirected to 'MyProfile' page
+    And User sees <numberOfPosts> posts in Posts list on 'MyProfile' page
+
+    Examples:
+      | numberOfPosts |
+      | 2             |
