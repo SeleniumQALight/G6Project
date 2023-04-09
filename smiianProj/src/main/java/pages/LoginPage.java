@@ -240,4 +240,15 @@ public class LoginPage extends ParentPage {
         Assert.assertEquals("Message in Alert ", expectedText, alertInCenter.getText());
     }
 
+
+    public LoginPage checkUserNameInputErrorMessageIsVisible() {
+        Assert.assertTrue("Error element is not visible", isElementDisplayed(signInErrorMessageWithOutText));
+        return this;
+    }
+
+    public LoginPage checkUserNameInputErrorMessageContainText(String expectedMessage){
+        Assert.assertTrue("Element is not displayed", isElementDisplayed(getSignInErrorMessage(expectedMessage)));
+        return this;
+    }
+
 }

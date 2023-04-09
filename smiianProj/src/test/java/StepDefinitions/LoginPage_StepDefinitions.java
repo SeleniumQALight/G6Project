@@ -59,13 +59,18 @@ public class LoginPage_StepDefinitions {
 
     }
 
-    @And("User enters not valid '(.*)' into 'Email' input on 'Login' page")
+    @And("^User enters not valid '(.*)' into 'Email' input on 'Login' page$")
     public void user_Enters_Not_Valid_Email_Into_Email_Input_On_Login_Page(String email) {
         loginPage.enterDataIntoEmailField(email);
     }
 
-    @And("User enters not valid {string} into {string} input on {string} page")
+    @And("^User enters not valid '(.*)' into 'Password' input on 'Login' page$")
     public void user_Enters_Not_Valid_Password_Into_Password_Input_On_Login_Page(String password) {
         loginPage.enterDataIntoPasswordField(password);
+    }
+
+    @Then("^Check that login error message is visible$")
+    public void check_That_Login_Error_Message_Is_Visible() {
+        loginPage.checkUserNameInputErrorMessageIsVisible();
     }
 }
