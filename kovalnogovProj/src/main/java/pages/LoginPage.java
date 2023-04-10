@@ -18,7 +18,7 @@ import java.util.List;
 public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
-    @FindBy(xpath = ".//input[@placeholder='Pasword']")
+    @FindBy(xpath = ".//input[@placeholder='Password']")
     private WebElement passwordInput;
     @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement signInBtn;

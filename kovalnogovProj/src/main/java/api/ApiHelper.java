@@ -1,5 +1,6 @@
 package api;
 
+import api.dto.requestDto.CreatePostRequestDTO;
 import api.dto.responseDto.PostDTO;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -50,11 +51,11 @@ public class ApiHelper {
         deleteAllPostsTillPresent(USER_NAME, USER_PASSWORD);
     }
 
-    private void deleteAllPostsTillPresent(String userName, String password){
+    public void deleteAllPostsTillPresent(String userName, String password) {
         PostDTO[] listOfPosts = getAllPostsByUser(userName);
         String token = getToken(USER_NAME, USER_PASSWORD);
 
-        for (int i = 0; i < listOfPosts.length ; i++) {
+        for (int i = 0; i < listOfPosts.length; i++) {
             deletePostById(token, listOfPosts[i].getId());
             logger.info(String.format("Post with id %s and title %s was deleted",
                     listOfPosts[i].getId(), listOfPosts[i].getTitle()));
@@ -63,6 +64,7 @@ public class ApiHelper {
         Assert.assertEquals("Number of posts", 0, getAllPostsByUser(userName).length);
 
     }
+
     private void deletePostById(String token, String id) {
         JSONObject bodyParams = new JSONObject();
         bodyParams.put("token", token);
@@ -104,4 +106,30 @@ public class ApiHelper {
     }
 
 
+    public void createPost(String userName, String password, String title) {
+        String token = getToken(userName, password);
+        CreatePostRequestDTO createPostBody = CreatePostRequestDTO.builder()
+                .title(title)
+                .body("body")
+                .select1("One Person")
+                .uniquePost("yes")
+                .token(token)
+                .build();
+
+        String response =
+                given().contentType(ContentType.JSON)
+                        .log().all()
+                        .body(createPostBody)
+                        .when()
+                        .post(Endpoints.CREATE_POST)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract()
+                        .response()
+                        .getBody()
+                        .asString();
+        Assert.assertEquals("Message : ", "\"Congrats.\"", response);
+
+    }
 }

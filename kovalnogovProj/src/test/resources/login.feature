@@ -1,3 +1,4 @@
+@PostTest @FullRegression
 Feature:  User login
 
   @R001
