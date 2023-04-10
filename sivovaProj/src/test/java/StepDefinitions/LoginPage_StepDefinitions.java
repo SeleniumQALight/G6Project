@@ -38,10 +38,26 @@ public class LoginPage_StepDefinitions {
       loginPage.checkErrorMessageInvalidLogin(expectedError);
     }
 
-    @Then("^User sees 'Signout' button$")
-    public void user_sees_Signout_button() throws Throwable {
-        HomePage homePage = new HomePage(DriverHelper.getWebdriver());
-        homePage.checkIsRedirectToHomePage();
-        homePage.getHeaderElement().isButtonSignOutDisplayed();
+
+    @When("^User enters '(.*)' username into 'Username' input on 'Login' page$")
+    public void userEntersUsernameUsernameIntoUsernameInputOnLoginPage(String username) {
+        loginPage.enterUserNameIntoInputSignUp(username);
+    }
+
+
+    @When("^User enters '(.*)' email into 'Email' input on 'Login' page$")
+    public void userEntersEmailEmailIntoEmailInputOnLoginPage(String email) {
+        loginPage.enterEmailIntoInputSignUp(email);
+    }
+
+
+    @When("^User enters '(.*)' password into 'Password' input on 'Login' page$")
+    public void userEntersPasswordPasswordIntoPasswordInputOnLoginPage(String password) {
+        loginPage.enterPasswordInputSignUp(password);
+    }
+
+    @Then("^User sees error messages '(.*)'$")
+    public void userSeesErrorMessagesMessages(String errorMessages) {
+        loginPage.checkErrorMessages(errorMessages);
     }
 }
