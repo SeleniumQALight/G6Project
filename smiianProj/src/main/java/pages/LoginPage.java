@@ -51,8 +51,8 @@ public class LoginPage extends ParentPage {
 
     private static final String signUpAlertMessages = ".//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
 
-
-
+    @FindBy (xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -235,5 +235,7 @@ public class LoginPage extends ParentPage {
     }
 
 
-
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Message in Alert ", expectedText, alertInCenter.getText());
+    }
 }

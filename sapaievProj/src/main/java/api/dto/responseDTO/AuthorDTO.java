@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorDTO {
+public class  AuthorDTO {
     String username;
     String avatar;
 /*
