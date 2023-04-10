@@ -20,6 +20,9 @@ public class MyProfilePage extends ParentPage{
     @FindBy(xpath = "//div[@class='container py-md-5 container--narrow']/h2")
     private WebElement userName;
 
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -84,5 +87,9 @@ public class MyProfilePage extends ParentPage{
     public PostPage clickOnCreatedPost(String postTitle) {
         clickOnElement(String.format(titlePost, postTitle));
         return new PostPage(webDriver);
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }

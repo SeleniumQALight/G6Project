@@ -1,5 +1,6 @@
 package pages;
 
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +20,9 @@ public class MyProfilePage extends ParentPage {
     private WebElement login;
 
     private final String titlePost = ".//*[text()='%s']";
+
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -88,5 +92,9 @@ public class MyProfilePage extends ParentPage {
         List<WebElement> listOfPost = getPostsListWithTitle(postTitle);
         Assert.assertEquals("Post in on present or not unique", 1, listOfPost.size());
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }

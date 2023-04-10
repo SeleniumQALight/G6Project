@@ -1,8 +1,9 @@
 package apiTests;
 
-import api.AuthorDTO;
+import api.dto.responseDto.AuthorDTO;
 import api.EndPoints;
-import api.PostDTO;
+import api.dto.responseDto.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -24,6 +25,7 @@ public class ApiTests {  //тут не наслідуємся з BaseTest тут
     @Test
     public void getPostsByUserTest() {
         PostDTO[] responseAsDto = given() // pre-cond
+                .filter(new AllureRestAssured()) // це для респонсів алюру
                 .contentType(ContentType.JSON) //тут вказуємо хедери які нам потрібні
                 .log().all()
                 .when() //action
@@ -89,6 +91,7 @@ public class ApiTests {  //тут не наслідуємся з BaseTest тут
     public void getAllPostsByUserNegative() {
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -105,11 +108,12 @@ public class ApiTests {  //тут не наслідуємся з BaseTest тут
     }
 
     @Test
-    public void getAllPostsByUserPsth() {
+    public void getAllPostsByUserPath() {
 
         Response actualResponse =
                 given()
                         .contentType(ContentType.JSON)
+                        .filter(new AllureRestAssured())
                         .log().all()
                         .when()
                         .get(EndPoints.POST_BY_USER, USER_NAME)
@@ -139,6 +143,7 @@ public class ApiTests {  //тут не наслідуємся з BaseTest тут
     public void getAllPostsByUsersSchema() {
         given()
                 .contentType(ContentType.JSON)
+                .filter(new AllureRestAssured())
                 .log().all()
                 .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)
