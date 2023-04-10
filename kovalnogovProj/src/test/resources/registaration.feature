@@ -1,7 +1,7 @@
 Feature:  Registration
 
   @R001
-  Scenario Outline: R001 Test error messages in registration fields
+  Scenario Outline: R001 Test error messages in registration fields <Username>_<Email>_<Password>
     Given  User opens 'Login' page
     When User type '<Username>' login into 'Username' registration input on 'Login' page
     And User type '<Email>' email into 'Email' registration input on 'Login' page
