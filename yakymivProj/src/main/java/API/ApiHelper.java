@@ -1,4 +1,4 @@
-package API;
+package libs.API;
 
 
 import io.restassured.builder.RequestSpecBuilder;
@@ -6,7 +6,8 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
-import API.DTO.responseDTO.PostDTO;
+import libs.API.DTO.requestDTO.CreatePostDTO;
+import libs.API.DTO.responseDTO.PostDTO;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -67,7 +68,7 @@ public class ApiHelper {
         deletePostsTillPresent(USER_NAME, PASSWORD);
     }
 
-    private void deletePostsTillPresent(String userName, String password) {
+    public void deletePostsTillPresent(String userName, String password) {
         PostDTO[] listOfPosts = getAllPostsByUser(userName);
         String token = getToken(userName,password);
 
@@ -94,5 +95,31 @@ public class ApiHelper {
                         .extract().response().getBody().asString();
 
         Assert.assertEquals("Message " , "\"Success\"", response);
+    }
+
+    public void createPost(String userName, String password, String title) {
+        String token = getToken(userName.toLowerCase(), password);
+
+        CreatePostDTO createPostDTO = CreatePostDTO.builder()
+                .title(title)
+                .body("post body")
+                .select1("One Person")
+                .uniquePost("yes")
+                .token(token)
+                .build();
+
+        String response =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .body(createPostDTO)
+                        .when()
+                        .post(EndPoints.CREATE_POST)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().asString();
+
+        Assert.assertEquals("Message", "\"Congrats.\"", response);
     }
 }
