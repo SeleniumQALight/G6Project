@@ -33,9 +33,9 @@ public class BookstoreApiTest {
 
     @Test
     public void addBookInUserProfile() {
-        List<CollectionOfIsbnsDTO> collectionOfIsbnsDTOS = List.of(CollectionOfIsbnsDTO.builder().isbn(isbn).build());
+        List<CollectionOfIsbnsDTO> collectionOfIsbnsList = List.of(CollectionOfIsbnsDTO.builder().isbn(isbn).build());
 
-        AddBookToUserProfileDTO addBookToUserProfileDTO = AddBookToUserProfileDTO.builder().userId(userID).collectionOfIsbns(collectionOfIsbnsDTOS).build();
+        AddBookToUserProfileDTO addBookToUserProfileDTO = AddBookToUserProfileDTO.builder().userId(userID).collectionOfIsbns(collectionOfIsbnsList).build();
 
         Response addBook =
                 given()
