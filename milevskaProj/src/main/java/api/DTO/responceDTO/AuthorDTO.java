@@ -13,6 +13,4 @@ import org.junit.After;
 public class AuthorDTO {
     String username;
     String avatar;
-
-
     }

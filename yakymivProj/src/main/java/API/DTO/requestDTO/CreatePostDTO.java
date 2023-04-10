@@ -1,4 +1,4 @@
-package libs.API.DTO.requestDTO;
+package API.DTO.requestDTO;
 
 import lombok.*;
 

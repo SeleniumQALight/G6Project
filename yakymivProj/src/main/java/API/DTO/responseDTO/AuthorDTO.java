@@ -1,4 +1,4 @@
-package libs.API.DTO.responseDTO;
+package API.DTO.responseDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

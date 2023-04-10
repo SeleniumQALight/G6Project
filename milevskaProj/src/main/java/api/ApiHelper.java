@@ -1,5 +1,6 @@
 package api;
 
+import api.DTO.requestDTO.CreatePostDTO;
 import api.DTO.responceDTO.PostDTO;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -104,5 +105,30 @@ public class ApiHelper {
         Assert.assertEquals("Message " , "\"Success\"", response);
 
 
+    }
+
+    public void createPost(String username, String password, String title) {
+        String token = getToken(username.toLowerCase(), password);
+
+        CreatePostDTO createPostDTO = CreatePostDTO.builder()
+                .title(title)
+                .body("Post Body")
+                .select1("One Person")
+                .uniquePost("yes")
+                .token(token)
+                .build();
+
+        String response =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .body(createPostDTO)
+                        .when()
+                        .post(EndPoints.CREATE_POST)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().asString();
+        Assert.assertEquals("Message ", "\"Congrats.\"", response);
     }
 }
