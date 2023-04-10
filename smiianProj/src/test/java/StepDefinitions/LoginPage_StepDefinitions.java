@@ -69,8 +69,8 @@ public class LoginPage_StepDefinitions {
         loginPage.enterDataIntoPasswordField(password);
     }
 
-    @Then("^Check that login error message is visible$")
-    public void check_That_Login_Error_Message_Is_Visible() {
-        loginPage.checkUserNameInputErrorMessageIsVisible();
+    @Then("Check '(.*)' text")
+    public void check_Errors_Messages_Text(String errorsList) {
+        loginPage.checkErrorsMessages(errorsList);
     }
 }

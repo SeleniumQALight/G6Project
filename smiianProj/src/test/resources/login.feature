@@ -32,15 +32,20 @@
       When User enters not valid '<login>' into 'Login' input on 'Login' page
       And User enters not valid '<email>' into 'Email' input on 'Login' page
       And User enters not valid '<password>' into 'Password' input on 'Login' page
-      Then Check that login error message is visible
-      Then Check that error message appeared on the 'Username' input
+      Then Check '<errorsList>' text
 
-      Then Check that error message appeared on the 'Email' input
-
-      Then Check that error message do not appeared on the 'Password' input
 
       Examples:
-      | login                            | email       | password                                            | LoginErrorText                          | isNotValid | EmailErrorText                          | PasswordErrorText                        |
-      | tt                               | ttt         | 1                                                   | Username must be at least 3 characters. | Yes        | You must provide a valid email address. | Password must be at least 12 characters. |
-      | 1234567890123456789012345678901  | we@qa.team  | 123456789012345678901234567890123456789012345678901 | That username is already taken.         | Yes        | That email is already being used.       | Password cannot exceed 50 characters.    |
-      | 12345678901234567890123456789012 | we@qa.com   | 1234567890                                          | Username cannot exceed 30 characters.   | No         |                                         |                                          |
+        | login                            | email       | password                                            | errorsList                                                                                                                 |
+        | tt                               | ttt         | 1                                                   | Username must be at least 3 characters., You must provide a valid email address., Password must be at least 12 characters. |
+        | tt                               | we@qa.team  | 123456789012345678901234567890123456789012345678901 | Username must be at least 3 characters., That email is already being used.,       Password cannot exceed 50 characters.    |
+        | tt                               | val@qa.com  | validPass                                           | Username must be at least 3 characters.,                                                                                   |
+        | 1234567890123456789012345678901  | ttt         | 123456789012345678901234567890123456789012345678901 | That username is already taken.,         You must provide a valid email address., Password cannot exceed 50 characters.    |
+        | 1234567890123456789012345678901  | we@qa.team  | validPass                                           | That username is already taken.,         That email is already being used.                                                 |
+        | 1234567890123456789012345678901  | val@qa.com  | 1                                                   | That username is already taken.,                                                  Password must be at least 12 characters. |
+        | 12345678901234567890123456789012 | ttt         | validPass                                           | Username cannot exceed 30 characters.,   You must provide a valid email address.                                           |
+        | 12345678901234567890123456789012 | we@qa.team  | 1                                                   | Username cannot exceed 30 characters.,   That email is already being used.,       Password must be at least 12 characters. |
+        | 12345678901234567890123456789012 | val@qa.com  | 123456789012345678901234567890123456789012345678901 | Username cannot exceed 30 characters.,                                            Password cannot exceed 50 characters.    |
+        | testUserA                        | ttt         | 1                                                   |                                          You must provide a valid email address., Password must be at least 12 characters. |
+        | testUserA                        | we@qa.team  | 123456789012345678901234567890123456789012345678901 |                                          That email is already being used.       , Password cannot exceed 50 characters.   |
+        | testUserA                        | val@qa.com  | validPass                                           |                                                                                                                            |
