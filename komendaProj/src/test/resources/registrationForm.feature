@@ -12,4 +12,4 @@ Feature: User registrationForm
       | username | email      | password     | messages                                                                                                                 |
       | 13       | 13         | 13           | Username must be at least 3 characters.,You must provide a valid email address.,Password must be at least 12 characters. |
       | Test     | test@t.com | test         | Password must be at least 12 characters.                                                                                 |
-      | test     | test.com   | 123456qwerty | That username is already taken.,You must provide a valid email address.                                                  |
+      | test     | test.com   | 123456qwerty | This username is already taken.,You must provide a valid email address.                                                  |
