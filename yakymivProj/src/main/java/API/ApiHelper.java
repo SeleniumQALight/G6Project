@@ -1,4 +1,4 @@
-package libs.API;
+package API;
 
 
 import io.restassured.builder.RequestSpecBuilder;
@@ -6,7 +6,7 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
-import libs.API.DTO.responseDTO.PostDTO;
+import API.DTO.responseDTO.PostDTO;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;

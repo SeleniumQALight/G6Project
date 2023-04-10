@@ -33,4 +33,24 @@ public class LoginPage_StepDefinitions {
     public void user_sees_alert_message_with_text_Invalid_username_password(String expectedText) throws Throwable {
         loginPage.checkAlertInCenter(expectedText);
     }
+
+    @When("^User enters '(.*)' login into 'UserName' input on 'Login' page$")
+    public void user_enters_login_into_UserName_input_on_Login_page(String userName) throws Throwable {
+        loginPage.enterUserNameintoRegistrationForm(userName);
+    }
+
+    @When("^User enters '(.*)' email into 'Email' input on 'Login' page$")
+    public void user_enters_email_into_Email_input_on_Login_page(String email) throws Throwable {
+        loginPage.enterEmailInRegistrationForm(email);
+    }
+
+    @When("^User enters '(.*)' password into 'Password' input on 'Login' page$")
+    public void user_enters_password_into_Password_input_on_Login_page(String pass) throws Throwable {
+        loginPage.enterPasswordInRegistrationForm(pass);
+    }
+
+    @Then("^User sees error message with text '(.*)'$")
+    public void user_sees_error_message_with_text(String expectedText) throws Throwable {
+        loginPage.checkErrorMessage(expectedText);
+    }
 }
