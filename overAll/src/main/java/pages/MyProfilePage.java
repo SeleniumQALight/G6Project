@@ -16,6 +16,9 @@ public class MyProfilePage extends ParentPage{
 
     private String titlePost = ".//*[text()='%s']";
 
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -72,5 +75,9 @@ public class MyProfilePage extends ParentPage{
         Assert.assertTrue("Message delete Post is not displayed "
                 , isElementDisplayed(successDeletePostMessage));
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }
