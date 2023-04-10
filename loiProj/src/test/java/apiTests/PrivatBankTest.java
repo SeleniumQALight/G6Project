@@ -1,8 +1,8 @@
 package apiTests;
 
-import api.BPExchangeRateDTO;
+import api.dto.responseDTO.BPExchangeRateDTO;
 import api.Endpoinds;
-import api.PBExchangeDTO;
+import api.dto.responseDTO.PBExchangeDTO;
 import io.restassured.http.ContentType;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;

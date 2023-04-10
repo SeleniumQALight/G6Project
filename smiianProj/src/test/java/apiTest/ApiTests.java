@@ -1,8 +1,10 @@
 package apiTest;
 
-import api.AuthorDTO;
+import api.*;
+import api.dto.responseDto.AuthorDTO;
 import api.EndPoints;
-import api.PostDTO;
+import api.dto.responseDto.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -26,6 +28,7 @@ public class ApiTests {
     @Test
     public void getPostByUser() {
         PostDTO[] responseAsDTO = given()
+                .filter(new AllureRestAssured())            // інтегріція RestAssured з Allure репортом !!!
                 .contentType(ContentType.JSON)
                 .log().all()
              .when()
@@ -34,8 +37,7 @@ public class ApiTests {
                 .statusCode(200)                        // очікуєм відповідь
                 .log().all()
                 .extract()
-                .response().as(PostDTO[].class)
-        ;
+                .response().as(PostDTO[].class);
 
         logger.info("Number of posts = " + responseAsDTO.length);
         logger.info("Title post1 =" + responseAsDTO[0].getTitle());
@@ -80,6 +82,7 @@ public class ApiTests {
     public void getAllPostsByUser() {
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()                       // щоб вивести запит в консоль
                         .when()
@@ -97,6 +100,7 @@ public class ApiTests {
     public void getAllPostsByUsersPath() {
         Response actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -128,7 +132,9 @@ public class ApiTests {
     @Test
     public void getAllPostsByUsersSchema() {
         given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
+
                 .log().all()
                 .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)
@@ -136,7 +142,8 @@ public class ApiTests {
                 .statusCode(200)
                 .log().all()
                 .assertThat().body(matchesJsonSchemaInClasspath("response.json"));  //  перевіряємо,
-                                                                                       // чи респонс відповідає схемі з папки   main / java / resources
+        // чи респонс відповідає схемі з папки   main / java / resources (схему можна сгенерувати на відповідних сайтах
+        // типу (https://jsonformatter.org/json-to-jsonschema))
 
 
     }

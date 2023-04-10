@@ -6,6 +6,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import api.dto.responseDto.AuthorDTO;
 import api.EndPoints;
 import api.dto.responseDto.PostDTO;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import java.util.List;
@@ -22,6 +23,7 @@ public class ApiTests {
     @Test
     public void getPostsByUserTest() {
         PostDTO[] responseAsDto = given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
@@ -45,7 +47,7 @@ public class ApiTests {
                 //                new PostDTO("test2","test body2", "All Users", "no", new AuthorDTO("autoapi"),
                 //                false) ,
                 //                new PostDTO("test","test body","All Users","no", new AuthorDTO("autoapi"), false)
-                PostDTO.builder().title("test2").body("test body2").select1("All Users").uniquePost("no")
+                PostDTO.builder().title("test1").body("test body2").select1("All Users").uniquePost("no")
                         .author(AuthorDTO.builder().username("autoapi").build()).isVisitorOwner(false)
                         .build(),
                 PostDTO.builder().title("test").body("test body").select1("All Users").uniquePost("no")
@@ -80,6 +82,7 @@ public class ApiTests {
         String actualResponse =
                 given()
                         .contentType(ContentType.JSON)
+                        .filter(new AllureRestAssured())
                         .log().all()
                         .when()
                         .get(EndPoints.POST_BY_USER, "notValidUser")
@@ -100,6 +103,7 @@ public class ApiTests {
         Response actualResponse =
                 given()
                         .contentType(ContentType.JSON)
+                        .filter(new AllureRestAssured())
                         .log().all()
                         .when()
                         .get(EndPoints.POST_BY_USER, USER_NAME)
@@ -129,6 +133,7 @@ public class ApiTests {
     public void getAllPostsByUserSchema() {
         given()
                 .contentType(ContentType.JSON)
+                .filter(new AllureRestAssured())
                 .log().all()
                 .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)

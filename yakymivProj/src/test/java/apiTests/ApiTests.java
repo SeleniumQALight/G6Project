@@ -1,9 +1,10 @@
 package apiTests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
-import libs.API.AuthorDTO;
+import libs.API.DTO.responseDTO.AuthorDTO;
 import libs.API.EndPoints;
-import libs.API.PostDTO;
+import libs.API.DTO.responseDTO.PostDTO;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -24,6 +25,7 @@ public class ApiTests {
     @Test
     public void getPostsByUserTest() {
         PostDTO[] responseAsDto = given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .when()
                 .get(EndPoints.POST_BY_USER, USER_NAME)
@@ -77,6 +79,7 @@ public class ApiTests {
     public void getAllPostsByUserNegative() {
         String actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
@@ -94,16 +97,17 @@ public class ApiTests {
     public void getAllPostsByUserPath() {
         Response actualResponse =
                 given()
+                        .filter(new AllureRestAssured())
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
-                        .get(EndPoints.POST_BY_USER,USER_NAME)
+                        .get(EndPoints.POST_BY_USER, USER_NAME)
                         .then()
                         .statusCode(200)
                         .log().all()
                         .extract().response();
 
-        List<String> actualTitleList = actualResponse.jsonPath().getList("title",String.class);
+        List<String> actualTitleList = actualResponse.jsonPath().getList("title", String.class);
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < actualTitleList.size(); i++) {
             softAssertions.assertThat(actualTitleList.get(i)).as("Item number " + i).contains("test");
@@ -118,8 +122,9 @@ public class ApiTests {
     }
 
     @Test
-    public void getAllPostsByUserSchema(){
+    public void getAllPostsByUserSchema() {
         given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .log().all()
                 .when()
