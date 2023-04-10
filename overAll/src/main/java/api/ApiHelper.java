@@ -8,6 +8,7 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
+import java.util.HashMap;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -100,6 +101,28 @@ public class ApiHelper {
                         .extract().response().getBody().asString();
 
         Assert.assertEquals("Message " , "\"Success\"", response);
+
+    }
+
+
+    public void createPost(String title, String userName, String password) {
+        String token = getToken(userName.toLowerCase(), password);
+
+        HashMap<String, String> requestParams = new HashMap<>();
+        requestParams.put("title", title);
+        requestParams.put("body", "post body");
+        requestParams.put("select1", "One Person");
+        requestParams.put("uniquePost", "no");
+        requestParams.put("token", token);
+
+        given()
+                .spec(requestSpecification)
+                .body(requestParams)
+                .when()
+                .post(EndPoints.CREATE_POST)
+                .then()
+                .statusCode(200);
+
 
     }
 

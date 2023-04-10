@@ -1,14 +1,13 @@
 package StepDefinitions;
 
-import api.APIHelper;
+
+import api.ApiHelper;
 import cucumber.api.java.en.Given;
-import libs.DriverHelper;
 import libs.TestData;
-import pages.HomePage;
 
 public class Api_StepDefinitions {
     final String DEFAULT = "default";
-    private APIHelper apiHelper = new APIHelper();
+    private ApiHelper apiHelper = new ApiHelper();
 
     @Given("^Create (\\d+) new posts via API for '(.*)' user and '(.*)' password$")
     public void createNewPostsViaAPIForDefaultUserAndDefaultPassword(int numberOfPosts
