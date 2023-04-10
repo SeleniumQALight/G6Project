@@ -103,7 +103,7 @@ public class PBAPITest {
     }
 
     @Test
-    public void currencyRateNBValueCheck() {
+    public void currencyRateNBValueIsGreaterThanZero() {
         Response actualResponse =
                 given()
                         .contentType(ContentType.JSON)
