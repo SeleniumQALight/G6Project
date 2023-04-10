@@ -37,6 +37,7 @@ public class BookstoreApiTest {
 
         AddBookToUserProfileDTO addBookToUserProfileDTO = AddBookToUserProfileDTO.builder().userId(userID).collectionOfIsbns(collectionOfIsbnsList).build();
 
+
         Response addBook =
                 given()
                         .contentType(ContentType.JSON)
@@ -46,7 +47,7 @@ public class BookstoreApiTest {
                         .when()
                         .post(EndpointBookstore.books)
                         .then()
-                        .statusCode(200)
+                        .statusCode(201)
                         .log().all()
                         .extract().response();
 
