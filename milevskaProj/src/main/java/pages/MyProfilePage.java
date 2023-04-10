@@ -1,5 +1,6 @@
 package pages;
 
+import com.google.common.io.ByteSource;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -21,6 +22,9 @@ public class MyProfilePage extends ParentPage{
 
     @FindBy(xpath = "//button[@class = 'btn btn-primary']")
     private WebElement buttonSaveUpdates;
+
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsLists;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -127,5 +131,9 @@ public class MyProfilePage extends ParentPage{
             Assert.fail("Delete fail");
         }
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts " , expectedNumberOfPosts, postsLists.size());
     }
 }
