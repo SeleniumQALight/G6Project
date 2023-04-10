@@ -1,11 +1,11 @@
 package apiTests;
 
 import io.restassured.http.ContentType;
-import libs.API.ApiHelper;
-import libs.API.DTO.responseDTO.AuthorDTO;
-import libs.API.DTO.requestDTO.CreatePostDTO;
-import libs.API.EndPoints;
-import libs.API.DTO.responseDTO.PostDTO;
+import API.ApiHelper;
+import API.DTO.responseDTO.AuthorDTO;
+import API.DTO.requestDTO.CreatePostDTO;
+import API.EndPoints;
+import API.DTO.responseDTO.PostDTO;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Before;

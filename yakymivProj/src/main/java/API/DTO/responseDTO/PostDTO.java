@@ -1,4 +1,4 @@
-package libs.API.DTO.responseDTO;
+package API.DTO.responseDTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

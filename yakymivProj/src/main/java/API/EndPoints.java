@@ -1,4 +1,4 @@
-package libs.API;
+package API;
 
 
 public interface EndPoints {
