@@ -13,3 +13,11 @@ Feature:  User login
       | login        | password     |
       | wrong login  | 123456qwerty |
       | wrong login1  | 13456qwerty |
+
+  @R002
+  Scenario:  R002 Login with valid login
+    Given  User opens 'Login' page
+    When User enters 'kovatest' login into 'Login' input on 'Login' page
+    And User enters 'kovatest123456' passWord into 'PassWord' input on 'Login' page
+    And User click on 'SingIn' button on 'Login' page
+    Then User logged in

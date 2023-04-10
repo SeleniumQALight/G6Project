@@ -5,6 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
 
+import org.junit.Assert;
 import pages.LoginPage;
 import pages.elements.HeaderElements;
 
@@ -40,5 +41,11 @@ public class LoginPage_StepDefinitions {
     public void user_sees_alert_message_with_text_Invalid_username_password(String expectedError) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         loginPage.checkAlertInCentre(expectedError);
+    }
+
+    @Then("^User logged in$")
+    public void user_logged_in() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        Assert.assertTrue("Sing out button is not displayed", headerElement.isButtonSignOutDisplayed());
     }
 }
