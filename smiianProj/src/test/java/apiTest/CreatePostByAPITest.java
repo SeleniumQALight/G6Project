@@ -1,6 +1,6 @@
 package apiTest;
 
-import api.ApiHelper;
+import api.ApiHelper;       //  імпорт файла ApiHelper
 import api.EndPoints;
 import api.dto.requestDto.CreatePostDTO;
 import api.dto.responseDto.AuthorDTO;
@@ -17,7 +17,7 @@ import static io.restassured.RestAssured.given;
 
 public class CreatePostByAPITest {
 
-     ApiHelper apiHelper = new ApiHelper();
+     ApiHelper apiHelper = new ApiHelper();        // викликаємо команду з ApiHelper
      Logger logger = Logger.getLogger(getClass());
 
      @Before

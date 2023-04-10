@@ -38,6 +38,8 @@ public class LoginPage extends ParentPage {
     private static final String listOfErrorsLocator = ".//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listOfErrorsLocator)
     private List<WebElement> listOfErrors;
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -143,5 +145,9 @@ public class LoginPage extends ParentPage {
         Assert.assertTrue("Element is not dispalyed", isElementDisplayed(errorMessageForLogIn));
         Assert.assertEquals("Message is not found its match", errorMessage, errorMessageForLogIn.getText());
         return this;
+    }
+
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("There is no such message as ", expectedText, alertInCenter.getText());
     }
 }
