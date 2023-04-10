@@ -49,7 +49,7 @@ public class HomePage extends ParentPage {
 
 
     @Step
-    private HomePage checkIsRedirectHomePage() {
+    public HomePage checkIsRedirectHomePage() {
         checkUrl();
         waitChatToBeHide();
         Assert.assertTrue("Home Page is not loaded", headerElements.isButtonSignOutDisplayed());

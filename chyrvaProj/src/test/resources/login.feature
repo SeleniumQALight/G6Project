@@ -1,4 +1,4 @@
-
+@LoginTest @FullRegression
 Feature: User login
 @R001
   Scenario Outline: R001 Login with invalid login '<login>'
@@ -11,4 +11,4 @@ Feature: User login
   Examples:
   | login       | password     |
   | wrong login | 123456qwerty |
-  | wrong login1| 123456      |
+  | wrong login1| 123456       |
