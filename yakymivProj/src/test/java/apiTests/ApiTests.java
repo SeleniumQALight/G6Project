@@ -2,9 +2,9 @@ package apiTests;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
-import libs.API.DTO.responseDTO.AuthorDTO;
-import libs.API.EndPoints;
-import libs.API.DTO.responseDTO.PostDTO;
+import API.DTO.responseDTO.AuthorDTO;
+import API.EndPoints;
+import API.DTO.responseDTO.PostDTO;
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
