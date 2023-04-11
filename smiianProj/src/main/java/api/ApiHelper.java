@@ -1,5 +1,6 @@
 package api;
 
+import api.dto.requestDto.CreatePostDTO;
 import api.dto.responseDto.PostDTO;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -41,10 +42,10 @@ public class ApiHelper {
 //                        .contentType(ContentType.JSON)
 //                        .log().all()
                         .spec(requestSpecification)   //
-                        .body(requestParams.toMap())
-                        .when()
+                        .body(requestParams.toMap())  //    додає  JSONObject requestParams
+                     .when()
                         .post(EndPoints.LOGIN)
-                        .then()
+                     .then()
                         .statusCode(200)
                         .log().all()
                         .extract().response().getBody();
@@ -58,7 +59,7 @@ public class ApiHelper {
     private PostDTO[] getAllPostsByUser(String userName) {
         return given()
                 .spec(requestSpecification)
-                .when()
+             .when()
                 .get(EndPoints.POST_BY_USER, userName)
              .then()
                 .statusCode(200)
@@ -72,7 +73,7 @@ public class ApiHelper {
         deletePostsTillPresent(USER_NAME, PASSWORD);
     }
 
-    private void deletePostsTillPresent(String userName, String password) {
+    public void deletePostsTillPresent(String userName, String password) {
         PostDTO[] listOfPosts = getAllPostsByUser(userName);
         String token = getToken(userName, password);
 
@@ -95,10 +96,36 @@ public class ApiHelper {
                         .body(bodyParams.toMap())
                      .when()
                         .delete(EndPoints.DELETE_POST, id)
-                        .then()
+                     .then()
                         .statusCode(200)
                         .log().all()
                         .extract().response().getBody().asString();
         Assert.assertEquals("Message " , "\"Success\"", response);
+    }
+
+    public void createPost(String userName, String password, String title) {
+        String token = getToken(userName.toLowerCase(), password);
+
+        CreatePostDTO createPostDTO = CreatePostDTO.builder()  // код створення поста (скопійовано з CreatePostByAPITest)
+                .title(title)
+                .body("Post Body")
+                .select1("One Person")
+                .uniquePost("yes")
+                .token(token)
+                .build();
+
+        String response =     //
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .body(createPostDTO)
+                     .when()
+                        .post(EndPoints.CREATE_POST)
+                     .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().asString();
+
+        Assert.assertEquals("Message " , "\"Congrats.\"", response);
     }
 }

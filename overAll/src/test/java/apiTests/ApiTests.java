@@ -3,9 +3,9 @@ package apiTests;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-import api.AuthorDTO;
+import api.dto.responseDto.AuthorDTO;
 import api.EndPoints;
-import api.PostDTO;
+import api.dto.responseDto.PostDTO;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -47,7 +47,7 @@ public class ApiTests {
                 //                new PostDTO("test2","test body2", "All Users", "no", new AuthorDTO("autoapi"),
                 //                false) ,
                 //                new PostDTO("test","test body","All Users","no", new AuthorDTO("autoapi"), false)
-                PostDTO.builder().title("test1").body("test body2").select1("All Users").uniquePost("no")
+                PostDTO.builder().title("test2").body("test body2").select1("All Users").uniquePost("no")
                         .author(AuthorDTO.builder().username("autoapi").build()).isVisitorOwner(false)
                         .build(),
                 PostDTO.builder().title("test").body("test body").select1("All Users").uniquePost("no")

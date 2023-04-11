@@ -1,5 +1,6 @@
 package pages;
 
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,8 @@ public class MyProfilePage extends ParentPage{
     private String titlePost = ".//*[text()='%s']";
     @FindBy (xpath = ".//*[text()='Post successfully deleted']") private WebElement successDeletePostMessage;
 
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -77,5 +80,9 @@ public class MyProfilePage extends ParentPage{
     public PostPage openPostWithTitle(String postTitle) {
         clickElement(String.format(titlePost,postTitle));
         return new PostPage(webDriver);
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts", expectedNumberOfPosts, postsList.size());
     }
 }
