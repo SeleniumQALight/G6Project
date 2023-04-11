@@ -155,7 +155,7 @@ public class PBAPITest {
             Map<String, Float> rate = saleRate.get(i);
             if(rate.containsKey("saleRate")){
                 Float saleRateValue = rate.get("saleRate");
-                softAssertions.assertThat(saleRateValue).as("Item # "+i).isGreaterThan(0);
+                softAssertions.assertThat(saleRateValue).as("Item # "+i).isGreaterThan(2);
             }
         }
 
