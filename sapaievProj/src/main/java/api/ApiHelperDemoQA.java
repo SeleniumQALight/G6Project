@@ -9,23 +9,21 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
+import org.junit.Assert;
 
 import static io.restassured.RestAssured.given;
 
 public class ApiHelperDemoQA {
 
 
+    private final String USER_NAME_FOR_LOGIN = "Test2107";
+    private final String PASSWORD_FOR_LOGIN = "Test2107@";
 
+    private Logger logger = Logger.getLogger(getClass());
 
-    private final String USER_NAME_FOR_LOGIN="Test2107";
-    private final String PASSWORD_FOR_LOGIN ="Test2107@";
-
-    private Logger logger=Logger.getLogger(getClass());
-
-    RequestSpecification requestSpecification=new RequestSpecBuilder()
+    RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL).build();
-
 
 
     public String getToken() {
@@ -35,11 +33,11 @@ public class ApiHelperDemoQA {
 
     public String getToken(String userName, String password) {
 
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("userName",USER_NAME_FOR_LOGIN);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("userName", USER_NAME_FOR_LOGIN);
         jsonObject.put("password", PASSWORD_FOR_LOGIN);
 
-        String userDTOresponse=
+        String userDTOresponse =
                 given().contentType(ContentType.JSON)
                         .log()
                         .all()
@@ -49,9 +47,9 @@ public class ApiHelperDemoQA {
                         .statusCode(200)
                         .log().all()
                         .extract().response().getBody().jsonPath().get("token");
-                ;
+        ;
 
-        return  userDTOresponse;
+        return userDTOresponse;
     }
 
 
@@ -62,11 +60,11 @@ public class ApiHelperDemoQA {
 
     public String getUserId(String userName, String password) {
 
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("userName",USER_NAME_FOR_LOGIN);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("userName", USER_NAME_FOR_LOGIN);
         jsonObject.put("password", PASSWORD_FOR_LOGIN);
 
-        String userDTOresponse=
+        String userDTOresponse =
                 given().contentType(ContentType.JSON)
                         .log()
                         .all()
@@ -77,11 +75,11 @@ public class ApiHelperDemoQA {
                         .log().all()
                         .extract().response().getBody().jsonPath().get("userId");
         ;
-        return  userDTOresponse;
+        return userDTOresponse;
     }
 
 
-    public String getIsbnofBooksList(int numberOfBook){
+    public String getIsbnofBooksList(int numberOfBook) {
         BooksDTO books =
                 given().contentType(ContentType.JSON)
                         .log()
@@ -92,19 +90,17 @@ public class ApiHelperDemoQA {
                         .log().all()
                         .extract().response().getBody().as(BooksDTO.class);
 
-        BookDTO[] listOfbook=books.getBooks();
-       if(numberOfBook<listOfbook.length+1) {
-           return listOfbook[numberOfBook-1].getIsbn();
-       }else {
-           logger.info("You selected incorrect number of book");
-           return "You selected incorrect number of book";
-       }
+        BookDTO[] listOfbook = books.getBooks();
+//       if(numberOfBook<listOfbook.length+1 && listOfbook.length>0) {
+//           return listOfbook[numberOfBook-1].getIsbn();
+//       }else {
+//           logger.info("You selected incorrect number of book");
+//           return "You selected incorrect number of book";
+//       }
+
+        Assert.assertTrue("You selected incorrect number of book",numberOfBook < listOfbook.length + 1 && listOfbook.length > 0);
+            return listOfbook[numberOfBook - 1].getIsbn();
     }
-
-
-
-
-
 
 
 }
