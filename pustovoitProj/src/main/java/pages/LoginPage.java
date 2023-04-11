@@ -41,6 +41,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = ".//*[@class = 'alert alert-danger text-center']")
     private WebElement errorMessageForInvalidLogIn;
 
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -158,5 +161,9 @@ public class LoginPage extends ParentPage {
         Assert.assertTrue("Message is not displayed", isElementDisplayed(errorMessageForInvalidLogIn));
         Assert.assertEquals("Message is not found with this text" + expectedMessage, expectedMessage, errorMessageForInvalidLogIn.getText());
         return this;
+    }
+
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Message in Alert", expectedText, alertInCenter.getText());
     }
 }
