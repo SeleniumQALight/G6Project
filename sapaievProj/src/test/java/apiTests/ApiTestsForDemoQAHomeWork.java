@@ -48,7 +48,7 @@ public class ApiTestsForDemoQAHomeWork {
         logger.info(userDTOresponse.getToken());
         logger.info("-----------------------------------------");
         String token = apiHelper.getToken();
-        String id = apiHelper.getId();
+        String id = apiHelper.getUserId();
         logger.info(token);
     }
 
@@ -59,7 +59,7 @@ public class ApiTestsForDemoQAHomeWork {
                 .log()
                 .all()
                 .auth().oauth2(apiHelper.getToken())
-                .when().delete(EndpointsHomeWorkDemoQA.DELETE_BOOKS, apiHelper.getId())
+                .when().delete(EndpointsHomeWorkDemoQA.DELETE_BOOKS, apiHelper.getUserId())
                 .then()
                 .statusCode(204)
                 .log().all();
@@ -78,7 +78,7 @@ public class ApiTestsForDemoQAHomeWork {
 
         AdditionalBookDTO additionalBookDTO=
                 AdditionalBookDTO.builder()
-                .userId(apiHelper.getId())
+                .userId(apiHelper.getUserId())
                 .collectionOfIsbns(listOfISBN)
                 .build();
 

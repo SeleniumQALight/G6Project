@@ -55,12 +55,12 @@ public class ApiHelperDemoQA {
     }
 
 
-    public String getId() {
+    public String getUserId() {
 
-        return getId(USER_NAME_FOR_LOGIN, PASSWORD_FOR_LOGIN);
+        return getUserId(USER_NAME_FOR_LOGIN, PASSWORD_FOR_LOGIN);
     }
 
-    public String getId(String userName, String password) {
+    public String getUserId(String userName, String password) {
 
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("userName",USER_NAME_FOR_LOGIN);
