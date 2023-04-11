@@ -16,8 +16,6 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class ApiTestsForDemoQAHomeWork {
-    private final String USER_NAME = "kamal_testtt";
-    private final String PASSWORD = "E%qwrwrwetger45656445";
 
 
     private final String USER_NAME_FOR_LOGIN = "Test2107";
@@ -89,7 +87,7 @@ public class ApiTestsForDemoQAHomeWork {
                 .all()
                 .auth().oauth2(apiHelper.getToken())
                 .body(additionalBookDTO)
-                .when().post(EndpointsHomeWorkDemoQA.ADD_BOOK_TO_USER)
+                .when().post(EndpointsHomeWorkDemoQA.LIST_OF_BOOKS)
                 .then()
                 .statusCode(201)
                 .log().all();

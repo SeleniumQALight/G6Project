@@ -86,7 +86,7 @@ public class ApiHelperDemoQA {
                 given().contentType(ContentType.JSON)
                         .log()
                         .all()
-                        .when().get(EndpointsHomeWorkDemoQA.GET_LIST_OF_BOOKS)
+                        .when().get(EndpointsHomeWorkDemoQA.LIST_OF_BOOKS)
                         .then()
                         .statusCode(200)
                         .log().all()

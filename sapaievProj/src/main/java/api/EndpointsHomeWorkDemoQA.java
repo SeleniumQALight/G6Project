@@ -12,11 +12,11 @@ public interface EndpointsHomeWorkDemoQA {
     String DELETE_BOOKS=baseUrl+"/BookStore/v1/Books?UserId={0}";
 
 
-    String GET_LIST_OF_BOOKS=baseUrl+"/BookStore/v1/Books";
+    String LIST_OF_BOOKS=baseUrl+"/BookStore/v1/Books";
 
 
 
-    String ADD_BOOK_TO_USER=baseUrl+"/BookStore/v1/Books";
+
 
 
 
