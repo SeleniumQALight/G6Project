@@ -13,12 +13,12 @@ public class LoginPage_StepDefinitions {
     public void user_opens_Login_page() throws Throwable {
         loginPage.openLoginPage();
     }
-    @When("^User enters '.*' login into 'Login' input on 'Login' page$")
+    @When("^User enters '(.*)' login into 'Login' input on 'Login' page$")
     public void user_enters_wrong_login_login_into_Login_input_on_Login_page(String userName) throws Throwable {
         loginPage.enterUserNameIntoInputLogin(userName);
     }
 
-    @When("^User enters '.*' passWord into 'PassWord' input on 'Login' page$")
+    @When("^User enters '(.*)' passWord into 'PassWord' input on 'Login' page$")
     public void user_enters_qwerty_passWord_into_PassWord_input_on_Login_page(String password) throws Throwable {
         loginPage.enterPasswordIntoInputPassword(password);
     }
