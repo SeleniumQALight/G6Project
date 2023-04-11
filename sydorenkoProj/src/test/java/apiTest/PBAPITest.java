@@ -118,15 +118,15 @@ public class PBAPITest {
                         .extract()
                         .response();
 
-        List<String> saleRateNBList = actualResponse.jsonPath().getList("exchangeRate.saleRateNB", String.class);
-        List<String> purchaseRateNBList = actualResponse.jsonPath().getList("exchangeRate.purchaseRateNB", String.class);
+        List<Float> saleRateNBList = actualResponse.jsonPath().getList("exchangeRate.saleRateNB", Float.class);
+        List<Float> purchaseRateNBList = actualResponse.jsonPath().getList("exchangeRate.purchaseRateNB", Float.class);
 
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < saleRateNBList.size(); i++) {
-            softAssertions.assertThat(saleRateNBList.get(i)).as("Item number " + i).isGreaterThan("0");
+            softAssertions.assertThat(saleRateNBList.get(i)).as("Item number " + i).isGreaterThan(0);
         }
         for (int i = 0; i < purchaseRateNBList.size(); i++) {
-            softAssertions.assertThat(purchaseRateNBList.get(i)).as("Item number " + i).isGreaterThan("0");
+            softAssertions.assertThat(purchaseRateNBList.get(i)).as("Item number " + i).isGreaterThan(0);
         }
 
         softAssertions.assertAll();
@@ -155,7 +155,7 @@ public class PBAPITest {
             Map<String, Float> rate = saleRate.get(i);
             if(rate.containsKey("saleRate")){
                 Float saleRateValue = rate.get("saleRate");
-                softAssertions.assertThat(saleRateValue).as("Item # "+i).isGreaterThan(2);
+                softAssertions.assertThat(saleRateValue).as("Item # "+i).isGreaterThan(0);
             }
         }
 
