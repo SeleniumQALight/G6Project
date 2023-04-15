@@ -1,16 +1,14 @@
-@R001
+ Feature: Get currency exchange rate by ID
 
-  Feature: Get currency exchange rate by ID
-
-    Scenario Outline: Get currency exchange rate by '<id>' for '<currency>'/UAH
-      Given Get '<currency>' currency exchange rate by '<id>'
+   @R001
+    Scenario Outline: Get currency exchange rate for '<currency>'/UAH
+      Given Get '<currency>' currency exchange rate
       When User goes to 'PrivatBank Home page'
+      And Get '<currency>' currency exchange rate from UI
       Then compare '<currency>' exchange rate from UI and API
 
 
-
-
       Examples:
-      |  id  | currency |
-      |  5   |  USD     |
-      |  5   |  EUR     |
+        | currency |
+        |  USD     |
+        |  EUR     |
