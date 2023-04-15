@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -35,5 +36,23 @@ public class LoginPage_StepDefinitions {
     }
 
 
+    @When("^User enters '(.*)' login into 'Username' input on 'Login' page$")
+    public void userEntersUsernameLoginIntoUsernameInputOnLoginPage(String username) {
+        loginPage.enterUserNameIntoInputSignUp(username);
+    }
 
+    @And("^User enters '(.*)' email into 'Email' input on 'Login' page$")
+    public void userEntersEmailPassWordIntoEmailInputOnLoginPage(String email) {
+        loginPage.enterEmailIntoInputSignUp(email);
+    }
+
+    @And("^User enters '(.*)' password into 'Password' input on 'Login' page$")
+    public void userEntersPasswordPassWordIntoPasswordInputOnLoginPage(String password) {
+        loginPage.enterPasswordIntoInputSignUp(password);
+    }
+
+    @Then("^User sees alert '(.*)'$")
+    public void userSeesAlertMessages(String messages) {
+        loginPage.checkErrorsMessages(messages);
+    }
 }
