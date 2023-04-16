@@ -1,21 +1,40 @@
 package apiTest;
 
-import api.dto.responseDto.AuthorDTO;
-import api.EndPoints;
-import api.dto.responseDto.PostDTO;
-import io.qameta.allure.restassured.AllureRestAssured;
+import api.EndPointsProj;
+import api.dto.responseDto.CurrencyRespPrivatDTO;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import org.apache.log4j.Logger;
-import org.assertj.core.api.SoftAssertions;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 
 public class ApiProject {
+
+    @Test
+    public void getCurrencyValueFromPrivat(String currencyName) {
+
+        CurrencyRespPrivatDTO[] currencyRestPrivatDTO =
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .queryParams("coursid",5)
+                .queryParams("exchange", "")
+             .when()
+                .get(EndPointsProj.GET_USER)
+             .then()
+                .statusCode(200)
+                .log().all()
+                .extract()
+                .response().as(CurrencyRespPrivatDTO[].class);
+
+//        String ccyEur = currencyRestPrivatDTO[0].getCcy();
+
+        for (int i = 0; i < currencyRestPrivatDTO.length; i++) {
+            if (currencyRestPrivatDTO[i].getCcy().equals(currencyName)) {
+// якщо equals, то зберегти в testData
+            }
+        }
+    }
 }

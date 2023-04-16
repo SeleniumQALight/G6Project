@@ -8,10 +8,17 @@
     @R007
 #      @BeforeDeletingAllPostsForDefaultUser
 #      @AfterDeletingAllPostsForDefaultUser
-   Scenario: R007 Project task
-      Given User sends a request to PrivatBank to receive the exchange rate
-      When User
-      And User
-      Then User
+   Scenario Outline: R007 Project task
+      Given User sends a request to PrivatBank to receive and seve the exchange rate for '<currency>'
+      When User opened Ui of Privat Bank to receive and seve the exchange rate for '<currency>'
+      Then User compare saved strings
+
+
+      Examples:
+        | currency  |
+        | EUR       |
+        | USD       |
+
+
 
 
