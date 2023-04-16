@@ -68,7 +68,6 @@ public class ApiHelperBook {
     public GetUsersBooksRespHwTwoDTO getAllBooks(String token) {
         GetUsersBooksRespHwTwoDTO respGetAllBooksDTO =
                 given()
-
                         .spec(requestSpecification)
                         .auth().oauth2(token)
                      .when()
@@ -87,7 +86,7 @@ public class ApiHelperBook {
         listOfUsersBooks.add(IsbnReqHwTwoDemoqaDTO.builder().isbn(isbn).build());
 
 
-        AddBookReqHwTwoDemoqaDTO addBookDTO = AddBookReqHwTwoDemoqaDTO.builder()
+        AddBookReqHwTwoDemoqaDTO addBookDTO = AddBookReqHwTwoDemoqaDTO.builder() // створюємо DTO-шку для body
                 .userId(userId)
                 .collectionOfIsbns(listOfUsersBooks)
                 .build();
