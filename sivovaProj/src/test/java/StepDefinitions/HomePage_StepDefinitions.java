@@ -12,6 +12,12 @@ public class HomePage_StepDefinitions {
     HomePage homePage = new HomePage(DriverHelper.getWebdriver());
 
 
+<<<<<<<<< Temporary merge branch 1
+    @Then("^User sees 'Signout' button$")
+    public void userSeesSignoutButton() {
+        homePage.checkIsRedirectToHomePage().getHeaderElement().isButtonSignOutDisplayed();
+
+=========
     @Given("^User opens 'Home' page$")
     public void userOpensHomePage() {
         homePage.openHomePage();
@@ -20,5 +26,6 @@ public class HomePage_StepDefinitions {
     @When("^User clicks on 'MyProfile' button on 'Home' page$")
     public void userClicksOnMyProfileButtonOnHomePage() {
         homePage.getHeaderElement().clickMyProfileButton("testuser");
+>>>>>>>>> Temporary merge branch 2
     }
 }
