@@ -9,10 +9,14 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class APIHelperPrivat {
+    private static final int courseID = 5;
 
     public List<CurrencyRatePrivatDTO> getCurrencyExchangeRates() {
         Response response = given()
                 .contentType(ContentType.JSON)
+                .queryParam("json")
+                .queryParam("exchange")
+                .queryParam("coursid", courseID)
                 .log().all()
                 .when()
                 .get(EndPointsPrivat.EXCHANGE_RATES)
