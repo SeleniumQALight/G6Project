@@ -23,17 +23,7 @@ public class AddBookToUserProfileAPITest {
 
     @Before
     public void deleteAllBookFromStore() {
-        given()
-                .auth().oauth2(token)
-                .contentType(ContentType.JSON)
-                .queryParam("UserId", userId)
-                .log().all()
-                .when()
-                .delete(EndPoints.BOOK_STORE)
-                .then()
-                .statusCode(204)
-                .log().all()
-                .extract().statusCode();
+        apiHelperBookStore.deleteAllBooksOnUserWithToken(token, userId);
     }
 
     @Test

@@ -4,7 +4,6 @@ import api.dto.bookStore.BooksDTO;
 import api.dto.bookStore.LoginBooksDTO;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -14,7 +13,6 @@ import static io.restassured.RestAssured.given;
 public class ApiHelperBookStore {
     public static final String USER_NAME = "Eugen";
     public static final String PASSWORD = "Qwer123!";
-    Logger logger = Logger.getLogger(getClass());
 
     public String getToken() {
         return getLoginResponse(USER_NAME, PASSWORD).getToken();
@@ -39,6 +37,20 @@ public class ApiHelperBookStore {
                 .statusCode(200)
                 .log().all()
                 .extract().response().getBody().as(LoginBooksDTO.class);
+    }
+
+    public void deleteAllBooksOnUserWithToken(String token, String userId) {
+        given()
+                .auth().oauth2(token)
+                .contentType(ContentType.JSON)
+                .queryParam("UserId", userId)
+                .log().all()
+                .when()
+                .delete(EndPoints.BOOK_STORE)
+                .then()
+                .statusCode(204)
+                .log().all()
+                .extract().statusCode();
     }
 
     public List<BooksDTO> getActualUserBooks(String token, String userId) {
