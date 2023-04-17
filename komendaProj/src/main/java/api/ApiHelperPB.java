@@ -9,13 +9,17 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class ApiHelperPB {
+    private static final int COURSE_ID = 5;
     public List<CurrencyPBdto> getCurrencyExchange() {
         Response response =
                 given()
                         .contentType(ContentType.JSON)
+                        .queryParam("json")
+                        .queryParam("exchange")
+                        .queryParam("coursid", COURSE_ID)
                         .log().all()
                         .when()
-                        .get(EndPoints.CURRENCY_EXCHANGE)
+                        .get(EndPointsPB.CURRENCY_EXCHANGE)
                         .then()
                         .statusCode(200)
                         .log().all()
