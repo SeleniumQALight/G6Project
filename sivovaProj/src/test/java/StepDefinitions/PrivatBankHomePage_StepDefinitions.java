@@ -16,17 +16,17 @@ public class PrivatBankHomePage_StepDefinitions {
         privatBankHomePage.openPrivatBankHomePage();
     }
 
-    @And("^Get '(.*)' currency exchange rate from UI$")
+    @When("^Get '(.*)' currency exchange rate from UI$")
     public void getCurrencyExchangeRateFromUI(String currency) {
         privatBankHomePage.getCurrencyExchangeFromUI(currency);
     }
 
     @Then("^compare '(.*)' exchange rate from UI and API$")
     public void compareCurrencyExchangeRateFromUIAndAPI(String currency) {
-        Double d = Double.parseDouble(TestData.UI_BUY);
-        Assert.assertEquals("Currencies for " + currency + " do not match", TestData.API_BUY, d);
-        d = Double.parseDouble(TestData.UI_SELL);
-        Assert.assertEquals("Currencies for " + currency + " do not match", TestData.API_SELL, d);
+        Double exchangeRateUIBuy = Double.parseDouble(TestData.ui_buy);
+        Assert.assertEquals("Currencies for " + currency + " do not match", TestData.api_buy, exchangeRateUIBuy);
+        Double  exchangeRateUISell = Double.parseDouble(TestData.ui_sell);
+        Assert.assertEquals("Currencies for " + currency + " do not match", TestData.api_sell, exchangeRateUISell);
 
     }
 }

@@ -1,7 +1,7 @@
- Feature: Get currency exchange rate by ID
+ Feature: Check exchange rate for PB from API and UI
 
-   @R001
-    Scenario Outline: Get currency exchange rate for '<currency>'/UAH
+   @Privat_001
+    Scenario Outline: Check exchange rate for PB from API and UI - for '<currency>'/UAH
       Given Get '<currency>' currency exchange rate
       When User goes to 'PrivatBank Home page'
       And Get '<currency>' currency exchange rate from UI

@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class PrivatBankHomePage {
@@ -18,14 +17,6 @@ public class PrivatBankHomePage {
     private String getCurrencyUI_Buy = ".//div[@data-cource_type = 'posts_course' ]//td[@id='%s_buy']";
     private String getCurrencyUI_Sell = ".//div[@data-cource_type = 'posts_course' ]//td[@id='%s_sell']";
 
-//    @FindBy (xpath = ".//div[@data-cource_type = 'posts_course' ]//td[text()='%s']")
-//    private WebElement currencyUI;
-
-//    @FindBy (xpath = ".//div[@data-cource_type = 'posts_course' ]//td[@id='%s_buy']")
-//    private WebElement getCurrencyUI_Buy;
-//
-//    @FindBy (xpath = ".//div[@data-cource_type = 'posts_course' ]//td[@id='%s_sell']")
-//    private WebElement getCurrencyUI_Sell;
 
     public PrivatBankHomePage(WebDriver webdriver) {
             this.webDriver=webdriver;
@@ -47,11 +38,15 @@ public class PrivatBankHomePage {
         }
     }
 
+    public WebElement getByCurrencyElement(String xpath, String currency) {
+        return webDriver.findElement(By.xpath(String.format(xpath,currency)));
+
+    }
     public void getCurrencyExchangeFromUI(String currency) {
         try {
-            if (webDriver.findElement(By.xpath(String.format(currencyUI,currency))).isDisplayed()) {
-                 TestData.UI_BUY = webDriver.findElement(By.xpath(String.format(getCurrencyUI_Buy, currency))).getText();
-                 TestData.UI_SELL = webDriver.findElement(By.xpath(String.format(getCurrencyUI_Sell, currency))).getText();
+            if ((getByCurrencyElement(currencyUI, currency)).isDisplayed()) {
+                 TestData.ui_buy = getByCurrencyElement(getCurrencyUI_Buy, currency).getText();
+                 TestData.ui_sell = getByCurrencyElement(getCurrencyUI_Sell, currency).getText();
             }
 
         } catch (Exception e) {
