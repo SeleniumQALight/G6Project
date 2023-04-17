@@ -1,12 +1,11 @@
 package apiTest;
 
 import api.ApiHelperBookStore;
-import api.EndPoints;
-import api.dto.bookStore.AddBooksDTO;
-import api.dto.bookStore.IsbnBooksDTO;
-import api.dto.bookStore.ListBooksDto;
+import api.EndPointsBookShop;
+import api.dto.bookStore.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,29 +14,29 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class AddBookToUserProfileAPITest {
     ApiHelperBookStore apiHelperBookStore = new ApiHelperBookStore();
-    String token = apiHelperBookStore.getToken();
-    String userId = apiHelperBookStore.getUserID();
+    String token;
+    String userId;
+    Logger logger = Logger.getLogger(getClass());
+
 
     @Before
     public void deleteAllBookFromStore() {
+        LoginBooksDTO loginBooksDTO = apiHelperBookStore.getLoginResponse();
+        token = loginBooksDTO.getToken();
+        userId = loginBooksDTO.getUserId();
         apiHelperBookStore.deleteAllBooksOnUserWithToken(token, userId);
     }
 
     @Test
     public void checkAttachedBooks() {
-        ListBooksDto listOfAllBooks =
-                given()
-                        .contentType(ContentType.JSON)
-                        .log().all()
-                        .when()
-                        .get(EndPoints.BOOK_STORE)
-                        .then()
-                        .statusCode(200)
-                        .log().all()
-                        .extract().response().as(ListBooksDto.class);
+
+        assertTrue("The number of books is incorrect ", apiHelperBookStore.getActualUserBooks(userId, token).isEmpty());
+
+        ListBooksDto listOfAllBooks = apiHelperBookStore.getListOfAllBooks();
 
         String firstIsbn = listOfAllBooks.getBooks().get(0).getIsbn();
 
@@ -46,7 +45,7 @@ public class AddBookToUserProfileAPITest {
 
         AddBooksDTO addOneBook = AddBooksDTO.builder()
                 .userId(userId)
-                .collectionOfIsbn(collectionIsbn)
+                .collectionOfIsbns(collectionIsbn)
                 .build();
 
         Response response =
@@ -56,7 +55,7 @@ public class AddBookToUserProfileAPITest {
                         .log().all()
                         .body(addOneBook)
                         .when()
-                        .post(EndPoints.BOOK_STORE)
+                        .post(EndPointsBookShop.BOOK_STORE)
                         .then()
                         .statusCode(201)
                         .log().all()
@@ -66,5 +65,10 @@ public class AddBookToUserProfileAPITest {
 
         assertEquals("The number of books is incorrect ", 1, addedBook.size());
         assertEquals("Number isbn is incorrect ", firstIsbn, addedBook.get(0).getIsbn());
+
+        List<BooksDTO> listOfAllBooksAfter = apiHelperBookStore.getActualUserBooks(userId, token);
+
+        assertEquals("The number of books is incorrect ", 1, listOfAllBooksAfter.size());
+        assertEquals("Number isbn is incorrect ", firstIsbn, listOfAllBooksAfter.get(0).getIsbn());
     }
 }
