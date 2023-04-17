@@ -1,13 +1,12 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.checkerframework.checker.nullness.qual.EnsuresNonNullIf;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.elements.HeaderElement;
+
 
 import java.util.List;
 
@@ -24,6 +23,8 @@ public class MyProfilePage extends ParentPage {
 
 
     private String titlePost = ".//*[text()='%s']";
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
 //    public HeaderElement getHeaderElement() {
 //        return headerElement;
@@ -134,5 +135,9 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage checkUserIsDisplayedOnMyProfilePage(String expectUserName) {
         Assert.assertEquals("qaauto", expectUserName,myProfilePageUserName.getText());
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts,postsList.size());
     }
 }

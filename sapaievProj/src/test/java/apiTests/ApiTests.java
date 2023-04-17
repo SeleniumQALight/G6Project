@@ -39,14 +39,16 @@ public class ApiTests {
         logger.info("Title post1 = " + responseAsDTO[0].getTitle());
         logger.info("Username post1 = " + responseAsDTO[0].getAuthor().getUsername());
 
+        //получаем юзернейм в каждом посте
         for (int i = 0; i < responseAsDTO.length; i++) {
             Assert.assertEquals("Username is not matched" + i, USER_NAME, responseAsDTO[i].getAuthor().getUsername());
         }
 
         PostDTO[] expectedResult = {
+                //2 урок
                 //    new PostDTO("test2","test body2", "All Users", "no", new AuthorDTO("autoapi"), false) ,
                 //    new PostDTO("test","test body","All Users","no", new AuthorDTO("autoapi"), false)
-                //Пишем новый код с помощью lombok (аналогия закомментированного кода)
+                //3 урок. Пишем новый код с помощью lombok (аналогия закомментированного кода)
                 PostDTO.builder()
                         .title("test2").body("test body2").select1("All Users").uniquePost("no")
                         .author(AuthorDTO.builder().username("autoapi").build())
@@ -66,6 +68,7 @@ public class ApiTests {
 
         SoftAssertions softAssertions = new SoftAssertions();
 
+        //2 урок
        /*for (int i=0; i<expectedResult.length; i++){
             softAssertions.assertThat(responseAsDTO[i]).isEqualToIgnoringGivenFields(expectedResult[i],"id",
                     "createdDate", "author");
@@ -74,7 +77,7 @@ public class ApiTests {
         }*/
 
 
-        //аналогия закомментированного кода
+        //3 урок. аналогия закомментированного кода
         softAssertions.assertThat(responseAsDTO)
                 .usingRecursiveComparison()
                 .ignoringFields("id", "createdDate", "isVisitorOwner", "author.avatar")
@@ -121,11 +124,11 @@ public class ApiTests {
                         .log().all()
                         .extract().response();
 
-        List<String> actualTitleList=actualResponse.jsonPath().getList("title",String.class);
+        List<String> actualTitleList=actualResponse.jsonPath().getList("title",String.class);// title-это поле.
 
         SoftAssertions softAssertions=new SoftAssertions();
         for (int i=0; i<actualTitleList.size(); i++){
-            softAssertions.assertThat(actualTitleList.get(i)).as("Iten number "+i).contains("test");
+            softAssertions.assertThat(actualTitleList.get(i)).as("Iten number "+i).contains("test"); //  Проверка, что title содежит "test"
         }
 
 
@@ -143,7 +146,7 @@ public class ApiTests {
 
 
     @Test
-    public void getAllPostsByUserSchema(){
+    public void getAllPostsByUserSchema(){  //проверка полей и соответствие их типов данных
         given()
                 .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
@@ -152,7 +155,9 @@ public class ApiTests {
                 .get(Endpoints.POST_BY_USER, USER_NAME)
                 .then()
                 .statusCode(200)
-                .log().all().body(matchesJsonSchemaInClasspath("response.json"))
+                .log().all()
+                .assertThat()
+                .body(matchesJsonSchemaInClasspath("response.json"))
                 ;
 
     }

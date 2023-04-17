@@ -20,6 +20,9 @@ public class MyProfilePage extends ParentPage {
 
     private String titlePost = ".//*[text()='%s']";
 
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -88,5 +91,9 @@ public class MyProfilePage extends ParentPage {
         Assert.assertEquals("Post is not one", 1, getPostsListWithTitle(newPostTitle).size());
         logger.info("Post was created");
         return this;
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }

@@ -1,5 +1,6 @@
 package api.helpers;
 
+import api.dto.requestDTO.CreatePostDTO;
 import api.Endpoinds;
 import api.dto.responseDTO.PostDTO;
 import io.restassured.builder.RequestSpecBuilder;
@@ -25,7 +26,6 @@ public class ApiHelper {
 
     /**
      * Get Token for default user
-     *
      * @return
      */
     public String getToken() {
@@ -70,7 +70,7 @@ public class ApiHelper {
         deletePostsTillPresent(USER_NAME, PASSWORD);
     }
 
-    private void deletePostsTillPresent(String userName, String password) {
+    public void deletePostsTillPresent(String userName, String password) {
         PostDTO[] listOfPosts = getAllPostsByUser(userName);
         String token = getToken(userName, password);
 
@@ -100,5 +100,31 @@ public class ApiHelper {
                         .extract().response().getBody().asString();
 
         Assert.assertEquals("Message ", "\"Success\"", response);
+    }
+
+    public void createPost(String userName, String password, String title) {
+        String token = getToken(userName.toLowerCase(), password);
+
+        CreatePostDTO createPostDTO = CreatePostDTO.builder()
+                .title(title)
+                .body("Post body API")
+                .select1("One Person")
+                .uniquePost("yes")
+                .token(token)
+                .build();
+
+        String response =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .body(createPostDTO)
+                        .when()
+                        .post(Endpoinds.CREATE_POST)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response().getBody().asString();
+
+        Assert.assertEquals("", "\"Congrats.\"", response);
     }
 }

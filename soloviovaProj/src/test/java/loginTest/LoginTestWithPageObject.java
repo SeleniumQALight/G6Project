@@ -21,7 +21,7 @@ import static pages.CommonActionWithElements.configProperties;
 @Epic("Allure examples")
 @Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
-    final static String ERROR_MESSAGE_LOGIN = "Invalid username pasword";
+    final static String ERROR_MESSAGE_LOGIN = "Invalid username / password.";
     @Description("Some detailed test description")
     @Link("https://example.org")
     @Link(name = "allure", type = "mylink")
@@ -33,8 +33,8 @@ public class LoginTestWithPageObject extends BaseTest {
    // @Ignore
     public void validLogin() {
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
-        loginPage.enterPasswordIntoInputPassword(TestData.VALID_PAsSWORD);
+        loginPage.enterUserNameIntoInputLogin("ys20230411");
+        loginPage.enterPasswordIntoInputPassword("qwerty1234567890");
         loginPage.clickOnButtonLogIn();
 
         Assert.assertTrue("Button is not displayed", headerElements.isButtonSignOutDisplayed());
