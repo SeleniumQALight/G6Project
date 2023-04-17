@@ -11,7 +11,6 @@ public class PrivatExchnageRatesPage {
     private String BASEURL = "https://next.privat24.ua";
 
     public PrivatExchnageRatesPage(WebDriver driver) {
-
         this.driver = driver;
     }
 

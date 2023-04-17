@@ -9,24 +9,27 @@ import libs.DriverHelper;
 import libs.TestData;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
+
 
 public class Currency_StepDefinitions {
 
 private PrivatExchnageRatesPage privatExchnageRatesPage = new PrivatExchnageRatesPage(DriverHelper.getWebDriver());
-    @Given("^Open exchange-rates for currency (.*) via UI and get sale and buy vales$")
-    public void open_exchange_rates_for_currency_USD_via_UI_and_get_sale_and_buy_vales(String currency) throws Throwable {
+
+    @Given("^Open exchange-rates for currency '(.*)' via UI and get sale and buy vales$")
+    public void openExchangeRatesForCurrencyCurrencyViaUIAndGetSaleAndBuyVales(String currency) {
         privatExchnageRatesPage.openExchangeRatesPage().getCurrency(currency);
     }
 
-    @When("^Get exchange rates via API for  currency (.*)$")
-    public void get_exchange_rates_via_API_for_currency_USD(String currency) throws Throwable {
-        PrivatBankApiService.getCurrencyRatesByApi(currency);
+
+    @When("^Get exchange rates via API for  currency '(.*)'$")
+    public void getExchangeRatesViaAPIForCurrencyCurrency(String currency) {
+        privatExchnageRatesPage.openExchangeRatesPage().getCurrency(currency);
     }
 
-    @Then("^Compare currency (.*)$")
-    public void compare_currency_USD(String currency) throws Throwable {
+    @Then("^Compare currency '(.*)'$")
+    public void compareCurrencyCurrency(String currency) {
         SoftAssertions softAssertions = new SoftAssertions();
+
         softAssertions.assertThat(TestData.currencyFromUI.get(currency))
                 .usingRecursiveComparison()
                 .ignoringFields("base_ccy")
