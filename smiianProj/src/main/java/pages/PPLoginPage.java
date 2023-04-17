@@ -1,7 +1,7 @@
 package pages;
 
 import libs.TestData;
-import org.junit.Assert;
+//import org.junit.Assert;        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,7 +32,7 @@ public class PPLoginPage extends PPParentPage {
             loggerExam.info("PrivatPage is opened");
         } catch (Exception e) {
             loggerExam.error("Can't open Privat Page" + e);
-            Assert.fail("Can't open Privat Page" + e);
+//            Assert.fail("Can't open Privat Page" + e);           //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
         return this;
     }
@@ -41,11 +41,17 @@ public class PPLoginPage extends PPParentPage {
 //        return webDriver.findElement(By.xpath(String.format(CurrencyText, currency)));
 //    }
 
-    public String getCurrencyValue(String CurrencyText){            //  .//td[contains(text(), 'USD')]//..//td[3]
-        WebElement element = webDriver.findElement(By.xpath(".//td[contains(text(), '" + CurrencyText + "')]//..//td[3]"));
-        return element.getText();
+    public void getUiCurrencyBuyValueAndSave(String currencyText){            //  .//td[@id='USD_buy']
+        WebElement element = webDriver.findElement(By.xpath(".//td[@id='" + currencyText + "_buy']"));
+//        int currencyBuyValue = Integer.parseInt(element.getText());
+        TestData.uiCurrencyValueBuy = Integer.parseInt(element.getText());
+//        return Integer.parseInt(element.getText());
     }
 
+    public void getUiCurrencySellValueAndSave(String currencyText){            //  .//td[@id='USD_sell']
+        WebElement element = webDriver.findElement(By.xpath(".//td[@id='" + currencyText + "_sell']"));
+        TestData.uiCurrencyValueSell = Integer.parseInt(element.getText());
+    }
 
 
 

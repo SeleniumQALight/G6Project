@@ -3,17 +3,14 @@ package apiTest;
 import api.EndPointsProj;
 import api.dto.responseDto.CurrencyRespPrivatDTO;
 import io.restassured.http.ContentType;
+import libs.TestData;
 import org.junit.Test;
-
-import java.util.List;
-
 import static io.restassured.RestAssured.given;
-
 
 public class ApiProject {
 
     @Test
-    public void getCurrencyValueFromPrivat(String currencyName) {
+    public void getFromPrivatCurrencyValueAndSave(String currencyName) {
 
         CurrencyRespPrivatDTO[] currencyRestPrivatDTO =
         given()
@@ -33,7 +30,9 @@ public class ApiProject {
 
         for (int i = 0; i < currencyRestPrivatDTO.length; i++) {
             if (currencyRestPrivatDTO[i].getCcy().equals(currencyName)) {
-// якщо equals, то зберегти в testData
+                TestData.apiCurrencyValueBuy = Integer.parseInt(currencyRestPrivatDTO[i].getBuy());
+                TestData.apiCurrencyValueSell = Integer.parseInt(currencyRestPrivatDTO[i].getSale());
+//                TestData.apiCurValueBuy = currencyRestPrivatDTO[i].getBuy();
             }
         }
     }

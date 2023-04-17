@@ -13,4 +13,12 @@ public class TestData {     //створюємо данні, які будуть
             System.getProperty("password", configHiddenProperties.password());   //  System.getProperty вставляє пароль "password"
                                                                                                    // а якщо небуде що вставляти візьме configHiddenProperties.password()
 
+
+
+
+    public static int apiCurrencyValueBuy;
+    public static int apiCurrencyValueSell;
+
+    public static int uiCurrencyValueBuy;
+    public static int uiCurrencyValueSell;
 }
