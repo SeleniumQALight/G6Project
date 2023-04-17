@@ -33,8 +33,8 @@ public class LoginTestWithPageObject extends BaseTest {
    // @Ignore
     public void validLogin() {
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoInputLogin(TestData.VALID_LOGIN);
-        loginPage.enterPasswordIntoInputPassword(TestData.VALID_PAsSWORD);
+        loginPage.enterUserNameIntoInputLogin("ys20230411");
+        loginPage.enterPasswordIntoInputPassword("qwerty1234567890");
         loginPage.clickOnButtonLogIn();
 
         Assert.assertTrue("Button is not displayed", headerElements.isButtonSignOutDisplayed());
