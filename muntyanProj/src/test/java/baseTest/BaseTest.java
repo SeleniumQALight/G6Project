@@ -4,7 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import libs.ScreenShot;
 import org.apache.log4j.Logger;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
