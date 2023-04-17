@@ -1,6 +1,7 @@
 package StepDefinitions;
 
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -35,4 +36,21 @@ public class LoginPage_StepDefinitions {
        loginPage.checkAlertInCenter(expectedText);
     }
 
+    @When("^User enters (.*) in the field (.*) input on 'Login' page$")
+    public void userEntersUsernameInTheUsernameFieldInputOnLoginPage(String username) throws Throwable{
+        loginPage.enterUserNameIntoInputLogin(username);
+    }
+    @And("^User enters (.*) in the field (.*) input on 'Login' page$")
+    public void userEntersEmailInTheEmailFieldInputOnLoginPage(String email) throws Throwable{
+        loginPage.enterEmailInRegistrationForm(email);
+    }
+    @And("^User enters (.*) in the field (.*) input on 'Login' page$")
+    public void userEntersPasswordInThePasswordFieldInputOnLoginPage(String password) throws Throwable{
+        loginPage.enterEmailInRegistrationForm(password);
+    }
+
+    @Then("^User see alert (.*)$")
+    public void userSeeAlertMessages(String message) {
+        loginPage.checkErrorsMessages(message);
+    }
 }
