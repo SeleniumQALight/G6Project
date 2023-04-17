@@ -5,7 +5,6 @@ import api.EndPointsBookShop;
 import api.dto.bookStore.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,14 +13,11 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class AddBookToUserProfileAPITest {
     ApiHelperBookStore apiHelperBookStore = new ApiHelperBookStore();
     String token;
     String userId;
-    Logger logger = Logger.getLogger(getClass());
-
 
     @Before
     public void deleteAllBookFromStore() {
@@ -33,8 +29,6 @@ public class AddBookToUserProfileAPITest {
 
     @Test
     public void checkAttachedBooks() {
-
-        assertTrue("The number of books is incorrect ", apiHelperBookStore.getActualUserBooks(userId, token).isEmpty());
 
         ListBooksDto listOfAllBooks = apiHelperBookStore.getListOfAllBooks();
 

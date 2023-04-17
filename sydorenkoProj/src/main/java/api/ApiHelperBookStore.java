@@ -10,18 +10,11 @@ import org.json.JSONObject;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertTrue;
 
 public class ApiHelperBookStore {
     public static final String USER_NAME = "test111";
     public static final String PASSWORD = "123456QwErTy!";
-
-//    public String getToken() {
-//        return getLoginResponse(USER_NAME, PASSWORD).getToken();
-//    }
-//
-//    public String getUserID() {
-//        return getLoginResponse(USER_NAME, PASSWORD).getUserId();
-//    }
 
     public LoginBooksDTO getLoginResponse() {
         JSONObject requestParams = new JSONObject();
@@ -52,7 +45,7 @@ public class ApiHelperBookStore {
                 .statusCode(204)
                 .log().all()
                 .extract().statusCode();
-        //        add check
+        assertTrue("The number of books is incorrect ", getActualUserBooks(userId, token).isEmpty());
     }
 
     public ListBooksDto getListOfAllBooks() {
