@@ -50,4 +50,8 @@ public class HeaderElement extends CommonActionsWithElements {
         return buttonCreatePost;
     }
 
+    public boolean isButtonMyProfileDisplayed(){
+        return isElementDisplayed(buttonMyProfile);
+    }
+
 }

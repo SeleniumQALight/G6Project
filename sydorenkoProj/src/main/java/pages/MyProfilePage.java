@@ -16,6 +16,10 @@ public class MyProfilePage extends ParentPage {
     private WebElement userNamePlace;
     @FindBy(xpath = "//div[@class='alert alert-success text-center'][text()='Post successfully deleted']")
     private WebElement successDeletePostMessage;
+
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
+
     private String titlePost = "//*[text()='%s']";
 
     public MyProfilePage(WebDriver webDriver) {
@@ -77,5 +81,8 @@ public class MyProfilePage extends ParentPage {
     public PostPage clickOnPostWithTitle(String postTitle) {
         clickOnElement(getPostsListWithTitle(postTitle).get(0));
         return new PostPage(webDriver);
+    }
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        assertEquals("Number of posts", expectedNumberOfPosts, postsList.size());
     }
 }
