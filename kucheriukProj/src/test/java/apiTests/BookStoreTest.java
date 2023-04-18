@@ -5,6 +5,7 @@ import api.EndPointsBookStore;
 import api.dto.bookStoreDTO.CollectionOfBookDTO;
 import api.dto.bookStoreDTO.RequestAddBookDTO;
 import api.dto.bookStoreDTO.ResponseBookStoreDTO;
+import api.dto.bookStoreDTO.UserLoginDTO;
 import io.restassured.http.ContentType;
 import io.restassured.response.ResponseBody;
 import org.apache.log4j.Logger;
@@ -19,20 +20,24 @@ import static io.restassured.RestAssured.given;
 public class BookStoreTest {
     ApiHelperForBookStore apiHelperForBookStore = new ApiHelperForBookStore();
     Logger logger = Logger.getLogger(getClass());
+    String userId;
+    String token;
+    UserLoginDTO userLoginDTO;
 
     public static final String USER_NAME = "BookTest";
     public static final String PASSWORD = "Qwerty12!@";
 
     @Before
     public void deleteBooksForUser() {
-        apiHelperForBookStore.deleteUserBooks(USER_NAME,PASSWORD);
+        userLoginDTO = apiHelperForBookStore.responseLogin(USER_NAME, PASSWORD);
+        userId = userLoginDTO.getUserId();
+        token = userLoginDTO.getToken();
+        apiHelperForBookStore.deleteUserBooks(userId, token);
     }
 
     @Test
     public void checkAddBook(){
-        String userId = apiHelperForBookStore.getUserId(USER_NAME,PASSWORD);
-        String token = apiHelperForBookStore.getToken(USER_NAME,PASSWORD);
-        String isbn = apiHelperForBookStore.getBookIsbn();
+        String isbn = apiHelperForBookStore.getIsbnOfFirstBook();
 
         List<CollectionOfBookDTO>  collectionOfBookDTO = List.of(CollectionOfBookDTO.builder()
                 .isbn(isbn)

@@ -5,6 +5,5 @@ public interface EndPointsBookStore {
     String LOGIN = baseUrl + "/Account/v1/Login";
     String BOOKSTORE = baseUrl + "/BookStore/v1/Books";
     String TOKEN = baseUrl + "/Account/v1/GenerateToken";
-    String DELETE_BOOKS = baseUrl + "/BookStore/v1/Books";
     String USER_FILE = baseUrl + "/Account/v1/User/{0}";
 }
