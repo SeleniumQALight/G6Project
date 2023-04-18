@@ -29,6 +29,9 @@ public class HeaderElement extends CommonActionsWithElements {
     public boolean isButtonSignOutDisplayed() {
         return isElementDisplayed(buttonSignOut);
     }
+    public boolean isButtonMyProfileDisplayed() {
+        return isElementDisplayed(buttonMyProfile);
+    }
     @Step
     public CreatePostPage clickOnCreatePostButton() {
         clickOnElement(buttonCreatePost);

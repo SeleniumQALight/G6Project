@@ -35,6 +35,9 @@ public class LoginPage extends ParentPage {
     private WebElement emailRegisterField;
     @FindBy(xpath = "//input[@id='password-register']")
     private WebElement passwordRegisterField;
+
+    @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")
+    private WebElement alertInCenter;
     String locatorForFieldValidationError = "//div[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible' and text()='%s']";
     private static final String listOfErrorsLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listOfErrorsLocator)
@@ -48,6 +51,7 @@ public class LoginPage extends ParentPage {
     String getRelativeURL() {
         return "/";
     }
+
     @Step
     public void openLoginPage() {
         try {
@@ -71,31 +75,37 @@ public class LoginPage extends ParentPage {
 //        }
         enterTextIntoElement(inputUserName, userName);
     }
+
     @Step
     public void actionsSendKeys(String text) {
         Actions action = new Actions(webDriver);
         action.sendKeys(text).build().perform();
     }
+
     @Step
     public void openNewTabWithSameUrl() {
         ((JavascriptExecutor) webDriver).executeScript("window.open()");
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(1));
     }
+
     @Step
     public void switchToFirstTabAndRefresh() {
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(0));
         webDriver.navigate().refresh();
     }
+
     @Step
     public void enterPasswordIntoInputPassword(String password) {
         enterTextIntoElement(inputPassword, password);
     }
+
     @Step
     public void clickOnButtonLogin() {
         clickOnElement(buttonLogin);
     }
+
     @Step
     public boolean isButtonSignInDisplayed() {
         return isElementDisplayed(buttonLogin);
@@ -129,7 +139,7 @@ public class LoginPage extends ParentPage {
         String[] expectedErrorsArray = expectedErrors.split(",");
         webDriverWait10.withMessage("Number of messages should be " + expectedErrorsArray.length).until(ExpectedConditions.numberOfElementsToBe(By.xpath(listOfErrorsLocator), expectedErrorsArray.length));
         Util.waitABit(1);
-        assertEquals("Number of messages ",expectedErrorsArray.length, listOfErrors.size());
+        assertEquals("Number of messages ", expectedErrorsArray.length, listOfErrors.size());
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
         for (WebElement element : listOfErrors) {
             actualTextFromErrors.add(element.getText());
@@ -139,5 +149,9 @@ public class LoginPage extends ParentPage {
             softAssertions.assertThat(expectedErrorsArray[i]).as("Message is not equals ").isIn(actualTextFromErrors);
         }
         softAssertions.assertAll();
+    }
+
+    public void checkAlertInCenter(String expectedText) {
+        Assert.assertEquals("Message in Alert", expectedText, alertInCenter.getText());
     }
 }

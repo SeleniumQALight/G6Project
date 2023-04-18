@@ -94,6 +94,7 @@ public class ApiHelper {
 
         String response=given()
                 .spec(requestSpecification).body(bodyParams.toMap())
+
                 .when()
                 .delete(Endpoints.DELETE_POST, id)
                 .then().statusCode(200).log().all().extract().response().getBody().asString();
