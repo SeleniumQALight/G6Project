@@ -11,5 +11,6 @@ public interface Endpoinds {
 
     String demoQaBaseUrl = "https://demoqa.com";
     String DEMO_QA_LOGIN = demoQaBaseUrl + "/Account/v1/Login";
-    String DEMO_QA_BOOK_STORE =  demoQaBaseUrl + "/BookStore/v1/Books";
+    String DEMO_QA_BOOK_STORE = demoQaBaseUrl + "/BookStore/v1/Books";
+    String DEMO_QA_USER_ACCOUNT = demoQaBaseUrl + "/Account/v1/User/{0}";
 }

@@ -23,33 +23,25 @@ public class BookTest {
 
     @Before
     public void deleteAllUserBooks() {
-                given()
-                        .auth().oauth2(userToken)
-                        .contentType(ContentType.JSON)
-                        .queryParam("UserId", userId)
-                        .log().all()
-                        .when()
-                        .delete(Endpoinds.DEMO_QA_BOOK_STORE)
-                        .then()
-                        .statusCode(204)
-                        .log().all()
-                        .extract().statusCode();
+        given()
+                .auth().oauth2(userToken)
+                .contentType(ContentType.JSON)
+                .queryParam("UserId", userId)
+                .log().all()
+                .when()
+                .delete(Endpoinds.DEMO_QA_BOOK_STORE)
+                .then()
+                .statusCode(204)
+                .log().all()
+                .extract().statusCode();
+
+        Assert.assertEquals("Number of user books:", 0, apiHelperDemoQa.getAllUserBooks(userToken, userId)
+                .jsonPath().getList("books").size());
     }
 
     @Test
     public void Book() {
-        Response actualResponseListOfBooks =
-                given()
-                        .contentType(ContentType.JSON)
-                        .log().all()
-                        .when()
-                        .get(Endpoinds.DEMO_QA_BOOK_STORE)
-                        .then()
-                        .statusCode(200)
-                        .log().all()
-                        .extract().response();
-
-        List<String> listOfBooks = actualResponseListOfBooks.jsonPath().getList("books.isbn", String.class);
+        List<String> listOfBooks = apiHelperDemoQa.getAllListOfBooks().jsonPath().getList("books.isbn", String.class);
         String firstBookIsbn = listOfBooks.get(0);
 
         CollectionOfIsbnsDTO[] createCollectionOfIsbns = {CollectionOfIsbnsDTO.builder().isbn(firstBookIsbn).build()};
@@ -59,23 +51,13 @@ public class BookTest {
                 .collectionOfIsbns(createCollectionOfIsbns)
                 .build();
 
-        Response actualListOfUserBooks =
-                given()
-                        .auth().oauth2(userToken)
-                        .contentType(ContentType.JSON)
-                        .log().all()
-                        .body(requestAddListOfBooks)
-                        .when()
-                        .post(Endpoinds.DEMO_QA_BOOK_STORE)
-                        .then()
-                        .statusCode(201)
-                        .extract().response();
+        apiHelperDemoQa.addListOfBooksToUser(userToken, requestAddListOfBooks);
 
-        List<String> actualCountOfUserBooks = actualListOfUserBooks.jsonPath().getList("books.isbn");
+        Response actualCountOfUserBooks = apiHelperDemoQa.getAllUserBooks(userToken, userId);
 
-        Assert.assertEquals("Actual count of user books ", 1, actualCountOfUserBooks.size());
-        Assert.assertEquals("Isbn doesn't match", firstBookIsbn, actualCountOfUserBooks.get(0));
-
-
+        Assert.assertEquals("Actual count of user books ", 1,
+                actualCountOfUserBooks.jsonPath().getList("books").size());
+        Assert.assertEquals("Isbn doesn't match ", firstBookIsbn,
+                actualCountOfUserBooks.jsonPath().getList("books.isbn").get(0));
     }
 }
