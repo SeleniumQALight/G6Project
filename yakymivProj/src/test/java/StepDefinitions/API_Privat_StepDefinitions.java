@@ -15,8 +15,8 @@ public class API_Privat_StepDefinitions {
 
         for (PrivatDTO element : list) {
             if (element.getCcy().equalsIgnoreCase(currency) && element.getBase_ccy().equalsIgnoreCase(baseCurrency)) {
-                TestData.API_BUY = element.getBuy();
-                TestData.API_SELL = element.getSale();
+                TestData.api_buy = element.getBuy();
+                TestData.api_sell = element.getSale();
             }
         }
 

@@ -18,14 +18,14 @@ public class PrivatHomePage_StepDefinitions {
 
     @When("^User get buy and sell rate of '(.*)' from UI$")
     public void user_get_buy_and_sell_rate_of_Currency_from_UI(String currency) {
-        TestData.UI_BUY = privatHomePage.getCurrencyBuyRate(currency);
-        TestData.UI_SELL = privatHomePage.getCurrencySellRate(currency);
+        TestData.ui_buy = privatHomePage.getCurrencyBuyRate(currency);
+        TestData.ui_sell = privatHomePage.getCurrencySellRate(currency);
     }
 
     @Then("^User compare currency from UI and API '(.*)' and '(.*)'$")
     public void user_compare_currency_from_UI_and_API_baseCurrency_and_currency(String baseCurrency, String currency) {
-        Assert.assertEquals("Rates Buy of " + currency + "for " + baseCurrency, TestData.UI_BUY, TestData.API_BUY);
-        Assert.assertEquals("Rates Sell of: " + currency + "for " + baseCurrency, TestData.UI_SELL, TestData.API_SELL);
+        Assert.assertEquals("Rates Buy of " + currency + "for " + baseCurrency, TestData.ui_buy, TestData.api_buy);
+        Assert.assertEquals("Rates Sell of: " + currency + "for " + baseCurrency, TestData.ui_sell, TestData.api_sell);
 
     }
 }
