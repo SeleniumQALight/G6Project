@@ -104,7 +104,7 @@ public class BaseTest {
 
     private WebDriver initDriver() {
         String browser = System.getProperty("browser");
-        if ((browser == null) || "edge".equalsIgnoreCase(browser)) {
+        if ((browser == null) || "chrome".equalsIgnoreCase(browser)) {
             ChromeOptions ops = new ChromeOptions();//110v
             ops.addArguments("--remote-allow-origins=*");//110v
             WebDriverManager.chromedriver().setup();//110v
