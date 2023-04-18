@@ -22,20 +22,16 @@
     Scenario: R002 Login with valid credentials
       Given User open 'Login' page
       When User enters '<login>' login into 'Login' input on 'Login' page
-#      When User enters valid login into 'Login' input on 'Login' page
       And User enters '<password>' passWord into 'PassWord' input on 'Login' page
-#      And User enters valid password into 'Password' input on 'Login' page
       And User click on 'SingIn' button on 'Login' page
       Then User sees users account avatar
 
     @R003
     Scenario Outline: R003 Check error messages in registration form
       Given User open 'Login' page
-#      When User enters '<login>' login into 'Login' input on 'Login' page
-      When User enters not valid '<login>' into 'Login' input on 'Login' page
-      And User enters not valid '<email>' into 'Email' input on 'Login' page
-#      And User enters '<password>' passWord into 'PassWord' input on 'Login' page
-      And User enters not valid '<password>' into 'Password' input on 'Login' page
+      When User enters '<login>' into 'Login' input on 'Login' page
+      And User enters '<email>' into 'Email' input on 'Login' page
+      And User enters '<password>' into 'Password' input on 'Login' page
       Then Check '<errorsList>' text
 
 

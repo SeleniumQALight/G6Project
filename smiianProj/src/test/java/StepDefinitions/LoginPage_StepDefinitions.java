@@ -42,30 +42,20 @@ public class LoginPage_StepDefinitions {
 
 
 
-    @When("^User enters valid login into 'Login' input on 'Login' page$")
-    public void user_Enters_Valid_Login_Into_Login_Input_On_Login_Page() {
-        loginPage.enterUserNameIntoInputLogin(TestData.VALID_LIGIN);
-    }
 
-    @And("^User enters valid password into 'Password' input on 'Login' page$")
-    public void user_Enters_Valid_Password_Into_Password_Input_On_Login_Page() {
-        loginPage.enterPasswordIntoInputPassword(TestData.VALID_PASSWORD);
-    }
-
-
-    @When("^User enters not valid '(.*)' into 'Login' input on 'Login' page$")
-    public void user_Enters_Not_Valid_Two_Characters_Login_Text_Into_Login_Input_On_Login_Page(String login) {
+    @When("^User enters '(.*)' into 'Login' input on 'Login' page$")
+    public void user_Enters_Two_Characters_Login_Text_Into_Login_Input_On_Login_Page(String login) {
         loginPage.enterDataIntoUsernameField(login);
 
     }
 
-    @And("^User enters not valid '(.*)' into 'Email' input on 'Login' page$")
-    public void user_Enters_Not_Valid_Email_Into_Email_Input_On_Login_Page(String email) {
+    @And("^User enters '(.*)' into 'Email' input on 'Login' page$")
+    public void user_Enters_Email_Into_Email_Input_On_Login_Page(String email) {
         loginPage.enterDataIntoEmailField(email);
     }
 
-    @And("^User enters not valid '(.*)' into 'Password' input on 'Login' page$")
-    public void user_Enters_Not_Valid_Password_Into_Password_Input_On_Login_Page(String password) {
+    @And("^User enters '(.*)' into 'Password' input on 'Login' page$")
+    public void user_Enters_Password_Into_Password_Input_On_Login_Page(String password) {
         loginPage.enterDataIntoPasswordField(password);
     }
 
