@@ -23,8 +23,6 @@ public class API_StepDefinitions {
         for (int i = 0; i < numberOfPosts; i++) {
             apiHelper.createPost(username, password, "Post from Api "+ (i+1));
 
-
-
         }
     }
 }
