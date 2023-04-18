@@ -20,6 +20,8 @@ public class MyProfilePage extends ParentPage {
     private WebElement editButton;
 
     private String titlePost = ".//*[text()='%s']";
+    @FindBy (xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -84,5 +86,9 @@ public class MyProfilePage extends ParentPage {
     public PostPage clickOnPostTitle(String postTitle) {
         clickOnElement(String.format(titlePost,postTitle));
         return new PostPage(webDriver);
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts ", expectedNumberOfPosts, postsList.size());
     }
 }
