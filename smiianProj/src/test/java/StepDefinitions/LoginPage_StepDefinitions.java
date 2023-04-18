@@ -49,12 +49,12 @@ public class LoginPage_StepDefinitions {
 
     }
 
-    @And("^User enters '(.*)' into 'Email' input on 'Login' page$")
+    @When("^User enters '(.*)' into 'Email' input on 'Login' page$")
     public void user_Enters_Email_Into_Email_Input_On_Login_Page(String email) {
         loginPage.enterDataIntoEmailField(email);
     }
 
-    @And("^User enters '(.*)' into 'Password' input on 'Login' page$")
+    @When("^User enters '(.*)' into 'Password' input on 'Login' page$")
     public void user_Enters_Password_Into_Password_Input_On_Login_Page(String password) {
         loginPage.enterDataIntoPasswordField(password);
     }

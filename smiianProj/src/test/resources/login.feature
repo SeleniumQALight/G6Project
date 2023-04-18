@@ -19,12 +19,17 @@
 
 
     @R002
-    Scenario: R002 Login with valid credentials
+    Scenario Outline: R002 Login with valid credentials
       Given User open 'Login' page
       When User enters '<login>' login into 'Login' input on 'Login' page
       And User enters '<password>' passWord into 'PassWord' input on 'Login' page
       And User click on 'SingIn' button on 'Login' page
       Then User sees users account avatar
+
+      Examples:
+      | login   | password |
+      | default | default  |
+
 
     @R003
     Scenario Outline: R003 Check error messages in registration form
@@ -33,7 +38,6 @@
       And User enters '<email>' into 'Email' input on 'Login' page
       And User enters '<password>' into 'Password' input on 'Login' page
       Then Check '<errorsList>' text
-
 
       Examples:
         | login                            | email       | password                                            | errorsList                                                                                                               |
