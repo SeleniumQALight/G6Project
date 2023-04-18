@@ -14,7 +14,7 @@ public class ApiHelperPB {
                         .contentType(ContentType.JSON)
                         .log().all()
                         .when()
-                        .get(EndPoints.CURRENCY_EXCHANGE)
+                        .get(EndPointsPB.CURRENCY_EXCHANGE)
                         .then()
                         .statusCode(200)
                         .log().all()
