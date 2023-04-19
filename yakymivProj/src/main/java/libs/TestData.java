@@ -17,4 +17,10 @@ public class TestData {
 
     public final static String USERNAME = "ivan19";
     public final static String PASSWORD = "6556dififafo";
+
+    public static Double ui_buy = 0.0;
+    public static Double ui_sell = 0.0;
+
+    public static Double api_buy = 0.0;
+    public static Double api_sell = 0.0;
 }
