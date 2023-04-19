@@ -13,7 +13,7 @@ abstract public class ParentPage extends CommonActionsWithElements {
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
         base_url = configProperties.base_url()
-                .replace("[env]", System.getProperty("env", "aqa"));
+                .replace("[env]", System.getProperty("env", "qa"));
     }
 
     protected void waitChatToBeHide(){
