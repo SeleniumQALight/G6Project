@@ -1,6 +1,7 @@
-package api;
+package api.helpers;
 
 import api.dto.requestDTO.CreatePostDTO;
+import api.Endpoinds;
 import api.dto.responseDTO.PostDTO;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -25,7 +26,6 @@ public class ApiHelper {
 
     /**
      * Get Token for default user
-     *
      * @return
      */
     public String getToken() {
