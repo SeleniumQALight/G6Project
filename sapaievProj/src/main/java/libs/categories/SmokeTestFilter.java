@@ -1,4 +1,4 @@
-package categories;
+package libs.categories;
 
 public interface SmokeTestFilter {
 }
