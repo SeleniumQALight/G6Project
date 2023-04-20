@@ -1,11 +1,11 @@
 package StepDefinitions;
 
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
 import libs.DriverHelper;
 import org.junit.Assert;
 import pages.HomePage;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
 
 
 public class HomePage_StepDefinitions {
