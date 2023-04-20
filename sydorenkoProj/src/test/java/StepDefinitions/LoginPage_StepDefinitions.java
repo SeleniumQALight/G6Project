@@ -30,7 +30,7 @@ public class LoginPage_StepDefinitions {
         loginPage.clickOnButtonLogin();
     }
 
-    @Then("^User sees alert message with text (.*)'$")
+    @Then("^User sees alert message with text '(.*)'$")
     public void user_sees_alert_message_with_text_Invalid_username_password(String expectedText) throws Throwable {
         loginPage.checkAlertInCenter(expectedText);
     }
