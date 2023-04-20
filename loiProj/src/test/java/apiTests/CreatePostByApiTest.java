@@ -1,6 +1,6 @@
 package apiTests;
 
-import api.ApiHelper;
+import api.helpers.ApiHelper;
 import api.Endpoinds;
 import api.dto.requestDTO.CreatePostDTO;
 import api.dto.responseDTO.AuthorDTO;
