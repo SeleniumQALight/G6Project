@@ -1,4 +1,5 @@
 #коментарі на проектах у фіічах не лишати
+@LoginTest @FullRegression
 
 
 Feature: User login
@@ -15,3 +16,4 @@ Feature: User login
     Examples:
       | login        | password     |
       | wrong login  | 123456qwerty |
+      | wrong login  | 156qwerty |

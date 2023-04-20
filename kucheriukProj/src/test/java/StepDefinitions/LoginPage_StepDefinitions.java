@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -31,5 +32,25 @@ public class LoginPage_StepDefinitions {
     @Then("^User sees alert message with text '(.*)'$")
     public void user_sees_alert_message_with_text_Invalid_username_password(String expectedText) throws Throwable {
         loginPage.checkAlertInCenter(expectedText);
+    }
+
+    @When("^User enters '(.*)' username into 'Username' input on 'Login' page$")
+    public void userEntersUsernameUsernameIntoUsernameInputOnLoginPage(String username) {
+        loginPage.enterUserNameIntoRegistrationField(username);
+    }
+
+    @And("^User enters '(.*)' email into 'Email' input on 'Login' page$")
+    public void userEntersEmailEmailIntoEmailInputOnLoginPage(String email) {
+        loginPage.enterEmailIntoEmailField(email);
+    }
+
+    @And("^User enters '(.*)' password into 'Password' input on 'Login' page$")
+    public void userEntersPasswordPasswordIntoPasswordInputOnLoginPage(String password) {
+        loginPage.enterPasswordIntoPasswordRegistrationField(password);
+    }
+
+    @Then("^User sees error messages '(.*)'$")
+    public void userSeesErrorMessagesMessages(String errorMessage) {
+        loginPage.checkErrorsMessage(errorMessage);
     }
 }

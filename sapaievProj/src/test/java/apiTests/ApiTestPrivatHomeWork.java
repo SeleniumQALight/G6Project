@@ -126,7 +126,7 @@ public class ApiTestPrivatHomeWork {
     @Test
     public void testBySchema(){
         given()
-                .contentType(ContentType.JSON)
+                .contentType(ContentType.JSON).queryParam("date", "22.03.2022")
                 .log().all()
                 .when()
                 .get(EndpointsPrivatBank.requestPrivat)
