@@ -15,6 +15,9 @@ public class TestData {
     public final static String INVALID_PASSWORD = "123";
     public final static String INVALID_EMAIL = "qa.com";
 
+    public final static String USERNAME = "ivan19";
+    public final static String PASSWORD = "6556dififafo";
+
     public static Double ui_buy = 0.0;
     public static Double ui_sell = 0.0;
 
