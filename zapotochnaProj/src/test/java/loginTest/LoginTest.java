@@ -23,7 +23,7 @@ public class LoginTest {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         System.out.println("browser was opened");
-        webDriver.get("https://qa-complexapp.onrender.com/");
+        webDriver.get("https://aqa-complexapp.onrender.com/");
 
 
         WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
