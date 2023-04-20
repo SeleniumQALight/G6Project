@@ -9,13 +9,14 @@ public class PrivatExchnageRatesPage {
 
     private WebDriver driver;
     private String BASEURL = "https://next.privat24.ua";
+    public String EXCHANGE_RATES_UI = "/exchange-rates";
 
     public PrivatExchnageRatesPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public PrivatExchnageRatesPage openExchangeRatesPage() {
-        driver.get(BASEURL + PrivatApi.EXCHANGE_RATES_UI);
+        driver.get(BASEURL + EXCHANGE_RATES_UI);
         return this;
     }
 
@@ -33,4 +34,7 @@ public class PrivatExchnageRatesPage {
         return TestData.currencyFromUI.get(currency);
     }
 
+    public void driverClose() {
+        driver.quit();
+    }
 }

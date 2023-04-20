@@ -23,7 +23,7 @@ private PrivatExchnageRatesPage privatExchnageRatesPage = new PrivatExchnageRate
 
     @When("^Get exchange rates via API for  currency '(.*)'$")
     public void getExchangeRatesViaAPIForCurrencyCurrency(String currency) {
-        privatExchnageRatesPage.openExchangeRatesPage().getCurrency(currency);
+        PrivatBankApiService.getCurrencyRatesByApi(currency);
     }
 
     @Then("^Compare currency '(.*)'$")

@@ -12,7 +12,9 @@ public class PrivatBankApiService {
 
     public static CurrencyDTO getCurrencyRatesByApi(String currency) {
         CurrencyDTO[] rates = given().log().all()
+                .queryParam("json&exchange&coursid","5")
                 .get(PrivatApi.EXCHANGE_RATES_API)
+
                 .then()
                 .log().all()
                 .extract()

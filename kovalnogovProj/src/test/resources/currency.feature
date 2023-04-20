@@ -9,5 +9,6 @@ Feature: PrivatUIAPI
     Examples:
       | Currency |
       | USD      |
+      | EUR      |
 
 
