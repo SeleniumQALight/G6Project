@@ -52,7 +52,7 @@ public class LoginPage extends ParentPage {
     private List<WebElement> listOfErrors;
 
 
-    @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text()='Invalid username  pasword']")
+    @FindBy(xpath = "//div[@class='alert alert-danger text-center' and text()='Invalid username / password.']")
     private WebElement loginErrorText;
 
     @FindBy(xpath = ".//*[contains(@class,'alert alert-danger text-center')]")

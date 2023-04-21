@@ -1,6 +1,6 @@
 package apiTests;
 
-import api.EndPoints;
+import api.EndPointsPB;
 import api.ExchangeRatePBuahDTO;
 import api.ExchangeRatesPBDTO;
 import io.restassured.http.ContentType;
@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiPBTest {
-    final String DATA = "22.03.2022";
+    private static final String DATA = "22.03.2022";
     private Logger logger = Logger.getLogger(getClass());
 
     @Test
@@ -23,9 +23,10 @@ public class ApiPBTest {
         ExchangeRatesPBDTO responseAsDTO =
                 given()
                         .contentType(ContentType.JSON)
+                        .queryParam("date", DATA)
                         .log().all()
                         .when()
-                        .get(EndPoints.EXCHANGE_RATES_PB, DATA)
+                        .get(EndPointsPB.EXCHANGE_RATES_PB)
                         .then()
                         .statusCode(200)
                         .log().all()
@@ -83,9 +84,10 @@ public class ApiPBTest {
     public void getExchangeRatesPBSchemaTest() {
         given()
                 .contentType(ContentType.JSON)
+                .queryParam("date", DATA)
                 .log().all()
                 .when()
-                .get(EndPoints.EXCHANGE_RATES_PB, DATA)
+                .get(EndPointsPB.EXCHANGE_RATES_PB)
                 .then()
                 .statusCode(200)
                 .log().all()
@@ -100,7 +102,7 @@ public class ApiPBTest {
                         .queryParam("date", DATA)
                         .log().all()
                         .when()
-                        .get(EndPoints.EXCHANGE_RATES_PB1)
+                        .get(EndPointsPB.EXCHANGE_RATES_PB)
                         .then()
                         .statusCode(200)
                         .log().all()

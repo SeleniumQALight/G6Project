@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
+
     @FindBy(xpath = ".//input[@name='username' and @placeholder='Username']")
     private WebElement inputUserName;
 
@@ -192,7 +193,7 @@ public class LoginPage extends ParentPage {
                 .until(ExpectedConditions
                         .numberOfElementsToBe(By.xpath(signUpAlertMessages), expectedErrorsArray.length));
 
-        Util.waitABit(1);  //  додаємо очікування 1 сек
+        Util.waitABit(4);  //  додаємо очікування 1 сек
         Assert.assertEquals("Number of messages", expectedErrorsArray.length, listOfErrors.size());  // робимо перевірку після очікування в 1 сек
 
         ArrayList<String> actualTextFromErrors = new ArrayList<>();
@@ -238,4 +239,7 @@ public class LoginPage extends ParentPage {
     public void checkAlertInCenter(String expectedText) {
         Assert.assertEquals("Message in Alert ", expectedText, alertInCenter.getText());
     }
+
+
+
 }

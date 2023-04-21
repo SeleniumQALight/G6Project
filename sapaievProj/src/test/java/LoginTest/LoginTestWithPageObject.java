@@ -1,18 +1,14 @@
 package LoginTest;
 
 import baseTest.BaseTest;
-import categories.SmokeTestFilter;
+import libs.categories.SmokeTestFilter;
 import io.qameta.allure.*;
 import libs.ExcelDriver;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import pages.CommonActionsWithElements;
-import pages.elements.HeaderElement;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import static pages.CommonActionsWithElements.configProperties;
@@ -35,7 +31,7 @@ public class LoginTestWithPageObject extends BaseTest {
     @Category(SmokeTestFilter.class)
     public void validLogin() {
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoInputLogin("qaauto123");
+        loginPage.enterUserNameIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickOnButtonLogin();
         Assert.assertTrue("Button is not displayed",

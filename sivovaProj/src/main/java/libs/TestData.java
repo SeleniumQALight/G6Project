@@ -14,5 +14,11 @@ public class TestData {
     public final static String ERROR_MESSAGE_EMAIL = "You must provide a valid email address.";
     public final static String ERROR_MESSAGE_PASSWORD = "Password must be at least 12 characters.";
 
+    public static Double api_buy;
+    public static Double api_sell;
+
+
+    public static String ui_buy;
+    public static String ui_sell;
 
 }
