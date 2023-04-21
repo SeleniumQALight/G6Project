@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Welcome3",
+    "definitions": {
+        "Welcome3": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "bank": {
+                    "type": "string"
+                },
+                "baseCurrency": {
+                    "type": "integer"
+                },
+                "baseCurrencyLit": {
+                    "$ref": "#/definitions/BaseCurrency"
+                },
+                "exchangeRate": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ExchangeRate"
+                    }
+                }
+            },
+            "required": [
+                "bank",
+                "baseCurrency",
+                "baseCurrencyLit",
+                "date",
+                "exchangeRate"
+            ],
+            "title": "Welcome3"
+        },
+        "ExchangeRate": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "baseCurrency": {
+                    "$ref": "#/definitions/BaseCurrency"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "saleRateNB": {
+                    "type": "number"
+                },
+                "purchaseRateNB": {
+                    "type": "number"
+                },
+                "saleRate": {
+                    "type": "number"
+                },
+                "purchaseRate": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "baseCurrency",
+                "currency",
+                "purchaseRateNB",
+                "saleRateNB"
+            ],
+            "title": "ExchangeRate"
+        },
+        "BaseCurrency": {
+            "type": "string",
+            "enum": [
+                "UAH"
+            ],
+            "title": "BaseCurrency"
+        }
+    }
+}

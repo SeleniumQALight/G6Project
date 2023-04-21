@@ -11,6 +11,10 @@ import pages.LoginPage;
 public class HomePage_StepDefinitions {
     HomePage homePage = new HomePage(DriverHelper.getWebdriver());
 
+    @Then("^User sees 'Signout' button$")
+    public void userSeesSignoutButton() {
+        homePage.checkIsRedirectToHomePage().getHeaderElement().isButtonSignOutDisplayed();
+    }
 
     @Given("^User opens 'Home' page$")
     public void userOpensHomePage() {
@@ -20,5 +24,6 @@ public class HomePage_StepDefinitions {
     @When("^User clicks on 'MyProfile' button on 'Home' page$")
     public void userClicksOnMyProfileButtonOnHomePage() {
         homePage.getHeaderElement().clickMyProfileButton("testuser");
+
     }
 }

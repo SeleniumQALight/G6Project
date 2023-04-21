@@ -1,13 +1,16 @@
 package StepDefinitions;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
+import libs.TestData;
 import pages.LoginPage;
 
 public class LoginPage_StepDefinitions {
     LoginPage loginPage = new LoginPage(DriverHelper.getWebDriver());
+
 
     @Given("^User open 'Login' page$")
     public void user_open_Login_page() throws Throwable {
@@ -40,4 +43,24 @@ public class LoginPage_StepDefinitions {
 
 
 
+    @When("^User enters '(.*)' into 'Login' input on 'Login' page$")
+    public void user_Enters_Two_Characters_Login_Text_Into_Login_Input_On_Login_Page(String login) {
+        loginPage.enterDataIntoUsernameField(login);
+
+    }
+
+    @When("^User enters '(.*)' into 'Email' input on 'Login' page$")
+    public void user_Enters_Email_Into_Email_Input_On_Login_Page(String email) {
+        loginPage.enterDataIntoEmailField(email);
+    }
+
+    @When("^User enters '(.*)' into 'Password' input on 'Login' page$")
+    public void user_Enters_Password_Into_Password_Input_On_Login_Page(String password) {
+        loginPage.enterDataIntoPasswordField(password);
+    }
+
+    @Then("^Check '(.*)' text$")
+    public void check_Errors_Messages_Text(String errorsList) {
+        loginPage.checkErrorsMessages(errorsList);
+    }
 }
