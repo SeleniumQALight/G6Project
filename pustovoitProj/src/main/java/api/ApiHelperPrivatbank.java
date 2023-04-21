@@ -9,16 +9,20 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 
 public class ApiHelperPrivatbank {
+    static final int ID = 5;
 
 public static List<PrivatbankDTO> getCurrencyFromAPI(){
 
     Response response =
             given()
                     .contentType(ContentType.JSON)
+                    .queryParam("json")
+                    .queryParam("exchange")
+                    .queryParam("coursid", ID)
                     .log().all()
                     .filter(new AllureRestAssured())
                     .when()
-                    .get(EndPointsPrivatBank.exchengeRateURL)
+                    .get(EndPointsPrivatBank.EXCHENGE_RATE_URL)
                     .then()
                     .statusCode(200)
                     .log().all()
