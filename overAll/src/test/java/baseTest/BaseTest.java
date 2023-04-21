@@ -124,13 +124,12 @@ public class BaseTest {
             // in most cases 32bit version is needed
             WebDriverManager.iedriver().arch32().setup();
             return new InternetExplorerDriver();
-        }
-        if ("remote".equals(browser)) {
+        }else if ("remote".equals(browser)) {
             WebDriverManager.chromedriver().setup();
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setBrowserName("chrome");
-            //            cap.setPlatform(Platform.WINDOWS);
-            //            cap.setVersion("79");
+//            cap.setPlatform(Platform.WINDOWS);
+//            cap.setVersion("79");
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.merge(cap);
             try {

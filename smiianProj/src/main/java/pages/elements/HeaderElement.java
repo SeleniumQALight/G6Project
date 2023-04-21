@@ -21,6 +21,9 @@ public class HeaderElement extends CommonActionWithElements {
     @FindBy(xpath = ".//*[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    @FindBy(xpath = ".//img[@alt='My profile']")
+    private WebElement avatar;
+
 
     public HeaderElement(WebDriver webDriver) {            //constructor
         super(webDriver);
@@ -46,5 +49,9 @@ public class HeaderElement extends CommonActionWithElements {
         clickOnElement(buttonCreatePost);
 
         return new CreatePostPage(webDriver);
+    }
+
+    public void checkIsAvatarDisplayed() {
+        isElementDisplayed(avatar);
     }
 }

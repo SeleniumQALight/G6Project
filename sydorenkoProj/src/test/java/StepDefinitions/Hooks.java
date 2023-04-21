@@ -16,7 +16,6 @@ public class Hooks {
     @Before(order = 0)
     public void setUp (){
         driverHelper.createWebDriver();
-        logger.info("");
     }
 
     @After(order = 0)
