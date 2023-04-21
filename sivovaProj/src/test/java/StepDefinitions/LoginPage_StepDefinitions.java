@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libs.DriverHelper;
+import pages.HomePage;
 import pages.LoginPage;
 
 public class LoginPage_StepDefinitions {
@@ -35,5 +36,28 @@ public class LoginPage_StepDefinitions {
     @Then("^User sees alert message with text '(.*)'$")
     public void user_sees_alert_message_with_text_Invalid_username_pasword(String expectedError) throws Throwable {
       loginPage.checkErrorMessageInvalidLogin(expectedError);
+    }
+
+
+    @When("^User enters '(.*)' username into 'Username' input on 'Login' page$")
+    public void userEntersUsernameUsernameIntoUsernameInputOnLoginPage(String username) {
+        loginPage.enterUserNameIntoInputSignUp(username);
+    }
+
+
+    @When("^User enters '(.*)' email into 'Email' input on 'Login' page$")
+    public void userEntersEmailEmailIntoEmailInputOnLoginPage(String email) {
+        loginPage.enterEmailIntoInputSignUp(email);
+    }
+
+
+    @When("^User enters '(.*)' password into 'Password' input on 'Login' page$")
+    public void userEntersPasswordPasswordIntoPasswordInputOnLoginPage(String password) {
+        loginPage.enterPasswordInputSignUp(password);
+    }
+
+    @Then("^User sees error messages '(.*)'$")
+    public void userSeesErrorMessagesMessages(String errorMessages) {
+        loginPage.checkErrorMessages(errorMessages);
     }
 }

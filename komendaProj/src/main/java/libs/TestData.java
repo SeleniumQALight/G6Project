@@ -2,6 +2,8 @@ package libs;
 
 import org.aeonbits.owner.ConfigFactory;
 
+import java.util.HashMap;
+
 public class TestData {
     public static ConfigHiddenProperties configHiddenProperties = ConfigFactory.create(ConfigHiddenProperties.class);
     public static String VALID_LOGIN = System.getProperty("login", configHiddenProperties.login());
@@ -10,4 +12,11 @@ public class TestData {
     public final static String INVALID_USERNAME = "tr";
     public final static String INVALID_PASSWORD = "123";
     public final static String INVALID_EMAIL = "test.com";
+
+    public static final String SELL_KEY_API = "sellAPI";
+    public static final String BUY_KEY_API = "buyAPI";
+    public static final String SELL_KEY_UI = "sellUI";
+    public static final String BUY_KEY_UI = "buyUI";
+
+    public static HashMap<String, Double> currencyPB = new HashMap<>();
 }

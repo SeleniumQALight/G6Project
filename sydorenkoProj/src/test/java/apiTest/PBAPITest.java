@@ -1,11 +1,10 @@
 package apiTest;
 
-import api.EndPoints;
+import api.EndPointsPB;
 import api.dto.responseDto.ExchangeRateDTO;
 import api.dto.responseDto.PrivateBankDTO;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 
@@ -16,7 +15,6 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class PBAPITest {
-    Logger logger = Logger.getLogger(getClass());
     String responseDate = "27.03.2022";
 
     @Test
@@ -28,7 +26,7 @@ public class PBAPITest {
                         .queryParam("date", responseDate)
                         .log().all()
                         .when()
-                        .get(EndPoints.EXCHANGE_RATES_API_PB)
+                        .get(EndPointsPB.EXCHANGE_RATES_PB)
                         .then()
                         .statusCode(200)
                         .log().all()
@@ -111,7 +109,7 @@ public class PBAPITest {
                         .queryParam("date", responseDate)
                         .log().all()
                         .when()
-                        .get(EndPoints.EXCHANGE_RATES_API_PB)
+                        .get(EndPointsPB.EXCHANGE_RATES_PB)
                         .then()
                         .statusCode(200)
                         .log().all()
@@ -141,7 +139,7 @@ public class PBAPITest {
                         .queryParam("date", responseDate)
                         .log().all()
                         .when()
-                        .get(EndPoints.EXCHANGE_RATES_API_PB)
+                        .get(EndPointsPB.EXCHANGE_RATES_PB)
                         .then()
                         .statusCode(200)
                         .log().all()

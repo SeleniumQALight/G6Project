@@ -22,6 +22,9 @@ public class MyProfilePage extends ParentPage {
 
     private String titlePostXpath = ".//*[text() = '%s']"; //щоб знайти свій текст по тайтлу, описали локатор окремою змінною.
 
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postlist;
+
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -97,7 +100,13 @@ public class MyProfilePage extends ParentPage {
 
     public PostPage findMyPostToEdit(String postTitle) {
 
-        clickOnElement(String.format(titlePostXpath,postTitle));
+        clickOnElement(String.format(titlePostXpath, postTitle));
         return new PostPage(webDriver);
+    }
+
+    public void checkNumberOfPosts(int expectedNumberOfPosts) {
+        Assert.assertEquals("Number of posts", expectedNumberOfPosts, postlist.size());
+
+
     }
 }

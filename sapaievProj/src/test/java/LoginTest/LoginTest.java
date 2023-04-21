@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,13 +19,15 @@ public class LoginTest {
 
     @Test
     public void validLogin() {
+        ChromeOptions ops = new ChromeOptions();
+        ops.addArguments("--remote-allow-origins=*");
         WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
+        webDriver = new ChromeDriver(ops);
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println("browser was open");
 
-        webDriver.get("https://qa-complexapp.onrender.com/");
+        webDriver.get("https://aqa-complexapp.onrender.com/");
         System.out.println("site was open");
 
         WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
@@ -61,11 +64,13 @@ public class LoginTest {
 
     @Test
     public void invalidLogin(){
+        ChromeOptions ops = new ChromeOptions();
+        ops.addArguments("--remote-allow-origins=*");
         WebDriverManager.chromedriver().setup();
-        webDriver=new ChromeDriver();
+        webDriver = new ChromeDriver(ops);
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        webDriver.get("https://qa-complexapp.onrender.com/");
+        webDriver.get("https://aqa-complexapp.onrender.com/");
 
         WebElement inputUserName=webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
         inputUserName.clear();
@@ -86,11 +91,13 @@ public class LoginTest {
 
     @Test
     public void invalidLoginWithEmptyField(){
+        ChromeOptions ops = new ChromeOptions();
+        ops.addArguments("--remote-allow-origins=*");
         WebDriverManager.chromedriver().setup();
-        webDriver=new ChromeDriver();
+        webDriver = new ChromeDriver(ops);
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        webDriver.get("https://qa-complexapp.onrender.com/");
+        webDriver.get("https://aqa-complexapp.onrender.com/");
 
         WebElement LoginButton=webDriver.findElement(By.xpath(".//button[@class='btn btn-primary btn-sm']"));
         LoginButton.click();
@@ -104,11 +111,13 @@ public class LoginTest {
 
     @Test
     public void invalidLoginWithCapitalizeLetter(){
+        ChromeOptions ops = new ChromeOptions();
+        ops.addArguments("--remote-allow-origins=*");
         WebDriverManager.chromedriver().setup();
-        webDriver=new ChromeDriver();
+        webDriver = new ChromeDriver(ops);
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        webDriver.get("https://qa-complexapp.onrender.com/");
+        webDriver.get("https://aqa-complexapp.onrender.com/");
 
         WebElement inputUserName=webDriver.findElement(By.xpath(".//input[@name='username' and @placeholder='Username']"));
         inputUserName.clear();

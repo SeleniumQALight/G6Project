@@ -15,7 +15,7 @@ abstract public class ParentPage extends CommonActionWithElements{
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
         base_url = configProperties.base_url()                                       // змінює [env] енв через налаштування в Edit Configuration
-                .replace("[env]", System.getProperty("env", "aqa"));   // за замовчуванням qa
+                .replace("[env]", System.getProperty("env", "qa"));   // за замовчуванням qa
     }
 
     protected void waitChatToBeHide() {
