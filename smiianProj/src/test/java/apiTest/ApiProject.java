@@ -26,13 +26,11 @@ public class ApiProject {
                 .extract()
                 .response().as(CurrencyRespPrivatDTO[].class);
 
-//        String ccyEur = currencyRestPrivatDTO[0].getCcy();
 
         for (int i = 0; i < currencyRestPrivatDTO.length; i++) {
             if (currencyRestPrivatDTO[i].getCcy().equals(currencyName)) {
-                TestData.apiCurrencyValueBuy = Integer.parseInt(currencyRestPrivatDTO[i].getBuy());
-                TestData.apiCurrencyValueSell = Integer.parseInt(currencyRestPrivatDTO[i].getSale());
-//                TestData.apiCurValueBuy = currencyRestPrivatDTO[i].getBuy();
+                TestData.apiCurrencyValueBuy = Double.parseDouble(currencyRestPrivatDTO[i].getBuy());
+                TestData.apiCurrencyValueSell = Double.parseDouble(currencyRestPrivatDTO[i].getSale());
             }
         }
     }

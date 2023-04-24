@@ -16,9 +16,9 @@ public class TestData {     //створюємо данні, які будуть
 
 
 
-    public static int apiCurrencyValueBuy;
-    public static int apiCurrencyValueSell;
+    public static double apiCurrencyValueBuy;
+    public static double apiCurrencyValueSell;
 
-    public static int uiCurrencyValueBuy;
-    public static int uiCurrencyValueSell;
+    public static double uiCurrencyValueBuy;
+    public static double uiCurrencyValueSell;
 }
