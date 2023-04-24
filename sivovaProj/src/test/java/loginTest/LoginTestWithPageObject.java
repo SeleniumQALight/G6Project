@@ -41,7 +41,7 @@ public class LoginTestWithPageObject extends BaseTest {
     public void validLogin(){
 
         loginPage.openLoginPage();
-        loginPage.enterUserNameIntoInputLogin("qaaut");
+        loginPage.enterUserNameIntoInputLogin("qaauto");
         loginPage.enterPasswordIntoInputPassword("123456qwerty");
         loginPage.clickButtonLogin();
         //homePage.checkIsRedirectToHomePage();
