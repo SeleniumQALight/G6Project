@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import org.junit.Assert;
 
 public class ApiHelper {
-    public static final String USER_NAME = "qaautotaras";
+    public static final String USER_NAME = "qataras";
     private final String PASSWORD = "123456qwerty";
     private Logger logger = Logger.getLogger(getClass());
 
@@ -72,7 +72,7 @@ public class ApiHelper {
         deletePostsTillPresent(USER_NAME, PASSWORD);
     }
 
-    private void deletePostsTillPresent(String userName, String password) {
+    public void deletePostsTillPresent(String userName, String password) {
         PostDTO[] listOfPosts = getAllPostsByUser(userName);
         String token = getToken(userName, password);
 
@@ -105,7 +105,7 @@ public class ApiHelper {
     }
 
 
-    public void createPost(String title, String userName, String password) {
+    public void createPost( String userName, String password, String title) {
         String token = getToken(userName.toLowerCase(), password);
 
         HashMap<String, String> requestParams = new HashMap<>();
