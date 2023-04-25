@@ -19,7 +19,7 @@ public class Api_StepDefinitions {
             password = TestData.VALID_PASSWORD;
         }
         for (int i = 0; i < numberOfPosts; i++) {
-            apiHelper.createPost(userName,password,"Post from Api " + (i + 1));
+            apiHelper.createPost(userName, password,"Post from Api " + (i + 1));
         }
 
     }
