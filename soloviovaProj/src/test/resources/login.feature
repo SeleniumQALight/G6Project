@@ -14,3 +14,13 @@ Feature: User login
       | login         | password      |
       | wrong login | 123456qwerty |
       | wrong login1| 1qwerty         |
+
+    @R002
+    Scenario: R002 Login with valid credentials
+      Given User opens 'Login' page
+      When User enters 'ys20230411' login into 'Login' input on 'Login' page
+      And User enters 'qwerty1234567890' passWord into 'PassWord' input on 'Login' page
+      And User click on 'SingIn' button on 'Login' page
+      Then User is transferred to a 'Home' page
+
+
