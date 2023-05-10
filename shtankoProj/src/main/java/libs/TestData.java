@@ -9,4 +9,8 @@ public class TestData {
             System.getProperty("login", configHiddenProperties.login());
     public final static String VALID_PASSWORD =
             System.getProperty("password",configHiddenProperties.password());
+    public static Double buyRateFromUi;
+    public static Double sellRateFromUi;
+    public static Double buyRateFromApi;
+    public static Double sellRateFromApi;
 }
