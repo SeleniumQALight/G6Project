@@ -4,10 +4,13 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import libraries.DriverHelper;
+import org.junit.Assert;
 import pages.LoginPage;
+import pages.elements.HeaderElements;
 
 public class LoginPage_StepDefinitions {
     LoginPage loginPage = new LoginPage(DriverHelper.getWebDriver());
+    HeaderElements headerElements = new HeaderElements(DriverHelper.getWebDriver());
 
     @Given("^User opens 'Login' page$")
     public void user_opens_Login_page() throws Throwable {
@@ -32,5 +35,10 @@ public class LoginPage_StepDefinitions {
     @Then("^User sees alert message with text '(.*)'$")
     public void user_sees_alert_message_with_text_Invalid_username_password(String expectedText) throws Throwable {
         loginPage.checkAlertInCenter(expectedText);
+    }
+
+    @Then("^User is transferred to a 'Home' page$")
+    public void userIsTransferredToAHomePage() {
+        Assert.assertTrue("User is not on the Home page ", headerElements.isButtonSignOutDisplayed());
     }
 }
