@@ -1,15 +1,20 @@
 package apiTests;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import api.AuthorDTO;
 import api.EndPoints;
 import api.PostDTO;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.apache.log4j.Logger;
+
+import java.util.List;
+import java.util.Map;
 
 
 public class ApiTests {
@@ -86,6 +91,49 @@ public class ApiTests {
         Assert.assertEquals("Message in response ", "\"Sorry, invalid user requested.undefined\"", actualResponse);
         Assert.assertEquals("Message in response ", "Sorry, invalid user requested.undefined", actualResponse
                 .replace("\"", ""));
+    }
 
+
+    @Test
+    public void getAllPostsByUsersPath() {
+        Response actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .log().all()
+                        .when()
+                        .get(EndPoints.POST_BY_USER, USER_NAME)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().response();
+
+        List<String> actualTitleList = actualResponse.jsonPath().getList("title", String.class);
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < actualTitleList.size(); i++) {
+            softAssertions.assertThat(actualTitleList.get(i)).as("Item number " + i).contains("test");
+        }
+
+        List<Map> actualAuthorList = actualResponse.jsonPath().getList("author", Map.class);
+        for (int i = 0; i < actualAuthorList.size() ; i++) {
+            softAssertions.assertThat(actualAuthorList.get(i).get("username"))
+                    .as("Item number " +i).isEqualTo(USER_NAME);
+            
+        }
+
+        softAssertions.assertAll();
+
+    }
+
+    @Test
+    public  void getAllPostsByUserSchema() {
+        given()
+                .contentType(ContentType.JSON)
+                .log().all()
+                .when()
+                .get(EndPoints.POST_BY_USER, USER_NAME)
+                .then()
+                .statusCode(200)
+                .log().all()
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"));
     }
 }
